@@ -32,14 +32,14 @@ window.onload = function() {
 };
 
 async function checkAuthStatus() {
-    const response = await fetch('/php/check_auth.php');
+    const response = await fetch('https://api.ton-domaine.com/check_auth.php');
     const data = await response.json();
 
     const connect = document.getElementById('connect');
 
     if (data.connected) {
         connect.textContent = `Bonjour, ${data.prenom}`;
-        connect.href = "/php/logout.php";
+        connect.href = "https://api.ton-domaine.com/logout.php";
     } else {
         connect.textContent = "Connexion";
         connect.href = "/login.html";
