@@ -20,17 +20,17 @@ window.onload = function() {
 };
 
 async function checkAuthStatus() {
-    const response = await fetch('/backend/php/check_auth.php');
+    const response = await fetch('/php/check_auth.php');
     const data = await response.json();
 
     const connect = document.getElementById('connect');
 
     if (data.connected) {
         connect.textContent = `Bonjour, ${data.prenom}`;
-        connect.href = "/backend/php/logout.php";
+        connect.href = "/php/logout.php";
     } else {
         connect.textContent = "Connexion";
-        connect.href = "/public/login.html";
+        connect.href = "/login.html";
     }
 }
 

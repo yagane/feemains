@@ -1,5 +1,5 @@
 async function updateAuthUI() {
-    const response = await fetch('/backend/php/check_auth.php');
+    const response = await fetch('/php/check_auth.php');
     const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
@@ -11,7 +11,7 @@ async function updateAuthUI() {
         userGreeting.style.display = 'inline';
         userFirstname.textContent = data.prenom;
         if(data.role == 'admin'){
-            userRole.href = '/public/admin.html';
+            userRole.href = '/admin.html';
         }
     } else {
         authLink.style.display = 'inline-block';

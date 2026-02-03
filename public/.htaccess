@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^php/(.*)$ ../backend/php/$1 [L]
