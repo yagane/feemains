@@ -162,7 +162,7 @@ async function displayTimeSlots() {
     slotsContainer.innerHTML = '';
 
     // Récupérer les rendez-vous existants pour cette date
-    const response = await fetch(`https://api.fee-mains.com/check_appointment.php?date=${selectedDate.toISOString().split('T')[0]}`);
+    const response = await fetch(`https://php.fee-mains.com/check_appointment.php?date=${selectedDate.toISOString().split('T')[0]}`);
     const data = await response.json();
 
     if (!data.success) {
@@ -199,7 +199,7 @@ async function loadPrestations() {
     const recapTotal = document.getElementById('recap-total');
 
     try {
-        const response = await fetch('.https://api.fee-mains.com/prestation.php');
+        const response = await fetch('.https://php.fee-mains.com/prestation.php');
         const prestations = await response.json();
 
         prestations.forEach(prestation => {
@@ -255,7 +255,7 @@ async function loadPrestations() {
             });
         });
 
-        // Ajouter un écouteur d'événement pour mettre à jour le récapitulatif
+        // Ajouter un écouteur d'événement pour mettre à jour le récphptulatif
         prestationsList.addEventListener('change', updateRecap);
 
         prestationsLoading.classList.add("hidden")
@@ -265,7 +265,7 @@ async function loadPrestations() {
     }
 }
 
-// Fonction pour mettre à jour le récapitulatif
+// Fonction pour mettre à jour le récphptulatif
 function updateRecap() {
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
     const recapEmpty = document.getElementById('recap-empty');
@@ -296,7 +296,7 @@ function updateRecap() {
         displayTimeSlots();
     }
 
-    // Ajouter chaque prestation cochée au récapitulatif
+    // Ajouter chaque prestation cochée au récphptulatif
     checkboxes.forEach(checkbox => {
         const prestationId = checkbox.value;
         const prestationPrice = parseFloat(checkbox.dataset.price);
@@ -305,18 +305,18 @@ function updateRecap() {
 
         selectedPrestationId.push(parseFloat(prestationId));
 
-        const recapItem = document.createElement('div');
-        recapItem.className = 'recap-item';
+        const recphptem = document.createElement('div');
+        recphptem.className = 'recap-item';
 
-        const recapItemName = document.createElement('span');
-        recapItemName.textContent = label.querySelector('.prestation-name').textContent;
+        const recphptemName = document.createElement('span');
+        recphptemName.textContent = label.querySelector('.prestation-name').textContent;
 
-        const recapItemPrice = document.createElement('span');
-        recapItemPrice.textContent = ` - ${prestationPrice.toFixed(2)} €`;
+        const recphptemPrice = document.createElement('span');
+        recphptemPrice.textContent = ` - ${prestationPrice.toFixed(2)} €`;
 
-        recapItem.appendChild(recapItemName);
-        recapItem.appendChild(recapItemPrice);
-        recapList.appendChild(recapItem);
+        recphptem.appendChild(recphptemName);
+        recphptem.appendChild(recphptemPrice);
+        recapList.appendChild(recphptem);
 
         prestationDuration +=  prestationDuree;
         total += prestationPrice;
@@ -337,7 +337,7 @@ function updateRecap() {
 }
 
 async function updateAuthUI() {
-    const response = await fetch('https://api.fee-mains.com/check_auth.php');
+    const response = await fetch('https://php.fee-mains.com/check_auth.php');
     const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
@@ -380,7 +380,7 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 
     try {
         // Envoyer les données au serveur
-        const response = await fetch('https://api.fee-mains.com/reservation.php', {
+        const response = await fetch('https://php.fee-mains.com/reservation.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
