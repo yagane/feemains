@@ -1,0 +1,177 @@
+const calendarGrid = document.getElementById("calendar-grid");
+const calendarSection = document.querySelector(".calendar");
+const monthYear = document.getElementById("month-year");
+
+const months = [
+    "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+    "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+];
+
+let currentDate = new Date();
+let selectedDate = currentDate;
+
+function renderCalendar() {
+    calendarGrid.innerHTML = "";
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    monthYear.textContent = `${months[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay() || 7;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const stopDay = new Date(new Date(today).setMonth(today.getMonth() + 3));
+
+    // Cases vides
+    for (let i = 1; i < firstDay; i++) {
+        calendarGrid.appendChild(document.createElement("div"));
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const div = document.createElement("div");
+        div.className = "day";
+        div.textContent = day;
+
+        const dateObj = new Date(year, month, day);
+        const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+        const isSunday = dateObj.getDay() === 0;
+
+        div.onclick = () => {
+            document.querySelectorAll(".day").forEach(el => el.classList.remove("selected"));
+
+            div.classList.add("selected");
+
+            selectedDate = new Date(dateStr);
+            loadTimeSlots(selectedDate);
+        };
+
+        calendarGrid.appendChild(div);
+    }
+}
+
+document.getElementById("prev").onclick = () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+};
+
+document.getElementById("next").onclick = () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+};
+
+renderCalendar();
+
+async function loadTimeSlots(date) {
+    document.getElementById('selected-date').textContent = new Date(date).toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+    });
+
+    document.getElementById('agenda-container').style.display = 'block';
+
+    const appointmentsContainer = document.getElementById('appointments-container');
+    appointmentsContainer.innerHTML = '';
+
+    for (let i = 0; i <= 10; i++) {
+        const timeLine = document.createElement('div');
+        timeLine.className = 'time-line';
+        timeLine.style.top = `${i * 10}%`;
+        appointmentsContainer.appendChild(timeLine);
+    }
+
+    // Récupérer les rendez-vous pour cette date
+    const appointments = await fetchAppointments(date);
+
+    appointments.forEach(appointment => {
+        let startTime = appointment.date_reservation.split(' ')[1];
+
+        const startHour = parseInt(startTime.split(':')[0], 10);
+        const startMinute = parseInt(startTime.split(':')[1], 10);
+        const dureeHour = parseInt(appointment.duree_reservation.split(':')[0], 10);
+        const dureeMinute = parseInt(appointment.duree_reservation.split(':')[1], 10);
+
+        let endHour = 0;
+        let endMinute = 0;
+
+        if((startMinute + dureeMinute) > 60){
+            endHour = startHour + dureeHour + 1;
+            endMinute = startMinute + dureeMinute - 60;
+        }else{
+            endHour = startHour + dureeHour;
+            endMinute = startMinute + dureeMinute;
+        }
+
+        let endTime = null;
+
+        if(endMinute < 10){
+            endTime = `${endHour}:0${endMinute}`;
+        }else{
+            endTime = `${endHour}:${endMinute}`;
+        }
+
+        if(startMinute < 10){
+            startTime = `${startHour}:0${startMinute}`;
+        }else{
+            startTime = `${startHour}:${startMinute}`;
+        }
+
+        const startTotalMinutes = (startHour - 10) * 60 + startMinute;
+        const endTotalMinutes = (endHour - 10) * 60 + endMinute;
+
+        // Calculer la position et la hauteur
+        const topPosition = (startTotalMinutes / 600) * 100; // 600 minutes entre 10h et 20h
+        const height = ((endTotalMinutes - startTotalMinutes) / 600) * 100;
+
+        const appointmentElement = document.createElement('div');
+        appointmentElement.className = 'appointment';
+        appointmentElement.style.top = `${topPosition}%`;
+        appointmentElement.style.height = `${height}%`;
+        appointmentElement.textContent = `${startTime} - ${endTime}`;
+
+        appointmentsContainer.appendChild(appointmentElement);
+    });
+}
+
+async function fetchAppointments(date) {
+    try {
+        const response = await fetch(`/backend/php/get_reservations.php?date=${date.toISOString().split('T')[0]}`);
+        const data = await response.json();
+
+        return data || [];
+    } catch (error) {
+        console.error("Erreur lors de la récupération des rendez-vous :", error);
+        return [];
+    }
+}
+
+loadTimeSlots(currentDate);
+
+async function updateAuthUI() {
+    const response = await fetch('/backend/php/check_auth.php');
+    const data = await response.json();
+    const authLink = document.getElementById('auth-link');
+    const userGreeting = document.getElementById('user-greeting');
+    const userFirstname = document.getElementById('user-firstname');
+    const userRole = document.getElementById('role');
+
+    if (data.connected) {
+        authLink.style.display = 'none';
+        userGreeting.style.display = 'inline';
+        userFirstname.textContent = data.prenom;
+        if(data.role == 'admin'){
+            userRole.href = '/public/admin.html';
+        }
+    } else {
+        authLink.style.display = 'inline-block';
+        userGreeting.style.display = 'none';
+    }
+}
+
+window.addEventListener('DOMContentLoaded', updateAuthUI);

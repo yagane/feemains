@@ -1,0 +1,22 @@
+async function updateAuthUI() {
+    const response = await fetch('/backend/php/check_auth.php');
+    const data = await response.json();
+    const authLink = document.getElementById('auth-link');
+    const userGreeting = document.getElementById('user-greeting');
+    const userFirstname = document.getElementById('user-firstname');
+    const userRole = document.getElementById('role');
+
+    if (data.connected) {
+        authLink.style.display = 'none';
+        userGreeting.style.display = 'inline';
+        userFirstname.textContent = data.prenom;
+        if(data.role == 'admin'){
+            userRole.href = '/public/admin.html';
+        }
+    } else {
+        authLink.style.display = 'inline-block';
+        userGreeting.style.display = 'none';
+    }
+}
+
+window.addEventListener('DOMContentLoaded', updateAuthUI);

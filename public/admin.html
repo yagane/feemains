@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mon compte</title>
+        <link rel="stylesheet" href="/public/css/style.css" />
+        <link rel="icon" href="/public/images/logo_fond.png" type="image/png">
+    </head>
+    <body>
+        <div class="main">
+            <nav class="navbar">
+                <div class="div-nav">
+                    <ul class="nav-left">
+                        <li><a href="/public/index.html#accueil">Accueil</a></li>
+                        <li><a href="/public/index.html#prestation">Prestations</a></li>
+                    </ul>
+                    <div class="logo">
+                        <img src="/public/images/logo.png" alt="Logo du site" />
+                    </div>
+                    <ul class="nav-right">
+                        <li><a href="/public/reservation.html">Reservation</a></li>
+                        <li>
+                            <a id="auth-link" href="/public/login.html">Connexion</a>
+                            <div id="user-greeting" class="user-greeting" style="display: none;">
+                            <span class="auth-link">Bonjour, <span id="user-firstname"></span> ▼</span>
+                                <div class="dropdown-menu">
+                                    <a id="role" href="/public/client.html">Mon compte</a>
+                                    <a href="/backend/php/logout.php">Se déconnecter</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div>
+                <section class="calendar">
+                    <div class="calendar-header">
+                        <button id="prev">◀</button>
+                        <h2 id="month-year"></h2>
+                        <button id="next">▶</button>
+                    </div>
+                    <div class="calendar-days">
+                        <div>Lun</div>
+                        <div>Mar</div>
+                        <div>Mer</div>
+                        <div>Jeu</div>
+                        <div>Ven</div>
+                        <div>Sam</div>
+                        <div>Dim</div>
+                    </div>
+                    <div id="calendar-grid"></div>
+                </section>
+                <section class="agenda-container" id="agenda-container">
+                    <h3><span id="selected-date"></span></h3>
+                    <div class="agenda">
+                        <div class="time-scale">
+                            <div class="time-marker" style="top: 0%;">10:00</div>
+                            <div class="time-marker" style="top: 10%;">11:00</div>
+                            <div class="time-marker" style="top: 20%;">12:00</div>
+                            <div class="time-marker" style="top: 30%;">13:00</div>
+                            <div class="time-marker" style="top: 40%;">14:00</div>
+                            <div class="time-marker" style="top: 50%;">15:00</div>
+                            <div class="time-marker" style="top: 60%;">16:00</div>
+                            <div class="time-marker" style="top: 70%;">17:00</div>
+                            <div class="time-marker" style="top: 80%;">18:00</div>
+                            <div class="time-marker" style="top: 90%;">19:00</div>
+                            <div class="time-marker" style="top: 100%;">20:00</div>
+                        </div>
+                        <div class="appointments-container" id="appointments-container">
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <a
+            href="https://www.instagram.com/feemains__"
+            target="_blank"
+            class="instagram-fixed"
+            aria-label="Instagram"
+            >
+                <img src="/public/images/insta.ico" alt="Instagram" />
+            </a>
+        </div>
+        <script src="/backend/js/admin.js"></script>
+    </body>
+</html>
