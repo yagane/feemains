@@ -19,4 +19,4 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
           source: "./"
-          target: "./"
+          target: "./site"
