@@ -1,0 +1,21 @@
+name: Déploiement automatique vers IONOS
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Déploiement via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.4
+        with:
+          server: <access-5019347095.webspace-host.com>
+          username: <su310133>
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: /
+          server-dir: /
