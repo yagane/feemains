@@ -49,8 +49,6 @@ async function updateAuthUI() {
             userRole.href = '/admin.html';
         }
         window.location.href = "/index.html";
-    } else {
-        window.location.href = "/login.html";
     }
 }
 
