@@ -162,7 +162,7 @@ async function displayTimeSlots() {
     slotsContainer.innerHTML = '';
 
     // Récupérer les rendez-vous existants pour cette date
-    const response = await fetch(`../../backend/php/check_appointment.php?date=${selectedDate.toISOString().split('T')[0]}`);
+    const response = await fetch(`https://php.fee-mains.com/check_appointment.php?date=${selectedDate.toISOString().split('T')[0]}`);
     const data = await response.json();
 
     if (!data.success) {
@@ -199,7 +199,7 @@ async function loadPrestations() {
     const recapTotal = document.getElementById('recap-total');
 
     try {
-        const response = await fetch('.../../backend/php/prestation.php');
+        const response = await fetch('.https://php.fee-mains.com/prestation.php');
         const prestations = await response.json();
 
         prestations.forEach(prestation => {
@@ -337,7 +337,7 @@ function updateRecap() {
 }
 
 async function updateAuthUI() {
-    const response = await fetch('../../backend/php/check_auth.php');
+    const response = await fetch('https://php.fee-mains.com/check_auth.php');
     const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
@@ -380,7 +380,7 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 
     try {
         // Envoyer les données au serveur
-        const response = await fetch('../../backend/php/reservation.php', {
+        const response = await fetch('https://php.fee-mains.com/reservation.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

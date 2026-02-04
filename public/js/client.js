@@ -1,7 +1,7 @@
 let userId = null;
 
 async function updateAuthUI() {
-    const response = await fetch('../../backend/php/check_auth.php');
+    const response = await fetch('https://php.fee-mains.com/check_auth.php');
     const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
@@ -33,7 +33,7 @@ async function loadHistoric() {
 
     try {
         // Envoyer les données au serveur
-        const response = await fetch('../../backend/php/client.php');
+        const response = await fetch('https://php.fee-mains.com/client.php');
         const reservations = await response.json();
 
         reservations.forEach(reservation => {
