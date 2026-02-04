@@ -12,6 +12,6 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 session_start();
 session_destroy();
-header('Location: /index.html');
+header('Location: https://fee-mains.com/index.html');
 exit;
 ?>

@@ -26,16 +26,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($emailExists) {
         // Rediriger avec un message d'erreur spécifique
-        header('Location: /register.html?error=email_exists');
+        header('Location: https://fee-mains.com/register.html?error=email_exists');
         exit;
     }
 
     $stmt = $db->prepare("INSERT INTO users (prenom, nom, email, phone, password) VALUES (?, ?, ?, ?, ?)");
     if ($stmt->execute([$prenom, $nom, $email, $phone, $password])) {
-        header('Location: /login.html?success=1');
+        header('Location: https://fee-mains.com/login.html?success=1');
         exit;
     } else {
-        header('Location: /register.html?error=register');
+        header('Location: https://fee-mains.com/register.html?error=register');
         exit;
     }
 }

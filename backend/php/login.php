@@ -27,12 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!password_verify($password, $user['password'])) {
-        header('Location: /login.html?error=password');
+        header('Location: https://fee-mains.com/login.html?error=password');
         exit;
     }
 
     $_SESSION['user'] = $user;
-    header('Location: /reservation.html');
+    header('Location: https://fee-mains.com/reservation.html');
     exit;
 }
 ?>
