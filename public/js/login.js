@@ -31,19 +31,27 @@ window.onload = function() {
     }
 };
 
-async function checkAuthStatus() {
+async function updateAuthUI() {
     const response = await fetch('https://php.fee-mains.com/check_auth.php');
     const data = await response.json();
-
-    const connect = document.getElementById('connect');
+    const authLink = document.getElementById('auth-link');
+    const userGreeting = document.getElementById('user-greeting');
+    const userFirstname = document.getElementById('user-firstname');
+    const userRole = document.getElementById('role');
 
     if (data.connected) {
-        connect.textContent = `Bonjour, ${data.prenom}`;
-        connect.href = "https://php.fee-mains.com/logout.php";
+        // Utilisateur connecté : masquer le lien de connexion et afficher le menu déroulant
+        authLink.style.display = 'none';
+        userGreeting.style.display = 'inline';
+        userFirstname.textContent = data.prenom;
+        userId = data.id;
+        if(data.role == 'admin'){
+            userRole.href = '/admin.html';
+        }
+        window.location.href = "/index.html";
     } else {
-        connect.textContent = "Connexion";
-        connect.href = "/login.html";
+        window.location.href = "/login.html";
     }
 }
 
-window.onload = checkAuthStatus;
+window.onload = updateAuthUI;
