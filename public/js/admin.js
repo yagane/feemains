@@ -86,8 +86,18 @@ async function loadTimeSlots(date) {
         appointmentsContainer.appendChild(timeLine);
     }
 
-    // Récupérer les rendez-vous pour cette date
-    const appointments = await fetchAppointments(date);
+    const date = date.toISOString().split('T')[0];
+
+    const response = await fetch("/api/resaAllByDate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ date })
+    });
+
+    const data = await response.json();
 
     appointments.forEach(appointment => {
         let startTime = appointment.date_reservation.split(' ')[1];
@@ -139,27 +149,20 @@ async function loadTimeSlots(date) {
     });
 }
 
-async function fetchAppointments(date) {
-    try {
-        const response = await fetch(`/php/get_reservations.php?date=${date.toISOString().split('T')[0]}`);
-        const data = await response.json();
-
-        return data || [];
-    } catch (error) {
-        console.error("Erreur lors de la récupération des rendez-vous :", error);
-        return [];
-    }
-}
-
 loadTimeSlots(currentDate);
 
 async function updateAuthUI() {
-    const response = await fetch('/php/check_auth.php');
-    const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
     const userFirstname = document.getElementById('user-firstname');
     const userRole = document.getElementById('role');
+
+    const response = await fetch("/api/me", {
+        method: "GET",
+        credentials: "include"
+    });
+
+    const data = await response.json();
 
     if (data.connected) {
         authLink.style.display = 'none';
