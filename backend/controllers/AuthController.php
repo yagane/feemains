@@ -35,7 +35,7 @@ class AuthController {
     public static function register() {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $user = User::insert($data['prenom'],$data['nom'],$data['email'],$data['phone'],$data['password']);
+        $user = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
     }
 
     public static function me() {

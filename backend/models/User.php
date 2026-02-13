@@ -24,8 +24,8 @@ class User {
             exit;
         }
 
-        $stmt = $db->prepare("INSERT INTO users (prenom, nom, email, phone, password) VALUES (?, ?, ?, ?, ?)");
-        if ($stmt->execute([$prenom, $nom, $email, $phone, $password])) {
+        $stmt = $db->prepare("INSERT INTO users (prenom, nom, phone, email, password) VALUES (?, ?, ?, ?, ?)");
+        if ($stmt->execute([$prenom, $nom, $phone, $email, $password])) {
             header('Location: /login.html?success=1');
             exit;
         } else {
