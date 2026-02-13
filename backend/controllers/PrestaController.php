@@ -7,7 +7,7 @@ class PrestaController {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $prestations = Presation::findAll();
+        $prestations = Prestation::findAll();
 
         echo json_encode($prestations);
     }
