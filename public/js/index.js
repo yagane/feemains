@@ -1,9 +1,9 @@
-const authLink = document.getElementById('auth-link');
-const userGreeting = document.getElementById('user-greeting');
-const userFirstname = document.getElementById('user-firstname');
-const userRole = document.getElementById('role');
-
 async function updateAuthUI() {
+    const authLink = document.getElementById('auth-link');
+    const userGreeting = document.getElementById('user-greeting');
+    const userFirstname = document.getElementById('user-firstname');
+    const userRole = document.getElementById('role');
+
     const response = await fetch("/api/me", {
         method: "GET",
         credentials: "include"
@@ -24,4 +24,4 @@ async function updateAuthUI() {
     }
 }
 
-window.addEventListener('DOMContentLoaded', updateAuthUI);
+window.onload = updateAuthUI;

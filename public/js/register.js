@@ -1,4 +1,25 @@
-// Fonction pour récupérer les paramètres de l'URL
+document.getElementById("register-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const prenom = document.getElementById("prenom").value;
+    const nom = document.getElementById("nom").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ prenom, nom, phone, email, password })
+    });
+
+    const data = await response.json();
+
+});
+
 function getUrlParameter(name) {
     const url = new URL(window.location.href);
     return url.searchParams.get(name);
@@ -19,19 +40,30 @@ window.onload = function() {
     }
 };
 
-async function checkAuthStatus() {
-    const response = await fetch('/php/check_auth.php');
+async function updateAuthUI() {
+    const authLink = document.getElementById('auth-link');
+    const userGreeting = document.getElementById('user-greeting');
+    const userFirstname = document.getElementById('user-firstname');
+    const userRole = document.getElementById('role');
+
+    const response = await fetch("/api/me", {
+        method: "GET",
+        credentials: "include"
+    });
+
     const data = await response.json();
 
-    const connect = document.getElementById('connect');
-
     if (data.connected) {
-        connect.textContent = `Bonjour, ${data.prenom}`;
-        connect.href = "/php/logout.php";
-    } else {
-        connect.textContent = "Connexion";
-        connect.href = "/login.html";
+        // Utilisateur connecté : masquer le lien de connexion et afficher le menu déroulant
+        authLink.style.display = 'none';
+        userGreeting.style.display = 'inline';
+        userFirstname.textContent = data.prenom;
+        userId = data.id;
+        if(data.role == 'admin'){
+            userRole.href = '/admin.html';
+        }
+        window.location.href = "/reservation.html";
     }
 }
 
-window.onload = checkAuthStatus;
+window.onload = updateAuthUI;

@@ -1,9 +1,3 @@
-// Fonction pour récupérer les paramètres de l'URL
-function getUrlParameter(name) {
-    const url = new URL(window.location.href);
-    return url.searchParams.get(name);
-}
-
 document.getElementById("login-form").addEventListener("submit", async function(e) {
     e.preventDefault();
 
@@ -20,9 +14,12 @@ document.getElementById("login-form").addEventListener("submit", async function(
     });
 
     const data = await response.json();
-
 });
 
+function getUrlParameter(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+}
 
 window.onload = function() {
     const error = getUrlParameter('error');
