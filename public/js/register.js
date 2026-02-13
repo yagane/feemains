@@ -18,7 +18,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
 
     const data = await response.json();
 
-    if(data.sucess){
+    if(data.success){
         window.location.href = "/login.html";
     }
 });

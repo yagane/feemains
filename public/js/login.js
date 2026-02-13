@@ -17,7 +17,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
 
     console.log(data)
 
-    if(data.sucess){
+    if(data.success){
         window.location.href = "/reservation.html";
     }
 });
