@@ -69,6 +69,8 @@ async function updateAuthUI() {
         authLink.style.display = 'inline-block';
         userGreeting.style.display = 'none';
     }
+
+    loadHistoric();
 }
 
 document.getElementById("logout").addEventListener("click", async function (e) {
@@ -85,4 +87,3 @@ document.getElementById("logout").addEventListener("click", async function (e) {
 });
 
 window.onload = updateAuthUI;
-window.addEventListener('DOMContentLoaded', loadHistoric);
