@@ -81,20 +81,19 @@ body{
     box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
     border-radius: 5px;
     z-index: 1;
+    color: var(--brown);
 }
 
 .dropdown-menu a {
     display: block;
     padding: 12px 16px;
     text-decoration: none;
-    color: var(--brown);
 }
 
 .dropdown-menu span {
     display: block;
     padding: 12px 16px;
     text-decoration: none;
-    color: var(--brown);
 }
 
 .dropdown-menu a:hover {
@@ -105,6 +104,7 @@ body{
 .dropdown-menu span:hover {
     background-color: var(--light-beige);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .user-greeting:hover .dropdown-menu {
