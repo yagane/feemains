@@ -6,6 +6,8 @@ async function updateAuthUI() {
     const userFirstname = document.getElementById('user-firstname');
     const userRole = document.getElementById('role');
 
+    console.log(data.connected);
+
     if (data.connected) {
         authLink.style.display = 'none';
         userGreeting.style.display = 'inline';
