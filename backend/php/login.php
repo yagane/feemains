@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $_SESSION['user'] = $user;
-    header('Location: https://fee-mains.com/index.html');
     exit;
 }
 ?>
