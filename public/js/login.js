@@ -15,6 +15,8 @@ document.getElementById("login-form").addEventListener("submit", async function(
 
     const data = await response.json();
 
+    console.log(data)
+
     if(data.sucess){
         window.location.href = "/reservation.html";
     }
