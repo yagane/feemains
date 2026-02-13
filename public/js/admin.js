@@ -97,7 +97,7 @@ async function loadTimeSlots(date) {
         body: JSON.stringify({ dateSplit })
     });
 
-    const data = await response.json();
+    const appointments = await response.json();
 
     appointments.forEach(appointment => {
         let startTime = appointment.date_reservation.split(' ')[1];
