@@ -1,6 +1,14 @@
 <?php
 session_start();
-$db = new PDO('mysql:host=db5019347394.hosting-data.io;dbname=dbs15148152', 'dbu1416311', 'Y@gane11123213221');
+
+$db = new PDO(
+    "mysql:host={$env['DB_HOST']};dbname={$env['DB_NAME']}",
+    $env['DB_USER'],
+    $env['DB_PASS'],
+    [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]
+);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $prenom = $_POST['prenom'];

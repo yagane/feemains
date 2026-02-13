@@ -15,8 +15,14 @@ if (!$prestationIds || !$date || !$duree) {
 }
 
 // Connexion à la base de données
-$db = new PDO('mysql:host=db5019347394.hosting-data.io;dbname=dbs15148152', 'dbu1416311', 'Y@gane11123213221');
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$db = new PDO(
+    "mysql:host={$env['DB_HOST']};dbname={$env['DB_NAME']}",
+    $env['DB_USER'],
+    $env['DB_PASS'],
+    [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]
+);
 
 try {
   // Insérer la réservation
