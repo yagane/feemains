@@ -10,7 +10,7 @@ class AuthController {
 
         if (!isset($data['email'], $data['password'])) {
             header('Location: https://fee-mains.com/login.html?error=email');
-            exit;
+            return;
         }
 
         $user = User::findByEmail($data['email']);
