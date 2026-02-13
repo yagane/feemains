@@ -1,5 +1,3 @@
 <FilesMatch "\.(env|ini|log|conf)$">
     Require all denied
 </FilesMatch>
-
-RedirectMatch 403 ^/php/
