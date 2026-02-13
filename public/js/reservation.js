@@ -340,28 +340,6 @@ function updateRecap() {
 
 }
 
-async function updateAuthUI() {
-    const response = await fetch('/php/check_auth.php');
-    const data = await response.json();
-    const authLink = document.getElementById('auth-link');
-    const userGreeting = document.getElementById('user-greeting');
-    const userFirstname = document.getElementById('user-firstname');
-    const userRole = document.getElementById('role');
-
-    if (data.connected) {
-        // Utilisateur connecté : masquer le lien de connexion et afficher le menu déroulant
-        authLink.style.display = 'none';
-        userGreeting.style.display = 'inline';
-        userFirstname.textContent = data.prenom;
-        userId = data.id;
-        if(data.role == 'admin'){
-            userRole.href = '/admin.html';
-        }
-    } else {
-        window.location.href = "/login.html";
-    }
-}
-
 document.getElementById('submit-reservation').addEventListener('click', async () => {
     // Vérifier que tous les champs sont remplis
     if (selectedPrestationId == [] || !selectedDate || !selectedTimeSlot) {
@@ -419,6 +397,41 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
     } catch (error) {
         console.error("Erreur lors de l'envoi de la réservation :", error);
         alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+});
+
+async function updateAuthUI() {
+    const response = await fetch('/php/check_auth.php');
+    const data = await response.json();
+    const authLink = document.getElementById('auth-link');
+    const userGreeting = document.getElementById('user-greeting');
+    const userFirstname = document.getElementById('user-firstname');
+    const userRole = document.getElementById('role');
+
+    if (data.connected) {
+        // Utilisateur connecté : masquer le lien de connexion et afficher le menu déroulant
+        authLink.style.display = 'none';
+        userGreeting.style.display = 'inline';
+        userFirstname.textContent = data.prenom;
+        userId = data.id;
+        if(data.role == 'admin'){
+            userRole.href = '/admin.html';
+        }
+    } else {
+        window.location.href = "/login.html";
+    }
+}
+
+document.getElementById("logout").addEventListener("click", function (e) {
+    const response = await fetch("/api/logout", {
+        method: "GET",
+        credentials: "include"
+    });
+
+    const data = await response.json();
+
+    if(data.success){
+        window.location.href = "/index.html";
     }
 });
 

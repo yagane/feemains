@@ -71,5 +71,18 @@ async function updateAuthUI() {
     }
 }
 
+document.getElementById("logout").addEventListener("click", function (e) {
+    const response = await fetch("/api/logout", {
+        method: "GET",
+        credentials: "include"
+    });
+
+    const data = await response.json();
+
+    if(data.success){
+        window.location.href = "/index.html";
+    }
+});
+
 window.onload = updateAuthUI;
 window.addEventListener('DOMContentLoaded', loadHistoric);
