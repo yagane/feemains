@@ -55,9 +55,6 @@ class AuthController {
                 'phone' => $user['phone'],
                 'role' => $user['role']
             ]);
-        }else{
-            echo json_encode(['connected' => false]);
-
         }
     }
 
