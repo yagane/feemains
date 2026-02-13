@@ -368,7 +368,6 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
     const date = `${slotDateTime.toISOString().split('T')[0]} ${slotDateTime.toISOString().split('T')[1].split('.')[0]}`;
 
     try {
-        // Envoyer les données au serveur
         const response = await fetch('/api/insertResa', {
             method: 'POST',
             headers: {

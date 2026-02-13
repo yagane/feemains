@@ -47,7 +47,7 @@ class Reservation {
             "INSERT INTO reservations (user_id, date_reservation, duree_reservation)
             VALUES (?, ?, ?)"
         );
-        $stmt->execute([$userId, $date, $duree]);
+        $stmt->execute([$userID, $date, $duree]);
         $reservationId = $db->lastInsertId();
 
         $stmt = $db->prepare(
