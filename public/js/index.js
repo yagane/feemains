@@ -5,12 +5,8 @@ const userRole = document.getElementById('role');
 
 async function updateAuthUI() {
     const response = await fetch("/api/me", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        credentials: "include",
-        body: JSON.stringify({ email, password })
+        method: "GET",
+        credentials: "include"
     });
 
     const data = await response.json();

@@ -79,8 +79,6 @@ class AuthController {
             'role' => $user['role']
             ]);
         }
-
-
     }
 
     public static function logout() {
