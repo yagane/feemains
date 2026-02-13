@@ -88,6 +88,8 @@ async function loadTimeSlots(date) {
 
     const dateSplit = date.toISOString().split('T')[0];
 
+    console.log(dateSplit)
+
     const response = await fetch("/api/resaAllByDate", {
         method: "POST",
         headers: {
@@ -98,6 +100,8 @@ async function loadTimeSlots(date) {
     });
 
     const appointments = await response.json();
+
+    console.log(appointments)
 
     appointments.forEach(appointment => {
         let startTime = appointment.date_reservation.split(' ')[1];

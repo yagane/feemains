@@ -7,7 +7,7 @@ class ResaController {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $reservations = Reservation::allByDateOrder($data['date']);
+        $reservations = Reservation::allByDateOrder($data['dateSplit']);
 
         echo json_encode($reservations);
     }
