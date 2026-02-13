@@ -4,28 +4,32 @@ require_once __DIR__ . '/../models/User.php';
 class AuthController {
 
     public static function login() {
+
         session_start();
 
         $data = json_decode(file_get_contents("php://input"), true);
 
         if (!isset($data['email'], $data['password'])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Données invalides"]);
             return;
         }
 
         $user = User::findByEmail($data['email']);
 
-        if (!password_verify($password, $user['password'])) {
+        if (!$user || !password_verify($data['password'], $user['password'])) {
+            http_response_code(401);
+            echo json_encode(["error" => "Identifiants incorrects"]);
             return;
         }
 
+        // ✅ On stocke en session
         $_SESSION['user'] = [
-            'id' => $user['id'],
-            'prenom' => $user['prenom'],
-            'nom' => $user['nom'],
-            'email' => $user['email'],
-            'phone' => $user['phone'],
-            'role' => $user['role']
+            "id" => $user['id'],
+            "email" => $user['email']
         ];
+
+        echo json_encode(["success" => true]);
     }
 
     public static function register() {
