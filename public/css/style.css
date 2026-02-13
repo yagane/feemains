@@ -83,14 +83,26 @@ body{
     z-index: 1;
 }
 
-.dropdown-menu a, span {
+.dropdown-menu a {
     display: block;
     padding: 12px 16px;
     text-decoration: none;
     color: var(--brown);
 }
 
-.dropdown-menu a, span:hover {
+.dropdown-menu span {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--brown);
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--light-beige);
+    border-radius: 5px;
+}
+
+.dropdown-menu span:hover {
     background-color: var(--light-beige);
     border-radius: 5px;
 }
