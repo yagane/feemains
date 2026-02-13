@@ -9,14 +9,12 @@ class AuthController {
         $data = json_decode(file_get_contents("php://input"), true);
 
         if (!isset($data['email'], $data['password'])) {
-            header('Location: https://fee-mains.com/login.html?error=email');
             return;
         }
 
         $user = User::findByEmail($data['email']);
 
         if (!password_verify($password, $user['password'])) {
-            header('Location: https://fee-mains.com/login.html?error=password');
             return;
         }
 
@@ -28,8 +26,6 @@ class AuthController {
             'phone' => $user['phone'],
             'role' => $user['role']
         ];
-
-        header('Location: https://fee-mains.com/reservation.html');
     }
 
     public static function register() {
