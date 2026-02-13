@@ -32,7 +32,7 @@ window.onload = function() {
 };
 
 async function updateAuthUI() {
-    const response = await fetch('https://php.fee-mains.com/check_auth.php');
+    const response = await fetch('/php/check_auth.php');
     const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');

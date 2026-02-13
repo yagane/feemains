@@ -20,14 +20,14 @@ window.onload = function() {
 };
 
 async function checkAuthStatus() {
-    const response = await fetch('https://php.fee-mains.com/check_auth.php');
+    const response = await fetch('/php/check_auth.php');
     const data = await response.json();
 
     const connect = document.getElementById('connect');
 
     if (data.connected) {
         connect.textContent = `Bonjour, ${data.prenom}`;
-        connect.href = "https://php.fee-mains.com/logout.php";
+        connect.href = "/php/logout.php";
     } else {
         connect.textContent = "Connexion";
         connect.href = "/login.html";

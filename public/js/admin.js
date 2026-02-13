@@ -141,7 +141,7 @@ async function loadTimeSlots(date) {
 
 async function fetchAppointments(date) {
     try {
-        const response = await fetch(`https://php.fee-mains.com/get_reservations.php?date=${date.toISOString().split('T')[0]}`);
+        const response = await fetch(`/php/get_reservations.php?date=${date.toISOString().split('T')[0]}`);
         const data = await response.json();
 
         return data || [];
@@ -154,7 +154,7 @@ async function fetchAppointments(date) {
 loadTimeSlots(currentDate);
 
 async function updateAuthUI() {
-    const response = await fetch('https://php.fee-mains.com/check_auth.php');
+    const response = await fetch('/php/check_auth.php');
     const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
