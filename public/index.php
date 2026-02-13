@@ -103,7 +103,9 @@ async function checkAuth() {
             credentials: "include"
         });
 
-        if (!response.ok) {
+        const data = await response.json();
+
+        if (!data.connected) {
             return;
         }
 
