@@ -86,7 +86,7 @@ async function loadTimeSlots(date) {
         appointmentsContainer.appendChild(timeLine);
     }
 
-    const date = date.toISOString().split('T')[0];
+    const dateSplit = date.toISOString().split('T')[0];
 
     const response = await fetch("/api/resaAllByDate", {
         method: "POST",
@@ -94,7 +94,7 @@ async function loadTimeSlots(date) {
             "Content-Type": "application/json"
         },
         credentials: "include",
-        body: JSON.stringify({ date })
+        body: JSON.stringify({ dateSplit })
     });
 
     const data = await response.json();
