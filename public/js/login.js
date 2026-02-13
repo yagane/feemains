@@ -4,18 +4,26 @@ function getUrlParameter(name) {
     return url.searchParams.get(name);
 }
 
-document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+document.getElementById("login-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-        this.submit();
+    const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ email, password })
     });
+
+    const data = await response.json();
+
 });
 
-// Afficher les messages en fonction des paramètres
+
 window.onload = function() {
     const error = getUrlParameter('error');
     const messageDiv = document.getElementById('message');
@@ -32,12 +40,17 @@ window.onload = function() {
 };
 
 async function updateAuthUI() {
-    const response = await fetch('/php/check_auth.php');
-    const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
     const userFirstname = document.getElementById('user-firstname');
     const userRole = document.getElementById('role');
+
+    const response = await fetch("/api/me", {
+        method: "GET",
+        credentials: "include"
+    });
+
+    const data = await response.json();
 
     if (data.connected) {
         // Utilisateur connecté : masquer le lien de connexion et afficher le menu déroulant
@@ -48,7 +61,7 @@ async function updateAuthUI() {
         if(data.role == 'admin'){
             userRole.href = '/admin.html';
         }
-        // window.location.href = "/index.html";
+        window.location.href = "/reservation.html";
     }
 }
 

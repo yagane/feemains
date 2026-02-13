@@ -25,8 +25,8 @@ class AuthController {
 
         // ✅ On stocke en session
         $_SESSION['user'] = [
-            "id" => $user['id'],
-            "email" => $user['email'],
+            'id' => $user['id'],
+            'prenom' => $user['prenom'],
             'nom' => $user['nom'],
             'email' => $user['email'],
             'phone' => $user['phone'],
@@ -40,31 +40,7 @@ class AuthController {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if (!isset($data['email'], $data['password'])) {
-            http_response_code(400);
-            echo json_encode(["error" => "Données invalides"]);
-            return;
-        }
-
-        $user = User::findByEmail($data['email']);
-
-        if (!$user || !password_verify($data['password'], $user['password'])) {
-            http_response_code(401);
-            echo json_encode(["error" => "Identifiants incorrects"]);
-            return;
-        }
-
-        // ✅ On stocke en session
-        $_SESSION['user'] = [
-            'id' => $user['id'],
-            'email' => $user['email']
-            'nom' => $user['nom'],
-            'email' => $user['email'],
-            'phone' => $user['phone'],
-            'role' => $user['role']
-        ];
-
-        echo json_encode(["success" => true]);
+        $user = User::insert($data['prenom'],$data['nom'],$data['email'],$data['phone'],$data['password']);
     }
 
     public static function me() {
