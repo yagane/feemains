@@ -15,8 +15,6 @@ document.getElementById("login-form").addEventListener("submit", async function(
 
     const data = await response.json();
 
-    console.log(data)
-
     if(data.success){
         window.location.href = "/reservation.html";
     }
@@ -68,7 +66,7 @@ async function updateAuthUI() {
     }
 }
 
-document.getElementById("logout").addEventListener("click", function (e) {
+document.getElementById("logout").addEventListener("click", async function (e) {
     const response = await fetch("/api/logout", {
         method: "GET",
         credentials: "include"
