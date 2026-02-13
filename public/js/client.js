@@ -18,7 +18,7 @@ async function loadHistoric() {
         const reservations = await response.json();
 
         reservations.forEach(reservation => {
-            if(reservation.user_id == userId){
+            if(reservation.user_id == userID){
             const row = document.createElement('tr');
 
             const date = new Date(reservation.date_reservation);
@@ -47,6 +47,9 @@ async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
     const userFirstname = document.getElementById('user-firstname');
+    const userFullname = document.getElementById('user-fullname');
+    const userEmail = document.getElementById('user-email');
+    const userPhone = document.getElementById('user-phone');
     const userRole = document.getElementById('role');
 
     const response = await fetch("/api/me", {
@@ -62,6 +65,9 @@ async function updateAuthUI() {
         authLink.style.display = 'none';
         userGreeting.style.display = 'inline';
         userFirstname.textContent = data.prenom;
+        userFullname.textContent = `${data.prenom} ${data.nom}` ;
+        userEmail.textContent = data.email;
+        userPhone.textContent = data.phone;
         if(data.role == 'admin'){
             userRole.href = '/admin.html';
         }
