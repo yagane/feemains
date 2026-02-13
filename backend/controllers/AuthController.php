@@ -65,11 +65,22 @@ class AuthController {
 
         if (!isset($_SESSION['user'])) {
             http_response_code(401);
-            echo json_encode(["error" => "Non authentifié"]);
-            return;
+            echo json_encode(['connected' => false]);
+        }else{
+            $user = $_SESSION['user'];
+
+            echo json_encode([
+            'connected' => true,
+            'id' => $user['id'],
+            'prenom' => $user['prenom'],
+            'nom' => $user['nom'],
+            'email' => $user['email'],
+            'phone' => $user['phone'],
+            'role' => $user['role']
+            ]);
         }
 
-        echo json_encode($_SESSION['user']);
+
     }
 
     public static function logout() {

@@ -1,12 +1,19 @@
-async function updateAuthUI() {
-    const response = await fetch('/php/check_auth.php');
-    const data = await response.json();
-    const authLink = document.getElementById('auth-link');
-    const userGreeting = document.getElementById('user-greeting');
-    const userFirstname = document.getElementById('user-firstname');
-    const userRole = document.getElementById('role');
+const authLink = document.getElementById('auth-link');
+const userGreeting = document.getElementById('user-greeting');
+const userFirstname = document.getElementById('user-firstname');
+const userRole = document.getElementById('role');
 
-    console.log(data.connected);
+async function updateAuthUI() {
+    const response = await fetch("/api/me", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
 
     if (data.connected) {
         authLink.style.display = 'none';
