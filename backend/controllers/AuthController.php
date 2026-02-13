@@ -37,7 +37,7 @@ class AuthController {
 
         $user = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
 
-        header('Location: https://fee-mains.com/reservation.html');
+        header('Location: https://fee-mains.com/login.html');
     }
 
     public static function me() {

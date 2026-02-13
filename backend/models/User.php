@@ -20,16 +20,16 @@ class User {
         $emailExists = $stmt->fetchColumn();
 
         if ($emailExists) {
-            header('Location: /register.html?error=email_exists');
+            header('Location: https://fee-mains.com/register.html?error=email_exists');
             exit;
         }
 
         $stmt = $db->prepare("INSERT INTO users (prenom, nom, phone, email, password) VALUES (?, ?, ?, ?, ?)");
         if ($stmt->execute([$prenom, $nom, $phone, $email, $password])) {
-            header('Location: /login.html?success=1');
+            header('Location: https://fee-mains.com/login.html?success=1');
             exit;
         } else {
-            header('Location: /register.html?error=register');
+            header('Location: https://fee-mains.com/register.html?error=register');
             exit;
         }
     }
