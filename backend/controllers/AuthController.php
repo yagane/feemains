@@ -9,8 +9,8 @@ class AuthController {
         $data = json_decode(file_get_contents("php://input"), true);
 
         if (!isset($data['email'], $data['password'])) {
-            header('Location: https://fee-mains.com/login.html?error=SET');
-            return;
+            header('Location: https://fee-mains.com/login.html?error=email');
+            exit;
         }
 
         $user = User::findByEmail($data['email']);

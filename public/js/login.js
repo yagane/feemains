@@ -12,8 +12,6 @@ document.getElementById("login-form").addEventListener("submit", async function(
         credentials: "include",
         body: JSON.stringify({ email, password })
     });
-
-    const data = await response;
 });
 
 function getUrlParameter(name) {
