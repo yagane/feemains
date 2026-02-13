@@ -1,31 +1,4 @@
-let userId = null;
-
-async function updateAuthUI() {
-    const response = await fetch('/php/check_auth.php');
-    const data = await response.json();
-    const authLink = document.getElementById('auth-link');
-    const userGreeting = document.getElementById('user-greeting');
-    const userFirstname = document.getElementById('user-firstname');
-    const userRole = document.getElementById('role');
-
-    if (data.connected) {
-        authLink.style.display = 'none';
-        userGreeting.style.display = 'inline-block';
-        console.log(data)
-        userFirstname.textContent = data.prenom;
-        document.getElementById('user-fullname').textContent = data.prenom + ' ' + data.nom;
-        document.getElementById('user-email').textContent = data.email;
-        document.getElementById('user-phone').textContent = data.phone;
-        userId = data.id;
-        if(data.role == 'admin'){
-            userRole.href = '/admin.html';
-        }
-    } else {
-        alert(data.error);
-        window.location.href = '/index.html';
-        return;
-    }
-}
+let userID = null;
 
 async function loadHistoric() {
     const historicDiv = document.querySelector(".historique-rdv");
@@ -33,8 +6,16 @@ async function loadHistoric() {
 
     try {
         // Envoyer les données au serveur
-        const response = await fetch('/php/client.php');
-        const reservations = await response.json();
+        const response = await fetch("/api/resaByUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({ userID })
+        });
+
+        const data = await response.json();
 
         reservations.forEach(reservation => {
             if(reservation.user_id == userId){
@@ -62,5 +43,33 @@ async function loadHistoric() {
     }
 }
 
-window.addEventListener('DOMContentLoaded', updateAuthUI);
+async function updateAuthUI() {
+    const authLink = document.getElementById('auth-link');
+    const userGreeting = document.getElementById('user-greeting');
+    const userFirstname = document.getElementById('user-firstname');
+    const userRole = document.getElementById('role');
+
+    const response = await fetch("/api/me", {
+        method: "GET",
+        credentials: "include"
+    });
+
+    const data = await response.json();
+
+    userID = data.id
+
+    if (data.connected) {
+        authLink.style.display = 'none';
+        userGreeting.style.display = 'inline';
+        userFirstname.textContent = data.prenom;
+        if(data.role == 'admin'){
+            userRole.href = '/admin.html';
+        }
+    } else {
+        authLink.style.display = 'inline-block';
+        userGreeting.style.display = 'none';
+    }
+}
+
+window.onload = updateAuthUI;
 window.addEventListener('DOMContentLoaded', loadHistoric);

@@ -36,6 +36,8 @@ class AuthController {
         $data = json_decode(file_get_contents("php://input"), true);
 
         $user = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
+
+        header('Location: https://fee-mains.com/login.html');
     }
 
     public static function me() {
@@ -53,6 +55,9 @@ class AuthController {
                 'phone' => $user['phone'],
                 'role' => $user['role']
             ]);
+        }else{
+            echo json_encode(['connected' => false]);
+
         }
     }
 
