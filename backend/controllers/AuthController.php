@@ -26,7 +26,11 @@ class AuthController {
         // ✅ On stocke en session
         $_SESSION['user'] = [
             "id" => $user['id'],
-            "email" => $user['email']
+            "email" => $user['email'],
+            'nom' => $user['nom'],
+            'email' => $user['email'],
+            'phone' => $user['phone'],
+            'role' => $user['role']
         ];
 
         echo json_encode(["success" => true]);
@@ -52,8 +56,12 @@ class AuthController {
 
         // ✅ On stocke en session
         $_SESSION['user'] = [
-            "id" => $user['id'],
-            "email" => $user['email']
+            'id' => $user['id'],
+            'email' => $user['email']
+            'nom' => $user['nom'],
+            'email' => $user['email'],
+            'phone' => $user['phone'],
+            'role' => $user['role']
         ];
 
         echo json_encode(["success" => true]);
