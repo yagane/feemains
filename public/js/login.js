@@ -13,7 +13,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
         body: JSON.stringify({ email, password })
     });
 
-    const data = wait response.json()
+    const data = await response.json();
 
     if(data.sucess){
         window.location.href = "/reservation.html";

@@ -16,7 +16,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
         body: JSON.stringify({ prenom, nom, phone, email, password })
     });
 
-    const data = wait response.json()
+    const data = await response.json();
 
     if(data.sucess){
         window.location.href = "/login.html";
