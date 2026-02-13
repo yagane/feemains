@@ -7,20 +7,22 @@ session_set_cookie_params([
 
 header("Content-Type: application/json");
 
+require_once __DIR__ . '/../backend/core/Router.php';
 require_once __DIR__ . '/../backend/controllers/AuthController.php';
+require_once __DIR__ . '/../backend/controllers/PrestaController.php';
+require_once __DIR__ . '/../backend/controllers/ResaController.php';
 
-$uri = $_SERVER['REQUEST_URI'];
+$router = new Router();
 
-if (strpos($uri, '/api/login') !== false) {
-    AuthController::login();
+// Auth
+$router->add("POST", "/api/login", ["AuthController", "login"]);
+$router->add("POST", "/api/register", ["AuthController", "register"]);
+$router->add("POST", "/api/logout", ["AuthController", "logout"]);
+$router->add("GET", "/api/me", ["AuthController", "me"]);
 
-} elseif (strpos($uri, '/api/me') !== false) {
-    AuthController::me();
+$router->add("POST", "/api/resaAllByDate", ["ResaController", "resaAllByDate"]);
+$router->add("POST", "/api/resaTimeDurationByDate", ["ResaController", "resaTimeDurationByDate"]);
+$router->add("POST", "/api/resaByUser", ["ResaController", "resaByUser"]);
+$router->add("POST", "/api/insertResa", ["ResaController", "insertResa"]);
 
-} elseif (strpos($uri, '/api/logout') !== false) {
-    AuthController::logout();
-
-} else {
-    http_response_code(404);
-    echo json_encode(["error" => "Route non trouvée"]);
-}
+$router->dispatch();

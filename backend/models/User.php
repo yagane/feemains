@@ -10,4 +10,27 @@ class User {
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function insert($prenom, $nom, $phone, $email, $password) {
+        $password = password_hash($password, PASSWORD_BCRYPT);
+
+        $db = Database::connect();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $emailExists = $stmt->fetchColumn();
+
+        if ($emailExists) {
+            header('Location: /register.html?error=email_exists');
+            exit;
+        }
+
+        $stmt = $db->prepare("INSERT INTO users (prenom, nom, email, phone, password) VALUES (?, ?, ?, ?, ?)");
+        if ($stmt->execute([$prenom, $nom, $email, $phone, $password])) {
+            header('Location: /login.html?success=1');
+            exit;
+        } else {
+            header('Location: /register.html?error=register');
+            exit;
+        }
+    }
 }

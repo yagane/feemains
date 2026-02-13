@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Connexion - Mon Site</title>
+    <title>Mon Site - Auth Router</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -21,18 +21,17 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 300px;
+            width: 320px;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 20px;
         }
 
         input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
@@ -53,43 +52,78 @@
         }
 
         .message {
-            text-align: center;
             margin-top: 10px;
-            font-size: 14px;
+            text-align: center;
         }
 
-        .error {
-            color: red;
-        }
+        .error { color: red; }
+        .success { color: green; }
 
-        .success {
-            color: green;
-        }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>Connexion</h2>
 
-    <form id="loginForm">
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="password" id="password" placeholder="Mot de passe" required>
-        <button type="submit">Se connecter</button>
-    </form>
+    <!-- Zone login -->
+    <div id="loginSection">
+        <h2>Connexion</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+
+    <!-- Zone utilisateur connecté -->
+    <div id="userSection" class="hidden">
+        <h2>Bienvenue</h2>
+        <p id="userInfo"></p>
+        <button id="logoutBtn">Se déconnecter</button>
+    </div>
 
     <div id="message" class="message"></div>
+
 </div>
 
 <script>
+
+const loginSection = document.getElementById("loginSection");
+const userSection = document.getElementById("userSection");
+const messageDiv = document.getElementById("message");
+const userInfo = document.getElementById("userInfo");
+
+
+// 🔐 Vérifier si déjà connecté
+async function checkAuth() {
+    try {
+        const response = await fetch("/api/me", {
+            method: "GET",
+            credentials: "include"
+        });
+
+        if (!response.ok) {
+            return;
+        }
+
+        const user = await response.json();
+        showUser(user);
+
+    } catch (error) {
+        console.error("Erreur auth");
+    }
+}
+
+
+// 🔑 Login
 document.getElementById("loginForm").addEventListener("submit", async function(e) {
     e.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const messageDiv = document.getElementById("message");
 
-    messageDiv.textContent = "Connexion en cours...";
+    messageDiv.textContent = "Connexion...";
     messageDiv.className = "message";
 
     try {
@@ -98,54 +132,56 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             headers: {
                 "Content-Type": "application/json"
             },
+            credentials: "include",
             body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-            messageDiv.textContent = data.error || "Erreur inconnue";
+            messageDiv.textContent = data.error || "Erreur";
             messageDiv.classList.add("error");
             return;
         }
 
-        messageDiv.textContent = "Connexion réussie !";
+        showUser({ email });
+
+        messageDiv.textContent = "Connexion réussie";
         messageDiv.classList.add("success");
 
-        // Exemple : redirection après connexion
-        setTimeout(() => {
-            window.location.href = "/dashboard.html";
-        }, 1000);
-
     } catch (error) {
-        messageDiv.textContent = "Erreur serveur.";
+        messageDiv.textContent = "Erreur serveur";
         messageDiv.classList.add("error");
     }
 });
 
-async function getCurrentUser() {
-    try {
-        const response = await fetch("/api/me", {
-            method: "GET",
-            credentials: "include"
-        });
 
-        const data = await response.json();
+// 🚪 Logout
+document.getElementById("logoutBtn").addEventListener("click", async function() {
 
-        if (!response.ok) {
-            console.log("Non connecté");
-            return;
-        }
+    await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include"
+    });
 
-        console.log("Utilisateur connecté :", data);
-        document.body.innerHTML += `<p>Connecté en tant que ${data.email}</p>`;
+    loginSection.classList.remove("hidden");
+    userSection.classList.add("hidden");
+    messageDiv.textContent = "Déconnecté";
+    messageDiv.className = "message";
+});
 
-    } catch (error) {
-        console.error("Erreur serveur");
-    }
+
+// 🎯 Affichage utilisateur
+function showUser(user) {
+    loginSection.classList.add("hidden");
+    userSection.classList.remove("hidden");
+    userInfo.textContent = "Connecté en tant que : " + user.email;
 }
 
-getCurrentUser();
+
+// 🚀 Vérification au chargement
+checkAuth();
+
 </script>
 
 </body>
