@@ -15,7 +15,7 @@ async function loadHistoric() {
             body: JSON.stringify({ userID })
         });
 
-        const data = await response.json();
+        const reservations = await response.json();
 
         reservations.forEach(reservation => {
             if(reservation.user_id == userId){
