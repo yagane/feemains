@@ -199,7 +199,11 @@ async function loadPrestations() {
     const recapTotal = document.getElementById('recap-total');
 
     try {
-        const response = await fetch('./php/prestation.php');
+        const response = await fetch("/api/getAllPresta", {
+            method: "GET",
+            credentials: "include"
+        });
+
         const prestations = await response.json();
 
         prestations.forEach(prestation => {

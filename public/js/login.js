@@ -13,7 +13,11 @@ document.getElementById("login-form").addEventListener("submit", async function(
         body: JSON.stringify({ email, password })
     });
 
-    window.location.href = "/reservation.html";
+    const data = wait response.json()
+
+    if(data.sucess){
+        window.location.href = "/reservation.html";
+    }
 });
 
 function getUrlParameter(name) {

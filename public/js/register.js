@@ -15,6 +15,12 @@ document.getElementById("register-form").addEventListener("submit", async functi
         credentials: "include",
         body: JSON.stringify({ prenom, nom, phone, email, password })
     });
+
+    const data = wait response.json()
+
+    if(data.sucess){
+        window.location.href = "/login.html";
+    }
 });
 
 function getUrlParameter(name) {

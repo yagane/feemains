@@ -10,16 +10,14 @@ class AuthController {
         $data = json_decode(file_get_contents("php://input"), true);
 
         if (!isset($data['email'], $data['password'])) {
-            http_response_code(400);
-            echo json_encode(["error" => "Données invalides"]);
+            echo json_encode(["success" => false]);
             return;
         }
 
         $user = User::findByEmail($data['email']);
 
         if (!$user || !password_verify($data['password'], $user['password'])) {
-            http_response_code(401);
-            echo json_encode(["error" => "Identifiants incorrects"]);
+            echo json_encode(["success" => false]);
             return;
         }
 
@@ -40,7 +38,7 @@ class AuthController {
 
         $user = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
 
-        header('Location: https://fee-mains.com/login.html');
+        echo json_encode(["success" => true]);
     }
 
     public static function me() {

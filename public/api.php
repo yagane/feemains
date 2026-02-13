@@ -25,4 +25,6 @@ $router->add("POST", "/api/resaTimeDurationByDate", ["ResaController", "resaTime
 $router->add("POST", "/api/resaByUser", ["ResaController", "resaByUser"]);
 $router->add("POST", "/api/insertResa", ["ResaController", "insertResa"]);
 
+$router->add("GET", "/api/getAllPresta", ["PrestaController", "getAllPresta"]);
+
 $router->dispatch();
