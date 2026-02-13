@@ -15,6 +15,9 @@ document.getElementById("register-form").addEventListener("submit", async functi
         credentials: "include",
         body: JSON.stringify({ prenom, nom, phone, email, password })
     });
+
+    const data = await response.json();
+
 });
 
 function getUrlParameter(name) {
