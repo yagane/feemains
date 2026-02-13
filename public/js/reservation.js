@@ -161,8 +161,18 @@ function checkTimeSlotAvailability(timeSlot, data) {
 async function displayTimeSlots() {
     slotsContainer.innerHTML = '';
 
+    const date = selectedDate.toISOString().split('T')[0];
+
     // Récupérer les rendez-vous existants pour cette date
-    const response = await fetch(`/php/check_appointment.php?date=${selectedDate.toISOString().split('T')[0]}`);
+    const response = await fetch("/api/resaTimeDurationByDate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ date })
+    });
+
     const data = await response.json();
 
     if (!data.success) {
@@ -259,7 +269,6 @@ async function loadPrestations() {
             });
         });
 
-        // Ajouter un écouteur d'événement pour mettre à jour le récphptulatif
         prestationsList.addEventListener('change', updateRecap);
 
         prestationsLoading.classList.add("hidden")
@@ -269,7 +278,6 @@ async function loadPrestations() {
     }
 }
 
-// Fonction pour mettre à jour le récphptulatif
 function updateRecap() {
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
     const recapEmpty = document.getElementById('recap-empty');
@@ -300,7 +308,6 @@ function updateRecap() {
         displayTimeSlots();
     }
 
-    // Ajouter chaque prestation cochée au récphptulatif
     checkboxes.forEach(checkbox => {
         const prestationId = checkbox.value;
         const prestationPrice = parseFloat(checkbox.dataset.price);
@@ -309,18 +316,18 @@ function updateRecap() {
 
         selectedPrestationId.push(parseFloat(prestationId));
 
-        const recphptem = document.createElement('div');
-        recphptem.className = 'recap-item';
+        const div = document.createElement('div');
+        div.className = 'recap-item';
 
-        const recphptemName = document.createElement('span');
-        recphptemName.textContent = label.querySelector('.prestation-name').textContent;
+        const spanName = document.createElement('span');
+        spanName.textContent = label.querySelector('.prestation-name').textContent;
 
-        const recphptemPrice = document.createElement('span');
-        recphptemPrice.textContent = ` - ${prestationPrice.toFixed(2)} €`;
+        const spanPrice = document.createElement('span');
+        spanPrice.textContent = ` - ${prestationPrice.toFixed(2)} €`;
 
-        recphptem.appendChild(recphptemName);
-        recphptem.appendChild(recphptemPrice);
-        recapList.appendChild(recphptem);
+        div.appendChild(spanName);
+        div.appendChild(spanPrice);
+        recapList.appendChild(div);
 
         prestationDuration +=  prestationDuree;
         total += prestationPrice;
@@ -362,11 +369,12 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 
     try {
         // Envoyer les données au serveur
-        const response = await fetch('/php/reservation.php', {
+        const response = await fetch('/api/insertResa', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: "include",
             body: JSON.stringify({
                 id: userId,
                 prestId: selectedPrestationId,
@@ -401,12 +409,17 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 });
 
 async function updateAuthUI() {
-    const response = await fetch('/php/check_auth.php');
-    const data = await response.json();
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
     const userFirstname = document.getElementById('user-firstname');
     const userRole = document.getElementById('role');
+
+    const response = await fetch("/api/me", {
+        method: "GET",
+        credentials: "include"
+    });
+
+    const data = await response.json();
 
     if (data.connected) {
         // Utilisateur connecté : masquer le lien de connexion et afficher le menu déroulant

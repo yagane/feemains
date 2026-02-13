@@ -18,7 +18,7 @@ class ResaController {
 
         $reservations = Reservation::timeDurationByDate($data['date']);
 
-        echo json_encode($reservations);
+        echo json_encode(['success' => true, 'reservations' => $reservations]);
     }
 
     public static function resaByUser() {
