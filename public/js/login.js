@@ -12,6 +12,8 @@ document.getElementById("login-form").addEventListener("submit", async function(
         credentials: "include",
         body: JSON.stringify({ email, password })
     });
+
+    window.location.href = "/reservation.html";
 });
 
 function getUrlParameter(name) {
