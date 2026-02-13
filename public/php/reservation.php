@@ -1,16 +1,4 @@
 <?php
-$allowed_origin = 'https://fee-mains.com';
-if ($_SERVER['HTTP_ORIGIN'] !== $allowed_origin) {
-    http_response_code(403);
-    die(json_encode(['error' => 'Accès non autorisé']));
-}
-
-// En-têtes CORS
-header("Access-Control-Allow-Origin: $allowed_origin");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
-header('Content-Type: application/json');
-
 // Récupérer les données envoyées
 $data = json_decode(file_get_contents('php://input'), true);
 
