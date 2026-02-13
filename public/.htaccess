@@ -1,3 +1,12 @@
+# Bloquer accès aux fichiers sensibles
 <FilesMatch "\.(env|ini|log|conf)$">
     Require all denied
 </FilesMatch>
+
+# Bloquer accès direct aux dossiers internes si erreur
+RedirectMatch 403 ^/backend/
+RedirectMatch 403 ^/config/
+
+# Redirection API propre
+RewriteEngine On
+RewriteRule ^api/(.*)$ api.php [QSA,L]
