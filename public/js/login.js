@@ -16,7 +16,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const data = await response.json();
 
     if(data.success){
-        window.location.href = "/reservation.html";
+        window.location.href = "/reservation";
     }
 });
 
@@ -60,9 +60,9 @@ async function updateAuthUI() {
         userFirstname.textContent = data.prenom;
         userId = data.id;
         if(data.role == 'admin'){
-            userRole.href = '/admin.html';
+            userRole.href = '/admin';
         }
-        window.location.href = "/reservation.html";
+        window.location.href = "/reservation";
     }
 }
 
@@ -75,7 +75,7 @@ document.getElementById("logout").addEventListener("click", async function (e) {
     const data = await response.json();
 
     if(data.success){
-        window.location.href = "/index.html";
+        window.location.href = "/index";
     }
 });
 

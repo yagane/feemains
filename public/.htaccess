@@ -10,3 +10,7 @@ RedirectMatch 403 ^/config/
 # Redirection API propre
 RewriteEngine On
 RewriteRule ^api/(.*)$ api.php [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.html [NC,L]

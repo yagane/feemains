@@ -19,7 +19,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
     const data = await response.json();
 
     if(data.success){
-        window.location.href = "/login.html";
+        window.location.href = "/login";
     }
 });
 
@@ -63,9 +63,9 @@ async function updateAuthUI() {
         userFirstname.textContent = data.prenom;
         userId = data.id;
         if(data.role == 'admin'){
-            userRole.href = '/admin.html';
+            userRole.href = '/admin';
         }
-        window.location.href = "/reservation.html";
+        window.location.href = "/reservation";
     }
 }
 
@@ -78,7 +78,7 @@ document.getElementById("logout").addEventListener("click", async function (e) {
     const data = await response.json();
 
     if(data.success){
-        window.location.href = "/index.html";
+        window.location.href = "/index";
     }
 });
 

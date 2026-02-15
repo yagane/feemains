@@ -69,7 +69,7 @@ async function updateAuthUI() {
         userEmail.textContent = data.email;
         userPhone.textContent = data.phone;
         if(data.role == 'admin'){
-            userRole.href = '/admin.html';
+            userRole.href = '/admin';
         }
     } else {
         authLink.style.display = 'inline-block';
@@ -88,7 +88,7 @@ document.getElementById("logout").addEventListener("click", async function (e) {
     const data = await response.json();
 
     if(data.success){
-        window.location.href = "/index.html";
+        window.location.href = "/index";
     }
 });
 
