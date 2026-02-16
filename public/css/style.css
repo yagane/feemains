@@ -133,7 +133,7 @@ body{
 .barre_blanche {
     height: calc(var(--spacing) * .5);
     width: calc(var(--spacing) * 6);
-    background: white;
+    background: var(--brown);
 }
 
 /*-----------   Insta logo    -----------*/
@@ -588,13 +588,18 @@ gap: 3rem;
 .logo img {
 height: 50px;
 }
+
+
+.nav-phone{
+    display: flex;
+}
 }
 
 
 /* Mobiles */
 @media (max-width: 768px) {
 .div-nav{
-    display: hidden;
+    display: none;
 }
 
 .navbar {
@@ -614,9 +619,6 @@ flex-wrap: wrap;
 order: -1;
 }
 
-.nav-phone{
-    display: flex;
-}
 
 .presta-columns {
 grid-template-columns: 1fr;
