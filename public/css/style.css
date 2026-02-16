@@ -12,11 +12,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body{
-    background: var(--light-beige);
-    margin: 0px;
-
-
 .hidden {
     display: none;
 }
@@ -33,6 +28,7 @@ body{
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 
 /*-----------   NAVBAR    -----------*/
 .navbar{
@@ -138,13 +134,19 @@ body{
     background: var(--brown);
 }
 
-.core{
+.main-footer{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.main{
     padding: calc(var(--spacing) * 4);
 }
 
 .site-footer {
     flex-shrink: 0;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
