@@ -14,11 +14,7 @@
 body{
     background: var(--light-beige);
     margin: 0px;
-}
 
-.main {
-	margin: 8px;
-}
 
 .hidden {
     display: none;
@@ -45,8 +41,6 @@ body{
     align-items: center;
     padding: 1rem;
     background: var(--beige);
-    border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     font-weight: 500;
 }
 
@@ -589,31 +583,23 @@ height: 50px;
 
 /* Mobiles */
 @media (max-width: 768px) {
+.navbar {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    text-align: center;
+}
+
+
 .div-nav{
+    display: none;
+
+.nav-phone{
     display: flex;
     flex-direction: column;
     padding: calc(var(--spacing) * 2);
     gap: calc(var(--spacing) * 1.5),
     cursor: pointer;
 }
-
-.navbar {
-grid-template-columns: 1fr;
-row-gap: 1rem;
-text-align: center;
-}
-
-.nav-left,
-.nav-right {
-justify-content: center;
-gap: 2rem;
-flex-wrap: wrap;
-}
-
-.logo {
-order: -1;
-}
-
 
 .presta-columns {
 grid-template-columns: 1fr;
