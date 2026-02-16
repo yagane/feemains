@@ -106,6 +106,10 @@ body{
     display: block;
 }
 
+#user-name{
+    display: block;
+}
+
 .logo {
     display: flex;
     justify-content: center;
@@ -592,6 +596,7 @@ height: 50px;
 
 .div-nav{
     display: none;
+}
 
 .nav-phone{
     display: flex;
@@ -628,20 +633,3 @@ grid-template-columns: repeat(2, 1fr);
 }
 }
 
-
-/* Très petits écrans */
-@media (max-width: 480px) {
-h1 {
-font-size: 0.9rem;
-}
-
-
-.logo img {
-height: 45px;
-}
-
-
-#slots {
-grid-template-columns: 1fr;
-}
-}
