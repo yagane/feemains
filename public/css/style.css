@@ -148,7 +148,15 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.site-footer a{
     color: var(--brown);
+    text-decoration: none;
+}
+
+.site-footer a:hover{
+    color: var(--beige);
 }
 
 /*-----------   Insta logo    -----------*/
