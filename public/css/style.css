@@ -53,9 +53,8 @@ body{
 }
 
 .nav-computer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
+    display: flex;
+    justify-content: space-between;
     background: var(--beige);
     font-weight: 500;
 }
