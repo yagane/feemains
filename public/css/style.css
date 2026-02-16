@@ -148,6 +148,10 @@ body{
 }
 
 .main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: calc(var(--spacing) * 4);
 }
 
