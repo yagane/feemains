@@ -176,6 +176,9 @@ body{
 
 .menu-account a, span{
     align-items: center;
+    display: flex;
+    padding-block: calc(var(--spacing) * 2);
+    text-align: left;
 }
 .menu-connexion {
     display: flex;
