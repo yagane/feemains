@@ -198,16 +198,17 @@ body{
 
 .presta {
     display: flex;
-    background: var(--beige);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 50%;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    align-items: center;
-    margin-top: 1rem;
-    padding: 1rem;
+    background: var(--beige);
 }
 
 .presta img{
-    width: 50%;
+    width: 90%;
 }
 
 /*-----------   Prestations    -----------*/
@@ -600,13 +601,8 @@ body{
     cursor: pointer;
 }
 
-.presta-columns {
-grid-template-columns: 1fr;
-}
-
-.presta-columns > div:not(:last-child) {
-border-right: none;
-border-bottom: 2px solid var(--brown);
+.presta{
+    width: 100%;
 }
 
 .presta-resa-lines {
