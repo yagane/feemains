@@ -136,22 +136,22 @@ body{
     display: none;
 }
 
-.brown-stick {
+.brown-bar {
     height: calc(var(--spacing) * .5);
     width: calc(var(--spacing) * 6);
     transition: transform 0.3s ease, opacity 0.3s ease;
     background: var(--brown);
 }
 
-.nav-phone.active .bar:nth-child(1) {
+.nav-phone.active .brown-bar:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
 
-.nav-phone.active .bar:nth-child(2) {
+.nav-phone.active .brown-bar:nth-child(2) {
     opacity: 0;
 }
 
-.nav-phone.active .bar:nth-child(3) {
+.nav-phone.active .brown-bar:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
