@@ -596,9 +596,9 @@ body{
     height: 1px;
     background-color: #ddd;
 }
+
 /* Mobiles */
 @media (max-width: 768px) {
-
     .nav-left-a,
     .nav-right,
     .logo{

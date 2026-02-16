@@ -38,11 +38,39 @@ document.getElementById("logout").addEventListener("click", async function (e) {
 });
 
 const navPhone = document.querySelector('.nav-phone');
-const dropdownMenu = document.querySelector('.phone-dropdown-menu');
+const dropdownMenu = document.querySelector('.nav-item');
+
+let dynamicMenu = null;
+
+
+function createDynamicMenu() {
+    const menu = document.createElement('div');
+    menu.id = 'phone-dropdown-menu';
+
+    menu.innerHTML = `
+        <a href="/#prestation">Prestations</a>
+        <a href="/reservation">Reservation</a>
+        <a href="/#contact">Contact</a>
+        <div class="manu-account">
+            <a id="role1" href="/client">Mon compte</a>
+            <span id="logout1">Se déconnecter</span>
+        </div>
+    `;
+
+    return menu;
+}
+
 
 navPhone.addEventListener('click', () => {
     navPhone.classList.toggle('active');
-    dropdownMenu.classList.toggle('hidden');
+
+    if (!dynamicMenu) {
+        dynamicMenu = createDynamicMenu();
+        menuContainer.appendChild(dynamicMenu);
+    } else {
+        menuContainer.removeChild(dynamicMenu);
+        dynamicMenu = null;
+    }
 });
 
 window.onload = updateAuthUI;
