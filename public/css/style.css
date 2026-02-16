@@ -156,6 +156,11 @@ body{
     background: var(--brown);
 }
 
+.core{
+    padding: calc(var(--spacing) * 4);
+}
+
+
 /*-----------   Insta logo    -----------*/
 
 .instagram-fixed {
