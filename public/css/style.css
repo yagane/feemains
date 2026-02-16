@@ -144,7 +144,7 @@ body{
 }
 
 .nav-phone.active .brown-bar:nth-child(1) {
-    transform: rotate(45deg) translate(calc(var(--spacing) * 2), calc(var(--spacing) * 2));
+    transform: rotate(45deg) translate(5px, 6px);
 }
 
 .nav-phone.active .brown-bar:nth-child(2) {
@@ -152,7 +152,7 @@ body{
 }
 
 .nav-phone.active .brown-bar:nth-child(3) {
-    transform: rotate(-45deg) translate(calc(var(--spacing) * 2), -calc(var(--spacing) * 2));
+    transform: rotate(-45deg) translate(5px, -6px);
 }
 
 .main{
