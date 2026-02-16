@@ -38,7 +38,7 @@ document.getElementById("logout").addEventListener("click", async function (e) {
 });
 
 const navPhone = document.querySelector('.nav-phone');
-const menuContainer = document.querySelector('.nav-item');
+const menuContainer = document.querySelector('.nav-div');
 
 let dynamicMenu = null;
 

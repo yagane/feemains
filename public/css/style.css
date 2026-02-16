@@ -612,6 +612,11 @@ body{
         margin-top: calc(var(--spacing) * 4);
     }
 
+    .phone-dropdown-menu a{
+        text-decoration: none;
+        color: var(--brown);
+    }
+
     .menu-account{
         border-top-style: solid;
         border-top-width: 1px;
