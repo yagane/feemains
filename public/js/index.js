@@ -1,7 +1,7 @@
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
-    const userFirstname = document.getElementById('auth-link');
+    const userFirstname = document.getElementById('user-name');
     const userRole = document.getElementById('role');
 
     const response = await fetch("/api/me", {
