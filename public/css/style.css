@@ -124,7 +124,7 @@ body{
     display: none;
 }
 
-.barre_blanche {
+.barre-blanche {
     height: calc(var(--spacing) * .5);
     width: calc(var(--spacing) * 6);
     background: var(--brown);
@@ -602,7 +602,7 @@ height: 50px;
     display: flex;
     flex-direction: column;
     padding: calc(var(--spacing) * 2);
-    gap: calc(var(--spacing) * 1.5),
+    gap: calc(var(--spacing) * 1.5);
     cursor: pointer;
 }
 
