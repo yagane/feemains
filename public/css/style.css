@@ -63,10 +63,8 @@ body{
 .nav-left,
 .nav-right {
     display: flex;
-    justify-content: center;
-    gap: 10rem;
-    list-style: none;
-    padding: 0rem;
+    align-items: center;
+    gap: calc(var(--spacing) * 10);
 }
 
 .nav-left a,
@@ -140,15 +138,6 @@ body{
     display: none;
 }
 
-.nav-phone-button{
-    display: flex;
-    flex-direction: column;
-    background-color: transparent;
-    border: 0 none;
-    padding: calc(var(--spacing) * 2);
-    gap: calc(var(--spacing) * 1.5);
-    cursor: pointer;
-}
 
 .barre-blanche {
     height: calc(var(--spacing) * .5);
@@ -630,8 +619,15 @@ height: 50px;
     display: none;
 }
 
+
 .nav-phone{
     display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: 0 none;
+    padding: calc(var(--spacing) * 2);
+    gap: calc(var(--spacing) * 1.5);
+    cursor: pointer;
 }
 
 .presta-columns {
