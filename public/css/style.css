@@ -35,6 +35,9 @@ body{
 }
 
 /*-----------   NAVBAR    -----------*/
+.navbar{
+    background: var(--beige);
+}
 
 .div-nav {
     display: grid;
@@ -593,7 +596,6 @@ height: 50px;
     row-gap: 1rem;
     text-align: center;
 }
-
 
 .div-nav{
     display: none;
