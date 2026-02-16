@@ -198,45 +198,17 @@ body{
 
 .presta {
     background: var(--beige);
-    color: var(--brown);
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     margin-top: 1rem;
     padding: 1rem;
-
 }
 
-.presta-lines {
-    display: grid;
-    grid-template-lines: 1fr 1fr;
-    align-items: center;
-    padding: 1rem;
-    align-items: center;
-    border-radius: 5px;
-    border: 2px solid var(--brown);
+.presta img{
+    width: 90%;
 }
 
-.presta-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 1rem;
-}
 
-.presta-columns > div {
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.presta-columns  > div:not(:last-child) {
-    border-right: 2px solid var(--brown);
-}
-
-.presta-sourcil {
-    text-align: center;
-    border-radius: 5px;
-    border: 2px solid var(--brown);
-}
 
 /*-----------   Prestations    -----------*/
 
