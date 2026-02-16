@@ -51,7 +51,7 @@ function createDynamicMenu() {
         <a href="/#prestation">Prestations</a>
         <a href="/reservation">Reservation</a>
         <a href="/#contact">Contact</a>
-        <div class="manu-account">
+        <div class="menu-account">
             <a id="role1" href="/client">Mon compte</a>
             <span id="logout1">Se déconnecter</span>
         </div>
