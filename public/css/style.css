@@ -61,7 +61,8 @@ body{
 }
 
 .nav-left,
-.nav-right {
+.nav-right,
+.nav-left-a{
     display: flex;
     align-items: center;
     gap: calc(var(--spacing) * 10);
@@ -591,34 +592,14 @@ body{
     height: 1px;
     background-color: #ddd;
 }
-
-/* Tablettes */
-@media (max-width: 1024px) {
-.nav-left,
-.nav-right {
-gap: 3rem;
-}
-
-.logo img {
-height: 50px;
-}
-}
-
-
 /* Mobiles */
 @media (max-width: 768px) {
-.navbar {
-    grid-template-columns: 1fr;
-    row-gap: 1rem;
-    text-align: center;
-}
 
-.nav-left,
+.nav-left-a,
 .nav-right,
 .logo{
     display: none;
 }
-
 
 .nav-phone{
     display: flex;
