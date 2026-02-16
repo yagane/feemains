@@ -52,14 +52,6 @@ body{
     align-items: center;
 }
 
-.nav-computer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    background: var(--beige);
-    font-weight: 500;
-}
-
 .nav-left,
 .nav-right,
 .nav-left-a{
