@@ -608,7 +608,9 @@ height: 50px;
     text-align: center;
 }
 
-.nav-computer{
+.nav-left,
+.nav-right,
+.logo{
     display: none;
 }
 
