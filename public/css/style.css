@@ -4,6 +4,7 @@
   --brown: #351c19;
   --beige: #e0d0c1;
   --light-beige: #ece4de;
+  --spacing .25rem;
 }
 
 * {
