@@ -604,6 +604,7 @@ height: 50px;
     flex-direction: column;
     padding: calc(var(--spacing) * 2);
     gap: calc(var(--spacing) * 1.5);
+    right: 10 px;
     cursor: pointer;
 }
 
