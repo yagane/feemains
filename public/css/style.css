@@ -142,6 +142,14 @@ body{
     padding: calc(var(--spacing) * 4);
 }
 
+.site-footer {
+    flex-shrink: 0;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 /*-----------   Insta logo    -----------*/
 
