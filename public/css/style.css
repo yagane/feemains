@@ -155,6 +155,18 @@ body{
     transform: rotate(-45deg) translate(5px, -6px);
 }
 
+.phone-dropdown-menu{
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 4);
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.phone-dropdown-menu a{
+    text-decoration: none;
+    color: var(--brown);
+}
+
 .main{
     display: flex;
     flex-direction: column;
@@ -603,18 +615,6 @@ body{
     .nav-right,
     .logo{
         display: none;
-    }
-
-    .phone-dropdown-menu{
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--spacing) * 4);
-        margin-top: calc(var(--spacing) * 4);
-    }
-
-    .phone-dropdown-menu a{
-        text-decoration: none;
-        color: var(--brown);
     }
 
     .menu-account{
