@@ -45,7 +45,7 @@ let dynamicMenu = null;
 
 function createDynamicMenu() {
     const menu = document.createElement('div');
-    menu.class = 'phone-dropdown-menu';
+    menu.className = 'phone-dropdown-menu';
 
     menu.innerHTML = `
         <a href="/#prestation">Prestations</a>
