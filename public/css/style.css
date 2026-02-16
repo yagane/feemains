@@ -5,6 +5,8 @@
   --beige: #e0d0c1;
   --light-beige: #ece4de;
   --spacing: .25rem;
+  --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  --default-transition-duration: .15s;
 }
 
 * {
@@ -135,10 +137,16 @@ body{
 }
 
 
-.barre-blanche {
+.brown-stick {
     height: calc(var(--spacing) * .5);
     width: calc(var(--spacing) * 6);
     background: var(--brown);
+}
+
+.transition-transform {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
 }
 
 .main-footer{
