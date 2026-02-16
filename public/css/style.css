@@ -37,12 +37,22 @@ body{
 /*-----------   NAVBAR    -----------*/
 .navbar{
     background: var(--beige);
-    padding: calc(var(--spacing) * 4);
+    padding-block: calc(var(--spacing) * 4);
     width: 100%;
-    justify-content: space-between;
 }
 
-.div-nav {
+.nav-div{
+    padding-inline: calc(var(--spacing) * 4);
+    margin-inline: auto;
+}
+
+.nav-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-computer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
@@ -599,7 +609,7 @@ height: 50px;
     text-align: center;
 }
 
-.div-nav{
+.nav-computer{
     display: none;
 }
 
