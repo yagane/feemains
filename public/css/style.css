@@ -599,41 +599,56 @@ body{
 /* Mobiles */
 @media (max-width: 768px) {
 
-.nav-left-a,
-.nav-right,
-.logo{
-    display: none;
-}
+    .nav-left-a,
+    .nav-right,
+    .logo{
+        display: none;
+    }
 
-.nav-phone{
-    display: flex;
-    flex-direction: column;
-    background-color: transparent;
-    border: 0 none;
-    padding: calc(var(--spacing) * 2);
-    gap: calc(var(--spacing) * 1.5);
-    cursor: pointer;
-}
+    .phone-dropdown-menu{
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 4);
+        margin-top: calc(var(--spacing) * 4);
+    }
 
-.presta{
-    width: 100%;
-}
+    .menu-account{
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-color: var(--brown);
+        margin-top: calc(var(--spacing) * 2);
+        padding-top: calc(var(--spacing) * 4);
+    }
 
-.presta-resa-lines {
-max-height: 340px;
-}
+    .nav-phone{
+        display: flex;
+        flex-direction: column;
+        background-color: transparent;
+        border: 0 none;
+        padding: calc(var(--spacing) * 2);
+        gap: calc(var(--spacing) * 1.5);
+        cursor: pointer;
+    }
 
-.presta-resa-columns {
-grid-template-columns: 1fr;
-}
+    .presta{
+        width: 100%;
+    }
 
-.calendar,
-.time-slots {
-max-width: 95%;
-}
+    .presta-resa-lines {
+        max-height: 340px;
+    }
 
-#slots {
-grid-template-columns: repeat(2, 1fr);
-}
+    .presta-resa-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar,
+    .time-slots {
+        max-width: 95%;
+    }
+
+    #slots {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
