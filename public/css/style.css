@@ -45,7 +45,6 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    padding: 1rem;
     background: var(--beige);
     font-weight: 500;
 }
