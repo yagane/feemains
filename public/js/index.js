@@ -43,19 +43,6 @@ document.getElementById("logout").addEventListener("click", async function (e) {
     }
 });
 
-document.getElementById("logout1").addEventListener("click", async function (e) {
-    const response = await fetch("/api/logout", {
-        method: "GET",
-        credentials: "include"
-    });
-
-    const data = await response.json();
-
-    if(data.success){
-        window.location.href = "/index";
-    }
-});
-
 const navPhone = document.querySelector('.nav-phone');
 const menuContainer = document.querySelector('.nav-div');
 
