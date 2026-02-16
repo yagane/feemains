@@ -16,6 +16,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
+    background: var(--light-beige);
 }
 
 .hidden {
@@ -144,7 +145,6 @@ body{
     display: flex;
     flex-direction: column;
     flex: 1;
-    background: var(--light-beige);
 }
 
 .main{
