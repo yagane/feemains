@@ -122,6 +122,19 @@ body{
     width: auto;
 }
 
+.nav-phone{
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--spacing) * 2);
+    gap: calc(var(--spacing) * 1.5),
+    cursor: pointer;
+}
+
+.barre_blanche {
+    height: calc(var(--spacing) * .5);
+    width: calc(var(--spacing) * 6);
+    background: white;
+}
 
 /*-----------   Insta logo    -----------*/
 
@@ -580,6 +593,10 @@ height: 50px;
 
 /* Mobiles */
 @media (max-width: 768px) {
+.div-nav{
+    display: hidden;
+}
+
 .navbar {
 grid-template-columns: 1fr;
 row-gap: 1rem;
@@ -595,6 +612,10 @@ flex-wrap: wrap;
 
 .logo {
 order: -1;
+}
+
+.nav-phone{
+    display: flex;
 }
 
 .presta-columns {

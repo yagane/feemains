@@ -1,7 +1,7 @@
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
-    const userFirstname = document.getElementById('user-firstname');
+    const userFirstname = document.getElementById('auth-link');
     const userRole = document.getElementById('role');
 
     const response = await fetch("/api/me", {
@@ -14,7 +14,7 @@ async function updateAuthUI() {
     if (data.connected) {
         authLink.style.display = 'none';
         userGreeting.style.display = 'inline';
-        userFirstname.textContent = data.prenom;
+        userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
         if(data.role == 'admin'){
             userRole.href = '/admin';
         }
