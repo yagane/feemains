@@ -602,9 +602,10 @@ height: 50px;
 .nav-phone{
     display: flex;
     flex-direction: column;
+    background-color: transparent;
+    border: 0 none;
     padding: calc(var(--spacing) * 2);
     gap: calc(var(--spacing) * 1.5);
-    right: 10 px;
     cursor: pointer;
 }
 
