@@ -38,9 +38,11 @@ document.getElementById("logout").addEventListener("click", async function (e) {
 });
 
 const navPhone = document.querySelector('.nav-phone');
+const dropdownMenu = document.querySelector('.phone-dropdown-menu');
 
 navPhone.addEventListener('click', () => {
     navPhone.classList.toggle('active');
+    dropdownMenu.classList.toggle('hidden');
 });
 
 window.onload = updateAuthUI;
