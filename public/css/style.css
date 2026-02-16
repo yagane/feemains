@@ -123,11 +123,7 @@ body{
 }
 
 .nav-phone{
-    display: flex;
-    flex-direction: column;
-    padding: calc(var(--spacing) * 2);
-    gap: calc(var(--spacing) * 1.5),
-    cursor: pointer;
+    display: none;
 }
 
 .barre_blanche {
@@ -588,18 +584,17 @@ gap: 3rem;
 .logo img {
 height: 50px;
 }
-
-
-.nav-phone{
-    display: flex;
-}
 }
 
 
 /* Mobiles */
 @media (max-width: 768px) {
 .div-nav{
-    display: none;
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--spacing) * 2);
+    gap: calc(var(--spacing) * 1.5),
+    cursor: pointer;
 }
 
 .navbar {
