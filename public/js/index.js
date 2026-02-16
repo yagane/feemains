@@ -1,6 +1,7 @@
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
+    const menuAccount = document.getElementById('menu-account');
     const userFirstname = document.getElementById('user-name');
     const userRole = document.getElementById('role');
 
@@ -14,6 +15,7 @@ async function updateAuthUI() {
     if (data.connected) {
         authLink.style.display = 'none';
         userGreeting.style.display = 'inline';
+        menuAccount.style.display = 'flex';
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
         if(data.role == 'admin'){
             userRole.href = '/admin';
@@ -21,6 +23,7 @@ async function updateAuthUI() {
     } else {
         authLink.style.display = 'inline-block';
         userGreeting.style.display = 'none';
+        menuAccount.style.display = 'none';
     }
 }
 
@@ -51,9 +54,13 @@ function createDynamicMenu() {
         <a href="/#prestation">Prestations</a>
         <a href="/reservation">Reservation</a>
         <a href="/#contact">Contact</a>
+
         <div class="menu-account">
-            <a id="role1" href="/client">Mon compte</a>
-            <span id="logout1">Se déconnecter</span>
+            <a id="auth-link" href="/login">Connexion</a>
+            <div id="menu-account" class="menu-account" style="display: none;">
+                <a id="role1" href="/client">Mon compte</a>
+                <span id="logout1">Se déconnecter</span>
+            </div>
         </div>
     `;
 
@@ -67,6 +74,7 @@ navPhone.addEventListener('click', () => {
     if (!dynamicMenu) {
         dynamicMenu = createDynamicMenu();
         menuContainer.appendChild(dynamicMenu);
+        updateAuthUI()
     } else {
         menuContainer.removeChild(dynamicMenu);
         dynamicMenu = null;
