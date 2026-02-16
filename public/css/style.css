@@ -12,6 +12,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+
+    margin: 0;
+}
+
 .hidden {
     display: none;
 }
@@ -138,6 +143,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    background: var(--light-beige);
 }
 
 .main{
