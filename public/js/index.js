@@ -61,14 +61,14 @@ function createDynamicMenu() {
         <div class="menu-connexion">
             <a id="login" href="/login">Connexion</a>
             <div id="menu-account" class="menu-account" style="display: none;">
-                <a id="role1" href="/client" style="align-items: center;">
+                <a id="role1" href="/client">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                     Mon compte
                 </a>
-                <span id="logout1" style="align-items: center;">
+                <span id="logout1">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" class="svelte-rfuq4y"></path>
                         <polyline points="16,17 21,12 16,7" class="svelte-rfuq4y"></polyline>
