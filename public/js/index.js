@@ -58,7 +58,7 @@ function createDynamicMenu() {
         <a href="/reservation">Reservation</a>
         <a href="/#contact">Contact</a>
 
-        <div class="menu-account">
+        <div class="menu-connexion">
             <a id="login" href="/login">Connexion</a>
             <div id="menu-account" class="menu-account" style="display: none;">
                 <a id="role1" href="/client">Mon compte</a>
