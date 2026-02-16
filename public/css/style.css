@@ -37,7 +37,7 @@ body{
 /*-----------   NAVBAR    -----------*/
 .navbar{
     background: var(--beige);
-    padding-block: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 4);
     width: 100%;
 }
 
