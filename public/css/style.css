@@ -9,8 +9,6 @@
   --default-transition-duration: .15s;
 }
 
-
-
 * {
     box-sizing: border-box;
     border: 0 solid;
@@ -220,6 +218,7 @@ body{
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     background: var(--beige);
+    color: var(--brown);
 }
 
 .presta img{
