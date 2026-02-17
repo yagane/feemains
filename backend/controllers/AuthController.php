@@ -28,8 +28,6 @@ class AuthController {
         $token = bin2hex(random_bytes(32));
         $tokenHash = hash('sha256', $token);
 
-        var_dump($tokenHash);
-
         $expire = time() + (60 * 60 * 24 * 30);
 
         $stmt = $pdo->prepare(
@@ -41,6 +39,8 @@ class AuthController {
             $tokenHash,
             date('Y-m-d H:i:s', $expire)
         ]);
+
+        var_dump($tokenHash);
 
         setcookie(
             "remember_token",
