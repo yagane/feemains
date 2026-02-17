@@ -79,13 +79,11 @@ body{
 }
 
 .logout-button{
-    display: flex;
-    position: absolute;
     border: none;
-    background: transparent;
-    color: var(--brown);
     cursor: pointer;
     align-items: center;
+    background: transparent;
+    color: var(--brown);
     font-size: medium;
     font-family: 'Poppins';
 }
