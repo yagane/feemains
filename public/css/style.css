@@ -81,9 +81,11 @@ body{
 .logout-button{
     display: flex;
     border: none;
-    background: transparente;
+    background: transparent;
+    color: var(--brown);
     cursor: pointer;
     align-items: center;
+    width: 100%;
 }
 
 .dropdown-menu {

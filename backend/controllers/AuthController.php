@@ -64,6 +64,6 @@ class AuthController {
     public static function logout() {
         session_start();
         session_destroy();
-        echo json_encode(["success" => true]);
+        echo header('Location: https://fee-mains.com');
     }
 }
