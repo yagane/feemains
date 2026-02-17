@@ -691,6 +691,7 @@ body{
 
     .main {
         padding: calc(var(--spacing) * 2);
+        margin-top: calc(var(--spacing) * 4);
     }
 
     #slots {
