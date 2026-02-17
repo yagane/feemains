@@ -29,7 +29,7 @@ class AuthController {
         $token = bin2hex(random_bytes(32));
         $tokenHash = hash('sha256', $token);
 
-        $expire = time() + (60 * 60 * 24 * 30);
+        $expires = time() + (60 * 60 * 24 * 30);
 
         Token::insert($user_id, $tokenHash, $expires);
 
@@ -78,7 +78,7 @@ class AuthController {
                 $token = $_COOKIE['remember_token'];
                 $tokenHash = hash('sha256', $token);
 
-                $row = Token::findByToken($newHash, $newExpires, $tokenHash);
+                $row = Token::findByToken($tokenHash);
 
                 if ($row && strtotime($row['expires_at']) > time()) {
                     $_SESSION['user_id'] = $row['user_id'];
