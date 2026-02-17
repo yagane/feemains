@@ -26,7 +26,7 @@ class Token {
         $stmt->execute([
             $user_id,
             $tokenHash,
-            date('Y-m-d H:i:s', $expire)
+            date('Y-m-d H:i:s', $expires)
         ]);
     }
 
