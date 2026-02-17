@@ -182,7 +182,7 @@ body{
     color: var(--brown);
 }
 
-.menu-account a, span{
+.menu-account a, button{
     display: flex;
     align-items: center;
     gap: calc(var(--spacing) * 2);
