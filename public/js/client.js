@@ -53,6 +53,7 @@ async function updateAuthUI() {
     const userEmail = document.getElementById('user-email');
     const userPhone = document.getElementById('user-phone');
     const userRole = document.getElementById('role');
+    const userRole1 = document.getElementById('role1');
 
     const response = await fetch("/api/me", {
         method: "GET",
@@ -67,6 +68,10 @@ async function updateAuthUI() {
          if(login){
             login.style.display = 'none';
             menuAccount.style.display = 'flex';
+
+            if(data.role == 'admin'){
+                userRole1.href = '/admin';
+            }
         }
 
         authLink.style.display = 'none';
