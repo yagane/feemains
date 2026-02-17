@@ -430,7 +430,7 @@ body{
 
 .button-section {
     position: fixed;
-    bottom: 20px;
+    bottom: calc(var(--spacing) * 2);
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;

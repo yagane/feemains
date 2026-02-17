@@ -68,7 +68,7 @@ function renderCalendar() {
 
                 selectedDate = new Date(dateStr);
                 selectedTimeSlot = null;
-                slotsTitle.textContent = `Disponibilité le ${dateStr.split('-')[2]}/${dateStr.split('-')[1]}/${dateStr.split('-')[0]}`;
+                slotsTitle.textContent = `Disponibilités le ${dateStr.split('-')[2]}/${dateStr.split('-')[1]}/${dateStr.split('-')[0]}`;
                 displayTimeSlots();
             };
         }
