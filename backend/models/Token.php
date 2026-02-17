@@ -30,6 +30,7 @@ class Token {
         ]);
     }
 
+
     public static function update($newHash, $newExpires, $tokenHash) {
         $db = Database::connect();
         $update = $db->prepare(
@@ -42,5 +43,13 @@ class Token {
             date('Y-m-d H:i:s', $newExpires),
             $tokenHash
         ]);
+    }
+
+    public static function delete($tokenHash) {
+        $db = Database::connect();
+        $stmt = $db->prepare("
+            DELETE FROM remember_tokens WHERE token_hash = ?
+        ");
+        $stmt->execute([$tokenHash]);
     }
 }

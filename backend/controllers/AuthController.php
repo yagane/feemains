@@ -123,10 +123,17 @@ class AuthController {
 
     public static function logout() {
         session_start();
-        session_unset();
-        session_destroy();
 
-        setcookie("remember_token", "", time() - 3600, "/");
+        if (isset($_COOKIE['remember_token'])) {
+
+            $tokenHash = hash('sha256', $_COOKIE['remember_token']);
+
+            Token::delete($tokenHash);
+
+            setcookie("remember_token", "", time() - 3600, "/");
+        }
+
+        session_destroy();
 
         header('Location: https://fee-mains.com');
     }
