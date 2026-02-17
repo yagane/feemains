@@ -47,7 +47,6 @@ const menuContainer = document.querySelector('.nav-div');
 
 let dynamicMenu = null;
 
-
 function createDynamicMenu() {
     const menu = document.createElement('div');
     menu.className = 'phone-dropdown-menu';
@@ -60,7 +59,7 @@ function createDynamicMenu() {
 
         <div class="menu-connexion">
             <a id="login" href="/login">Connexion</a>
-            <div id="menu-account" class="menu-account" style="display: none;">
+            <div id="menu-account" class="menu-account">
                 <a id="role1" href="/client">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
@@ -93,7 +92,7 @@ navPhone.addEventListener('click', () => {
     if (!dynamicMenu) {
         dynamicMenu = createDynamicMenu();
         menuContainer.appendChild(dynamicMenu);
-        updateAuthUI()
+        updateAuthUI();
     } else {
         menuContainer.removeChild(dynamicMenu);
         dynamicMenu = null;
