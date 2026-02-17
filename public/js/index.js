@@ -20,7 +20,7 @@ async function updateAuthUI() {
         }
 
         authLink.style.display = 'none';
-        userGreeting.style.display = 'flex';
+        userGreeting.style.display = 'inline-block';
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
 
         if(data.role == 'admin'){
