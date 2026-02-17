@@ -62,14 +62,18 @@ function createDynamicMenu() {
                     </svg>
                     Mon compte
                 </a>
-                <span id="logout1">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" class="svelte-rfuq4y"></path>
-                        <polyline points="16,17 21,12 16,7" class="svelte-rfuq4y"></polyline>
-                        <line x1="21" y1="12" x2="9" y2="12" class="svelte-rfuq4y"></line>
-                    </svg>
-                    Se déconnecter
-                </span>
+                <form action="/api/logout" method="GET" class="logout-form">
+                    <button type="submit" class="logout-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" class="svelte-rfuq4y"></path>
+                            <polyline points="16,17 21,12 16,7" class="svelte-rfuq4y"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12" class="svelte-rfuq4y"></line>
+                        </svg>
+                        Déconnexion
+                    </button>
+                </form>
+
+
             </div>
         </div>
     `;
