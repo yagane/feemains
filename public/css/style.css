@@ -78,6 +78,14 @@ body{
     color: var(--brown);
 }
 
+.logout-button{
+    display: flex;
+    border: none;
+    background: transparente;
+    cursor: pointer;
+    align-items: center;
+}
+
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -180,6 +188,7 @@ body{
     gap: calc(var(--spacing) * 2);
     text-align: left;
 }
+
 .menu-connexion {
     display: flex;
     flex-direction: column;

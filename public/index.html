@@ -33,7 +33,11 @@
                                 <span id="user-name"></span>
                                 <div class="dropdown-menu">
                                     <a id="role" href="/client">Mon compte</a>
-                                    <span id="logout">Se déconnecter</span>
+                                    <form action="/api/logout" method="GET">
+                                        <button type="submit" class="logout-button">
+                                            Déconnexion
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
