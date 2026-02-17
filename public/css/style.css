@@ -393,8 +393,9 @@ body{
 
 .time-slot {
     background: var(--light-beige);
+    border: 2px solid var(--light-beige);
     border-radius: 8px;
-    padding: 5px;
+    padding: 2px;
     cursor: pointer;
 }
 
@@ -407,7 +408,7 @@ body{
 }
 
 .time-slot:hover {
-    background: var(--beige);
+    border-color: var(--brown);
 }
 
 .time-slot.selected {
