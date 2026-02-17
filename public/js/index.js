@@ -14,19 +14,26 @@ async function updateAuthUI() {
     const data = await response.json();
 
     if (data.connected) {
+         if(login){
+            login.style.display = 'none';
+            menuAccount.style.display = 'flex';
+        }
+
         authLink.style.display = 'none';
-        login.style.display = 'none';
         userGreeting.style.display = 'flex';
-        menuAccount.style.display = 'flex';
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
+
         if(data.role == 'admin'){
             userRole.href = '/admin';
         }
     } else {
         authLink.style.display = 'inline-block';
-        login.style.display = 'inline-block';
         userGreeting.style.display = 'none';
-        menuAccount.style.display = 'none';
+
+        if(login){
+            login.style.display = 'inline-block';
+            menuAccount.style.display = 'none';
+        }
     }
 }
 
@@ -69,7 +76,6 @@ function createDynamicMenu() {
 
     return menu;
 }
-
 
 navPhone.addEventListener('click', () => {
     navPhone.classList.toggle('active');
