@@ -285,13 +285,12 @@ body{
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    gap: 1rem;
     padding: 0.3rem;
     background: var(--beige);
     color: var(--brown);
     margin-bottom: 10px;
-    border: 2px solid #351c19;
-    border-radius: 5px;
+    border: 2px solid var(--brown);
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -358,11 +357,7 @@ body{
 }
 
 .day:hover {
-    background: var(--beige);
-}
-
-.day.today {
-    border: 2px solid #1e293b;
+    background: var(--light-beige);
 }
 
 .day.selected {
@@ -400,6 +395,7 @@ body{
     background: var(--light-beige);
     border-radius: 8px;
     padding: 5px;
+    cursor: pointer;
 }
 
 #slots {
@@ -410,20 +406,11 @@ body{
     overflow-y: auto;
 }
 
-.slot {
-    padding: 0.6rem;
-    text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    background: var(--light-beige);
-}
-
-.slot:hover {
+.time-slot:hover {
     background: var(--beige);
 }
 
-.slot.selected {
+.time-slot.selected {
     background: var(--brown);
     color: var(--light-beige);
 }
