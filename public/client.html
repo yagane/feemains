@@ -8,84 +8,88 @@
         <link rel="icon" href="/images/logo_fond.png" type="image/png">
     </head>
     <body>
-        <div>
-            <div class="background-image"></div>
-            <nav class="navbar">
-                <div class="nav-div">
-                    <div class="nav-item">
-                        <div class="nav-left">
-                            <a class="logo" href="/">
-                                <img src="/images/logo.png" alt="Logo du site" />
-                            </a>
-                            <div class="nav-left-a">
-                                <a href="/#prestation">Prestations</a>
-                                <a href="/reservation">Reservation</a>
-                                <a href="/#contact">Contact</a>
-                            </div>
-                        </div>
-                        <button class="nav-phone" aria-label="Basculer le menu">
-                            <span class="brown-bar"></span>
-                            <span class="brown-bar"></span>
-                            <span class="brown-bar"></span>
-                        </button>
-                        <div class="nav-right">
-                            <a id="auth-link" href="/login" class="hidden">Connexion</a>
-                            <div id="user-greeting" class="user-greeting hidden">
-                                <span id="user-name"></span>
-                                <div class="dropdown-menu">
-                                    <a id="role" href="/client">Mon compte</a>
-                                    <form action="/api/logout" method="GET">
-                                        <button type="submit" class="logout-button">
-                                            Déconnexion
-                                        </button>
-                                    </form>
+        <div style="display: contents">
+            <div class="app-wrapper">
+                <div class="background-image"></div>
+                <div class="app-content">
+                    <nav class="navbar">
+                        <div class="nav-div">
+                            <div class="nav-item">
+                                <div class="nav-left">
+                                    <a class="logo" href="/">
+                                        <img src="/images/logo.png" alt="Logo du site" />
+                                    </a>
+                                    <div class="nav-left-a">
+                                        <a href="/#prestation">Prestations</a>
+                                        <a href="/reservation">Reservation</a>
+                                        <a href="/#contact">Contact</a>
+                                    </div>
+                                </div>
+                                <button class="nav-phone" aria-label="Basculer le menu">
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                </button>
+                                <div class="nav-right">
+                                    <a id="auth-link" href="/login" class="hidden">Connexion</a>
+                                    <div id="user-greeting" class="user-greeting hidden">
+                                        <span id="user-name"></span>
+                                        <div class="dropdown-menu">
+                                            <a id="role" href="/client">Mon compte</a>
+                                            <form action="/api/logout" method="GET">
+                                                <button type="submit" class="logout-button">
+                                                    Déconnexion
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </nav>
-            <div class="main-footer">
-                <main class="main">
-                    <div class="client-info">
-                        <h2>Vos informations</h2>
-                        <p><strong>Nom :</strong> <span id="user-fullname"></span><p>
-                        <p><strong>Email :</strong> <span id="user-email"></span></p>
-                        <p><strong>Téléphone :</strong> <span id="user-phone"></span></p>
-                    </div>
-                    <div class="historique-rdv-section">
-                        <h2>Historique</h2>
-                        <div class="historique-rdv">
-                            <table id="reservations-table">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Durée</th>
-                                    <th>Statut</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="reservations-list">
-                            </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </main>
+                    </nav>
+                    <div class="main-footer">
+                        <main class="main">
+                            <div class="client-info">
+                                <h2>Vos informations</h2>
+                                <p><strong>Nom :</strong> <span id="user-fullname"></span><p>
+                                <p><strong>Email :</strong> <span id="user-email"></span></p>
+                                <p><strong>Téléphone :</strong> <span id="user-phone"></span></p>
+                            </div>
+                            <div class="historique-rdv-section">
+                                <h2>Historique</h2>
+                                <div class="historique-rdv">
+                                    <table id="reservations-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Durée</th>
+                                            <th>Statut</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="reservations-list">
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </main>
 
-                <footer class="site-footer">
-                    <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
-                    <a href="" >Mentions légales</a>
-                </footer>
+                        <footer class="site-footer">
+                            <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
+                            <a href="" >Mentions légales</a>
+                        </footer>
+                    </div>
+                    <a
+                    href="https://www.instagram.com/feemains__"
+                    target="_blank"
+                    class="instagram-fixed"
+                    aria-label="Instagram"
+                    >
+                        <img src="/images/insta.ico" alt="Instagram" />
+                    </a>
+                </div>
             </div>
-            <a
-            href="https://www.instagram.com/feemains__"
-            target="_blank"
-            class="instagram-fixed"
-            aria-label="Instagram"
-            >
-                <img src="/images/insta.ico" alt="Instagram" />
-            </a>
+            <script src="/js/client.js"></script>
         </div>
-        <script src="/js/client.js"></script>
     </body>
 </html>

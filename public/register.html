@@ -8,78 +8,82 @@
         <link rel="icon" href="/images/logo_fond.png" type="image/png">
     </head>
     <body>
-        <div>
-            <div class="background-image"></div>
-            <nav class="navbar">
-                <div class="nav-div">
-                    <div class="nav-item">
-                        <div class="nav-left">
-                            <a class="logo" href="/">
-                                <img src="/images/logo.png" alt="Logo du site" />
-                            </a>
-                            <div class="nav-left-a">
-                                <a href="/#prestation">Prestations</a>
-                                <a href="/reservation">Reservation</a>
-                                <a href="/#contact">Contact</a>
-                            </div>
-                        </div>
-                        <button class="nav-phone" aria-label="Basculer le menu">
-                            <span class="brown-bar"></span>
-                            <span class="brown-bar"></span>
-                            <span class="brown-bar"></span>
-                        </button>
-                        <div class="nav-right">
-                            <a id="auth-link" href="/login" class="hidden">Connexion</a>
-                            <div id="user-greeting" class="user-greeting hidden">
-                                <span id="user-name"></span>
-                                <div class="dropdown-menu">
-                                    <a id="role" href="/client">Mon compte</a>
-                                    <form action="/api/logout" method="GET">
-                                        <button type="submit" class="logout-button">
-                                            Déconnexion
-                                        </button>
-                                    </form>
+        <div style="display: contents">
+            <div class="app-wrapper">
+                <div class="background-image"></div>
+                <div class="app-content">
+                    <nav class="navbar">
+                        <div class="nav-div">
+                            <div class="nav-item">
+                                <div class="nav-left">
+                                    <a class="logo" href="/">
+                                        <img src="/images/logo.png" alt="Logo du site" />
+                                    </a>
+                                    <div class="nav-left-a">
+                                        <a href="/#prestation">Prestations</a>
+                                        <a href="/reservation">Reservation</a>
+                                        <a href="/#contact">Contact</a>
+                                    </div>
+                                </div>
+                                <button class="nav-phone" aria-label="Basculer le menu">
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                </button>
+                                <div class="nav-right">
+                                    <a id="auth-link" href="/login" class="hidden">Connexion</a>
+                                    <div id="user-greeting" class="user-greeting hidden">
+                                        <span id="user-name"></span>
+                                        <div class="dropdown-menu">
+                                            <a id="role" href="/client">Mon compte</a>
+                                            <form action="/api/logout" method="GET">
+                                                <button type="submit" class="logout-button">
+                                                    Déconnexion
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </nav>
-            <div class="main-footer">
-                <main class="main">
-                    <div class="login">
-                        <div class="login-container">
-                            <h2>Inscription</h2>
-                            <form id="register-form">
-                                <input type="text" id="prenom" placeholder="Prénom" required>
-                                <input type="text" id="nom" placeholder="Nom" required>
-                                <input type="text" id="phone" placeholder="Télephone" required>
-                                <input type="email" id="email" placeholder="Email" required>
-                                <input type="password" id="password" placeholder="Mot de passe" required>
-                                <button type="submit">S'inscrire</button>
-                            </form>
-                            <div class="button-register">
-                                <a href="/login" >Se connecter</a>
+                    </nav>
+                    <div class="main-footer">
+                        <main class="main">
+                            <div class="login">
+                                <div class="login-container">
+                                    <h2>Inscription</h2>
+                                    <form id="register-form">
+                                        <input type="text" id="prenom" placeholder="Prénom" required>
+                                        <input type="text" id="nom" placeholder="Nom" required>
+                                        <input type="text" id="phone" placeholder="Télephone" required>
+                                        <input type="email" id="email" placeholder="Email" required>
+                                        <input type="password" id="password" placeholder="Mot de passe" required>
+                                        <button type="submit">S'inscrire</button>
+                                    </form>
+                                    <div class="button-register">
+                                        <a href="/login" >Se connecter</a>
+                                    </div>
+                                    <div id="message"></div>
+                                </div>
                             </div>
-                            <div id="message"></div>
-                        </div>
-                    </div>
-                </main>
+                        </main>
 
-                <footer class="site-footer">
-                    <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
-                    <a href="" >Mentions légales</a>
-                </footer>
+                        <footer class="site-footer">
+                            <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
+                            <a href="" >Mentions légales</a>
+                        </footer>
+                    </div>
+                    <a
+                    href="https://www.instagram.com/feemains__"
+                    target="_blank"
+                    class="instagram-fixed"
+                    aria-label="Instagram"
+                    >
+                        <img src="/images/insta.ico" alt="Instagram" />
+                    </a>
+                </div>
             </div>
-            <a
-            href="https://www.instagram.com/feemains__"
-            target="_blank"
-            class="instagram-fixed"
-            aria-label="Instagram"
-            >
-                <img src="/images/insta.ico" alt="Instagram" />
-            </a>
+            <script src="/js/register.js"></script>
         </div>
-        <script src="/js/register.js"></script>
     </body>
 </html>

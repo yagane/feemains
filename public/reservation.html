@@ -8,95 +8,99 @@
         <link rel="icon" href="/images/logo_fond.png" type="image/png">
     </head>
     <body>
-        <div>
-            <div class="background-image"></div>
-            <nav class="navbar">
-                <div class="nav-div">
-                    <div class="nav-item">
-                        <div class="nav-left">
-                            <a class="logo" href="/">
-                                <img src="/images/logo.png" alt="Logo du site" />
-                            </a>
-                            <div class="nav-left-a">
-                                <a href="/#prestation">Prestations</a>
-                                <a href="/reservation">Reservation</a>
-                                <a href="/#contact">Contact</a>
-                            </div>
-                        </div>
-                        <button class="nav-phone" aria-label="Basculer le menu">
-                            <span class="brown-bar"></span>
-                            <span class="brown-bar"></span>
-                            <span class="brown-bar"></span>
-                        </button>
-                        <div class="nav-right">
-                            <a id="auth-link" href="/login" class="hidden">Connexion</a>
-                            <div id="user-greeting" class="user-greeting hidden">
-                                <span id="user-name"></span>
-                                <div class="dropdown-menu">
-                                    <a id="role" href="/client">Mon compte</a>
-                                    <form action="/api/logout" method="GET">
-                                        <button type="submit" class="logout-button">
-                                            Déconnexion
-                                        </button>
-                                    </form>
+        <div style="display: contents">
+            <div class="app-wrapper">
+                <div class="background-image"></div>
+                <div class="app-content">
+                    <nav class="navbar">
+                        <div class="nav-div">
+                            <div class="nav-item">
+                                <div class="nav-left">
+                                    <a class="logo" href="/">
+                                        <img src="/images/logo.png" alt="Logo du site" />
+                                    </a>
+                                    <div class="nav-left-a">
+                                        <a href="/#prestation">Prestations</a>
+                                        <a href="/reservation">Reservation</a>
+                                        <a href="/#contact">Contact</a>
+                                    </div>
+                                </div>
+                                <button class="nav-phone" aria-label="Basculer le menu">
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                </button>
+                                <div class="nav-right">
+                                    <a id="auth-link" href="/login" class="hidden">Connexion</a>
+                                    <div id="user-greeting" class="user-greeting hidden">
+                                        <span id="user-name"></span>
+                                        <div class="dropdown-menu">
+                                            <a id="role" href="/client">Mon compte</a>
+                                            <form action="/api/logout" method="GET">
+                                                <button type="submit" class="logout-button">
+                                                    Déconnexion
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </nav>
-            <div class="main-footer">
-                <main class="main">
-                    <section class="prestations-section">
-                        <h2>Nos Prestations</h2>
-                        <div id="prestations-loading">Chargement des prestations...</div>
-                        <div id="prestations-list"></div>
-                        <div class="recap-container">
-                            <div id="recap-list"></div>
-                            <div id="recap-temps" class="recap-temps">Temps : 0 min</div>
-                            <div id="recap-total" class="recap-total">Total : 0.00 €</div>
-                        </div>
-                    </section>
-                    <section class="calendar hidden">
-                        <div class="calendar-header">
-                            <button id="prev">◀</button>
-                            <h2 id="month-year"></h2>
-                            <button id="next">▶</button>
-                        </div>
-                        <div class="calendar-days">
-                            <div>Lun</div>
-                            <div>Mar</div>
-                            <div>Mer</div>
-                            <div>Jeu</div>
-                            <div>Ven</div>
-                            <div>Sam</div>
-                            <div>Dim</div>
-                        </div>
-                        <div id="calendar-grid"></div>
-                    </section>
-                    <section class="time-slots hidden">
-                        <h3 id="slots-title">Choisissez une date</h3>
-                        <div id="slots"></div>
-                    </section>
-                    <section class="button-section hidden">
-                        <div class="button-resa" id="submit-reservation">Choisissez une date</div>
-                    </section>
-                </main>
+                    </nav>
+                    <div class="main-footer">
+                        <main class="main">
+                            <section class="prestations-section">
+                                <h2>Nos Prestations</h2>
+                                <div id="prestations-loading">Chargement des prestations...</div>
+                                <div id="prestations-list"></div>
+                                <div class="recap-container">
+                                    <div id="recap-list"></div>
+                                    <div id="recap-temps" class="recap-temps">Temps : 0 min</div>
+                                    <div id="recap-total" class="recap-total">Total : 0.00 €</div>
+                                </div>
+                            </section>
+                            <section class="calendar hidden">
+                                <div class="calendar-header">
+                                    <button id="prev">◀</button>
+                                    <h2 id="month-year"></h2>
+                                    <button id="next">▶</button>
+                                </div>
+                                <div class="calendar-days">
+                                    <div>Lun</div>
+                                    <div>Mar</div>
+                                    <div>Mer</div>
+                                    <div>Jeu</div>
+                                    <div>Ven</div>
+                                    <div>Sam</div>
+                                    <div>Dim</div>
+                                </div>
+                                <div id="calendar-grid"></div>
+                            </section>
+                            <section class="time-slots hidden">
+                                <h3 id="slots-title">Choisissez une date</h3>
+                                <div id="slots"></div>
+                            </section>
+                            <section class="button-section hidden">
+                                <div class="button-resa" id="submit-reservation">Choisissez une date</div>
+                            </section>
+                        </main>
 
-                <footer class="site-footer">
-                    <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
-                    <a href="" >Mentions légales</a>
-                </footer>
+                        <footer class="site-footer">
+                            <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
+                            <a href="" >Mentions légales</a>
+                        </footer>
+                    </div>
+                    <a
+                    href="https://www.instagram.com/feemains__"
+                    target="_blank"
+                    class="instagram-fixed"
+                    aria-label="Instagram"
+                    >
+                        <img src="/images/insta.ico" alt="Instagram" />
+                    </a>
+                </div>
             </div>
-            <a
-            href="https://www.instagram.com/feemains__"
-            target="_blank"
-            class="instagram-fixed"
-            aria-label="Instagram"
-            >
-                <img src="/images/insta.ico" alt="Instagram" />
-            </a>
+            <script src="/js/reservation.js"></script>
         </div>
-        <script src="/js/reservation.js"></script>
     </body>
 </html>
