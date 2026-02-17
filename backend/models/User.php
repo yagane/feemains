@@ -11,6 +11,14 @@ class User {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function findByID($user_id) {
+        $db = Database::connect();
+        $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->execute([$user_id]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function insert($prenom, $nom, $phone, $email, $password) {
         $password = password_hash($password, PASSWORD_BCRYPT);
 

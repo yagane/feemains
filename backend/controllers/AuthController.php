@@ -21,23 +21,35 @@ class AuthController {
             return;
         }
 
-        $_SESSION['user'] = [
-            'id' => $user['id'],
-            'prenom' => $user['prenom'],
-            'nom' => $user['nom'],
-            'email' => $user['email'],
-            'phone' => $user['phone'],
-            'role' => $user['role']
-        ];
+        $user_id = $user['id'];
+
+        $_SESSION['user_id'] = $user_id;
+
+        $token = bin2hex(random_bytes(32));
+        $tokenHash = hash('sha256', $token);
+
+        $expire = time() + (60 * 60 * 24 * 30);
+
+        $stmt = $pdo->prepare(
+            "INSERT INTO remember_tokens (user_id, token_hash, expires_at)
+            VALUES (?, ?, ?)"
+        );
+        $stmt->execute([
+            $user_id,
+            $tokenHash,
+            date('Y-m-d H:i:s', $expire)
+        ]);
 
         setcookie(
-            'remember_me',
-            $user,
-            time() + (30 * 24 * 3600),
-            '/',
-            '',
-            true,
-            true
+            "remember_token",
+            $token,
+            [
+                'expires' => $expires,
+                'path' => '/',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]
         );
 
         echo json_encode(["success" => true]);
@@ -54,8 +66,10 @@ class AuthController {
     public static function me() {
         session_start();
 
-        if (isset($_SESSION['user'])) {
-            $user = $_SESSION['user'];
+        if (isset($_SESSION['user_id'])) {
+            $user_id = $_SESSION['user_id'];
+
+            $user = User::findByID($user_id);
 
             echo json_encode([
                 'connected' => true,
@@ -67,41 +81,66 @@ class AuthController {
                 'role' => $user['role']
             ]);
         }else{
-            if (isset($_COOKIE['remember_me'])) {
-                $user = $_COOKIE['remember_me'];
+            if (isset($_COOKIE['remember_token'])) {
+                $token = $_COOKIE['remember_token'];
+                $tokenHash = hash('sha256', $token);
 
-                $_SESSION['user'] = [
-                    'id' => $user['id'],
-                    'prenom' => $user['prenom'],
-                    'nom' => $user['nom'],
-                    'email' => $user['email'],
-                    'phone' => $user['phone'],
-                    'role' => $user['role']
-                ];
+                $stmt = $pdo->prepare("
+                    SELECT user_id, expires_at
+                    FROM remember_tokens
+                    WHERE token_hash = ?
+                    LIMIT 1
+                ");
+                $stmt->execute([$tokenHash]);
 
-                setcookie(
-                    'remember_me',
-                    $user,
-                    time() + (30 * 24 * 3600),
-                    '/',
-                    '',
-                    true,
-                    true
-                );
+                $row = $stmt->fetch();
 
-                echo json_encode([
-                    'connected' => true,
-                    'id' => $user['id'],
-                    'prenom' => $user['prenom'],
-                    'nom' => $user['nom'],
-                    'email' => $user['email'],
-                    'phone' => $user['phone'],
-                    'role' => $user['role']
-                ]);
+                if ($row && strtotime($row['expires_at']) > time()) {
+                    $_SESSION['user_id'] = $row['user_id'];
 
-                return;
+                    $newToken = bin2hex(random_bytes(32));
+                    $newHash = hash('sha256', $newToken);
+                    $newExpires = time() + (60 * 60 * 24 * 30);
+
+                    $update = $pdo->prepare("
+                        UPDATE remember_tokens
+                        SET token_hash = ?, expires_at = ?
+                        WHERE token_hash = ?
+                    ");
+                    $update->execute([
+                        $newHash,
+                        date('Y-m-d H:i:s', $newExpires),
+                        $tokenHash
+                    ]);
+
+                    setcookie(
+                        "remember_token",
+                        $newToken,
+                        [
+                            'expires' => $newExpires,
+                            'path' => '/',
+                            'secure' => true,
+                            'httponly' => true,
+                            'samesite' => 'Strict'
+                        ]
+                    );
+
+                    $user = User::findByID($user_id);
+
+                    echo json_encode([
+                        'connected' => true,
+                        'id' => $user['id'],
+                        'prenom' => $user['prenom'],
+                        'nom' => $user['nom'],
+                        'email' => $user['email'],
+                        'phone' => $user['phone'],
+                        'role' => $user['role']
+                    ]);
+
+                } else {
+                    setcookie("remember_token", "", time() - 3600, "/");
+                }
             }
-
             echo json_encode(['connected' => false]);
         }
     }
@@ -111,15 +150,7 @@ class AuthController {
         session_unset();
         session_destroy();
 
-        setcookie(
-            'remember_me',
-            '',
-            time() - 3600, // Expiration dans le passé
-            '/',
-            '',
-            true,
-            true
-        );
+        setcookie("remember_token", "", time() - 3600, "/");
 
         header('Location: https://fee-mains.com');
     }
