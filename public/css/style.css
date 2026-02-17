@@ -317,7 +317,10 @@ body{
 
 .calendar {
     max-width: 350px;
-    margin: 2rem auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--beige);
     color: var(--brown);
 }
 
@@ -578,7 +581,6 @@ body{
 
 .agenda-container {
     width: 50%;
-    margin: 2rem auto;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
