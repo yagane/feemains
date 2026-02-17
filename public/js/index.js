@@ -16,7 +16,7 @@ async function updateAuthUI() {
     if (data.connected) {
         authLink.style.display = 'none';
         login.style.display = 'none';
-        userGreeting.style.display = 'inline';
+        userGreeting.style.display = 'flex';
         menuAccount.style.display = 'flex';
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
         if(data.role == 'admin'){
@@ -29,19 +29,6 @@ async function updateAuthUI() {
         menuAccount.style.display = 'none';
     }
 }
-
-document.getElementById("logout").addEventListener("click", async function (e) {
-    const response = await fetch("/api/logout", {
-        method: "GET",
-        credentials: "include"
-    });
-
-    const data = await response.json();
-
-    if(data.success){
-        window.location.href = "/index";
-    }
-});
 
 const navPhone = document.querySelector('.nav-phone');
 const menuContainer = document.querySelector('.nav-div');
