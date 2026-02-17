@@ -329,10 +329,6 @@ button{
     transform: scale(1.2);
 }
 
-.prestation-item:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
-
 .prestation-price,
 .prestation-item input[type="checkbox"]:checked + div {
     font-weight: bold;
