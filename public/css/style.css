@@ -686,9 +686,8 @@ body{
         grid-template-columns: 1fr;
     }
 
-    .calendar,
-    .time-slots {
-        max-width: 95%;
+    .main {
+        padding: calc(var(--spacing) * 2);
     }
 
     #slots {
