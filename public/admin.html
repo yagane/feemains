@@ -8,98 +8,102 @@
         <link rel="icon" href="/images/logo_fond.png" type="image/png">
     </head>
     <body>
-        <div>
-            <div class="background-image"></div>
-            <nav class="navbar">
-                <div class="nav-div">
-                    <div class="nav-item">
-                        <div class="nav-left">
-                            <a class="logo" href="/">
-                                <img src="/images/logo.png" alt="Logo du site" />
-                            </a>
-                            <div class="nav-left-a">
-                                <a href="/#prestation">Prestations</a>
-                                <a href="/reservation">Reservation</a>
-                                <a href="/#contact">Contact</a>
-                            </div>
-                        </div>
-                        <button class="nav-phone" aria-label="Basculer le menu">
-                            <span class="brown-bar"></span>
-                            <span class="brown-bar"></span>
-                            <span class="brown-bar"></span>
-                        </button>
-                        <div class="nav-right">
-                            <a id="auth-link" href="/login" class="hidden">Connexion</a>
-                            <div id="user-greeting" class="user-greeting hidden">
-                                <span id="user-name"></span>
-                                <div class="dropdown-menu">
-                                    <a id="role" href="/client">Mon compte</a>
-                                    <form action="/api/logout" method="GET">
-                                        <button type="submit" class="logout-button">
-                                            Déconnexion
-                                        </button>
-                                    </form>
+        <div style="display: contents">
+            <div class="app-wrapper">
+                <div class="background-image"></div>
+                <div class="app-content">
+                    <nav class="navbar">
+                        <div class="nav-div">
+                            <div class="nav-item">
+                                <div class="nav-left">
+                                    <a class="logo" href="/">
+                                        <img src="/images/logo.png" alt="Logo du site" />
+                                    </a>
+                                    <div class="nav-left-a">
+                                        <a href="/#prestation">Prestations</a>
+                                        <a href="/reservation">Reservation</a>
+                                        <a href="/#contact">Contact</a>
+                                    </div>
+                                </div>
+                                <button class="nav-phone" aria-label="Basculer le menu">
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                </button>
+                                <div class="nav-right">
+                                    <a id="auth-link" href="/login" class="hidden">Connexion</a>
+                                    <div id="user-greeting" class="user-greeting hidden">
+                                        <span id="user-name"></span>
+                                        <div class="dropdown-menu">
+                                            <a id="role" href="/client">Mon compte</a>
+                                            <form action="/api/logout" method="GET">
+                                                <button type="submit" class="logout-button">
+                                                    Déconnexion
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </nav>
-            <div class="main-footer">
-                <main class="main">
-                    <section class="calendar">
-                        <div class="calendar-header">
-                            <button id="prev">◀</button>
-                            <h2 id="month-year"></h2>
-                            <button id="next">▶</button>
-                        </div>
-                        <div class="calendar-days">
-                            <div>Lun</div>
-                            <div>Mar</div>
-                            <div>Mer</div>
-                            <div>Jeu</div>
-                            <div>Ven</div>
-                            <div>Sam</div>
-                            <div>Dim</div>
-                        </div>
-                        <div id="calendar-grid"></div>
-                    </section>
-                    <section class="agenda-container" id="agenda-container">
-                        <h3><span id="selected-date"></span></h3>
-                        <div class="agenda">
-                            <div class="time-scale">
-                                <div class="time-marker" style="top: 0%;">10:00</div>
-                                <div class="time-marker" style="top: 10%;">11:00</div>
-                                <div class="time-marker" style="top: 20%;">12:00</div>
-                                <div class="time-marker" style="top: 30%;">13:00</div>
-                                <div class="time-marker" style="top: 40%;">14:00</div>
-                                <div class="time-marker" style="top: 50%;">15:00</div>
-                                <div class="time-marker" style="top: 60%;">16:00</div>
-                                <div class="time-marker" style="top: 70%;">17:00</div>
-                                <div class="time-marker" style="top: 80%;">18:00</div>
-                                <div class="time-marker" style="top: 90%;">19:00</div>
-                                <div class="time-marker" style="top: 100%;">20:00</div>
-                            </div>
-                            <div class="appointments-container" id="appointments-container">
-                            </div>
-                        </div>
-                    </section>
-                </main>
+                    </nav>
+                    <div class="main-footer">
+                        <main class="main">
+                            <section class="calendar">
+                                <div class="calendar-header">
+                                    <button id="prev">◀</button>
+                                    <h2 id="month-year"></h2>
+                                    <button id="next">▶</button>
+                                </div>
+                                <div class="calendar-days">
+                                    <div>Lun</div>
+                                    <div>Mar</div>
+                                    <div>Mer</div>
+                                    <div>Jeu</div>
+                                    <div>Ven</div>
+                                    <div>Sam</div>
+                                    <div>Dim</div>
+                                </div>
+                                <div id="calendar-grid"></div>
+                            </section>
+                            <section class="agenda-container" id="agenda-container">
+                                <h3><span id="selected-date"></span></h3>
+                                <div class="agenda">
+                                    <div class="time-scale">
+                                        <div class="time-marker" style="top: 0%;">10:00</div>
+                                        <div class="time-marker" style="top: 10%;">11:00</div>
+                                        <div class="time-marker" style="top: 20%;">12:00</div>
+                                        <div class="time-marker" style="top: 30%;">13:00</div>
+                                        <div class="time-marker" style="top: 40%;">14:00</div>
+                                        <div class="time-marker" style="top: 50%;">15:00</div>
+                                        <div class="time-marker" style="top: 60%;">16:00</div>
+                                        <div class="time-marker" style="top: 70%;">17:00</div>
+                                        <div class="time-marker" style="top: 80%;">18:00</div>
+                                        <div class="time-marker" style="top: 90%;">19:00</div>
+                                        <div class="time-marker" style="top: 100%;">20:00</div>
+                                    </div>
+                                    <div class="appointments-container" id="appointments-container">
+                                    </div>
+                                </div>
+                            </section>
+                        </main>
 
-                <footer class="site-footer">
-                    <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
-                    <a href="" >Mentions légales</a>
-                </footer>
+                        <footer class="site-footer">
+                            <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
+                            <a href="" >Mentions légales</a>
+                        </footer>
+                    </div>
+                    <a
+                    href="https://www.instagram.com/feemains__"
+                    target="_blank"
+                    class="instagram-fixed"
+                    aria-label="Instagram"
+                    >
+                        <img src="/images/insta.ico" alt="Instagram" />
+                    </a>
+                </div>
             </div>
-            <a
-            href="https://www.instagram.com/feemains__"
-            target="_blank"
-            class="instagram-fixed"
-            aria-label="Instagram"
-            >
-                <img src="/images/insta.ico" alt="Instagram" />
-            </a>
+            <script src="/js/admin.js"></script>
         </div>
-        <script src="/js/admin.js"></script>
     </body>
 </html>
