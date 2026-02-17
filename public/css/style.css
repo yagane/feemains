@@ -316,7 +316,6 @@ body{
 /*-----------   Calendrier    -----------*/
 
 .calendar {
-    max-width: 350px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
@@ -381,12 +380,17 @@ body{
 /*-----------   Time slots    -----------*/
 
 .time-slots {
-    max-width: 350px;
-    margin: 2rem auto;
-    padding: 10px;
+    padding: 20px;
+    text-align: center;
     border-radius: 8px;
     background: var(--beige);
     color: var(--brown);
+}
+
+.time-slot {
+    background: var(--light-beige);
+    border-radius: 8px;
+    padding: 5px;
 }
 
 #slots {
@@ -395,7 +399,6 @@ body{
     gap: 0.5rem;
     max-height: 180px;
     overflow-y: auto;
-    padding-right: 5px;
 }
 
 .slot {
