@@ -18,7 +18,16 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background: var(--light-beige);
+}
+
+.background-image{
+    background-image: url(/images/background.png);
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
 }
 
 .hidden {
