@@ -152,7 +152,7 @@ body{
 }
 
 .phone-dropdown-menu{
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: calc(var(--spacing) * 4);
     margin-top: calc(var(--spacing) * 4);
@@ -637,6 +637,10 @@ body{
     .nav-right,
     .logo{
         display: none;
+    }
+
+    .phone-dropdown-menu{
+        display: flex;
     }
 
     .nav-phone{
