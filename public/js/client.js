@@ -66,16 +66,16 @@ async function updateAuthUI() {
 
     if (data.connected) {
          if(login){
-            login.style.display = 'none';
-            menuAccount.style.display = 'flex';
+            login.classList.add("hidden");
+            menuAccount.classList.remove("hidden");
 
             if(data.role == 'admin'){
                 userRole1.href = '/admin';
             }
         }
 
-        authLink.style.display = 'none';
-        userGreeting.style.display = 'inline-block';
+        authLink.classList.add("hidden");
+        userGreeting.classList.remove("hidden");
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
         userFullname.textContent = `${data.prenom} ${data.nom}` ;
         userEmail.textContent = data.email;
@@ -85,12 +85,12 @@ async function updateAuthUI() {
             userRole.href = '/admin';
         }
     } else {
-        authLink.style.display = 'inline-block';
-        userGreeting.style.display = 'none';
+        authLink.classList.remove("hidden");
+        userGreeting.classList.add("hidden");
 
         if(login){
-            login.style.display = 'inline-block';
-            menuAccount.style.display = 'none';
+            login.classList.remove("hidden");
+            menuAccount.classList.add("hidden");
         }
     }
 
