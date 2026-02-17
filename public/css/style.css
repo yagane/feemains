@@ -47,6 +47,11 @@ body{
     background: transparent;
 }
 
+button{
+    font-size: medium;
+    font-family: 'Poppins';
+}
+
 
 /*-----------   NAVBAR    -----------*/
 .navbar{
@@ -94,8 +99,6 @@ body{
     align-items: center;
     background: transparent;
     color: var(--brown);
-    font-size: medium;
-    font-family: 'Poppins';
 }
 
 .dropdown-menu {
