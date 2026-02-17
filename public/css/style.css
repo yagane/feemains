@@ -100,23 +100,15 @@ body{
     background: var(--beige);
 }
 
-.dropdown-menu a,form {
+.dropdown-menu a,
+.dropdown-menu form {
     display: block;
     padding: 12px 16px;
     text-decoration: none;
 }
 
-.dropdown-menu a:hover {
-    background-color: var(--light-beige);
-    border-radius: 5px;
-}
-
+.dropdown-menu a:hover,
 .dropdown-menu form:hover {
-    background-color: var(--light-beige);
-    border-radius: 5px;
-}
-
-.dropdown-menu span:hover {
     background-color: var(--light-beige);
     border-radius: 5px;
     cursor: pointer;
@@ -124,10 +116,6 @@ body{
 
 .user-greeting:hover .dropdown-menu {
     display: flex;
-}
-
-#user-name{
-    display: block;
 }
 
 .logo {
@@ -182,7 +170,8 @@ body{
     color: var(--brown);
 }
 
-.menu-account a, button{
+.menu-account a,
+.menu-account button{
     display: flex;
     align-items: center;
     gap: calc(var(--spacing) * 2);
@@ -530,7 +519,8 @@ body{
     border-collapse: collapse;
 }
 
-#reservations-table th, #reservations-table td {
+#reservations-table th,
+#reservations-table td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
