@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../models/Token.php';
 
 class AuthController {
 
@@ -28,21 +29,9 @@ class AuthController {
         $token = bin2hex(random_bytes(32));
         $tokenHash = hash('sha256', $token);
 
-        var_dump($user_id);
-
         $expire = time() + (60 * 60 * 24 * 30);
 
-        $stmt = $pdo->prepare(
-            "INSERT INTO remember_tokens (user_id, token_hash, expires_at)
-            VALUES (?, ?, ?)"
-        );
-        $stmt->execute([
-            $user_id,
-            $tokenHash,
-            date('Y-m-d H:i:s', $expire)
-        ]);
-
-
+        Token::insert($user_id, $tokenHash, $expires);
 
         setcookie(
             "remember_token",
@@ -62,7 +51,7 @@ class AuthController {
     public static function register() {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $user = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
+        User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
 
         echo json_encode(["success" => true]);
     }
@@ -89,15 +78,7 @@ class AuthController {
                 $token = $_COOKIE['remember_token'];
                 $tokenHash = hash('sha256', $token);
 
-                $stmt = $pdo->prepare("
-                    SELECT user_id, expires_at
-                    FROM remember_tokens
-                    WHERE token_hash = ?
-                    LIMIT 1
-                ");
-                $stmt->execute([$tokenHash]);
-
-                $row = $stmt->fetch();
+                $row = Token::findByToken($newHash, $newExpires, $tokenHash);
 
                 if ($row && strtotime($row['expires_at']) > time()) {
                     $_SESSION['user_id'] = $row['user_id'];
@@ -106,16 +87,7 @@ class AuthController {
                     $newHash = hash('sha256', $newToken);
                     $newExpires = time() + (60 * 60 * 24 * 30);
 
-                    $update = $pdo->prepare("
-                        UPDATE remember_tokens
-                        SET token_hash = ?, expires_at = ?
-                        WHERE token_hash = ?
-                    ");
-                    $update->execute([
-                        $newHash,
-                        date('Y-m-d H:i:s', $newExpires),
-                        $tokenHash
-                    ]);
+                    Token::update($newHash, $newExpires, $tokenHash);
 
                     setcookie(
                         "remember_token",
