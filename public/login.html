@@ -8,45 +8,65 @@
         <link rel="icon" href="/images/logo_fond.png" type="image/png">
     </head>
     <body>
-        <div class="main">
+        <div>
             <nav class="navbar">
-                <div class="div-nav">
-                    <div class="nav-left">
-                        <a href="/#accueil">Accueil</a>
-                        <a href="/#prestation">Prestations</a>
-                    </div>
-                    <div class="logo">
-                        <img src="/images/logo.png" alt="Logo du site" />
-                    </div>
-                    <div class="nav-right">
-                        <a href="/reservation">Reservation</a>
-                        <div>
-                            <a id="auth-link" href="/login">Connexion</a>
-                            <div id="user-greeting" class="user-greeting" style="display: none;">
-                                <span class="auth-link">Bonjour, <span id="user-firstname"></span> ▼</span>
+                <div class="nav-div">
+                    <div class="nav-item">
+                        <div class="nav-left">
+                            <a class="logo" href="/">
+                                <img src="/images/logo.png" alt="Logo du site" />
+                            </a>
+                            <div class="nav-left-a">
+                                <a href="/#prestation">Prestations</a>
+                                <a href="/reservation">Reservation</a>
+                                <a href="/#contact">Contact</a>
+                            </div>
+                        </div>
+                        <button class="nav-phone" aria-label="Basculer le menu">
+                            <span class="brown-bar"></span>
+                            <span class="brown-bar"></span>
+                            <span class="brown-bar"></span>
+                        </button>
+                        <div class="nav-right">
+                            <a id="auth-link" href="/login" class="hidden">Connexion</a>
+                            <div id="user-greeting" class="user-greeting hidden">
+                                <span id="user-name"></span>
                                 <div class="dropdown-menu">
                                     <a id="role" href="/client">Mon compte</a>
-                                    <span id="logout">Se déconnecter</span>
+                                    <form action="/api/logout" method="GET">
+                                        <button type="submit" class="logout-button">
+                                            Déconnexion
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </nav>
-            <div class="login">
-                <div class="login-container">
-                    <h2>Connexion</h2>
-                    <form id="login-form">
-                        <input type="email" id="email" placeholder="Email" required>
-                        <input type="password" id="password" placeholder="Mot de passe" required>
-                        <button type="submit">Se connecter</button>
-                    </form>
-                    <div class="button-register">
-                        <a href="/register">S'inscrire</a>
+            <div class="main-footer">
+                <main class="main">
+                    <div class="login">
+                        <div class="login-container">
+                            <h2>Connexion</h2>
+                            <form id="login-form">
+                                <input type="email" id="email" placeholder="Email" required>
+                                <input type="password" id="password" placeholder="Mot de passe" required>
+                                <button type="submit">Se connecter</button>
+                            </form>
+                            <div class="button-register">
+                                <a href="/register">S'inscrire</a>
+                            </div>
+                            <div id="message">
+                            </div>
+                        </div>
                     </div>
-                    <div id="message">
-                    </div>
-                </div>
+                </main>
+
+                <footer class="site-footer">
+                    <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
+                    <a href="" >Mentions légales</a>
+                </footer>
             </div>
             <a
             href="https://www.instagram.com/feemains__"

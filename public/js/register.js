@@ -45,8 +45,10 @@ window.onload = function() {
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
+    const login = document.getElementById('login');
     const userGreeting = document.getElementById('user-greeting');
-    const userFirstname = document.getElementById('user-firstname');
+    const menuAccount = document.getElementById('menu-account');
+    const userFirstname = document.getElementById('user-name');
     const userRole = document.getElementById('role');
 
     const response = await fetch("/api/me", {
@@ -57,28 +59,85 @@ async function updateAuthUI() {
     const data = await response.json();
 
     if (data.connected) {
-        // Utilisateur connecté : masquer le lien de connexion et afficher le menu déroulant
+         if(login){
+            login.style.display = 'none';
+            menuAccount.style.display = 'flex';
+        }
+
         authLink.style.display = 'none';
-        userGreeting.style.display = 'inline';
-        userFirstname.textContent = data.prenom;
-        userId = data.id;
+        userGreeting.style.display = 'inline-block';
+        userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
+
         if(data.role == 'admin'){
             userRole.href = '/admin';
         }
+
         window.location.href = "/reservation";
+    } else {
+        authLink.style.display = 'inline-block';
+        userGreeting.style.display = 'none';
+
+        if(login){
+            login.style.display = 'inline-block';
+            menuAccount.style.display = 'none';
+        }
     }
 }
 
-document.getElementById("logout").addEventListener("click", async function (e) {
-    const response = await fetch("/api/logout", {
-        method: "GET",
-        credentials: "include"
-    });
+const navPhone = document.querySelector('.nav-phone');
+const menuContainer = document.querySelector('.nav-div');
 
-    const data = await response.json();
+let dynamicMenu = null;
 
-    if(data.success){
-        window.location.href = "/index";
+
+function createDynamicMenu() {
+    const menu = document.createElement('div');
+    menu.className = 'phone-dropdown-menu';
+
+    menu.innerHTML = `
+        <a href="/#prestation">Prestations</a>
+        <a href="/reservation">Reservation</a>
+        <a href="/#contact">Contact</a>
+
+        <div class="menu-connexion">
+            <a id="login" href="/login">Connexion</a>
+            <div id="menu-account" class="menu-account" style="display: none;">
+                <a id="role1" href="/client">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Mon compte
+                </a>
+                <form action="/api/logout" method="GET">
+                    <button type="submit" class="logout-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" class="svelte-rfuq4y"></path>
+                            <polyline points="16,17 21,12 16,7" class="svelte-rfuq4y"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12" class="svelte-rfuq4y"></line>
+                        </svg>
+                        Déconnexion
+                    </button>
+                </form>
+
+
+            </div>
+        </div>
+    `;
+
+    return menu;
+}
+
+navPhone.addEventListener('click', () => {
+    navPhone.classList.toggle('active');
+
+    if (!dynamicMenu) {
+        dynamicMenu = createDynamicMenu();
+        menuContainer.appendChild(dynamicMenu);
+        updateAuthUI()
+    } else {
+        menuContainer.removeChild(dynamicMenu);
+        dynamicMenu = null;
     }
 });
 
