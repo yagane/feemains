@@ -30,6 +30,16 @@ class AuthController {
             'role' => $user['role']
         ];
 
+        setcookie(
+            'remember_me',
+            $user,
+            time() + (30 * 24 * 3600),
+            '/',
+            '',
+            true,
+            true
+        );
+
         echo json_encode(["success" => true]);
     }
 
@@ -57,13 +67,60 @@ class AuthController {
                 'role' => $user['role']
             ]);
         }else{
+            if (isset($_COOKIE['remember_me'])) {
+                $user = $_COOKIE['remember_me'];
+
+                $_SESSION['user'] = [
+                    'id' => $user['id'],
+                    'prenom' => $user['prenom'],
+                    'nom' => $user['nom'],
+                    'email' => $user['email'],
+                    'phone' => $user['phone'],
+                    'role' => $user['role']
+                ];
+
+                setcookie(
+                    'remember_me',
+                    $user,
+                    time() + (30 * 24 * 3600),
+                    '/',
+                    '',
+                    true,
+                    true
+                );
+
+                echo json_encode([
+                    'connected' => true,
+                    'id' => $user['id'],
+                    'prenom' => $user['prenom'],
+                    'nom' => $user['nom'],
+                    'email' => $user['email'],
+                    'phone' => $user['phone'],
+                    'role' => $user['role']
+                ]);
+
+                return;
+            }
+
             echo json_encode(['connected' => false]);
         }
     }
 
     public static function logout() {
         session_start();
+        session_unset();
         session_destroy();
-        echo header('Location: https://fee-mains.com');
+
+        setcookie(
+            'remember_me',
+            '',
+            time() - 3600, // Expiration dans le passé
+            '/',
+            '',
+            true,
+            true
+        );
+
+        header('Location: https://fee-mains.com');
     }
 }
