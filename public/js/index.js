@@ -16,7 +16,7 @@ async function updateAuthUI() {
     if (data.connected) {
         authLink.style.display = 'none';
         login.style.display = 'none';
-        userGreeting.style.display = 'flex';
+        userGreeting.style.display = 'inline-block';
         menuAccount.style.display = 'flex';
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
         if(data.role == 'admin'){
