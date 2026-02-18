@@ -42,7 +42,7 @@ function renderCalendar() {
         if (dateObj.toISOString().split('T')[0] == currentDate.toISOString().split('T')[0]){
             div.classList.add("selected");
 
-            selectedDate = new Date(dateStr);
+            selectedDate = currentDate;
             loadTimeSlots(selectedDate);
         }
 
