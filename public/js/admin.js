@@ -165,7 +165,7 @@ async function loadTimeSlots(date) {
         appointmentElement.className = 'appointment';
         appointmentElement.style.top = `${topPosition}%`;
         appointmentElement.style.height = `${height}%`;
-        appointmentElement.textContent = `${startTime} - ${endTime}    ${appointment.prenom} ${appointment.nom}`;
+        appointmentElement.textContent = `${startTime} - ${endTime} | ${appointment.prenom} ${appointment.nom}`;
 
         appointmentsContainer.appendChild(appointmentElement);
     });
