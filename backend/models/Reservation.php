@@ -6,7 +6,7 @@ class Reservation {
     public static function allByDateOrder($date) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "SELECT r.*, u.*
+            "SELECT r.date_reservation, r.duree_reservation, r.user_id, u.nom, u.prenom, u.email, u.phone
             FROM reservations as r
             INNER JOIN users as u ON u.id = r.user_id
             WHERE DATE(date_reservation) = ?
