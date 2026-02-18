@@ -22,6 +22,21 @@ let userId = null;
 let prestationDuration = 0;
 let total = 0;
 
+function toLocalISOString(date) {
+  const pad = (n) => n.toString().padStart(2, '0');
+  const offset = date.getTimezoneOffset() * 60000; // Décalage en millisecondes
+  const localDate = new Date(date - offset);
+
+  return (
+    localDate.getFullYear() + '-' +
+    pad(localDate.getMonth() + 1) + '-' +
+    pad(localDate.getDate()) + 'T' +
+    pad(localDate.getHours()) + ':' +
+    pad(localDate.getMinutes()) + ':' +
+    pad(localDate.getSeconds())
+  );
+}
+
 function renderCalendar() {
     calendarGrid.innerHTML = "";
 
@@ -158,7 +173,7 @@ function checkTimeSlotAvailability(timeSlot, data) {
 async function displayTimeSlots() {
     slotsContainer.innerHTML = '';
 
-    const date = selectedDate.toISOString().split('T')[0];
+    const date = selectedDate.toLocalISOString().split('T')[0];
 
     // Récupérer les rendez-vous existants pour cette date
     const response = await fetch("/api/resaTimeDurationByDate", {
@@ -362,7 +377,7 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 
     const duration = `${durationHours}:${durationMinutes}`;
 
-    const date = `${slotDateTime.toISOString().split('T')[0]} ${slotDateTime.toISOString().split('T')[1].split('.')[0]}`;
+    const date = `${slotDateTime.toLocalISOString().split('T')[0]} ${slotDateTime.toLocalISOString().split('T')[1].split('.')[0]}`;
 
     try {
         const response = await fetch('/api/insertResa', {

@@ -10,6 +10,21 @@ const months = [
 let currentDate = new Date();
 let selectedDate = currentDate;
 
+function toLocalISOString(date) {
+  const pad = (n) => n.toString().padStart(2, '0');
+  const offset = date.getTimezoneOffset() * 60000; // Décalage en millisecondes
+  const localDate = new Date(date - offset);
+
+  return (
+    localDate.getFullYear() + '-' +
+    pad(localDate.getMonth() + 1) + '-' +
+    pad(localDate.getDate()) + 'T' +
+    pad(localDate.getHours()) + ':' +
+    pad(localDate.getMinutes()) + ':' +
+    pad(localDate.getSeconds())
+  );
+}
+
 function renderCalendar() {
     calendarGrid.innerHTML = "";
 
@@ -36,9 +51,9 @@ function renderCalendar() {
         div.className = "day";
         div.textContent = day;
 
-        const dateObj = new Date(year, month, day+1);
+        const dateObj = new Date(year, month, day);
 
-        if (dateObj.toISOString().split('T')[0] == currentDate.toISOString().split('T')[0]){
+        if (dateObj.toLocalISOString().split('T')[0] == currentDate.toLocalISOString().split('T')[0]){
             div.classList.add("selected");
 
             selectedDate = dateObj;
@@ -92,7 +107,7 @@ async function loadTimeSlots(date) {
         appointmentsContainer.appendChild(timeLine);
     }
 
-    const dateSplit = date.toISOString().split('T')[0];
+    const dateSplit = date.toLocalISOString().split('T')[0];
 
     const response = await fetch("/api/resaAllByDate", {
         method: "POST",
