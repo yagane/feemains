@@ -27,7 +27,6 @@ async function loadHistoric() {
             // Créer les cellules du tableau
             row.innerHTML = `
             <td>${formattedDate}</td>
-            <td>${reservation.duree_reservation.split(':')[0]} h ${reservation.duree_reservation.split(':')[1]} min</td>
             <td>${reservation.statut}</td>
             <td class="actions">
             <button class="cancel-button">Annuler</button>
