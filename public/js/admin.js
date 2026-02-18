@@ -37,15 +37,11 @@ function renderCalendar() {
         div.textContent = day;
 
         const dateObj = new Date(year, month, day);
-        const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-        if (dateObj.toISOString().split('T')[0] == currentDate.toISOString().split('T')[0]){
+        if (dateObj.toLocaleString().split(' ')[0] == currentDate.toLocaleString().split(' ')[0]){
             div.classList.add("selected");
 
-            console.log(dateObj.toLocaleString())
-            console.log(dateObj)
-
-            selectedDate = currentDate;
+            selectedDate = dateObj;
             loadTimeSlots(selectedDate);
         }
 
@@ -56,7 +52,7 @@ function renderCalendar() {
 
             div.classList.add("selected");
 
-            selectedDate = new Date(dateStr);
+            selectedDate = dateObj;
             loadTimeSlots(selectedDate);
         };
 
