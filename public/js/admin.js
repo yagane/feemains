@@ -39,6 +39,13 @@ function renderCalendar() {
         const dateObj = new Date(year, month, day);
         const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
+        if (dateObj.toISOString().split('T')[0] == currentDate.toISOString().split('T')[0]){
+            div.classList.add("selected");
+
+            selectedDate = new Date(dateStr);
+            loadTimeSlots(selectedDate);
+        }
+
         const isSunday = dateObj.getDay() === 0;
 
         div.onclick = () => {
@@ -152,8 +159,6 @@ async function loadTimeSlots(date) {
         appointmentsContainer.appendChild(appointmentElement);
     });
 }
-
-loadTimeSlots(currentDate);
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
