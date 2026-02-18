@@ -80,7 +80,7 @@ function renderCalendar() {
 
                 selectedDate = dateObj;
                 selectedTimeSlot = null;
-                slotsTitle.textContent = `Disponibilités le ${toLocalISOString(dateObj).split('T')[0]}`;
+                slotsTitle.textContent = `Disponibilités le ${dateObj.toLocaleString().split(' ')[0]}`;
                 displayTimeSlots();
             };
         }
