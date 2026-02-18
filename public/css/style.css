@@ -547,12 +547,6 @@ button{
     padding: calc(var(--spacing) * 4);
 }
 
-.historique-rdv {
-    max-height: 400px;
-    overflow: hidden;
-    overflow-y: auto;
-}
-
 #reservations-table {
     width: 100%;
     border-collapse: collapse;
