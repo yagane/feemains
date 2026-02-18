@@ -42,7 +42,7 @@ function renderCalendar() {
         if (dateObj.toISOString().split('T')[0] == currentDate.toISOString().split('T')[0]){
             div.classList.add("selected");
 
-            console.log(dateObj.toISOString().split('T')[0])
+            console.log(dateObj.toISOString())
             console.log(dateObj)
 
             selectedDate = currentDate;
