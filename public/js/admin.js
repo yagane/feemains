@@ -92,7 +92,7 @@ async function loadTimeSlots(date) {
         appointmentsContainer.appendChild(timeLine);
     }
 
-    const dateSplit = date.toISOString().split('T')[0];
+    const dateSplit = date.toLocaleString().split(' ')[0];
 
     const response = await fetch("/api/resaAllByDate", {
         method: "POST",
