@@ -168,12 +168,12 @@ async function loadTimeSlots(date) {
 
         const spanTime = document.createElement('span');
         spanTime.style.position = 'absolute';
-        spanTime.style.left = 10;
+        spanTime.style.left = '10px';
         spanTime.textContent = `${startTime} - ${endTime}`;
 
         const spanName = document.createElement('span');
         spanName.style.position = 'absolute';
-        spanName.style.right = 10;
+        spanName.style.right = '10px';
         spanName.textContent = `${appointment.prenom} ${appointment.nom}`;
 
         appointmentElement.appendChild(spanTime);
