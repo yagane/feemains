@@ -165,8 +165,17 @@ async function loadTimeSlots(date) {
         appointmentElement.className = 'appointment';
         appointmentElement.style.top = `${topPosition}%`;
         appointmentElement.style.height = `${height}%`;
-        appointmentElement.textContent = `${startTime} - ${endTime} | ${appointment.prenom} ${appointment.nom}`;
 
+        const spanTime = document.createElement('span');
+        spanTime.style.left = 0;
+        spanTime.textContent = `${startTime} - ${endTime}`;
+
+        const spanName = document.createElement('span');
+        spanName.style.right = 0;
+        spanName.textContent = `${appointment.prenom} ${appointment.nom}`;
+
+        appointmentElement.appendChild(spanTime);
+        appointmentElement.appendChild(spanName);
         appointmentsContainer.appendChild(appointmentElement);
     });
 }
