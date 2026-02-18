@@ -42,8 +42,8 @@ function renderCalendar() {
         if (dateObj.toISOString().split('T')[0] == currentDate.toISOString().split('T')[0]){
             div.classList.add("selected");
 
-            console.log(dateObj)
-            console.log(currentDate)
+            console.log(dateObj.toISOString().split('T')[0])
+            console.log(currentDate.toISOString().split('T')[0])
 
             selectedDate = currentDate;
             loadTimeSlots(selectedDate);
