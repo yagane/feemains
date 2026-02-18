@@ -546,6 +546,7 @@ button{
 .historique-rdv {
     max-height: 400px;
     overflow: hidden;
+    overflow-y: auto;
 }
 
 #reservations-table {
@@ -555,8 +556,8 @@ button{
 
 #reservations-table th,
 #reservations-table td {
-    padding: 12px 15px;
-    text-align: left;
+    padding: 10px 5px;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
@@ -580,7 +581,6 @@ button{
 #reservations-list {
     display: block;
     max-height: 350px;
-    overflow-y: auto;
 }
 
 .actions {
