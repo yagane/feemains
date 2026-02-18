@@ -122,8 +122,6 @@ async function loadTimeSlots(date) {
 
 
     appointments.forEach(appointment => {
-
-        console.log(appointment)
         let startTime = appointment.date_reservation.split(' ')[1];
 
         const startHour = parseInt(startTime.split(':')[0], 10);
@@ -167,7 +165,7 @@ async function loadTimeSlots(date) {
         appointmentElement.className = 'appointment';
         appointmentElement.style.top = `${topPosition}%`;
         appointmentElement.style.height = `${height}%`;
-        appointmentElement.textContent = `${startTime} - ${endTime}    `;
+        appointmentElement.textContent = `${startTime} - ${endTime}    ${appointment.prenom} ${appointment.nom}`;
 
         appointmentsContainer.appendChild(appointmentElement);
     });
