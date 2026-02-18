@@ -39,11 +39,11 @@ function renderCalendar() {
         const dateObj = new Date(year, month, day);
         const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-        console.log(dateObj)
-        console.log(currentDate)
-
         if (dateObj.toISOString().split('T')[0] == currentDate.toISOString().split('T')[0]){
             div.classList.add("selected");
+
+            console.log(dateObj)
+            console.log(currentDate)
 
             selectedDate = currentDate;
             loadTimeSlots(selectedDate);
