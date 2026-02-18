@@ -43,7 +43,7 @@ function renderCalendar() {
             div.classList.add("selected");
 
             console.log(dateObj.toISOString().split('T')[0])
-            console.log(currentDate.toISOString().split('T')[0])
+            console.log(dateObj)
 
             selectedDate = currentDate;
             loadTimeSlots(selectedDate);
@@ -98,8 +98,6 @@ async function loadTimeSlots(date) {
 
     const dateSplit = date.toISOString().split('T')[0];
 
-    console.log(dateSplit)
-
     const response = await fetch("/api/resaAllByDate", {
         method: "POST",
         headers: {
@@ -110,8 +108,6 @@ async function loadTimeSlots(date) {
     });
 
     const appointments = await response.json();
-
-    console.log(appointments)
 
     appointments.forEach(appointment => {
         let startTime = appointment.date_reservation.split(' ')[1];
