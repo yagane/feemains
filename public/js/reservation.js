@@ -38,8 +38,6 @@ function renderCalendar() {
 
     const stopDay = new Date(new Date(today).setMonth(today.getMonth() + 3));
 
-
-    // Cases vides
     for (let i = 1; i < firstDay; i++) {
         calendarGrid.appendChild(document.createElement("div"));
     }
@@ -50,7 +48,6 @@ function renderCalendar() {
         div.textContent = day;
 
         const dateObj = new Date(year, month, day);
-        const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
         const isSunday = dateObj.getDay() === 0;
 
@@ -66,9 +63,9 @@ function renderCalendar() {
 
                 div.classList.add("selected");
 
-                selectedDate = new Date(dateStr);
+                selectedDate = dateObj;
                 selectedTimeSlot = null;
-                slotsTitle.textContent = `Disponibilités le ${dateStr.split('-')[2]}/${dateStr.split('-')[1]}/${dateStr.split('-')[0]}`;
+                slotsTitle.textContent = `Disponibilités le ${dateObj.toLocaleString().split(' ')[0]}`;
                 displayTimeSlots();
             };
         }
