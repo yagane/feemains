@@ -80,7 +80,7 @@ function renderCalendar() {
 
                 selectedDate = dateObj;
                 selectedTimeSlot = null;
-                slotsTitle.textContent = `Disponibilités le ${dateObj.toLocaleString().split(' ')[0]}`;
+                slotsTitle.textContent = `Disponibilités le ${toLocalISOString(dateObj).split('T')[0]}`;
                 displayTimeSlots();
             };
         }
@@ -173,7 +173,7 @@ function checkTimeSlotAvailability(timeSlot, data) {
 async function displayTimeSlots() {
     slotsContainer.innerHTML = '';
 
-    const date = selectedDate.toLocalISOString().split('T')[0];
+    const date = toLocalISOString(selectedDate).split('T')[0];
 
     // Récupérer les rendez-vous existants pour cette date
     const response = await fetch("/api/resaTimeDurationByDate", {
@@ -377,7 +377,7 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 
     const duration = `${durationHours}:${durationMinutes}`;
 
-    const date = `${slotDateTime.toLocalISOString().split('T')[0]} ${slotDateTime.toLocalISOString().split('T')[1].split('.')[0]}`;
+    const date = `${toLocalISOString(slotDateTime).split('T')[0]} ${toLocalISOString(slotDateTime).split('T')[1].split('.')[0]}`;
 
     try {
         const response = await fetch('/api/insertResa', {

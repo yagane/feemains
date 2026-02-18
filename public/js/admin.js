@@ -53,7 +53,7 @@ function renderCalendar() {
 
         const dateObj = new Date(year, month, day);
 
-        if (dateObj.toLocalISOString().split('T')[0] == currentDate.toLocalISOString().split('T')[0]){
+        if (toLocalISOString(dateObj).split('T')[0] == toLocalISOString(currentDate).split('T')[0]){
             div.classList.add("selected");
 
             selectedDate = dateObj;
@@ -107,7 +107,7 @@ async function loadTimeSlots(date) {
         appointmentsContainer.appendChild(timeLine);
     }
 
-    const dateSplit = date.toLocalISOString().split('T')[0];
+    const dateSplit = toLocalISOString(date).split('T')[0];
 
     const response = await fetch("/api/resaAllByDate", {
         method: "POST",
