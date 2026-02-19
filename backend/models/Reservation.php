@@ -6,7 +6,7 @@ class Reservation {
     public static function allByDateOrder($date) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "SELECT r.date_reservation, r.duree_reservation, r.user_id, u.nom, u.prenom, u.email, u.phone
+            "SELECT r.id, r.date_reservation, r.duree_reservation, r.user_id, u.nom, u.prenom, u.email, u.phone
             FROM reservations as r
             INNER JOIN users as u ON u.id = r.user_id
             WHERE DATE(date_reservation) = ?
@@ -59,5 +59,13 @@ class Reservation {
         foreach ($prestationIds as $prestationId) {
             $stmt->execute([$reservationId, $prestationId]);
         }
+    }
+
+    public static function delete($id) {
+        $db = Database::connect();
+        $stmt = $db->prepare("
+            DELETE FROM reservations_prestations WHERE id = ?
+        ");
+        $stmt->execute([$id]);
     }
 }

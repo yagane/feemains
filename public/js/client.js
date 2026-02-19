@@ -28,9 +28,9 @@ async function loadHistoric() {
             row.innerHTML = `
             <td>${formattedDate}</td>
             <td>${reservation.statut}</td>
-            <td class="actions">
-                <button class="resume-button">Resumé</button>
-                <button class="cancel-button">Annuler</button>
+            <td class="actions" id=`${reservation.id}`>
+                <button class="resume-button" id="resume-button">Resumé</button>
+                <button class="cancel-button" id="cancel-button">Annuler</button>
             </td>`;
 
             reservationsList.appendChild(row);
