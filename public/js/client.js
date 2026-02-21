@@ -67,7 +67,6 @@ async function loadHistoric() {
 
                 if(data.success){
                     window.location.href = "/client";
-                    alert("Réservation annulée avec succès !");
                 }
             });
         });
