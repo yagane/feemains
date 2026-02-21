@@ -86,11 +86,11 @@ button{
 }
 
 .modal-content {
-    width: 85vw;
-    height: 80vh;
+    width: 50vw;
+    height: 45vh;
     overflow-y: auto;
     position: relative;
-    background: var(--brown);
+    background: var(--beige);
     border-radius: 8px;
     padding: 24px 48px;
 }
