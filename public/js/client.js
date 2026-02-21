@@ -46,7 +46,7 @@ async function loadHistoric() {
 const cancelButton = document.querySelector('.cancel-button');
 
 cancelButton.forEach(button => {
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', async function(event) {
         // Récupérer le parent direct (reservation-body)
         const reservation = button.parentElement;
 
