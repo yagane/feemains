@@ -77,7 +77,7 @@ async function loadHistoric() {
             button.addEventListener('click', async function(event) {
                 const parent = button.parentElement;
 
-                const reservationId = parent.id;
+                const id = parent.id;
 
                 const response = await fetch("/api/resaByID", {
                     method: "POST",
@@ -85,7 +85,7 @@ async function loadHistoric() {
                         "Content-Type": "application/json"
                     },
                     credentials: "include",
-                    body: JSON.stringify({ reservationId })
+                    body: JSON.stringify({ id })
                 });
 
                 const data = await response.json();
