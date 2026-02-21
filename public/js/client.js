@@ -42,7 +42,7 @@ async function loadHistoric() {
 
 
         cancelButton.addEventListener('click', async function(event) {
-            const reservation = button.parentElement;
+            const reservation = cancelButton.parentElement;
 
             const reservationId = reservation.id;
 
