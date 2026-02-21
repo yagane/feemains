@@ -48,7 +48,7 @@ async function loadHistoric() {
 
         deleteButton();
     } catch (error) {
-        console.error("Erreur lors de l'envoi de la réservation :", error);
+        console.error("Une erreur est survenue :", error);
         alert("Une erreur est survenue. Veuillez réessayer.");
     }
 }
@@ -166,7 +166,7 @@ navPhone.addEventListener('click', () => {
 });
 
 function deleteButton() {
-    const cancelButton = document.querySelector('.cancel-button');
+    const cancelButton = document.querySelectorAll('.cancel-button');
 
     console.log(cancelButton);
 
