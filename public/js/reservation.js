@@ -368,6 +368,8 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
 
+    console.log(selectedTimeSlot);
+
     const [hours, minutes] = selectedTimeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
     slotDateTime.setHours(hours, minutes, 0, 0);
