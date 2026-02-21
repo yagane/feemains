@@ -10,7 +10,7 @@ class Prestation {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function findByResaID() {
+    public static function findByResaID($id) {
         $db = Database::connect();
         $stmt = $db->prepare(
             "SELECT p.*, r.*
