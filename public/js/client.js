@@ -39,31 +39,30 @@ async function loadHistoric() {
 
         const cancelButton = document.querySelector('.cancel-button');
 
-        console.log(cancelButton);
 
-        cancelButton.forEach(button => {
-            button.addEventListener('click', async function(event) {
-                const reservation = button.parentElement;
 
-                const reservationId = reservation.id;
+        cancelButton.addEventListener('click', async function(event) {
+            const reservation = button.parentElement;
 
-                const response = await fetch("/api/deleteResa", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({ reservationId })
-                });
+            const reservationId = reservation.id;
 
-                const data = await response.json();
-
-                if(data.success){
-
-                    alert("Réservation annulée avec succès !");
-                }
+            const response = await fetch("/api/deleteResa", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({ reservationId })
             });
+
+            const data = await response.json();
+
+            if(data.success){
+
+                alert("Réservation annulée avec succès !");
+            }
         });
+
 
     } catch (error) {
         console.error("Erreur lors de l'envoi de la réservation :", error);
