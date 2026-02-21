@@ -169,6 +169,8 @@ navPhone.addEventListener('click', () => {
 function deleteButton() {
     const cancelButton = document.querySelector('.cancel-button');
 
+    console.log(cancelButton);
+
     cancelButton.forEach(button => {
         button.addEventListener('click', async function(event) {
             const reservation = cancelButton.parentElement;
