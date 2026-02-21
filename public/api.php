@@ -28,6 +28,6 @@ $router->add("POST", "/api/insertResa", ["ResaController", "insertResa"]);
 $router->add("POST", "/api/deleteResa", ["ResaController", "deleteResa"]);
 
 $router->add("GET", "/api/getAllPresta", ["PrestaController", "getAllPresta"]);
-$router->add("GET", "/api/prestaByResaID", ["PrestaController", "prestaByResaID"]);
+$router->add("POST", "/api/prestaByResaID", ["PrestaController", "prestaByResaID"]);
 
 $router->dispatch();
