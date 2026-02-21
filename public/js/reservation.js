@@ -27,6 +27,8 @@ function toLocalISOString(date) {
   const offset = date.getTimezoneOffset() * 60000; // Décalage en millisecondes
   const localDate = new Date(date - offset);
 
+  console.log(date)
+
   console.log(date.getTimezoneOffset())
 
   return (
