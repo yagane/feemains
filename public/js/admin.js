@@ -123,16 +123,17 @@ async function loadTimeSlots(date) {
 
     appointments.forEach(appointment => {
         let startTime = appointment.date_reservation.split(' ')[1];
+        let dureeReservation = appointment.duree_reservation;
 
         const startHour = parseInt(startTime.split(':')[0], 10);
         const startMinute = parseInt(startTime.split(':')[1], 10);
-        const dureeHour = parseInt(appointment.duree_reservation.split(':')[0], 10);
-        const dureeMinute = parseInt(appointment.duree_reservation.split(':')[1], 10);
+        const dureeHour = parseInt(dureeReservation.split(':')[0], 10);
+        const dureeMinute = parseInt(dureeReservation.split(':')[1], 10);
 
         let endHour = 0;
         let endMinute = 0;
 
-        if((startMinute + dureeMinute) > 60){
+        if((startMinute + dureeMinute) >= 60){
             endHour = startHour + dureeHour + 1;
             endMinute = startMinute + dureeMinute - 60;
         }else{
@@ -157,8 +158,7 @@ async function loadTimeSlots(date) {
         const startTotalMinutes = (startHour - 10) * 60 + startMinute;
         const endTotalMinutes = (endHour - 10) * 60 + endMinute;
 
-        // Calculer la position et la hauteur
-        const topPosition = (startTotalMinutes / 600) * 100; // 600 minutes entre 10h et 20h
+        const topPosition = (startTotalMinutes / 600) * 100;
         const height = ((endTotalMinutes - startTotalMinutes) / 600) * 100;
 
         const appointmentElement = document.createElement('div');
