@@ -44,4 +44,13 @@ class ResaController {
         echo json_encode(['success' => true, 'message' => 'Réservation enregistrée avec succès.']);
     }
 
+    public static function deleteResa() {
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        Reservation::delete($data['reservationId']);
+
+        echo json_encode(['success' => true, 'message' => 'Réservation annulée avec succès.']);
+    }
+
 }

@@ -29,8 +29,8 @@ async function loadHistoric() {
             <td>${formattedDate}</td>
             <td>${reservation.statut}</td>
             <td class="actions" id=${reservation.id}>
-                <button class="resume-button" id="resume-button">Resumé</button>
-                <button class="cancel-button" id="cancel-button">Annuler</button>
+                <button class="resume-button">Resumé</button>
+                <button class="cancel-button">Annuler</button>
             </td>`;
 
             reservationsList.appendChild(row);
@@ -42,6 +42,36 @@ async function loadHistoric() {
         alert("Une erreur est survenue. Veuillez réessayer.");
     }
 }
+
+const cancelButton = document.querySelector('.cancel-button');
+
+cancelButton.forEach(button => {
+    button.addEventListener('click', (event) => {
+        // Récupérer le parent direct (reservation-body)
+        const reservation = button.parentElement;
+
+        // Récupérer l'ID du bloc de réservation
+        const reservationId = reservation.id;
+
+        const response = await fetch("/api/deleteResa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({ reservationId })
+        });
+
+        const data = await response.json();
+
+        if(data.success){
+
+            alert("Réservation annulée avec succès !");
+        }
+
+
+    });
+});
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
