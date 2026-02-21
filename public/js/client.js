@@ -39,12 +39,12 @@ async function loadHistoric() {
 
         const cancelButton = document.querySelector('.cancel-button');
 
+        console.log(cancelButton);
+
         cancelButton.forEach(button => {
             button.addEventListener('click', async function(event) {
-                // Récupérer le parent direct (reservation-body)
                 const reservation = button.parentElement;
 
-                // Récupérer l'ID du bloc de réservation
                 const reservationId = reservation.id;
 
                 const response = await fetch("/api/deleteResa", {
