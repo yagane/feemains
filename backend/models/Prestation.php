@@ -17,7 +17,9 @@ class Prestation {
             FROM reservations as r
             INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
             INNER JOIN prestations as p ON rp.prestation_id = p.id
-            WHERE r.id = ?"
+            WHERE r.id = ?
+            GROUP BY r.id;"
+
         );
         $stmt->execute([$id]);
 
