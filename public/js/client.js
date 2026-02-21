@@ -46,14 +46,36 @@ async function loadHistoric() {
             }
         });
 
-        deleteButton();
+        const cancelButton = document.querySelectorAll('.cancel-button');
+
+        cancelButton.forEach(button => {
+            button.addEventListener('click', async function(event) {
+                const reservation = cancelButton.parentElement;
+
+                const reservationId = reservation.id;
+
+                const response = await fetch("/api/deleteResa", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ reservationId })
+                });
+
+                const data = await response.json();
+
+                if(data.success){
+                    window.location.href = "/client";
+                    alert("Réservation annulée avec succès !");
+                }
+            });
+        });
     } catch (error) {
         console.error("Une erreur est survenue :", error);
         alert("Une erreur est survenue. Veuillez réessayer.");
     }
 }
-
-
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
@@ -164,35 +186,5 @@ navPhone.addEventListener('click', () => {
         dynamicMenu = null;
     }
 });
-
-function deleteButton() {
-    const cancelButton = document.querySelectorAll('.cancel-button');
-
-    console.log(cancelButton);
-
-    cancelButton.forEach(button => {
-        button.addEventListener('click', async function(event) {
-            const reservation = cancelButton.parentElement;
-
-            const reservationId = reservation.id;
-
-            const response = await fetch("/api/deleteResa", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                credentials: "include",
-                body: JSON.stringify({ reservationId })
-            });
-
-            const data = await response.json();
-
-            if(data.success){
-                window.location.href = "/client";
-                alert("Réservation annulée avec succès !");
-            }
-        });
-    });
-}
 
 window.onload = updateAuthUI;
