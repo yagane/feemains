@@ -57,7 +57,7 @@ async function loadHistoric() {
             const data = await response.json();
 
             if(data.success){
-
+                window.location.href = "/client";
                 alert("Réservation annulée avec succès !");
             }
         });

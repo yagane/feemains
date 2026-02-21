@@ -63,9 +63,9 @@ class Reservation {
 
     public static function delete($reservationId) {
         $db = Database::connect();
-        $stmt = $db->prepare("
-            DELETE FROM reservations WHERE id = ?
-        ");
+        $stmt = $db->prepare(
+            "DELETE FROM reservations WHERE id = ?"
+        );
         $stmt->execute([$reservationId]);
     }
 }
