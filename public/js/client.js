@@ -90,6 +90,8 @@ async function loadHistoric() {
 
                 const data = await response.json();
 
+                console.log(data)
+
                 const prestation_noms = data.prestation_noms
                 const prestation_prix = data.prestation_prix
                 const prestation_duree = data.prestation_duree
