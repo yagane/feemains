@@ -24,14 +24,6 @@ let total = 0;
 
 function toLocalISOString(date) {
   const pad = (n) => n.toString().padStart(2, '0');
-  const offset = date.getTimezoneOffset() * 60000; // Décalage en millisecondes
-  const localDate = new Date(date - offset);
-
-  console.log(date)
-
-  console.log(date.getTimezoneOffset())
-
-  console.log(localDate)
 
   return (
     localDate.getFullYear() + '-' +
