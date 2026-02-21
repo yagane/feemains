@@ -27,7 +27,7 @@ class Prestation {
         );
         $stmt->execute([$id]);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 
