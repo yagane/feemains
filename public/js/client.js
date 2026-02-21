@@ -50,9 +50,11 @@ async function loadHistoric() {
 
         cancelButton.forEach(button => {
             button.addEventListener('click', async function(event) {
-                const reservation = cancelButton.parentElement;
+                const parent = cancelButton.parentElement;
 
-                const reservationId = reservation.id;
+                console.log(parent)
+
+                const reservationId = parent.id;
 
                 const response = await fetch("/api/deleteResa", {
                     method: "POST",
