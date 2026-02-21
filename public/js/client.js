@@ -37,41 +37,41 @@ async function loadHistoric() {
             }
         });
 
+        const cancelButton = document.querySelector('.cancel-button');
+
+        cancelButton.forEach(button => {
+            button.addEventListener('click', async function(event) {
+                // Récupérer le parent direct (reservation-body)
+                const reservation = button.parentElement;
+
+                // Récupérer l'ID du bloc de réservation
+                const reservationId = reservation.id;
+
+                const response = await fetch("/api/deleteResa", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ reservationId })
+                });
+
+                const data = await response.json();
+
+                if(data.success){
+
+                    alert("Réservation annulée avec succès !");
+                }
+            });
+        });
+
     } catch (error) {
         console.error("Erreur lors de l'envoi de la réservation :", error);
         alert("Une erreur est survenue. Veuillez réessayer.");
     }
 }
 
-const cancelButton = document.querySelector('.cancel-button');
 
-cancelButton.forEach(button => {
-    button.addEventListener('click', async function(event) {
-        // Récupérer le parent direct (reservation-body)
-        const reservation = button.parentElement;
-
-        // Récupérer l'ID du bloc de réservation
-        const reservationId = reservation.id;
-
-        const response = await fetch("/api/deleteResa", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify({ reservationId })
-        });
-
-        const data = await response.json();
-
-        if(data.success){
-
-            alert("Réservation annulée avec succès !");
-        }
-
-
-    });
-});
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
