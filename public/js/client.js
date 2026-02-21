@@ -79,7 +79,7 @@ async function loadHistoric() {
 
                 const id = parent.id;
 
-                const response = await fetch("/api/prestaByResaID", {
+                const response = await fetch("/api/resaByID", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
