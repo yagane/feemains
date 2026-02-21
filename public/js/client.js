@@ -197,4 +197,4 @@ function deleteButton() {
 }
 
 window.onload = updateAuthUI;
-setTimeout(deleteButton, 0);
+Promise.resolve().then(deleteButton);
