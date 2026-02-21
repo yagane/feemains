@@ -1,3 +1,12 @@
+const options = {
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false // Pour afficher en format 24h
+};
+
 let userID = null;
 
 async function loadHistoric() {
@@ -22,7 +31,7 @@ async function loadHistoric() {
             const row = document.createElement('tr');
 
             const date = new Date(reservation.date_reservation);
-            const formattedDate = date.toLocaleString('fr-FR');
+            const formattedDate = date.toLocaleString('fr-FR', options);
 
             // Créer les cellules du tableau
             row.innerHTML = `
