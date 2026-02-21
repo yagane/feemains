@@ -28,24 +28,25 @@ async function loadHistoric() {
 
         reservations.forEach(reservation => {
             if(reservation.user_id == userID){
-            const row = document.createElement('tr');
+                const row = document.createElement('tr');
 
-            const date = new Date(reservation.date_reservation);
-            const formattedDate = date.toLocaleString('fr-FR', options);
+                const date = new Date(reservation.date_reservation);
+                const formattedDate = date.toLocaleString('fr-FR', options);
 
-            // Créer les cellules du tableau
-            row.innerHTML = `
-            <td>${formattedDate}</td>
-            <td>${reservation.statut}</td>
-            <td class="actions" id=${reservation.id}>
-                <button class="resume-button">Resumé</button>
-                <button class="cancel-button">Annuler</button>
-            </td>`;
+                // Créer les cellules du tableau
+                row.innerHTML = `
+                <td>${formattedDate}</td>
+                <td>${reservation.statut}</td>
+                <td class="actions" id=${reservation.id}>
+                    <button class="resume-button">Resumé</button>
+                    <button class="cancel-button">Annuler</button>
+                </td>`;
 
-            reservationsList.appendChild(row);
+                reservationsList.appendChild(row);
             }
         });
 
+        deleteButton();
     } catch (error) {
         console.error("Erreur lors de l'envoi de la réservation :", error);
         alert("Une erreur est survenue. Veuillez réessayer.");
@@ -144,8 +145,6 @@ function createDynamicMenu() {
                         Déconnexion
                     </button>
                 </form>
-
-
             </div>
         </div>
     `;
@@ -197,4 +196,3 @@ function deleteButton() {
 }
 
 window.onload = updateAuthUI;
-Promise.resolve().then(deleteButton);
