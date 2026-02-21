@@ -649,8 +649,7 @@ button{
     position: absolute;
     width: 100%;
     padding: 5px 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     font-size: 12px;
     cursor: pointer;
     background-color: var(--brown);
