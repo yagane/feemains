@@ -45,8 +45,9 @@ class Reservation {
     public static function findByID($id) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "SELECT *
-            FROM reservations
+            "SELECT r.*, rp.prestation_id
+            FROM reservations as r
+            INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
             WHERE id = ?"
         );
         $stmt->execute([$id]);
