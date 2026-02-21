@@ -16,7 +16,7 @@ class PrestaController {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $prestations = Prestation::findByResaID();
+        $prestations = Prestation::findByResaID($data['id']);
 
         echo json_encode($prestations);
     }
