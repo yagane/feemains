@@ -40,7 +40,6 @@ async function loadHistoric() {
         const cancelButton = document.querySelector('.cancel-button');
 
 
-
         cancelButton.addEventListener('click', async function(event) {
             const reservation = cancelButton.parentElement;
 
