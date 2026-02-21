@@ -90,11 +90,12 @@ async function loadHistoric() {
 
                 const data = await response.json();
 
-                const div = document.createElement('div');
+                const div = document.getElementById('main-footer');
 
                 div.innerHTML = `
                 <div class="modal-backdrop">
                     <div class="modal-content">
+
                     </div>
                 </div>`;
             });
