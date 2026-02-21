@@ -31,6 +31,8 @@ function toLocalISOString(date) {
 
   console.log(date.getTimezoneOffset())
 
+  console.log(localDate)
+
   return (
     localDate.getFullYear() + '-' +
     pad(localDate.getMonth() + 1) + '-' +
