@@ -370,7 +370,6 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
 
-    console.log(selectedTimeSlot);
 
     const [hours, minutes] = selectedTimeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
@@ -382,10 +381,6 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
     const duration = `${durationHours}:${durationMinutes}`;
 
     const date = `${toLocalISOString(slotDateTime).split('T')[0]} ${toLocalISOString(slotDateTime).split('T')[1].split('.')[0]}`;
-
-    console.log(hours);
-
-    console.log(slotDateTime);
 
     console.log(date);
 
