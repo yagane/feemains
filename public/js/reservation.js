@@ -370,14 +370,17 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
 
     const [hours, minutes] = selectedTimeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
-    slotDateTime.setHours(hours+1, minutes, 0, 0);
+    slotDateTime.setHours(hours, minutes, 0, 0);
 
     const durationHours = Math.floor(prestationDuration/60);
     const durationMinutes = prestationDuration%60;
 
+
     const duration = `${durationHours}:${durationMinutes}`;
 
     const date = `${toLocalISOString(slotDateTime).split('T')[0]} ${toLocalISOString(slotDateTime).split('T')[1].split('.')[0]}`;
+
+    console.log(date);
 
     try {
         const response = await fetch('/api/insertResa', {
