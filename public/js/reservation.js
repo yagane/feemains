@@ -26,12 +26,12 @@ function toLocalISOString(date) {
   const pad = (n) => n.toString().padStart(2, '0');
 
   return (
-    localDate.getFullYear() + '-' +
-    pad(localDate.getMonth() + 1) + '-' +
-    pad(localDate.getDate()) + 'T' +
-    pad(localDate.getHours()) + ':' +
-    pad(localDate.getMinutes()) + ':' +
-    pad(localDate.getSeconds())
+    date.getFullYear() + '-' +
+    pad(date.getMonth() + 1) + '-' +
+    pad(date.getDate()) + 'T' +
+    pad(date.getHours()) + ':' +
+    pad(date.getMinutes()) + ':' +
+    pad(date.getSeconds())
   );
 }
 
