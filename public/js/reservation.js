@@ -448,6 +448,7 @@ async function updateAuthUI() {
         authLink.classList.add("hidden");
         userGreeting.classList.remove("hidden");
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
+        userId = data.id
 
         if(data.role == 'admin'){
             userRole.href = '/admin';
