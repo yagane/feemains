@@ -12,4 +12,15 @@ class PrestaController {
         echo json_encode($prestations);
     }
 
+    public static function prestaByResaID() {
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $prestations = Prestation::findByResaID();
+
+        echo json_encode($prestations);
+    }
+
+
+
 }

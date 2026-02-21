@@ -10,4 +10,18 @@ class Prestation {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function findByResaID() {
+        $db = Database::connect();
+        $stmt = $db->query(
+            "SELECT p.*, r.*
+            FROM reservations as r
+            INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
+            INNER JOIN prestations as p ON rp.prestation_id = p.id
+            WHERE r.id = ?"
+        );
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }
