@@ -70,6 +70,35 @@ async function loadHistoric() {
                 }
             });
         });
+
+        const resumeButton = document.querySelectorAll('.resume-button');
+
+        resumeButton.forEach(button => {
+            button.addEventListener('click', async function(event) {
+                const parent = button.parentElement;
+
+                const reservationId = parent.id;
+
+                const response = await fetch("/api/resaByID", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ reservationId })
+                });
+
+                const data = await response.json();
+
+                const div = document.createElement('div');
+
+                div.innerHTML = `
+                <div class="modal-backdrop">
+                    <div class="modal-content">
+                    </div>
+                </div>`;
+            });
+        });
     } catch (error) {
         console.error("Une erreur est survenue :", error);
         alert("Une erreur est survenue. Veuillez réessayer.");

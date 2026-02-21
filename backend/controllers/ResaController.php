@@ -30,6 +30,15 @@ class ResaController {
         echo json_encode($reservations);
     }
 
+    public static function resaByID() {
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $reservation = Reservation::findByID($data['id']);
+
+        echo json_encode($reservation);
+    }
+
     public static function insertResa() {
 
         $data = json_decode(file_get_contents("php://input"), true);

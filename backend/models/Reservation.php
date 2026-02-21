@@ -42,6 +42,18 @@ class Reservation {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function findByID($id) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "SELECT *
+            FROM reservations
+            WHERE id = ?"
+        );
+        $stmt->execute([$id]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function insert($userID, $date, $duree, $prestationIds) {
         $db = Database::connect();
         $stmt = $db->prepare(
