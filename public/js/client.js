@@ -98,10 +98,12 @@ async function loadHistoric() {
                 console.log(prestation_prix)
                 console.log(prestation_duree)
 
-                const div = document.querySelector('.main-footer');
+                const mainFooter = document.querySelector('.main-footer');
 
-                div.innerHTML = `
-                <div class="modal-backdrop">
+                const modal = document.createElement('div');
+                div.className = 'modal-backdrop';
+
+                modal.innerHTML = `
                     <div class="modal-content">
                         <div class="modal-nav">
                             <button class="close-button">
@@ -112,7 +114,9 @@ async function loadHistoric() {
                             </button>
                         </div>
                     </div>
-                </div>`;
+                `;
+
+                mainFooter.appendChild(modal);
 
                 const closeBtn = document.querySelector('.close-button');
 
