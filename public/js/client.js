@@ -103,8 +103,13 @@ async function loadHistoric() {
                 div.innerHTML = `
                 <div class="modal-backdrop">
                     <div class="modal-content">
-                        <div>
-
+                        <div class="modal-nav">
+                            <button class="close-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="svelte-bbsf4f">
+                                    <line x1="18" y1="6" x2="6" y2="18" class="svelte-bbsf4f"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18" class="svelte-bbsf4f"></line>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>`;

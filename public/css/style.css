@@ -95,6 +95,24 @@ button{
     padding: 24px 48px;
 }
 
+.modal-nav {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.close-button {
+    background: transparent;
+    border: none;
+    color: var(--brown);
+    cursor: pointer;
+    padding: 4px;
+    transition: color .2s ease;
+}
+
 /*-----------   NAVBAR    -----------*/
 .navbar{
     background: var(--beige);
