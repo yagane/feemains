@@ -113,6 +113,9 @@ async function loadHistoric() {
                                 </svg>
                             </button>
                         </div>
+                        <div class="modal-header">
+                            <span>Reservation du ${data.date_reservation}</span>
+                        </div>
                     </div>
                 `;
 
