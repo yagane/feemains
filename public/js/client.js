@@ -101,7 +101,7 @@ async function loadHistoric() {
                 const mainFooter = document.querySelector('.main-footer');
 
                 const modal = document.createElement('div');
-                div.className = 'modal-backdrop';
+                modal.className = 'modal-backdrop';
 
                 modal.innerHTML = `
                     <div class="modal-content">
