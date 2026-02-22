@@ -114,10 +114,49 @@ async function loadHistoric() {
                             </button>
                         </div>
                         <div class="modal-header">
-                            <h2>Reservation du ${formattedDate.split(' ')[0]}</h2>
+                            <span>Reservation du ${formattedDate.split(' ')[0]}</span>
+                            <div class="table">
+                                <div class="label">
+
+                                </div>
+                                <div class="duree">
+
+                                </div>
+                                <div class="prix">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;
+
+                const divLabel = document.querySelector('.label');
+                const divDuree = document.querySelector('.duree');
+                const divPrix = document.querySelector('.prix');
+
+                prestation_noms.forEach(nom => {
+                    const span = document.createElement('span');
+
+                    span.textContent = `${nom}`
+
+                    divLabel.appendChild(span);
+                });
+
+                prestation_duree.forEach(duree => {
+                    const span = document.createElement('span');
+
+                    span.textContent = `${duree}`
+
+                    divDuree.appendChild(span);
+                });
+
+                prestation_prix.forEach(prix => {
+                    const span = document.createElement('span');
+
+                    span.textContent = `${prix}`
+
+                    divPrix.appendChild(span);
+                });
 
                 mainFooter.appendChild(modal);
 
