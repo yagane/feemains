@@ -130,6 +130,8 @@ async function loadHistoric() {
                     </div>
                 `;
 
+                mainFooter.appendChild(modal);
+
                 const divLabel = document.querySelector('.label');
                 const divDuree = document.querySelector('.duree');
                 const divPrix = document.querySelector('.prix');
@@ -157,8 +159,6 @@ async function loadHistoric() {
 
                     divPrix.appendChild(span);
                 });
-
-                mainFooter.appendChild(modal);
 
                 const closeBtn = document.querySelector('.close-button');
 
