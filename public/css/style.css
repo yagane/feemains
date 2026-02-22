@@ -92,7 +92,7 @@ button{
     position: relative;
     background: var(--beige);
     border-radius: 8px;
-    padding: 24px 48px;
+    padding: 24px 24px;
 }
 
 .modal-nav {
@@ -115,15 +115,20 @@ button{
 
 .table {
     display: grid;
-    grid-template-rows: 1fr, 0.5fr, 0.5fr;
+    grid-template-columns: 2fr 1fr 1fr;
 }
 
-.label,
+.label {
+    display: grid;
+    grid-template-rows: auto;
+    text-align: left;
+}
+
 .duree,
 .prix {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    text-align: left;
+    grid-template-rows: auto;
+    text-align: center;
 }
 
 /*-----------   NAVBAR    -----------*/
