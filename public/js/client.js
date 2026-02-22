@@ -90,13 +90,13 @@ async function loadHistoric() {
 
                 const data = await response.json();
 
+                const date = new Date(data.date_reservation);
+                const formattedDate = date.toLocaleString('fr-FR', options);
+
                 const prestation_noms = data.prestation_noms.split(', ');
                 const prestation_prix = data.prestation_prix.split(', ');
                 const prestation_duree = data.prestation_duree.split(', ');
 
-                console.log(prestation_noms)
-                console.log(prestation_prix)
-                console.log(prestation_duree)
 
                 const mainFooter = document.querySelector('.main-footer');
 
@@ -114,7 +114,7 @@ async function loadHistoric() {
                             </button>
                         </div>
                         <div class="modal-header">
-                            <span>Reservation du ${data.date_reservation}</span>
+                            <h2>Reservation du ${formattedDate.split(' ')[0]}</h2>
                         </div>
                     </div>
                 `;
