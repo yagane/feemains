@@ -151,7 +151,7 @@ button{
 }
 
 .modal-footer button {
-    padding: 6px 0px;
+    padding: 6px;
     border-radius: 8px;
     cursor: pointer;
     background-color: var(--brown);
