@@ -134,7 +134,7 @@ button{
 }
 
 .modal-table tr:nth-child(even) {
-    background-color: var(--beige);
+    background-color: var(--light-beige);
 }
 
 
@@ -620,7 +620,6 @@ button{
 #reservations-table td {
     padding: 10px 5px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
 }
 
 #reservations-table thead {
@@ -637,7 +636,7 @@ button{
 }
 
 #reservations-table tr:nth-child(even) {
-    background-color: var(--beige);
+    background-color: var(--light-beige);
 }
 
 #reservations-list {
