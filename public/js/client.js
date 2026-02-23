@@ -116,7 +116,7 @@ async function loadHistoric() {
                         <div class="modal-header">
                             <span>Reservation du ${formattedDate.split(' ')[0]}</span>
                         </div>
-                        <div class="table">
+                        <div class="modal-table">
                             <table id="reservation-table">
                                 <thead>
                                     <tr>
