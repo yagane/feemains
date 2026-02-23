@@ -86,7 +86,7 @@ button{
 }
 
 .modal-content {
-    width: 100%;
+    width: 50%;
     overflow-y: auto;
     position: relative;
     background: var(--beige);
