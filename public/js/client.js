@@ -129,11 +129,39 @@ async function loadHistoric() {
                                 </tbody>
                             </table>
                         </div>
+                        <div class="modal-footer">
+                            <button class="cancel-button">Annuler</button>
+                        </div>
 
                     </div>
                 `;
 
                 mainFooter.appendChild(modal);
+
+                const cancelButton = document.querySelectorAll('.cancel-button');
+
+                cancelButton.forEach(button => {
+                    button.addEventListener('click', async function(event) {
+                        const parent = button.parentElement;
+
+                        const reservationId = parent.id;
+
+                        const response = await fetch("/api/deleteResa", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({ reservationId })
+                        });
+
+                        const data = await response.json();
+
+                        if(data.success){
+                            window.location.href = "/client";
+                        }
+                    });
+                });
 
                 const reservationList = document.getElementById('reservation-list');
 
