@@ -145,6 +145,14 @@ button{
     text-align: center;
 }
 
+.modal-footer button {
+    padding: 6px 0px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--brown);
+    color: var(--light-beige);
+}
+
 /*-----------   NAVBAR    -----------*/
 .navbar{
     background: var(--beige);
