@@ -121,6 +121,10 @@ button{
     padding: calc(var(--spacing) * 4);
 }
 
+.modal-table table {
+    border-collapse: collapse;
+}
+
 .modal-table td,
 .modal-table th {
     padding: calc(var(--spacing) * 2);
@@ -137,6 +141,9 @@ button{
     background-color: var(--light-beige);
 }
 
+.td-center {
+    text-align: center;
+}
 
 /*-----------   NAVBAR    -----------*/
 .navbar{

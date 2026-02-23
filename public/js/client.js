@@ -143,8 +143,8 @@ async function loadHistoric() {
 
                     row.innerHTML = `
                         <td>${prestation_noms[i]}</td>
-                        <td>${prestation_duree[i]}</td>
-                        <td>${prestation_prix[i]}</td>
+                        <td class="td-center">${prestation_duree[i]}</td>
+                        <td class="td-center">${prestation_prix[i]}</td>
                     `;
 
                     reservationList.appendChild(row);
