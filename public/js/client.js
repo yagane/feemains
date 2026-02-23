@@ -146,8 +146,8 @@ async function loadHistoric() {
 
                     row.innerHTML = `
                         <td>${prestation_noms[i]}</td>
-                        <td class="td-center">${prestation_duree[i]} min</td>
-                        <td class="td-center">${prestation_prix[i]} €</td>
+                        <td class="td-center">${parseInt(prestation_duree[i], 10)} min</td>
+                        <td class="td-center">${parseInt(prestation_prix[i], 10)} €</td>
                     `;
 
                     totalPrix += parseInt(prestation_prix[i], 10);
