@@ -107,9 +107,8 @@ button{
     position: absolute;
     top: 16px;
     right: 16px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
+    width: 20px;
+    height: 20px;
 }
 
 .close-button {
@@ -124,6 +123,7 @@ button{
 .modal-header {
     text-align: center;
     padding: calc(var(--spacing) * 4);
+    color: var(--brown);
 }
 
 .modal-table table {
