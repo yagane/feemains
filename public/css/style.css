@@ -385,7 +385,7 @@ button{
 }
 
 #prestations-list {
-    max-height: 240px;
+    max-height: 340px;
     padding: 0.2rem;
     overflow-y: auto;
 }
@@ -778,6 +778,10 @@ button{
         padding: calc(var(--spacing) * 2);
         gap: calc(var(--spacing) * 1.5);
         cursor: pointer;
+    }
+
+    #prestations-list {
+        max-height: 240px;
     }
 
     .presta{
