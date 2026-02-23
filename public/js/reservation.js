@@ -80,6 +80,7 @@ function renderCalendar() {
                 selectedTimeSlot = null;
                 slotsTitle.textContent = `Disponibilités le ${dateObj.toLocaleString().split(' ')[0]}`;
                 displayTimeSlots();
+                userRole.href = '/reservation#time-slots';
             };
         }
 
