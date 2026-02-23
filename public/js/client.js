@@ -137,6 +137,9 @@ async function loadHistoric() {
 
                 const reservationList = document.getElementById('reservation-list');
 
+                const totalPrix = 0;
+                const totalDuree = 0;
+
                 for (let i = 0; i < prestation_noms.length; i++){
 
                     const row = document.createElement('tr');
@@ -147,8 +150,23 @@ async function loadHistoric() {
                         <td class="td-center">${prestation_prix[i]}</td>
                     `;
 
+                    totalPrix += parseInt(prestation_prix[i], 10);
+                    totalDuree += parseInt(prestation_duree[i], 10);
+
                     reservationList.appendChild(row);
                 }
+
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>Total :</td>
+                    <td class="td-center">${totalDuree}</td>
+                    <td class="td-center">${totalPrix}</td>
+                `;
+
+                reservationList.appendChild(row);
+
+
 
                 const closeBtn = document.querySelector('.close-button');
 
