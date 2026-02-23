@@ -115,50 +115,40 @@ async function loadHistoric() {
                         </div>
                         <div class="modal-header">
                             <span>Reservation du ${formattedDate.split(' ')[0]}</span>
-                            <div class="table">
-                                <div class="label">
-
-                                </div>
-                                <div class="duree">
-
-                                </div>
-                                <div class="prix">
-
-                                </div>
-                            </div>
                         </div>
+                        <div class="table">
+                            <table id="reservation-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Duree</th>
+                                        <th>Prix</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reservation-list">
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 `;
 
                 mainFooter.appendChild(modal);
 
-                const divLabel = document.querySelector('.label');
-                const divDuree = document.querySelector('.duree');
-                const divPrix = document.querySelector('.prix');
+                const reservationList = document.getElementById('reservation-list');
 
-                prestation_noms.forEach(nom => {
-                    const span = document.createElement('span');
+                for (let i = 0; i < prestation_noms.length; i++){
 
-                    span.textContent = `${nom}`
+                    const row = document.createElement('tr');
 
-                    divLabel.appendChild(span);
-                });
+                    row.innerHTML = `
+                        <td>${prestation_noms[i]}</td>
+                        <td>${prestation_duree[i]}</td>
+                        <td>${prestation_prix[i]}</td>
+                    `;
 
-                prestation_duree.forEach(duree => {
-                    const span = document.createElement('span');
-
-                    span.textContent = `${duree}`
-
-                    divDuree.appendChild(span);
-                });
-
-                prestation_prix.forEach(prix => {
-                    const span = document.createElement('span');
-
-                    span.textContent = `${prix}`
-
-                    divPrix.appendChild(span);
-                });
+                    reservationList.appendChild(row);
+                }
 
                 const closeBtn = document.querySelector('.close-button');
 
