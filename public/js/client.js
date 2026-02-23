@@ -137,8 +137,8 @@ async function loadHistoric() {
 
                 const reservationList = document.getElementById('reservation-list');
 
-                const totalPrix = 0;
-                const totalDuree = 0;
+                let totalPrix = 0;
+                let totalDuree = 0;
 
                 for (let i = 0; i < prestation_noms.length; i++){
 
