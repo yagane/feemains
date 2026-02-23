@@ -122,7 +122,7 @@ async function loadHistoric() {
                                 <table id="reservation-table">
                                     <thead>
                                         <tr>
-                                            <th>Date</th>
+                                            <th>Prestation</th>
                                             <th>Duree</th>
                                             <th>Prix</th>
                                         </tr>
