@@ -88,11 +88,14 @@ button{
 .modal-content {
     width: 50vw;
     height: 45vh;
+    display: flex;
     overflow-y: auto;
     position: relative;
     background: var(--beige);
     border-radius: 8px;
     padding: 24px 24px;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-nav {
@@ -113,23 +116,11 @@ button{
     transition: color .2s ease;
 }
 
-.table {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-}
-
-.label {
-    display: grid;
-    grid-template-rows: auto;
-    text-align: left;
-}
-
-.duree,
-.prix {
-    display: grid;
-    grid-template-rows: auto;
+.modal-header {
     text-align: center;
+    padding: calc(var(--spacing) * 4);
 }
+
 
 /*-----------   NAVBAR    -----------*/
 .navbar{
