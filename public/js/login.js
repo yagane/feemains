@@ -100,7 +100,6 @@ function createDynamicMenu() {
         <a href="/">Acceuil</a>
         <a href="/#prestation">Prestations</a>
         <a href="/reservation">Reservation</a>
-        <a href="/#contact">Contact</a>
 
         <div class="menu-connexion">
             <a id="login" href="/login">Connexion</a>
