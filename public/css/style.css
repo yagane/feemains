@@ -483,6 +483,7 @@ button{
 .time-slots {
     display: flex;
     flex-direction: column;
+    width: 95%;
     gap: 20px;
     padding: 20px;
     text-align: center;
