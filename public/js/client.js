@@ -129,7 +129,7 @@ async function loadHistoric() {
                                 </tbody>
                             </table>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer" id=${id}>
                             <button class="cancel-button">Annuler</button>
                         </div>
 
