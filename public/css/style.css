@@ -385,7 +385,7 @@ button{
 }
 
 #prestations-list {
-    max-height: 340px;
+    max-height: 240px;
     padding: 0.2rem;
     overflow-y: auto;
 }
