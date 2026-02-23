@@ -146,8 +146,8 @@ async function loadHistoric() {
 
                     row.innerHTML = `
                         <td>${prestation_noms[i]}</td>
-                        <td class="td-center">${prestation_duree[i]}</td>
-                        <td class="td-center">${prestation_prix[i]}</td>
+                        <td class="td-center">${prestation_duree[i]} min</td>
+                        <td class="td-center">${prestation_prix[i]} €</td>
                     `;
 
                     totalPrix += parseInt(prestation_prix[i], 10);
@@ -160,8 +160,8 @@ async function loadHistoric() {
 
                 row.innerHTML = `
                     <td>Total :</td>
-                    <td class="td-center">${totalDuree}</td>
-                    <td class="td-center">${totalPrix}</td>
+                    <td class="td-center">${totalDuree} min</td>
+                    <td class="td-center">${totalPrix} €</td>
                 `;
 
                 reservationList.appendChild(row);
