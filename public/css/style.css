@@ -127,8 +127,6 @@ button{
 
 .modal-header {
     text-align: center;
-    padding: calc(var(--spacing) * 4);
-    color: var(--brown);
 }
 
 .modal-info {
