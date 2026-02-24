@@ -181,7 +181,8 @@ async function loadTimeSlots(date) {
         appointmentsContainer.appendChild(appointmentElement);
 
         const id = appointment.id;
-        const localDate = appointment.date_reservation.toLocaleDateString().split(' ')[0];
+        const date_reservation = new Date(appointment.date_reservation);
+        const localDate = date_reservation.toLocaleDateString().split(' ')[0];
 
         appointmentElement.addEventListener('click', async function(event) {
             const mainFooter = document.querySelector('.main-footer');
