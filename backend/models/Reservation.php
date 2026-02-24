@@ -22,7 +22,6 @@ class Reservation {
             INNER JOIN prestations as p ON rp.prestation_id = p.id
             INNER JOIN users as u ON u.id = r.user_id
             WHERE DATE(date_reservation) = ?
-            ORDER BY date_reservation
             GROUP BY r.id"
         );
         $stmt->execute([$date]);
