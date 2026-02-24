@@ -6,8 +6,20 @@ class Reservation {
     public static function allByDateOrder($date) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "SELECT r.id, r.date_reservation, r.duree_reservation, r.user_id, u.nom, u.prenom, u.email, u.phone
+            "SELECT
+                r.id,
+                r.date_reservation,
+                r.duree_reservation,
+                u.nom,
+                u.prenom,
+                u.email,
+                u.phone,
+                GROUP_CONCAT(p.nom SEPARATOR ', ') AS prestation_noms,
+                GROUP_CONCAT(p.duree SEPARATOR ', ') AS prestation_duree,
+                GROUP_CONCAT(p.prix SEPARATOR ', ') AS prestation_prix
             FROM reservations as r
+            INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
+            INNER JOIN prestations as p ON rp.prestation_id = p.id
             INNER JOIN users as u ON u.id = r.user_id
             WHERE DATE(date_reservation) = ?
             ORDER BY date_reservation"

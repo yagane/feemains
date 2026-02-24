@@ -227,6 +227,62 @@ async function loadTimeSlots(date) {
 
             mainFooter.appendChild(modal);
 
+            const cancelButton = document.querySelectorAll('.cancel-button');
+
+            cancelButton.forEach(button => {
+                button.addEventListener('click', async function(event) {
+                    const parent = button.parentElement;
+
+                    const reservationId = parent.id;
+
+                    const response = await fetch("/api/deleteResa", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({ reservationId })
+                    });
+
+                    const data = await response.json();
+
+                    if(data.success){
+                        window.location.href = "/client";
+                    }
+                });
+            });
+
+            const reservationList = document.getElementById('reservation-list');
+
+            let totalPrix = 0;
+            let totalDuree = 0;
+
+            for (let i = 0; i < prestation_noms.length; i++){
+
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${prestation_noms[i]}</td>
+                    <td class="td-center">${parseInt(prestation_duree[i], 10)} min</td>
+                    <td class="td-center">${parseInt(prestation_prix[i], 10)} €</td>
+                `;
+
+                totalPrix += parseInt(prestation_prix[i], 10);
+                totalDuree += parseInt(prestation_duree[i], 10);
+
+                reservationList.appendChild(row);
+            }
+
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>Total :</td>
+                <td class="td-center">${totalDuree} min</td>
+                <td class="td-center">${totalPrix} €</td>
+            `;
+
+            reservationList.appendChild(row);
+
             const closeBtn = document.querySelector('.close-button');
 
             closeBtn.addEventListener('click', (event) => {
