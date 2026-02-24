@@ -263,8 +263,6 @@ async function updateAuthUI() {
             menuAccount.classList.add("hidden");
         }
     }
-
-    loadHistoric();
 }
 
 const navPhone = document.querySelector('.nav-phone');
@@ -323,3 +321,4 @@ navPhone.addEventListener('click', () => {
 });
 
 window.onload = updateAuthUI;
+setTimeout(loadHistoric, 0);
