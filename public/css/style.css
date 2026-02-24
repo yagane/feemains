@@ -416,7 +416,8 @@ th.prix {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    padding: 0.3rem;
+    padding-block: calc(var(--spacing));
+    padding-inline: calc(var(--spacing) * 2);
     background: var(--beige);
     color: var(--brown);
     margin-bottom: 10px;
@@ -428,11 +429,15 @@ th.prix {
 .prestation-item > div {
     display: flex;
     flex: 1;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .prestation-prixduree {
+    min-width: fit-content;
     display: flex;
     flex-direction: column;
+    padding-inline: calc(var(--spacing) * 2);
 }
 
 .prestation-item input[type="checkbox"] {
