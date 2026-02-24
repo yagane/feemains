@@ -89,12 +89,19 @@ document.getElementById("next").onclick = () => {
 renderCalendar();
 
 async function loadTimeSlots(date) {
-    document.getElementById('selected-date').textContent = new Date(date).toLocaleDateString('fr-FR', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+    const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     });
+
+    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+    const parts = formattedDate.split(' ');
+    const capitalizedDate = `${capitalize(parts[0])} ${parts[1]} ${capitalize(parts[2])} ${parts[3]}`;
+
+    document.getElementById('selected-date').textContent = capitalizedDate;
 
     document.getElementById('agenda-container').style.display = 'block';
 

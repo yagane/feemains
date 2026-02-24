@@ -722,7 +722,7 @@ th.prix {
 .agenda {
     display: flex;
     position: relative;
-    height: 800px;
+    height: 1000px;
     margin-top: 20px;
 }
 

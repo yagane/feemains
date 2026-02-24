@@ -5,7 +5,7 @@ class Prestation {
 
     public static function findAll() {
         $db = Database::connect();
-        $stmt = $db->query("SELECT * FROM prestations ORDER BY duree ASC");
+        $stmt = $db->query("SELECT * FROM prestations ORDER BY id ASC");
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
