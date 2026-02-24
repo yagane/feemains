@@ -179,7 +179,52 @@ async function loadTimeSlots(date) {
         appointmentElement.appendChild(spanTime);
         appointmentElement.appendChild(spanName);
         appointmentsContainer.appendChild(appointmentElement);
+
+        /*appointmentsContainer.addEventListener('click', async function(event) {
+            const mainFooter = document.querySelector('.main-footer');
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-backdrop';
+
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-nav">
+                        <button class="close-button">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-main">
+                        <div class="modal-header">
+                            <h3>Reservation du ${formattedDate.split(' ')[0]}</h3>
+                        </div>
+                        <div class="modal-table">
+                            <table id="reservation-table">
+                                <thead>
+                                    <tr>
+                                        <th>Prestation</th>
+                                        <th class="duree">Duree</th>
+                                        <th class="prix">Prix</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reservation-list">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer" id=${id}>
+                            <button class="cancel-button">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            mainFooter.appendChild(modal);
+        });*/
     });
+
+
 }
 
 async function updateAuthUI() {
