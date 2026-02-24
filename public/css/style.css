@@ -20,8 +20,8 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-button, [role="button"] {
-    -webkit-tap-highlight-color: transparent !important;
+html {
+    -webkit-tap-highlight-color: transparent;
 }
 
 .background-image{
