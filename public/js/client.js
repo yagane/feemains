@@ -8,7 +8,7 @@ const options = {
 };
 
 let userID = null;
-const flag = true;
+let flag = true;
 
 async function loadHistoric() {
     const historicDiv = document.querySelector(".historique-rdv");
