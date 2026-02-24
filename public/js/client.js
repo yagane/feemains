@@ -196,8 +196,6 @@ async function loadHistoric() {
 
                 reservationList.appendChild(row);
 
-
-
                 const closeBtn = document.querySelector('.close-button');
 
                 closeBtn.addEventListener('click', (event) => {
@@ -321,4 +319,4 @@ navPhone.addEventListener('click', () => {
 });
 
 window.onload = updateAuthUI;
-setTimeout(loadHistoric, 0);
+Promise.resolve().then(loadHistoric);
