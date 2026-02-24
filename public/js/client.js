@@ -123,8 +123,8 @@ async function loadHistoric() {
                                     <thead>
                                         <tr>
                                             <th>Prestation</th>
-                                            <th>Duree</th>
-                                            <th>Prix</th>
+                                            <th class="duree">Duree</th>
+                                            <th class="prix">Prix</th>
                                         </tr>
                                     </thead>
                                     <tbody id="reservation-list">

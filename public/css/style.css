@@ -130,6 +130,14 @@ button{
     border-collapse: collapse;
 }
 
+th.duree {
+    min-width: 90px;
+}
+
+th.prix {
+    min-width: 60px;
+}
+
 .modal-table td,
 .modal-table th {
     padding: calc(var(--spacing) * 2);
@@ -357,7 +365,9 @@ button{
 /*-----------   Index    -----------*/
 
 .intro {
-    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 1rem;
 }
 
