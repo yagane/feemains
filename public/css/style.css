@@ -3,7 +3,7 @@
 :root {
   --brown: #351c19;
   --beige: #e0d0c1;
-  --light-beige: #ece4de;
+  --light-beige: #eddfd5;
   --spacing: .25rem;
   --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
   --default-transition-duration: .15s;
