@@ -224,7 +224,6 @@ async function updateAuthUI() {
     const userEmail = document.getElementById('user-email');
     const userPhone = document.getElementById('user-phone');
     const userRole = document.getElementById('role');
-    const userRole1 = document.getElementById('role1');
 
     const response = await fetch("/api/me", {
         method: "GET",
@@ -306,6 +305,7 @@ navPhone.addEventListener('click', () => {
         menuContainer.appendChild(dynamicMenu);
         const login = document.getElementById('login');
         const menuAccount = document.getElementById('menu-account');
+        const userRole1 = document.getElementById('role1');
 
         if (connected) {
             login.classList.add("hidden");
