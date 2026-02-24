@@ -257,6 +257,10 @@ async function loadTimeSlots(date) {
             let totalPrix = 0;
             let totalDuree = 0;
 
+            const prestation_noms = appointment.prestation_noms.split(', ');
+            const prestation_prix = appointment.prestation_prix.split(', ');
+            const prestation_duree = appointment.prestation_duree.split(', ');
+
             for (let i = 0; i < prestation_noms.length; i++){
 
                 const row = document.createElement('tr');
