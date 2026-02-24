@@ -15,16 +15,14 @@ let role = null;
 
 function toLocalISOString(date) {
   const pad = (n) => n.toString().padStart(2, '0');
-  const offset = date.getTimezoneOffset() * 60000; // Décalage en millisecondes
-  const localDate = new Date(date - offset);
 
   return (
-    localDate.getFullYear() + '-' +
-    pad(localDate.getMonth() + 1) + '-' +
-    pad(localDate.getDate()) + 'T' +
-    pad(localDate.getHours()) + ':' +
-    pad(localDate.getMinutes()) + ':' +
-    pad(localDate.getSeconds())
+    date.getFullYear() + '-' +
+    pad(date.getMonth() + 1) + '-' +
+    pad(date.getDate()) + 'T' +
+    pad(date.getHours()) + ':' +
+    pad(date.getMinutes()) + ':' +
+    pad(date.getSeconds())
   );
 }
 
@@ -183,6 +181,7 @@ async function loadTimeSlots(date) {
         appointmentsContainer.appendChild(appointmentElement);
 
         const id = appointment.id;
+        const localDate = appointment.date_reservation.toLocaleDateString().split(' ')[0];
 
         appointmentElement.addEventListener('click', async function(event) {
             const mainFooter = document.querySelector('.main-footer');
@@ -202,7 +201,8 @@ async function loadTimeSlots(date) {
                     </div>
                     <div class="modal-main">
                         <div class="modal-header">
-                            <h3>Reservation du ${dateSplit}</h3>
+                            <h3>Reservation du ${localDate}</h3>
+                            <h3>${startTime} - ${endTime}</h3>
                         </div>
                         <div class="modal-table">
                             <table id="reservation-table">
