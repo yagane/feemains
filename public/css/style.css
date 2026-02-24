@@ -16,24 +16,12 @@
     padding: 0;
 }
 
-
-*:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-*:active {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-*:focus-visible {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
 body{
     font-family: 'Poppins', sans-serif;
+}
+
+button, [role="button"] {
+    -webkit-tap-highlight-color: transparent !important;
 }
 
 .background-image{
