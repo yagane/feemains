@@ -257,16 +257,18 @@ async function loadPrestations() {
                 dureeSpan.textContent = `${durationHours} h ${durationMinutes} min`;
             }
 
-
             const priceSpan = document.createElement('span');
             priceSpan.className = 'prestation-price';
             priceSpan.textContent = `${prestation.prix} €`;
 
+            const divPrixDuree = document.createElement('div');
+            divPrixDuree.className = 'prestation-prixduree'
+
+            divPrixDuree.appendChild(dureeSpan);
+            divPrixDuree.appendChild(priceSpan);
+
             divPrestation.appendChild(nameSpan);
-            divPrestation.appendChild(document.createTextNode(' '));
-            divPrestation.appendChild(dureeSpan);
-            divPrestation.appendChild(document.createTextNode(' - '));
-            divPrestation.appendChild(priceSpan);
+            divPrestation.appendChild(divPrixDuree);
 
             prestationItem.appendChild(checkbox);
             prestationItem.appendChild(divPrestation);

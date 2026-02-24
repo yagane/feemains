@@ -426,7 +426,13 @@ th.prix {
 }
 
 .prestation-item > div {
+    display: flex;
     flex: 1;
+}
+
+.prestation-prixduree {
+    display: flex;
+    flex-direction: column;
 }
 
 .prestation-item input[type="checkbox"] {
