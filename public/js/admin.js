@@ -10,6 +10,9 @@ const months = [
 let currentDate = new Date();
 let selectedDate = currentDate;
 
+let connected = null;
+let role = null;
+
 function toLocalISOString(date) {
   const pad = (n) => n.toString().padStart(2, '0');
   const offset = date.getTimezoneOffset() * 60000; // Décalage en millisecondes
@@ -229,9 +232,7 @@ async function loadTimeSlots(date) {
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
-    const login = document.getElementById('login');
     const userGreeting = document.getElementById('user-greeting');
-    const menuAccount = document.getElementById('menu-account');
     const userFirstname = document.getElementById('user-name');
     const userRole = document.getElementById('role');
     const userRole1 = document.getElementById('role1');
@@ -243,16 +244,10 @@ async function updateAuthUI() {
 
     const data = await response.json();
 
+    connected = data.connected;
+    role = data.role;
+
     if (data.connected) {
-         if(login){
-            login.classList.add("hidden");
-            menuAccount.classList.remove("hidden");
-
-            if(data.role == 'admin'){
-                userRole1.href = '/admin';
-            }
-        }
-
         authLink.classList.add("hidden");
         userGreeting.classList.remove("hidden");
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
@@ -263,11 +258,6 @@ async function updateAuthUI() {
     } else {
         authLink.classList.remove("hidden");
         userGreeting.classList.add("hidden");
-
-        if(login){
-            login.classList.remove("hidden");
-            menuAccount.classList.add("hidden");
-        }
     }
 }
 
@@ -321,7 +311,20 @@ navPhone.addEventListener('click', () => {
     if (!dynamicMenu) {
         dynamicMenu = createDynamicMenu();
         menuContainer.appendChild(dynamicMenu);
-        updateAuthUI()
+        const login = document.getElementById('login');
+        const menuAccount = document.getElementById('menu-account');
+
+        if (connected) {
+            login.classList.add("hidden");
+            menuAccount.classList.remove("hidden");
+
+            if(role == 'admin'){
+                userRole1.href = '/admin';
+            }
+        } else {
+            login.classList.remove("hidden");
+            menuAccount.classList.add("hidden");
+        }
     } else {
         menuContainer.removeChild(dynamicMenu);
         dynamicMenu = null;
