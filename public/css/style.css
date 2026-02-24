@@ -371,6 +371,10 @@ th.prix {
     padding: 1rem;
 }
 
+.intro img {
+    width: 40%;
+}
+
 .presta {
     display: flex;
     flex-direction: column;
