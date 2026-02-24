@@ -199,8 +199,6 @@ async function loadHistoric() {
 
                 reservationList.appendChild(row);
 
-
-
                 const closeBtn = document.querySelector('.close-button');
 
                 closeBtn.addEventListener('click', (event) => {

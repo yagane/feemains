@@ -225,6 +225,14 @@ async function loadTimeSlots(date) {
             `;
 
             mainFooter.appendChild(modal);
+
+            const closeBtn = document.querySelector('.close-button');
+
+            closeBtn.addEventListener('click', (event) => {
+                const modal = document.querySelector('.modal-backdrop');
+
+                modal.remove();
+            });
         });
     });
 }
