@@ -123,7 +123,6 @@ async function loadTimeSlots(date) {
 
     const appointments = await response.json();
 
-
     appointments.forEach(appointment => {
         let startTime = appointment.date_reservation.split(' ')[1];
         let dureeReservation = appointment.duree_reservation;
@@ -183,7 +182,7 @@ async function loadTimeSlots(date) {
         appointmentElement.appendChild(spanName);
         appointmentsContainer.appendChild(appointmentElement);
 
-        /*appointmentsContainer.addEventListener('click', async function(event) {
+        appointmentElement.addEventListener('click', async function(event) {
             const mainFooter = document.querySelector('.main-footer');
 
             const modal = document.createElement('div');
@@ -224,10 +223,8 @@ async function loadTimeSlots(date) {
             `;
 
             mainFooter.appendChild(modal);
-        });*/
+        });
     });
-
-
 }
 
 async function updateAuthUI() {
