@@ -16,6 +16,15 @@
     padding: 0;
 }
 
+
+*:focus {
+    outline: none !important;
+}
+
+*:focus-visible {
+    outline: none !important;
+}
+
 body{
     font-family: 'Poppins', sans-serif;
 }
@@ -28,14 +37,6 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-}
-
-button:active {
-    outline: none;
-}
-
-button:focus, a:focus, input:focus, [tabindex]:focus {
-    outline: none;
 }
 
 .hidden {
