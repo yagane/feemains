@@ -182,6 +182,8 @@ async function loadTimeSlots(date) {
         appointmentElement.appendChild(spanName);
         appointmentsContainer.appendChild(appointmentElement);
 
+        const id = appointment.id;
+
         appointmentElement.addEventListener('click', async function(event) {
             const mainFooter = document.querySelector('.main-footer');
 
