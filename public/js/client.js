@@ -8,6 +8,7 @@ const options = {
 };
 
 let userID = null;
+const flag = true;
 
 async function loadHistoric() {
     const historicDiv = document.querySelector(".historique-rdv");
@@ -196,6 +197,8 @@ async function loadHistoric() {
 
                 reservationList.appendChild(row);
 
+
+
                 const closeBtn = document.querySelector('.close-button');
 
                 closeBtn.addEventListener('click', (event) => {
@@ -262,7 +265,11 @@ async function updateAuthUI() {
         }
     }
 
-    loadHistoric();
+    if (flag) {
+        loadHistoric();
+        flag = false;
+    }
+
 }
 
 const navPhone = document.querySelector('.nav-phone');
@@ -313,6 +320,7 @@ navPhone.addEventListener('click', () => {
     if (!dynamicMenu) {
         dynamicMenu = createDynamicMenu();
         menuContainer.appendChild(dynamicMenu);
+        updateAuthUI()
     } else {
         menuContainer.removeChild(dynamicMenu);
         dynamicMenu = null;
