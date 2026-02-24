@@ -18,6 +18,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
+    color: var(--brown);
 }
 
 html {
@@ -128,6 +129,11 @@ button{
     text-align: center;
     padding: calc(var(--spacing) * 4);
     color: var(--brown);
+}
+
+.modal-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-table table {
