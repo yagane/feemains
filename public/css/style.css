@@ -30,6 +30,10 @@ body{
     z-index: -1;
 }
 
+button:active {
+    outline: none;
+}
+
 button:focus, a:focus, input:focus, [tabindex]:focus {
     outline: none;
 }
