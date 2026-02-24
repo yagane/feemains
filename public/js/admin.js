@@ -200,7 +200,7 @@ async function loadTimeSlots(date) {
                     </div>
                     <div class="modal-main">
                         <div class="modal-header">
-                            <h3>Reservation du ${formattedDate.split(' ')[0]}</h3>
+                            <h3>Reservation du ${dateSplit}</h3>
                         </div>
                         <div class="modal-table">
                             <table id="reservation-table">
