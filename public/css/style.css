@@ -70,13 +70,14 @@ button{
     flex-direction: column;
     height: 100vh;
     height: 100dvh;
-    overflow-y: auto;
 }
 
 .main-footer{
     display: flex;
     flex-direction: column;
     flex: 1;
+    margin-top: 66px;
+    overflow-y: auto;
 }
 
 .modal-backdrop {
@@ -218,11 +219,11 @@ th.prix {
 
 /*-----------   NAVBAR    -----------*/
 .navbar{
+    position: fixed;
     background: var(--beige);
     padding-block: calc(var(--spacing) * 4);
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
-
 }
 
 .nav-div{

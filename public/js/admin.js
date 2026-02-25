@@ -253,7 +253,7 @@ async function loadTimeSlots(date) {
                     const data = await response.json();
 
                     if(data.success){
-                        window.location.href = "/client";
+                        window.location.href = "/admin";
                     }
                 });
             });
