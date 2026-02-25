@@ -87,7 +87,7 @@ function createDynamicMenu() {
     const menu = document.createElement('div');
     menu.className = 'phone-dropdown-menu';
 
-    if(data.role == 'admin'){
+    if(role == 'admin'){
         menu.innerHTML = `
             <a href="/">Prestations</a>
             <a href="/reservation">Reservation</a>

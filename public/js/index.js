@@ -14,7 +14,7 @@ async function updateAuthUI() {
 
     const data = await response.json();
 
-        connected = data.connected;
+    connected = data.connected;
     role = data.role;
 
     if (data.connected) {
@@ -40,7 +40,7 @@ function createDynamicMenu() {
     const menu = document.createElement('div');
     menu.className = 'phone-dropdown-menu';
 
-    if(data.role == 'admin'){
+    if(role == 'admin'){
         menu.innerHTML = `
             <a href="/">Prestations</a>
             <a href="/reservation">Reservation</a>
