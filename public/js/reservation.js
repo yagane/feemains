@@ -420,8 +420,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
 
         const date = `${toLocalISOString(slotDateTime).split('T')[0]} ${toLocalISOString(slotDateTime).split('T')[1].split('.')[0]}`;
 
-        console.log(date);
-
         try {
             const response = await fetch('/api/insertResa', {
                 method: 'POST',
@@ -450,9 +448,10 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                 selectedTimeSlot = null;
                 document.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
                 checkboxes.forEach(checkbox => {
-                checkbox.checked = !checkbox.checked;
+                    checkbox.checked = !checkbox.checked;
                 });
-                updateRecap();
+                updateChecked();
+                modal.remove();
             } else {
                 alert("Erreur : " + result.message);
             }
@@ -465,8 +464,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
     const closeBtn = document.querySelector('.close-button');
 
     closeBtn.addEventListener('click', (event) => {
-        const modal = document.querySelector('.modal-backdrop');
-
         modal.remove();
     });
 });

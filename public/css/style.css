@@ -149,6 +149,8 @@ button{
     flex-direction: column;
     background: var(--brown);
     gap: calc(var(--spacing) * 2);
+    padding: calc(var(--spacing) * 2);
+    border-radius: 8px;
 }
 
 .resume-prestation > div {
@@ -163,6 +165,7 @@ button{
 .resume-total {
     display: flex;
     gap: calc(var(--spacing) * 2);
+    justify-content: space-between;
 }
 
 .resume-total div{
