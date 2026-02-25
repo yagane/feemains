@@ -397,7 +397,9 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
     for (let i = 0; i < selectedPrestationId.length; i++) {
         const div = document.getElementById(`prestation-${selectedPrestationId[i]}`)
 
-        resumePresta.appendChild(div)
+        const divClone = div.cloneNode(true);
+
+        resumePresta.appendChild(divClone)
     }
 
     document.getElementById('submit-reservation').addEventListener('click', async () => {
