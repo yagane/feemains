@@ -12,6 +12,15 @@ class ResaController {
         echo json_encode($reservations);
     }
 
+    public static function resaAllByMY() {
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $reservations = Reservation::allByMY($data['mois'], $data['annee']);
+
+        echo json_encode($reservations);
+    }
+
     public static function resaTimeDurationByDate() {
 
         $data = json_decode(file_get_contents("php://input"), true);

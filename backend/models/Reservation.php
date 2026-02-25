@@ -29,6 +29,22 @@ class Reservation {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function allByMY($mois, $annee) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "SELECT r.statut, SUM(p.prix) as prix, GROUP_CONCAT(p.nom SEPARATOR ', ') AS prestation_noms
+            FROM reservations as r
+            INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
+            INNER JOIN prestations as p ON rp.prestation_id = p.id
+            WHERE MONTH(r.date_reservation) = :mois AND YEAR(r.date_reservation) = :annee"
+        );
+        $stmt->bindParam(':mois', $month, PDO::PARAM_INT);
+        $stmt->bindParam(':annee', $annee, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function timeDurationByDate($date) {
         $db = Database::connect();
         $stmt = $db->prepare(

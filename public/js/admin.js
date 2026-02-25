@@ -1,5 +1,4 @@
 const calendarGrid = document.getElementById("calendar-grid");
-const calendarSection = document.querySelector(".calendar");
 const monthYear = document.getElementById("month-year");
 
 const months = [

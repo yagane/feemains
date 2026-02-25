@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mon compte</title>
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="icon" href="/images/logo_fond.png" type="image/png">
+    </head>
+    <body>
+        <div style="display: contents">
+            <div class="app-wrapper">
+                <div class="background-image"></div>
+                <div class="app-content">
+                    <nav class="navbar">
+                        <div class="nav-div">
+                            <div class="nav-item">
+                                <div class="nav-left">
+                                    <a class="logo" href="/">
+                                        <img src="/images/logo.png" alt="Logo du site" />
+                                    </a>
+                                    <div class="nav-left-a">
+                                        <a href="/#prestation">Prestations</a>
+                                        <a href="/reservation">Reservation</a>
+                                        <a href="/#contact">Contact</a>
+                                    </div>
+                                </div>
+                                <button class="nav-phone" aria-label="Basculer le menu">
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                </button>
+                                <div class="nav-right">
+                                    <a id="auth-link" href="/login" class="hidden">Connexion</a>
+                                    <div id="user-greeting" class="user-greeting hidden">
+                                        <span id="user-name"></span>
+                                        <div class="dropdown-menu">
+                                            <a id="role" href="/client">Mon compte</a>
+                                            <form action="/api/logout" method="GET">
+                                                <button type="submit" class="logout-button">
+                                                    Déconnexion
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="main-footer">
+                        <main class="main">
+                            <section class="calendar">
+                                <div class="calendar-header">
+                                    <button id="prev">◀</button>
+                                    <h2 id="month-year"></h2>
+                                    <button id="next">▶</button>
+                                </div>
+                            </section>
+                            <section class="month-info">
+                                <div class="month-revenu">
+                                    <div class="total-revenu">
+
+                                    </div>
+                                    <div class="average-revenu">
+
+                                    </div>
+                                </div>
+                                <div class="rdv-compte">
+
+                                </div>
+                                <div class="best-presta">
+
+                                </div>
+                            </section>
+                        </main>
+
+                        <footer class="site-footer">
+                            <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
+                            <a href="" >Mentions légales</a>
+                        </footer>
+                    </div>
+                    <button class="ajout-agenda">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"></path>
+                            <path d="M12 5v14"></path>
+                        </svg>
+                    </button>
+                    <a
+                    href="https://www.instagram.com/feemains__/"
+                    target="_blank"
+                    class="instagram-fixed"
+                    aria-label="Instagram"
+                    >
+                        <img src="/images/insta.ico" alt="Instagram" />
+                    </a>
+                </div>
+            </div>
+            <script src="/js/admin.js"></script>
+        </div>
+    </body>
+</html>

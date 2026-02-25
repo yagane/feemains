@@ -224,6 +224,7 @@ th.prix {
     padding-block: calc(var(--spacing) * 4);
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
+    z-index: 1000;
 }
 
 .nav-div{
@@ -873,6 +874,10 @@ th.prix {
     }
 
     .presta{
+        width: 100%;
+    }
+
+    .calendar {
         width: 100%;
     }
 
