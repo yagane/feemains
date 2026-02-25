@@ -392,7 +392,7 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
 
     const resumePresta = document.querySelector('.resume-prestation');
 
-    for (i = 0; i < selectedPrestationId.length; i++) {
+    for (let i = 0; i < selectedPrestationId.length; i++) {
         const div = document.getElementById(`prestation-${selectedPrestationId[i]}`)
 
         console.log(selectedPrestationId[i]);
