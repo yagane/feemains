@@ -319,6 +319,8 @@ function updateChecked() {
         const prestationPrice = parseFloat(checkbox.dataset.price);
         const prestationDuree = parseFloat(checkbox.dataset.duree);
 
+        selectedPrestationId.push(checkbox.value);
+
         prestationDuration +=  prestationDuree;
         total += prestationPrice;
     });
@@ -395,11 +397,7 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
     for (let i = 0; i < selectedPrestationId.length; i++) {
         const div = document.getElementById(`prestation-${selectedPrestationId[i]}`)
 
-        console.log(selectedPrestationId[i]);
-        console.log(div);
-
         resumePresta.appendChild(div)
-
     }
 
     const closeBtn = document.querySelector('.close-button');
