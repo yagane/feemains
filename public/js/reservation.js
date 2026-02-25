@@ -320,7 +320,8 @@ function updateRecap() {
     }
 
     checkboxes.forEach(checkbox => {
-
+        const prestationPrice = parseFloat(checkbox.dataset.price);
+        const prestationDuree = parseFloat(checkbox.dataset.duree);
 
         prestationDuration +=  prestationDuree;
         total += prestationPrice;
