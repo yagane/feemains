@@ -11,8 +11,8 @@ function renderCalendar() {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
 
-    console.log(year)
-    console.log(month)
+    console.log(year);
+    console.log(month);
 
     monthYear.textContent = `${months[month]} ${year}`;
 
@@ -94,6 +94,8 @@ async function updateAuthUI() {
     });
 
     const data = await response.json();
+
+    console.log(data);
 
     connected = data.connected;
     role = data.role;
