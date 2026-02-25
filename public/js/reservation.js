@@ -376,10 +376,10 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
                     </div>
                     <div class="resume-total">
                         <div id="total-duree">
-                            <span>${prestationDurationStr}</span>
+                            <span>Durée : ${prestationDurationStr}</span>
                         </div>
                         <div id="total-prix">
-                            <span>${total} €</span>
+                            <span>Prix : ${total} €</span>
                         </div>
                     </div>
                 </div>

@@ -141,6 +141,7 @@ button{
     color: var(--beige);
     border-radius: 8px;
     padding: calc(var(--spacing) * 2);
+    text-align: center;
 }
 
 .resume-prestation {
@@ -156,8 +157,7 @@ button{
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
-    background: var(--beige);
-    color: var(--brown);
+    color: var(--beige);
 }
 
 .resume-total {
@@ -478,6 +478,7 @@ th.prix {
     display: flex;
     flex-direction: column;
     padding-inline: calc(var(--spacing) * 2);
+    text-align: right;
 }
 
 .prestation-item input[type="checkbox"] {
