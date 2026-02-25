@@ -103,8 +103,6 @@ async function updateAuthUI() {
         if(data.role == 'admin'){
             userRole.href = '/admin';
         }
-
-        window.location.href = "/reservation";
     } else {
         authLink.classList.remove("hidden");
         userGreeting.classList.add("hidden");
