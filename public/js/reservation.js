@@ -395,6 +395,9 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
     for (i = 0; i < selectedPrestationId.length; i++) {
         const div = document.getElementById(`prestation-${selectedPrestationId[i]}`)
 
+        console.log(selectedPrestationId[i]);
+        console.log(div);
+
         resumePresta.appendChild(div)
 
     }
