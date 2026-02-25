@@ -310,7 +310,7 @@ async function loadTimeSlots(date) {
                 prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
             }
 
-            spanPrix.textContent = `Prix : ${total} €`;
+            spanPrix.textContent = `Prix : ${totalPrix} €`;
             spanDuree.textContent = `Durée : ${prestationDurationStr}`;
 
             document.getElementById('total-prix').appendChild(spanPrix);
