@@ -166,7 +166,7 @@ async function loadTimeSlots(date) {
         const endTotalMinutes = (endHour - 10) * 60 + endMinute;
 
         const topPosition = (startTotalMinutes / 600) * 100;
-        const height = ((endTotalMinutes - startTotalMinutes) / 600) * 98;
+        const height = ((endTotalMinutes - startTotalMinutes) / 600) * 99;
 
         const appointmentElement = document.createElement('div');
         appointmentElement.className = 'appointment';
@@ -213,22 +213,16 @@ async function loadTimeSlots(date) {
                             <h3>${startTime} - ${endTime}</h3>
                         </div>
                         <div class="modal-info">
-                            <span>Nom : ${appointment.prenom} ${appointment.nom}</span>
-                            <span>Email : ${appointment.email}</span>
-                            <span>Téléphone : ${appointment.phone}</span>
-                        </div>
-                        <div class="modal-table">
-                            <table id="reservation-table">
-                                <thead>
-                                    <tr>
-                                        <th>Prestation</th>
-                                        <th class="duree">Duree</th>
-                                        <th class="prix">Prix</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="reservation-list">
-                                </tbody>
-                            </table>
+                            <div class='user-info'>
+                            </div>
+                            <div class="resume-prestation">
+                            </div>
+                            <div class="resume-total">
+                                <div id="total-duree">
+                                </div>
+                                <div id="total-prix">
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer" id=${id}>
                             <button class="cancel-button">Annuler</button>
@@ -264,7 +258,7 @@ async function loadTimeSlots(date) {
                 });
             });
 
-            const reservationList = document.getElementById('reservation-list');
+            const resumePresta = document.querySelector('.resume-prestationt');
 
             let totalPrix = 0;
             let totalDuree = 0;
@@ -275,29 +269,52 @@ async function loadTimeSlots(date) {
 
             for (let i = 0; i < prestation_noms.length; i++){
 
-                const row = document.createElement('tr');
+            const durationHours = Math.floor(parseInt(prestation_duree[i])/60);
+            const durationMinutes = parseInt(prestation_duree[i])%60;
+            let prestationDurationStr = '';
 
-                row.innerHTML = `
-                    <td>${prestation_noms[i]}</td>
-                    <td class="td-center">${parseInt(prestation_duree[i], 10)} min</td>
-                    <td class="td-center">${parseInt(prestation_prix[i], 10)} €</td>
+            // Mettre à jour le total
+            if(durationHours == 0){
+                prestationDurationStr = `${durationMinutes} min`;
+            }else{
+                prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
+            }
+
+                const div = document.createElement('div');
+
+                div.innerHTML = `
+                    <span class="prestation-name">Pose semi-permanent pieds</span>
+                    <div class="prestation-prixduree">
+                        <span>${prestationDurationStr}</span>
+                        <span class="prestation-price">${prestation_prix[i]} €</span>
+                    </div>
                 `;
 
                 totalPrix += parseInt(prestation_prix[i], 10);
                 totalDuree += parseInt(prestation_duree[i], 10);
 
-                reservationList.appendChild(row);
+                resumePresta.appendChild(row);
             }
 
-            const row = document.createElement('tr');
+            const spanPrix = document.createElement('span');
+            const spanDuree = document.createElement('span');
 
-            row.innerHTML = `
-                <td>Total :</td>
-                <td class="td-center">${totalDuree} min</td>
-                <td class="td-center">${totalPrix} €</td>
-            `;
+            const durationHours = Math.floor(totalDuree/60);
+            const durationMinutes = totalDuree%60;
+            let prestationDurationStr = '';
 
-            reservationList.appendChild(row);
+            // Mettre à jour le total
+            if(durationHours == 0){
+                prestationDurationStr = `${durationMinutes} min`;
+            }else{
+                prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
+            }
+
+            spanPrix.textContent = `Prix : ${total} €`;
+            spanDuree.textContent = `Durée : ${prestationDurationStr}`;
+
+            document.getElementById('total-prix').appendChild(spanPrix);
+            document.getElementById('total-duree').appendChild(spanDuree);
 
             const closeBtn = document.querySelector('.close-button');
 

@@ -470,8 +470,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
     });
 });
 
-
-
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
