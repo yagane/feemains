@@ -293,7 +293,7 @@ async function loadTimeSlots(date) {
                 totalPrix += parseInt(prestation_prix[i], 10);
                 totalDuree += parseInt(prestation_duree[i], 10);
 
-                resumePresta.appendChild(row);
+                resumePresta.appendChild(div);
             }
 
             const spanPrix = document.createElement('span');
