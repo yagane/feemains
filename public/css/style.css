@@ -150,6 +150,16 @@ button{
     gap: calc(var(--spacing) * 2);
 }
 
+.resume-prestation > div {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    background: var(--beige);
+    color: var(--brown);
+}
+
 .resume-total {
     display: flex;
     gap: calc(var(--spacing) * 2);

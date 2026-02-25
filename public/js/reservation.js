@@ -233,7 +233,6 @@ async function loadPrestations() {
 
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
-            checkbox.id = `prestation-${prestation.id}`;
             checkbox.value = prestation.id;
             checkbox.dataset.price = prestation.prix;
             checkbox.dataset.duree = prestation.duree;
@@ -393,11 +392,12 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
 
     const resumePresta = document.querySelector('.resume-prestation');
 
-    const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
+    for (i = 0; i < selectedPrestationId.length; i++) {
+        const div = document.getElementById(`prestation-${selectedPrestationId[i]}`)
 
-    checkboxes.forEach(checkbox => {
-        console.log(checkbox.parentElement);
-    });
+        resumePresta.appendChild(div)
+
+    }
 
     const closeBtn = document.querySelector('.close-button');
 
