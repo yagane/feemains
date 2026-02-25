@@ -258,7 +258,7 @@ async function loadTimeSlots(date) {
                 });
             });
 
-            const resumePresta = document.querySelector('.resume-prestationt');
+            const resumePresta = document.querySelector('.resume-prestation');
 
             let totalPrix = 0;
             let totalDuree = 0;
