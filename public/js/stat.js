@@ -13,6 +13,8 @@ async function renderCalendar() {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
 
+    console.log(month);
+
     monthYear.textContent = `${months[month]} ${year}`;
 
     const response = await fetch('/api/resaAllByMY', {
