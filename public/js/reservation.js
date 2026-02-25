@@ -282,7 +282,7 @@ async function loadPrestations() {
             });
         });
 
-        prestationsList.addEventListener('change', updateRecap);
+        prestationsList.addEventListener('change', updateChecked);
 
         prestationsLoading.classList.add("hidden")
 
