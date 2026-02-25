@@ -166,7 +166,7 @@ async function loadTimeSlots(date) {
         const endTotalMinutes = (endHour - 10) * 60 + endMinute;
 
         const topPosition = (startTotalMinutes / 600) * 100;
-        const height = ((endTotalMinutes - startTotalMinutes) / 600) * 100;
+        const height = ((endTotalMinutes - startTotalMinutes) / 600) * 95;
 
         const appointmentElement = document.createElement('div');
         appointmentElement.className = 'appointment';
