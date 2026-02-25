@@ -396,7 +396,7 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
 
     checkboxes.forEach(checkbox => {
-        console.log(checkbox);
+        console.log(checkbox.parentElement);
     });
 
     const closeBtn = document.querySelector('.close-button');
