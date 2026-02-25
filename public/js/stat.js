@@ -1,4 +1,6 @@
 const monthYear = document.getElementById("month-year");
+const totalRevenu = document.querySelector(".total-revenu");
+const averageRevenu = document.querySelector(".average-revenu");
 
 const months = [
     "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -27,8 +29,6 @@ async function renderCalendar() {
 
     const reservations = await response.json();
 
-    const totalRevenu = document.querySelector(".total-revenu");
-    const averageRevenu = document.querySelector(".average-revenu");
     const rdvCompte = document.querySelector(".rdv-compte");
     const bestPresta = document.querySelector(".best-presta");
 
@@ -69,11 +69,15 @@ async function renderCalendar() {
 
 document.getElementById("prev").onclick = () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
+    totalRevenu.innerHTML = '';
+    averageRevenu.innerHTML = '';
     renderCalendar();
 };
 
 document.getElementById("next").onclick = () => {
     currentDate.setMonth(currentDate.getMonth() + 1);
+    totalRevenu.innerHTML = '';
+    averageRevenu.innerHTML = '';
     renderCalendar();
 };
 
