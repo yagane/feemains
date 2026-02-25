@@ -146,6 +146,7 @@ button{
 .resume-prestation {
     display: flex;
     flex-direction: column;
+    background: var(--brown);
     gap: calc(var(--spacing) * 2);
 }
 

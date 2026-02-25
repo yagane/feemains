@@ -391,6 +391,14 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
 
     mainFooter.appendChild(modal);
 
+    const resumePresta = document.querySelector('.resume-prestation');
+
+    const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
+
+    checkboxes.forEach(checkbox => {
+        console.log(checkbox);
+    });
+
     const closeBtn = document.querySelector('.close-button');
 
     closeBtn.addEventListener('click', (event) => {
@@ -408,7 +416,6 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
     }
 
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
-
 
     const [hours, minutes] = selectedTimeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
