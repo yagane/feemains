@@ -838,6 +838,52 @@ th.prix {
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
 }
 
+.month-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: calc(var(--spacing) * 8);
+}
+
+.rdv-compte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--beige);
+    padding: calc(var(--spacing) * 2);
+    gap: calc(var(--spacing) * 2);
+    border-radius: 8px;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rdv-compte div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: calc(var(--spacing) * 2);
+}
+
+.month-revenu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.month-revenu div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: calc(var(--spacing) * 8);
+    background-color: var(--beige);
+    border-radius: 8px;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+    width: 40%;
+}
+
 /* Mobiles */
 @media (max-width: 1024px) {
     .modal-content {
