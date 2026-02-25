@@ -38,10 +38,9 @@ async function renderCalendar() {
 
     reservations.forEach(reservation => {
         if (reservation.statut == 'passé') {
-            totalPrix += reservation.prix;
+            totalPrix += parseInt(reservation.prix);
             passe += 1;
         } else {
-
             attente += 1;
         }
     });

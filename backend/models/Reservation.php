@@ -36,7 +36,8 @@ class Reservation {
             FROM reservations as r
             INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
             INNER JOIN prestations as p ON rp.prestation_id = p.id
-            WHERE MONTH(r.date_reservation) = :mois AND YEAR(r.date_reservation) = :annee"
+            WHERE MONTH(r.date_reservation) = :mois AND YEAR(r.date_reservation) = :annee
+            GROUP BY r.id"
         );
         $stmt->bindParam(':mois', $mois, PDO::PARAM_INT);
         $stmt->bindParam(':annee', $annee, PDO::PARAM_INT);
