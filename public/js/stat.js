@@ -130,7 +130,7 @@ function createDynamicMenu() {
             <div class="menu-connexion">
                 <a id="login" href="/login">Connexion</a>
                 <div id="menu-account" class="menu-account">
-                    <a href="/admin">
+                    <a href="/stat">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
