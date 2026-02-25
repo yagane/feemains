@@ -365,7 +365,7 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
             </div>
             <div class="modal-main">
                 <div class="modal-header">
-                    <span>Récapitulatif</span>
+                    <h3>Récapitulatif</h3>
                 </div>
                 <div class="modal-info">
                     <div class="resume-date">

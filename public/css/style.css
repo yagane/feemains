@@ -127,12 +127,40 @@ button{
 
 .modal-header {
     text-align: center;
+    padding: calc(var(--spacing) * 2);
 }
 
 .modal-info {
     display: flex;
     flex-direction: column;
+    gap: calc(var(--spacing) * 2);
 }
+
+.resume-date {
+    background: var(--brown);
+    color: var(--beige);
+    border-radius: 8px;
+    padding: calc(var(--spacing) * 2);
+}
+
+.resume-prestation {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 2);
+}
+
+.resume-total {
+    display: flex;
+    gap: calc(var(--spacing) * 2);
+}
+
+.resume-total div{
+    background: var(--brown);
+    color: var(--beige);
+    border-radius: 8px;
+    padding: calc(var(--spacing) * 2);
+}
+
 
 .modal-table table {
     border-collapse: collapse;
