@@ -336,7 +336,7 @@ function updateChecked() {
     }
 }
 
-document.getElementById('submit-reservation').addEventListener('click', (event) => {
+document.getElementById('resume-reservation').addEventListener('click', (event) => {
     const formattedDate = new Date(selectedDate).toLocaleDateString('fr-FR', {
         weekday: 'long',
         year: 'numeric',
@@ -384,7 +384,7 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="cancel-button">Annuler</button>
+                    <button class="cancel-button" id="submit-reservation">Confirmer</button>
                 </div>
             </div>
         </div>
@@ -400,6 +400,68 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
         resumePresta.appendChild(div)
     }
 
+    document.getElementById('submit-reservation').addEventListener('click', async () => {
+        // Vérifier que tous les champs sont remplis
+        if (selectedPrestationId == [] || !selectedDate || !selectedTimeSlot) {
+            alert("Veuillez sélectionner une prestation, une date et une plage horaire.");
+            return;
+        }
+
+        const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
+
+        const [hours, minutes] = selectedTimeSlot.split(':').map(Number);
+        const slotDateTime = new Date(selectedDate);
+        slotDateTime.setHours(hours, minutes, 0, 0);
+
+        const durationHours = Math.floor(prestationDuration/60);
+        const durationMinutes = prestationDuration%60;
+
+        const duration = `${durationHours}:${durationMinutes}`;
+
+        const date = `${toLocalISOString(slotDateTime).split('T')[0]} ${toLocalISOString(slotDateTime).split('T')[1].split('.')[0]}`;
+
+        console.log(date);
+
+        try {
+            const response = await fetch('/api/insertResa', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: "include",
+                body: JSON.stringify({
+                    id: userId,
+                    prestId: selectedPrestationId,
+                    date: date,
+                    duree: duration
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert("Réservation effectuée avec succès !");
+                calendarSection.classList.add("hidden");
+                timeSlotsSection.classList.add("hidden");
+                buttonSection.classList.add("hidden");
+                slotsTitle.textContent = `Choisissez une date`;
+                slotsContainer.innerHTML = '';
+                selectedDate = null;
+                selectedTimeSlot = null;
+                document.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
+                checkboxes.forEach(checkbox => {
+                checkbox.checked = !checkbox.checked;
+                });
+                updateRecap();
+            } else {
+                alert("Erreur : " + result.message);
+            }
+        } catch (error) {
+            console.error("Erreur lors de l'envoi de la réservation :", error);
+            alert("Une erreur est survenue. Veuillez réessayer.");
+        }
+    });
+
     const closeBtn = document.querySelector('.close-button');
 
     closeBtn.addEventListener('click', (event) => {
@@ -409,67 +471,7 @@ document.getElementById('submit-reservation').addEventListener('click', (event) 
     });
 });
 
-/*document.getElementById('submit-reservation').addEventListener('click', async () => {
-    // Vérifier que tous les champs sont remplis
-    if (selectedPrestationId == [] || !selectedDate || !selectedTimeSlot) {
-        alert("Veuillez sélectionner une prestation, une date et une plage horaire.");
-        return;
-    }
 
-    const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
-
-    const [hours, minutes] = selectedTimeSlot.split(':').map(Number);
-    const slotDateTime = new Date(selectedDate);
-    slotDateTime.setHours(hours, minutes, 0, 0);
-
-    const durationHours = Math.floor(prestationDuration/60);
-    const durationMinutes = prestationDuration%60;
-
-    const duration = `${durationHours}:${durationMinutes}`;
-
-    const date = `${toLocalISOString(slotDateTime).split('T')[0]} ${toLocalISOString(slotDateTime).split('T')[1].split('.')[0]}`;
-
-    console.log(date);
-
-    try {
-        const response = await fetch('/api/insertResa', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: "include",
-            body: JSON.stringify({
-                id: userId,
-                prestId: selectedPrestationId,
-                date: date,
-                duree: duration
-            })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            alert("Réservation effectuée avec succès !");
-            calendarSection.classList.add("hidden");
-            timeSlotsSection.classList.add("hidden");
-            buttonSection.classList.add("hidden");
-            slotsTitle.textContent = `Choisissez une date`;
-            slotsContainer.innerHTML = '';
-            selectedDate = null;
-            selectedTimeSlot = null;
-            document.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
-            checkboxes.forEach(checkbox => {
-            checkbox.checked = !checkbox.checked;
-            });
-            updateRecap();
-        } else {
-            alert("Erreur : " + result.message);
-        }
-    } catch (error) {
-        console.error("Erreur lors de l'envoi de la réservation :", error);
-        alert("Une erreur est survenue. Veuillez réessayer.");
-    }
-});*/
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
