@@ -295,7 +295,6 @@ async function loadPrestations() {
 
 function updateRecap() {
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
-    const recapEmpty = document.getElementById('recap-empty');
     const recapTotal = document.getElementById('recap-total');
     const recapTemps = document.getElementById('recap-temps');
 
@@ -324,26 +323,6 @@ function updateRecap() {
     }
 
     checkboxes.forEach(checkbox => {
-        const prestationId = checkbox.value;
-        const prestationPrice = parseFloat(checkbox.dataset.price);
-        const prestationDuree = parseFloat(checkbox.dataset.duree);
-        const label = document.querySelector(`div[id="prestation-${prestationId}"]`);
-
-        selectedPrestationId.push(parseFloat(prestationId));
-
-        const div = document.createElement('div');
-        div.className = 'recap-item';
-
-        const spanName = document.createElement('span');
-        spanName.textContent = label.querySelector('.prestation-name').textContent;
-
-        const spanPrice = document.createElement('span');
-        spanPrice.textContent = ` - ${prestationPrice.toFixed(2)} €`;
-
-        div.appendChild(spanName);
-        div.appendChild(spanPrice);
-        recapList.appendChild(div);
-
         prestationDuration +=  prestationDuree;
         total += prestationPrice;
     });
