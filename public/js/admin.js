@@ -351,8 +351,7 @@ function createDynamicMenu() {
     menu.className = 'phone-dropdown-menu';
 
     menu.innerHTML = `
-        <a href="/">Acceuil</a>
-        <a href="/#prestation">Prestations</a>
+        <a href="/">Prestations</a>
         <a href="/reservation">Reservation</a>
 
         <div class="menu-connexion">
