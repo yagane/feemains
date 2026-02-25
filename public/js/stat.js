@@ -21,7 +21,7 @@ function renderCalendar() {
         credentials: "include",
         body: JSON.stringify({
             mois: month,
-            annee: year,
+            annee: year
         })
     });
 
@@ -65,8 +65,6 @@ function renderCalendar() {
             <span>${attente}</span>
         </div>
     `;
-
-
 }
 
 document.getElementById("prev").onclick = () => {
