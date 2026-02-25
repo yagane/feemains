@@ -511,7 +511,7 @@ th.prix {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    padding: calc(var(--spacing) * 2);
 }
 
 .calendar-header button {
