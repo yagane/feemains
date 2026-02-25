@@ -832,10 +832,6 @@ th.prix {
         margin-top: calc(var(--spacing) * 4);
     }
 
-    #slots {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .agenda-container {
         width: 100%;
     }

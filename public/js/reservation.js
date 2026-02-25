@@ -445,44 +445,81 @@ function createDynamicMenu() {
     const menu = document.createElement('div');
     menu.className = 'phone-dropdown-menu';
 
-    menu.innerHTML = `
-        <a href="/">Prestations</a>
-        <a href="/reservation">Reservation</a>
+    if(data.role == 'admin'){
+        menu.innerHTML = `
+            <a href="/">Prestations</a>
+            <a href="/reservation">Reservation</a>
 
-        <div class="menu-connexion">
-            <a id="login" href="/login">Connexion</a>
-            <div id="menu-account" class="menu-account">
-                <a id="role1" href="/client">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    Mon compte
-                </a>
-                <a href="/client">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    Mes reservations
-                </a>
-                <form action="/api/logout" method="GET">
-                    <button type="submit" class="logout-button">
+            <div class="menu-connexion">
+                <a id="login" href="/login">Connexion</a>
+                <div id="menu-account" class="menu-account">
+                    <a href="/admin">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" class="svelte-rfuq4y"></path>
-                            <polyline points="16,17 21,12 16,7" class="svelte-rfuq4y"></polyline>
-                            <line x1="21" y1="12" x2="9" y2="12" class="svelte-rfuq4y"></line>
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
                         </svg>
-                        Déconnexion
-                    </button>
-                </form>
-
-
+                        Mes statistiques
+                    </a>
+                    <a href="/admin">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Mon agenda
+                    </a>
+                    <form action="/api/logout" method="GET">
+                        <button type="submit" class="logout-button">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" class="svelte-rfuq4y"></path>
+                                <polyline points="16,17 21,12 16,7" class="svelte-rfuq4y"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12" class="svelte-rfuq4y"></line>
+                            </svg>
+                            Déconnexion
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
-    `;
+        `;
+    }else{
+        menu.innerHTML = `
+            <a href="/">Prestations</a>
+            <a href="/reservation">Reservation</a>
+
+            <div class="menu-connexion">
+                <a id="login" href="/login">Connexion</a>
+                <div id="menu-account" class="menu-account">
+                    <a id="role1" href="/client">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        Mon compte
+                    </a>
+                    <a href="/client">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Mes reservations
+                    </a>
+                    <form action="/api/logout" method="GET">
+                        <button type="submit" class="logout-button">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" class="svelte-rfuq4y"></path>
+                                <polyline points="16,17 21,12 16,7" class="svelte-rfuq4y"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12" class="svelte-rfuq4y"></line>
+                            </svg>
+                            Déconnexion
+                        </button>
+                    </form>
+                </div>
+            </div>
+        `;
+    }
 
     return menu;
 }
@@ -495,15 +532,10 @@ navPhone.addEventListener('click', () => {
         menuContainer.appendChild(dynamicMenu);
         const login = document.getElementById('login');
         const menuAccount = document.getElementById('menu-account');
-        const userRole1 = document.getElementById('role1');
 
         if (connected) {
             login.classList.add("hidden");
             menuAccount.classList.remove("hidden");
-
-            if(role == 'admin'){
-                userRole1.href = '/admin';
-            }
         } else {
             login.classList.remove("hidden");
             menuAccount.classList.add("hidden");
