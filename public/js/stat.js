@@ -48,8 +48,8 @@ async function renderCalendar() {
     const spanTotal = document.createElement('span');
     const spanAverage = document.createElement('span');
 
-    spanTotal.textContent = `${totalPrix} €`;
-    spanAverage.textContent = `${(totalPrix/passe).toFixed(2)} €`;
+    spanTotal.textContent = `${parseFloat(totalPrix).toFixed(2)} €`;
+    spanAverage.textContent = `${parseFloat(totalPrix/passe).toFixed(2)} €`;
 
     totalRevenu.appendChild(spanTotal);
     averageRevenu.appendChild(spanAverage);

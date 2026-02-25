@@ -845,6 +845,8 @@ th.prix {
     width: 100%;
     align-items: center;
     gap: calc(var(--spacing) * 8);
+    font-size: larger;
+    font-weight: 600;
 }
 
 .rdv-compte {
@@ -881,6 +883,13 @@ th.prix {
     background-color: var(--beige);
     border-radius: 8px;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+}
+
+.total-revenu {
+    width: 55%;
+}
+
+.average-revenu {
     width: 40%;
 }
 
