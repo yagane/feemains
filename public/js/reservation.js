@@ -19,6 +19,7 @@ let selectedPrestationId = [];
 
 let userId = null;
 let prestationDuration = 0;
+let prestationDurationStr =''
 let total = 0;
 
 let connected = null;
@@ -217,8 +218,6 @@ async function displayTimeSlots() {
 async function loadPrestations() {
     const prestationsList = document.getElementById('prestations-list');
     const prestationsLoading = document.getElementById('prestations-loading');
-    const recapEmpty = document.getElementById('recap-empty');
-    const recapTotal = document.getElementById('recap-total');
 
     try {
         const response = await fetch("/api/getAllPresta", {
@@ -278,7 +277,7 @@ async function loadPrestations() {
             prestationItem.addEventListener('click', function(e) {
                 if (e.target !== checkbox) {
                     checkbox.checked = !checkbox.checked;
-                    updateRecap();
+                    updateChecked();
                 }
             });
         });
@@ -292,10 +291,8 @@ async function loadPrestations() {
     }
 }
 
-function updateRecap() {
+function updateChecked() {
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
-    const recapTotal = document.getElementById('recap-total');
-    const recapTemps = document.getElementById('recap-temps');
 
     selectedPrestationId = [];
     prestationDuration = 0;
@@ -332,16 +329,78 @@ function updateRecap() {
 
     // Mettre à jour le total
     if(durationHours == 0){
-        recapTemps.textContent = `Temps : ${durationMinutes} min`;
+        prestationDurationStr = `${durationMinutes} min`;
     }else{
-        recapTemps.textContent = `Temps : ${durationHours} h ${durationMinutes} min`;
+        prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
     }
-
-    recapTotal.textContent = `Total : ${total.toFixed(2)} €`;
-
 }
 
-document.getElementById('submit-reservation').addEventListener('click', async () => {
+document.getElementById('submit-reservation').addEventListener('click', (event) => {
+    const formattedDate = new Date(selectedDate).toLocaleDateString('fr-FR', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+    const parts = formattedDate.split(' ');
+    const capitalizedDate = `${capitalize(parts[0])} ${parts[1]} ${capitalize(parts[2])} ${parts[3]}`;
+
+    const mainFooter = document.querySelector('.main-footer');
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-backdrop';
+
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-nav">
+                <button class="close-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-main">
+                <div class="modal-header">
+                    <span>Récapitulatif</span>
+                </div>
+                <div class="modal-info">
+                    <div class="resume-date">
+                        <span>${capitalizedDate} à ${selectedTimeSlot}</span>
+                    </div>
+                    <div class="resume-prestation">
+                    </div>
+                    <div class="resume-total">
+                        <div id="total-duree">
+                            <span>${prestationDurationStr}</span>
+                        </div>
+                        <div id="total-prix">
+                            <span>${total} €</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="cancel-button">Annuler</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    mainFooter.appendChild(modal);
+
+    const closeBtn = document.querySelector('.close-button');
+
+    closeBtn.addEventListener('click', (event) => {
+        const modal = document.querySelector('.modal-backdrop');
+
+        modal.remove();
+    });
+});
+
+/*document.getElementById('submit-reservation').addEventListener('click', async () => {
     // Vérifier que tous les champs sont remplis
     if (selectedPrestationId == [] || !selectedDate || !selectedTimeSlot) {
         alert("Veuillez sélectionner une prestation, une date et une plage horaire.");
@@ -402,7 +461,7 @@ document.getElementById('submit-reservation').addEventListener('click', async ()
         console.error("Erreur lors de l'envoi de la réservation :", error);
         alert("Une erreur est survenue. Veuillez réessayer.");
     }
-});
+});*/
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
