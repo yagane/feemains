@@ -542,8 +542,6 @@ th.prix {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
-    max-height: 180px;
-    overflow-y: auto;
 }
 
 .time-slot:hover {

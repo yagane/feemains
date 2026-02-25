@@ -6,7 +6,6 @@ const calendarSection = document.querySelector(".calendar");
 const timeSlotsSection = document.querySelector(".time-slots");
 const buttonSection = document.querySelector(".button-section");
 const buttonResa = document.querySelector(".button-resa");
-const recapList = document.getElementById('recap-list');
 
 const months = [
     "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -298,8 +297,6 @@ function updateRecap() {
     const recapTotal = document.getElementById('recap-total');
     const recapTemps = document.getElementById('recap-temps');
 
-    // Vider la liste actuelle
-    recapList.innerHTML = '';
     selectedPrestationId = [];
     prestationDuration = 0;
     total = 0;
@@ -323,6 +320,8 @@ function updateRecap() {
     }
 
     checkboxes.forEach(checkbox => {
+
+
         prestationDuration +=  prestationDuree;
         total += prestationPrice;
     });
