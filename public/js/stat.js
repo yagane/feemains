@@ -8,7 +8,8 @@ const months = [
 ];
 
 function widthStyle(data){
-    return `width: ${data}%;`;
+    r = `width: ${data}%;`
+    return r;
 }
 
 let currentDate = new Date();
@@ -61,8 +62,6 @@ async function renderCalendar() {
             attente += 1;
         }
     });
-
-    console.log(compteur);
 
     const spanTotal = document.createElement('span');
     const spanAverage = document.createElement('span');
