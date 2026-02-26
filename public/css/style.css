@@ -849,6 +849,10 @@ th.prix {
     font-weight: 600;
 }
 
+.month-info div {
+    width: 100%;
+}
+
 .rdv-compte {
     display: flex;
     flex-direction: column;
