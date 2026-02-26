@@ -8,7 +8,7 @@ const months = [
 ];
 
 function widthStyle(data){
-    return `width: ${data}%;`
+    return `width: ${data}%;`;
 }
 
 let currentDate = new Date();
@@ -96,14 +96,14 @@ async function renderCalendar() {
 
     bestPresta.innerHTML = `
         <div class="barre-pourcent">
-            <div class="barre-rempli" ${widthStyle(parseInt((tableauOccurrences[0][1]/c)*100))}></div>
+            <div class="barre-rempli" style=${widthStyle(parseInt((tableauOccurrences[0][1]/c)*100))}></div>
             <div class="barre-content">
                 <span>${tableauOccurrences[0][0]}</span>
                 <span>${parseInt((tableauOccurrences[0][1]/c)*100)}%</span>
             </div>
         </div>
         <div class="barre-pourcent">
-            <div class="barre-rempli" ${widthStyle(parseInt((tableauOccurrences[1][1]/c)*100))}></div>
+            <div class="barre-rempli" style=${widthStyle(parseInt((tableauOccurrences[1][1]/c)*100))}></div>
             <div class="barre-content">
                 <span>${tableauOccurrences[1][0]}</span>
                 <span>${parseInt((tableauOccurrences[1][1]/c)*100)}%</span>
