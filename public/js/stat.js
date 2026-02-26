@@ -35,8 +35,19 @@ async function renderCalendar() {
     let totalPrix = 0;
     let passe = 0;
     let attente = 0;
+    const compteur = {};
 
     reservations.forEach(reservation => {
+        const prestation_noms = reservation.prestation_noms.split(', ');
+
+        prestation_noms.forEach(nom =>{
+            if (compteur[nom]) {
+              compteur[nom]++;
+            } else {
+              compteur[nom] = 1;
+            }
+        });
+
         if (reservation.statut == 'passé') {
             totalPrix += parseInt(reservation.prix);
             passe += 1;
@@ -44,6 +55,8 @@ async function renderCalendar() {
             attente += 1;
         }
     });
+
+    console.log(compteur);
 
     const spanTotal = document.createElement('span');
     const spanAverage = document.createElement('span');
@@ -62,6 +75,22 @@ async function renderCalendar() {
         <div>
             <span>Rendez-vous à venir</span>
             <span>${attente}</span>
+        </div>
+    `;
+
+  const tableauOccurrences = Object.entries(compteur);
+
+  tableauOccurrences.sort((a, b) => b[1] - a[1]);
+
+    bestPresta.innerHTML = `
+        <div>
+            <span>${tableauOccurrences[0][0]}</span>
+        </div>
+        <div>
+            <span>${tableauOccurrences[1][0]}</span>
+        </div>
+        <div>
+            <span>${tableauOccurrences[2][0]}</span>
         </div>
     `;
 }
