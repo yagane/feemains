@@ -919,6 +919,7 @@ th.prix {
     left: 0;
     top: 0;
     bottom: 0;
+    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.2);
 }
 
 .barre-content {
