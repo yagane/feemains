@@ -8,7 +8,7 @@ const months = [
 ];
 
 function widthStyle(data){
-    r = `width: ${data}%;`;
+    r = `width:${data}%;`;
     return r;
 }
 
