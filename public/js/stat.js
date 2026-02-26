@@ -8,7 +8,7 @@ const months = [
 ];
 
 function widthStyle(data){
-    r = `width: ${data}%;`
+    r = `width: ${data}%;`;
     return r;
 }
 
@@ -90,6 +90,8 @@ async function renderCalendar() {
     `;
 
   const tableauOccurrences = Object.entries(compteur);
+
+  console.log(${widthStyle(parseInt((tableauOccurrences[0][1]/c)*100))});
 
   tableauOccurrences.sort((a, b) => b[1] - a[1]);
 
