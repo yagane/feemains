@@ -36,6 +36,7 @@ async function renderCalendar() {
     let passe = 0;
     let attente = 0;
     const compteur = {};
+    let c = 0;
 
     reservations.forEach(reservation => {
         const prestation_noms = reservation.prestation_noms.split(', ');
@@ -46,6 +47,7 @@ async function renderCalendar() {
             } else {
               compteur[nom] = 1;
             }
+            c++;
         });
 
         if (reservation.statut == 'passé') {
@@ -85,12 +87,15 @@ async function renderCalendar() {
     bestPresta.innerHTML = `
         <div>
             <span>${tableauOccurrences[0][0]}</span>
+            <span>${parseInt((tableauOccurrences[0][1]/c)*100)}%</span>
         </div>
         <div>
             <span>${tableauOccurrences[1][0]}</span>
+            <span>${parseInt((tableauOccurrences[1][1]/c)*100)}%</span>
         </div>
         <div>
             <span>${tableauOccurrences[2][0]}</span>
+            <span>${parseInt((tableauOccurrences[2][1]/c)*100)}%</span>
         </div>
     `;
 }
