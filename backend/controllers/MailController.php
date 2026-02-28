@@ -6,8 +6,8 @@ class MailController {
 
         //$data = json_decode(file_get_contents("php://input"), true);
 
-       Mail::resaConfirmation();
+        $reponse = Mail::resaConfirmation();
 
-        echo json_encode(['success' => true, 'message' => 'Mail envoyé avec succès.']);
+        echo json_encode(['success' => true, 'message' => $reponse]);
     }
 }

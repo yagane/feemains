@@ -29,8 +29,10 @@ class Mail {
 
             $mail->send();
 
-        } catch (Exception $e) {
+            return "Envoyé avec succes";
 
+        } catch (Exception $e) {
+            return "Erreur : {$mail->ErrorInfo}";
         }
     }
 }

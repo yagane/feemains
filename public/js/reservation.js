@@ -460,6 +460,10 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                     method: "GET",
                     credentials: "include"
                 });
+
+                const result = await response.json();
+
+                console.log(result);
             } else {
                 alert("Erreur : " + result.message);
             }
