@@ -434,7 +434,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                 body: JSON.stringify({
                     id: userId,
                     prestId: selectedPrestationId,
-                    date: capitalizedDate,
+                    date: date,
                     duree: duration,
                     prix: total
                 })
@@ -443,6 +443,26 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
             const result = await response.json();
 
             if (result.success) {
+                console.log(selectedTimeSlot);
+
+                const response = await fetch("/api/resaConfirmation", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({
+                        destinataire: destinataire,
+                        nom: fullname,
+                        date: capitalizedDate,
+                        heure: selectedTimeSlot
+                    })
+                });
+
+                const result = await response.json();
+
+                console.log(result);
+
                 alert("Réservation effectuée avec succès !");
                 calendarSection.classList.add("hidden");
                 timeSlotsSection.classList.add("hidden");
@@ -457,24 +477,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                 });
                 updateChecked();
                 modal.remove();
-
-                const response = await fetch("/api/resaConfirmation", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                        destinataire: destinataire,
-                        nom: fullname,
-                        date: date,
-                        heure: selectedTimeSlot
-                    })
-                });
-
-                const result = await response.json();
-
-                console.log(result);
             } else {
                 alert("Erreur : " + result.message);
             }
