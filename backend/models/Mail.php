@@ -25,7 +25,7 @@ class Mail {
 
             $mail->isHTML(true);
             $mail->CharSet = 'UTF-8';
-            $mail->Subject = 'Confirmation de rendez-vous';
+            $mail->Subject = 'Confirmation de votre rendez-vous du '. htmlspecialchars($date, ENT_QUOTES, 'UTF-8') .'';
             $mail->Body = "
                 <html lang='fr'>
                     <head>
