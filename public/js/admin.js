@@ -257,6 +257,12 @@ async function loadTimeSlots(date) {
                 });
             });
 
+            const userInfo = document.querySelector('.user-info');
+
+            userInfo.innerHTML = `
+                <span>${appointment.prenom} ${appointment.nom}</span>
+            `;
+
             const resumePresta = document.querySelector('.resume-prestation');
 
             let totalPrix = 0;
@@ -486,14 +492,14 @@ addBtn.addEventListener('click', (event) => {
             </div>
             <div class="modal-main">
                 <div class="modal-header">
-                    <span>Ajouter un congé</span>
+                    <h2>Ajouter un congé</h2>
                 </div>
                 <div class="modal-info">
                     <div></div>
                     <div></div>
                 </div>
                 <div class="modal-footer">
-                    <button class="cancel-button">Annuler</button>
+                    <button class="cancel-button">Confirmer</button>
                 </div>
             </div>
         </div>

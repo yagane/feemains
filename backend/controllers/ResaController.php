@@ -58,7 +58,7 @@ class ResaController {
         $duree = isset($data['duree']) ? $data['duree'] : null;
         $prix = isset($data['prix']) ? $data['prix'] : null;
 
-        Reservation::insert($userID,$date,$duree,$prestationIds,$prix);
+        Reservation::insert($userID,$date,$duree,$prestationIds, $prix);
 
         echo json_encode(['success' => true, 'message' => 'Réservation enregistrée avec succès.']);
     }

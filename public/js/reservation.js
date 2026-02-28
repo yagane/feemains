@@ -433,7 +433,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                     id: userId,
                     prestId: selectedPrestationId,
                     date: date,
-                    duree: duration
+                    duree: duration,
                     prix: total
                 })
             });
