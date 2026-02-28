@@ -24,9 +24,10 @@ class Mail {
             $mail->addAddress($destinataire);
 
             $mail->isHTML(true);
+            $mail->CharSet = 'UTF-8';
             $mail->Subject = 'Confirmation de rendez-vous';
             $mail->Body = "
-                <html>
+                <html lang='fr'>
                     <head>
                         <meta charset='UTF-8'>
                         <style>
@@ -60,13 +61,14 @@ class Mail {
 
             $mail->send();
 
-            $mail->setFrom('messages-noreply@fee-mains.com', 'Fée mains');
+            $mail->ClearAddresses();
             $mail->addAddress('feemains.mm@gmail.com');
 
             $mail->isHTML(true);
-            $mail->Subject = 'Confirmation de rendez-vous';
+            $mail->CharSet = 'UTF-8';
+            $mail->Subject = 'Nouveau rendez-vous';
             $mail->Body = "
-                <html>
+                <html lang='fr'>
                     <head>
                         <meta charset='UTF-8'>
                         <style>
