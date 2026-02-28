@@ -74,7 +74,6 @@ async function renderCalendar() {
         spanAverage.textContent = `${parseFloat(totalPrix/passe).toFixed(2)} €`;
     }
 
-
     totalRevenu.appendChild(spanTotal);
     averageRevenu.appendChild(spanAverage);
 

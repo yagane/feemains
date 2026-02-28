@@ -32,7 +32,7 @@ class Reservation {
     public static function allByMY($mois, $annee) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "SELECT r.statut, SUM(p.prix) as prix, GROUP_CONCAT(p.nom SEPARATOR ', ') AS prestation_noms
+            "SELECT r.statut, r.prix, GROUP_CONCAT(p.nom SEPARATOR ', ') AS prestation_noms
             FROM reservations as r
             INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
             INNER JOIN prestations as p ON rp.prestation_id = p.id
