@@ -24,6 +24,8 @@ let total = 0;
 
 let connected = null;
 let role = null;
+let fullname = null;
+let destinataire = null;
 
 function toLocalISOString(date) {
   const pad = (n) => n.toString().padStart(2, '0');
@@ -432,7 +434,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                 body: JSON.stringify({
                     id: userId,
                     prestId: selectedPrestationId,
-                    date: date,
+                    date: capitalizedDate,
                     duree: duration,
                     prix: total
                 })
@@ -457,8 +459,17 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                 modal.remove();
 
                 const response = await fetch("/api/resaConfirmation", {
-                    method: "GET",
-                    credentials: "include"
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({
+                        destinataire: destinataire,
+                        nom: fullname,
+                        date: date,
+                        heure: selectedTimeSlot
+                    })
                 });
 
                 const result = await response.json();
@@ -496,6 +507,8 @@ async function updateAuthUI() {
 
     connected = data.connected;
     role = data.role;
+    fullname = `${data.prenom} ${data.nom}`
+    destinataire = data.email
 
     if (data.connected) {
         authLink.classList.add("hidden");
