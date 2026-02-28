@@ -47,7 +47,7 @@ class Mail {
                             <h2>Confirmation de votre rendez-vous</h2>
                             <p>Bonjour ". htmlspecialchars($nom, ENT_QUOTES, 'UTF-8') .",</p>
                             <p>Nous confirmons votre rendez-vous prévu le ". htmlspecialchars($date, ENT_QUOTES, 'UTF-8') ." à ". htmlspecialchars($heure, ENT_QUOTES, 'UTF-8') .".</p>
-                            <p>En cas d'empechement Vous pouvez annulez votre rendez-vous via notre site/p>
+                            <p>En cas d'empechement Vous pouvez annulez votre rendez-vous via notre site</p>
                             <p>Cordialement,<br>Fée Mains</p>
                         </div>
                         <div class='footer'>

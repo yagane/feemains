@@ -24,7 +24,7 @@ let total = 0;
 
 let connected = null;
 let role = null;
-let fullname = null;
+let prenom = null;
 let destinataire = null;
 
 function toLocalISOString(date) {
@@ -453,7 +453,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                     credentials: "include",
                     body: JSON.stringify({
                         destinataire: destinataire,
-                        nom: fullname,
+                        nom: prenom,
                         date: capitalizedDate,
                         heure: selectedTimeSlot
                     })
@@ -509,8 +509,8 @@ async function updateAuthUI() {
 
     connected = data.connected;
     role = data.role;
-    fullname = `${data.prenom} ${data.nom}`
-    destinataire = data.email
+    prenom = data.prenom;
+    destinataire = data.email;
 
     if (data.connected) {
         authLink.classList.add("hidden");
