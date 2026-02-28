@@ -13,14 +13,14 @@ class Mail {
 
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = 'smtp.ionos.fr';
             $mail->SMTPAuth = true;
-            $mail->Username = 'feemains.mm@gmail.com';
-            $mail->Password = 'Morkai2024.';
+            $mail->Username = 'messages-noreply@fee-mains.com';
+            $mail->Password = 'Y@gane11123213221';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('feemains.mm@gmail.com', 'Fée mains');
+            $mail->setFrom('messages-noreply@fee-mains.com', 'Fée mains');
             $mail->addAddress('yagane33@gmail.com', 'Yanis');
 
             $mail->isHTML(true);
