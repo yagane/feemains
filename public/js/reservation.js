@@ -366,7 +366,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
             </div>
             <div class="modal-main">
                 <div class="modal-header">
-                    <h3>Récapitulatif</h3>
+                    <h2>Récapitulatif</h2>
                 </div>
                 <div class="modal-info">
                     <div class="resume-date">
@@ -434,6 +434,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                     prestId: selectedPrestationId,
                     date: date,
                     duree: duration
+                    prix: total
                 })
             });
 
@@ -498,6 +499,8 @@ async function updateAuthUI() {
     } else {
         authLink.classList.remove("hidden");
         userGreeting.classList.add("hidden");
+
+        window.location.href = "/login";
     }
 }
 
@@ -505,7 +508,6 @@ const navPhone = document.querySelector('.nav-phone');
 const menuContainer = document.querySelector('.nav-div');
 
 let dynamicMenu = null;
-
 
 function createDynamicMenu() {
     const menu = document.createElement('div');

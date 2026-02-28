@@ -485,14 +485,13 @@ addBtn.addEventListener('click', (event) => {
                 </button>
             </div>
             <div class="modal-main">
-                <div class="modal-info" style='gap: 0px;'>
-                    <div>
-                        <button>Reservation</button>
-                        <button>Congé</button>
-                    </div>
-                    <div>
-
-                    </div>
+                <div class="modal-header">
+                    <span>Ajouter un congé</span>
+                </div>
+                <div class="modal-info">
+                    <div></div>
+                    <div></div>
+                </div>
                 <div class="modal-footer">
                     <button class="cancel-button">Annuler</button>
                 </div>

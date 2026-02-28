@@ -115,9 +115,12 @@ class AuthController {
 
                 } else {
                     setcookie("remember_token", "", time() - 3600, "/");
+
+                    echo json_encode(['connected' => false]);
                 }
+            } else {
+                echo json_encode(['connected' => false]);
             }
-            echo json_encode(['connected' => false]);
         }
     }
 

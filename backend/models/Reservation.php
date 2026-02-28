@@ -91,13 +91,13 @@ class Reservation {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function insert($userID, $date, $duree, $prestationIds) {
+    public static function insert($userID, $date, $duree, $prestationIds, $prix) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "INSERT INTO reservations (user_id, date_reservation, duree_reservation)
-            VALUES (?, ?, ?)"
+            "INSERT INTO reservations (user_id, date_reservation, duree_reservation, prix)
+            VALUES (?, ?, ?, ?)"
         );
-        $stmt->execute([$userID, $date, $duree]);
+        $stmt->execute([$userID, $date, $duree, $prix]);
         $reservationId = $db->lastInsertId();
 
         $stmt = $db->prepare(

@@ -105,7 +105,7 @@ button{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing) * 4);
+    gap: calc(var(--spacing) * 6);
     padding: calc(var(--spacing) * 2);
     align-items: center;
 }
@@ -135,7 +135,7 @@ button{
 .modal-info {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing) * 2);
+    gap: calc(var(--spacing) * 6);
 }
 
 .resume-date {
@@ -183,38 +183,6 @@ button{
     border-radius: 8px;
     padding: calc(var(--spacing) * 4);
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
-}
-
-.modal-table table {
-    border-collapse: collapse;
-}
-
-th.duree {
-    min-width: 90px;
-}
-
-th.prix {
-    min-width: 60px;
-}
-
-.modal-table td,
-.modal-table th {
-    padding: calc(var(--spacing) * 2);
-}
-
-.modal-table thead {
-    position: sticky;
-    font-weight: bold;
-    background-color: var(--brown);
-    color: var(--light-beige);
-}
-
-.modal-table tr:nth-child(even) {
-    background-color: var(--light-beige);
-}
-
-.td-center {
-    text-align: center;
 }
 
 .modal-footer button {
@@ -1000,7 +968,7 @@ th.prix {
     }
 
     .agenda-container {
-        width: 100%;
+        width: 97%;
     }
 }
 
