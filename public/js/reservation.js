@@ -455,9 +455,15 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                 });
                 updateChecked();
                 modal.remove();
+
+                const response = await fetch("/api/resaConfirmation", {
+                    method: "GET",
+                    credentials: "include"
+                });
             } else {
                 alert("Erreur : " + result.message);
             }
+
         } catch (error) {
             console.error("Erreur lors de l'envoi de la réservation :", error);
             alert("Une erreur est survenue. Veuillez réessayer.");
