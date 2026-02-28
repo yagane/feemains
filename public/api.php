@@ -31,6 +31,6 @@ $router->add("POST", "/api/deleteResa", ["ResaController", "deleteResa"]);
 
 $router->add("GET", "/api/getAllPresta", ["PrestaController", "getAllPresta"]);
 
-$router->add("GET", "/api/resaConfirmation", ["MailController", "resaConfirmation"]);
+$router->add("POST", "/api/resaConfirmation", ["MailController", "resaConfirmation"]);
 
 $router->dispatch();
