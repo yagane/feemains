@@ -496,12 +496,12 @@ addBtn.addEventListener('click', (event) => {
                 </div>
                 <div class="modal-info">
                     <div>
-                        <span>Début de congé</span>
-                        <input type="text" id="inputDebut" value="20 Janvier 2026 10:00">
+                        <span>Début de congé :</span>
+                        <input type="text" id="inputDebut" value="20 Janvier 2026 10:00" style="text-align: center;">
                     </div>
                     <div>
-                        <span>Fin de congé</span>
-                        <input type="text" id="inputFin" value="21 Janvier 2026 10:00">
+                        <span>Fin de congé :</span>
+                        <input type="text" id="inputFin" value="21 Janvier 2026 10:00" style="text-align: center;">
                     </div>
                 </div>
                 <div class="modal-footer">
