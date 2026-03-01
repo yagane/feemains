@@ -497,11 +497,11 @@ addBtn.addEventListener('click', (event) => {
                 <div class="modal-info">
                     <div>
                         <span>Début de congé :</span>
-                        <input type="text" id="inputDebut" value="20 Janvier 2026 10:00" style="text-align: center;">
+                        <input type="text" class='input-picker' id="inputDebut" value="20 Janvier 2026 10:00">
                     </div>
                     <div>
                         <span>Fin de congé :</span>
-                        <input type="text" id="inputFin" value="21 Janvier 2026 10:00" style="text-align: center;">
+                        <input type="text" class='input-picker' id="inputFin" value="21 Janvier 2026 10:00">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -519,7 +519,7 @@ addBtn.addEventListener('click', (event) => {
     ];
 
     const inputDebut = document.getElementById('inputDebut');
-    new Picker(inputDebut, {
+    const pickerDebut = new Picker(inputDebut, {
         format: 'DD MMMM YYYY HH:mm',
         months: months,
         increment: {
@@ -528,12 +528,19 @@ addBtn.addEventListener('click', (event) => {
     });
 
     const inputFin = document.getElementById('inputFin');
-    new Picker(inputFin, {
+    const pickerFin = new Picker(inputFin, {
         format: 'DD MMMM YYYY HH:mm',
         months: months,
         increment: {
         minute: 15
         }
+    });
+
+    const confirmBtn = document.querySelector('.cancel-button');
+
+    confirmBtn.addEventListener('click', (event) => {
+        console.log(pickerDebut.getDate());
+        console.log(pickerFin.getDate());
     });
 
     const closeBtn = document.querySelector('.close-button');

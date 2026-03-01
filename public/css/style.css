@@ -138,6 +138,14 @@ button{
     gap: calc(var(--spacing) * 6);
 }
 
+.input-picker{
+    color: var(--brown);
+    border: 1px solid var(--brown);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
 .resume-date {
     background: var(--gray);
     color: var(--brown);
