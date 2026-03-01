@@ -519,7 +519,7 @@ addBtn.addEventListener('click', (event) => {
     ];
 
     const inputDebut = document.getElementById('inputDebut');
-    new Picker(input, {
+    new Picker(inputDebut, {
         format: 'DD MMMM YYYY HH:mm',
         months: months,
         increment: {
