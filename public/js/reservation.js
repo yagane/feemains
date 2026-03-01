@@ -443,8 +443,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
             const result = await response.json();
 
             if (result.success) {
-                console.log(selectedTimeSlot);
-
                 const response = await fetch("/api/resaConfirmation", {
                     method: 'POST',
                     headers: {
@@ -460,8 +458,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                 });
 
                 const result = await response.json();
-
-                console.log(result);
 
                 alert("Réservation effectuée avec succès !");
                 calendarSection.classList.add("hidden");

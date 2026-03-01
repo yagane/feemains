@@ -495,8 +495,14 @@ addBtn.addEventListener('click', (event) => {
                     <h2>Ajouter un congé</h2>
                 </div>
                 <div class="modal-info">
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <span>Début de congé</span>
+                        <input type="text" id="inputDebut" value="20 Janvier 2026 10:00">
+                    </div>
+                    <div>
+                        <span>Fin de congé</span>
+                        <input type="text" id="inputFin" value="21 Janvier 2026 10:00">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="cancel-button">Confirmer</button>
@@ -506,6 +512,29 @@ addBtn.addEventListener('click', (event) => {
     `;
 
     mainFooter.appendChild(modal);
+
+    const months = [
+        'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+        'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
+
+    const inputDebut = document.getElementById('inputDebut');
+    new Picker(input, {
+        format: 'DD MMMM YYYY HH:mm',
+        months: months,
+        increment: {
+        minute: 15
+        }
+    });
+
+    const inputFin = document.getElementById('inputFin');
+    new Picker(inputFin, {
+        format: 'DD MMMM YYYY HH:mm',
+        months: months,
+        increment: {
+        minute: 15
+        }
+    });
 
     const closeBtn = document.querySelector('.close-button');
 

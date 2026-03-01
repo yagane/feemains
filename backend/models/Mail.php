@@ -66,7 +66,7 @@ class Mail {
 
             $mail->isHTML(true);
             $mail->CharSet = 'UTF-8';
-            $mail->Subject = 'Nouveau rendez-vous';
+            $mail->Subject = 'Nouvelle réservation de '. htmlspecialchars($nom, ENT_QUOTES, 'UTF-8') .'';
             $mail->Body = "
                 <html lang='fr'>
                     <head>
