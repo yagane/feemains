@@ -15,7 +15,7 @@ class Conge {
     public static function insert($dateDebut, $dateFin) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "INSERT INTO reservations (date_debut, date_fin)
+            "INSERT INTO conges (date_debut, date_fin)
             VALUES (?, ?)"
         );
         $stmt->execute([$dateDebut, $dateFin]);
@@ -24,7 +24,7 @@ class Conge {
     public static function delete($id) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "DELETE FROM reservations WHERE id = ?"
+            "DELETE FROM conges WHERE id = ?"
         );
         $stmt->execute([$id]);
     }

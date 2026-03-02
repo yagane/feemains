@@ -581,9 +581,6 @@ addBtn.addEventListener('click', (event) => {
     const confirmBtn = document.querySelector('.cancel-button');
 
     confirmBtn.addEventListener('click', async function(event) {
-        console.log(toLocalISOString(pickerDebut.getDate()));
-        console.log(toLocalISOString(pickerFin.getDate()));
-
         const response = await fetch("/api/insertConge", {
             method: "POST",
             headers: {

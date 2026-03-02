@@ -14,10 +14,7 @@ class CongeController {
     public static function insertConge() {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $dateDebut = isset($data['dateDebut']) ? (int)$data['dateDebut'] : null;
-        $dateFin = isset($data['dateFin']) ? $data['dateFin'] : [];
-
-        Conge::insert($dateDebut, $dateFin);
+        Conge::insert($data['dateDebut'], $data['dateFin']);
 
         echo json_encode(['success' => true, 'message' => 'Congé enregistrée avec succès.']);
     }
