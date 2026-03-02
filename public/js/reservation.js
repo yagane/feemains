@@ -153,6 +153,10 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
         const congeDebut = new Date(conge.date_debut);
         const congeFin = new Date(conge.date_fin);
 
+        console.log(congeDebut);
+        console.log(prestationEndTime);
+        console.log(congeDebut <= prestationEndTime);
+
         if((congeDebut <= prestationEndTime && prestationEndTime <= congeFin) || (congeDebut <= slotDateTime && slotDateTime <= congeFin)) {
             return false;
         }
