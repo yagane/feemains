@@ -149,13 +149,11 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
         }
     });
 
-    console.log(conges);
-
     conges.forEach(conge => {
         const congeDebut = new Date(conge.date_debut);
         const congeFin = new Date(conge.date_fin);
 
-        if(!(prestationEndTime <= congeDebut || congeFin <= slotDateTime)) {
+        if((congeDebut <= prestationEndTime && prestationEndTime <= congeFin) || (congeDebut <= slotDateTime && slotDateTime <= congeFin)) {
             return false;
         }
     });
