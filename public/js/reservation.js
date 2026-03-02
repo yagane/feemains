@@ -126,7 +126,7 @@ function ajouterDureeADate(date, duree) {
 }
 
 // Fonction pour vérifier si une tranche horaire est disponible
-function checkTimeSlotAvailability(timeSlot, data) {
+function checkTimeSlotAvailability(timeSlot, reservations, conges) {
     // Convertir la tranche horaire en timestamp
     const [hours, minutes] = timeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
@@ -140,34 +140,23 @@ function checkTimeSlotAvailability(timeSlot, data) {
         return false;
     }
 
-    // Vérifier si la tranche horaire ou la prestation chevauche un rendez-vous existant
-    for (const reservation of data.reservations) {
+    reservations.forEach(reservation => {
         const reservationStart = new Date(reservation.date_reservation);
         const reservationEnd = ajouterDureeADate(reservationStart, reservation.duree_reservation);
 
         if (!(prestationEndTime <= reservationStart || reservationEnd <= slotDateTime)) {
             return false;
         }
-    }
+    });
 
-    // Vérifier les congés
-    /*
-    const congesResponse = await fetch('conges.php');
-    const congesData = await congesResponse.json();
+    conges.forEach(conge => {
+        const congeDebut = new Date(conge.date_debut);
+        const congeFin = new Date(conge.date_fin);
 
-    if (!congesData.success) {
-        console.error(congesData.message);
-        return false;
-    }
-
-    for (const conge of congesData.conges) {
-        const congeStart = new Date(conge.date_debut);
-        const congeEnd = new Date(conge.date_fin);
-
-        if (slotDateTime >= congeStart && prestationEndTime <= congeEnd) {
+        if(!(prestationEndTime <= congeDebut || congeFin <= slotDateTime)) {
             return false;
         }
-    }*/
+    });
 
     return true;
 }
@@ -190,6 +179,17 @@ async function displayTimeSlots() {
 
     const data = await response.json();
 
+    const reservations = data.reservations;
+
+    const response = await fetch("/api/congeAll", {
+        method: "GET",
+        credentials: "include"
+    });
+
+    const data = await response.json();
+
+    const conges = data.conges;
+
     if (!data.success) {
         console.error(data.message);
         return false;
@@ -200,7 +200,7 @@ async function displayTimeSlots() {
 
     // Vérifier la disponibilité de chaque tranche
     for (const slot of allSlots) {
-        const isAvailable = await checkTimeSlotAvailability(slot, data);
+        const isAvailable = await checkTimeSlotAvailability(slot, reservations, conges);
 
         if (isAvailable) {
             const slotElement = document.createElement('div');

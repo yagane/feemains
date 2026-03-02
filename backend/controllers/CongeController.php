@@ -4,8 +4,6 @@ require_once __DIR__ . '/../models/Conge.php';
 class CongeController {
 
     public static function congeAll() {
-        $data = json_decode(file_get_contents("php://input"), true);
-
         $conges = Conge::all();
 
         echo json_encode($conges);
