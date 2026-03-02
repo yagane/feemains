@@ -5,7 +5,7 @@ class Conge {
 
     public static function all() {
         $db = Database::connect();
-        $stmt = $db->execute(
+        $stmt = $db->query(
             "SELECT date_debut, date_fin FROM conges"
         );
 
