@@ -11,6 +11,7 @@ require_once __DIR__ . '/../backend/core/Router.php';
 require_once __DIR__ . '/../backend/controllers/AuthController.php';
 require_once __DIR__ . '/../backend/controllers/PrestaController.php';
 require_once __DIR__ . '/../backend/controllers/ResaController.php';
+require_once __DIR__ . '/../backend/controllers/CongeController.php';
 require_once __DIR__ . '/../backend/controllers/MailController.php';
 
 $router = new Router();
@@ -28,6 +29,10 @@ $router->add("POST", "/api/resaByUser", ["ResaController", "resaByUser"]);
 $router->add("POST", "/api/resaByID", ["ResaController", "resaByID"]);
 $router->add("POST", "/api/insertResa", ["ResaController", "insertResa"]);
 $router->add("POST", "/api/deleteResa", ["ResaController", "deleteResa"]);
+
+$router->add("POST", "/api/congeAll", ["CongeController", "congeAll"]);
+$router->add("POST", "/api/insertConge", ["CongeController", "insertConge"]);
+$router->add("POST", "/api/deleteConge", ["CongeController", "deleteConge"]);
 
 $router->add("GET", "/api/getAllPresta", ["PrestaController", "getAllPresta"]);
 

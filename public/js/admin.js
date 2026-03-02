@@ -581,8 +581,23 @@ addBtn.addEventListener('click', (event) => {
     const confirmBtn = document.querySelector('.cancel-button');
 
     confirmBtn.addEventListener('click', (event) => {
-        console.log(pickerDebut.getDate());
-        console.log(pickerFin.getDate());
+        const response = await fetch("/api/insertConge", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                dateDebut: toLocalISOString(pickerDebut.getDate()),
+                dateFin: toLocalISOString(pickerFin.getDate())
+            })
+        });
+
+        const data = await reponse.json();
+
+        if(data.success){
+            alert("Congé ajouté avec succès !");
+        }
     });
 
     const closeBtn = document.querySelector('.close-button');
