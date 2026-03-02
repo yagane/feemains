@@ -522,6 +522,7 @@ addBtn.addEventListener('click', (event) => {
     const pickerDebut = new Picker(inputDebut, {
         format: 'DD MMMM YYYY HH:mm',
         months: months,
+        headers: false,
         increment: {
         minute: 15
         }
@@ -531,6 +532,7 @@ addBtn.addEventListener('click', (event) => {
     const pickerFin = new Picker(inputFin, {
         format: 'DD MMMM YYYY HH:mm',
         months: months,
+        headers: false,
         increment: {
         minute: 15
         }
