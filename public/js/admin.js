@@ -580,7 +580,7 @@ addBtn.addEventListener('click', (event) => {
 
     const confirmBtn = document.querySelector('.cancel-button');
 
-    confirmBtn.addEventListener('click', (event) => async function {
+    confirmBtn.addEventListener('click', async function(event) {
         const response = await fetch("/api/insertConge", {
             method: "POST",
             headers: {
