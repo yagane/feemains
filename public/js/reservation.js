@@ -162,7 +162,7 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
         }
     });
 
-    return true;
+    return flag;
 }
 
 // Fonction pour afficher les tranches horaires disponibles
