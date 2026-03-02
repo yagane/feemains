@@ -188,11 +188,7 @@ async function displayTimeSlots() {
         credentials: "include"
     });
 
-    const data_conge = await response_conge.json();
-
-    console.log(data_conge);
-
-    const conges = data_conge.conges;
+    const conges = await response_conge.json();
 
     // Générer les tranches horaires
     const allSlots = generateTimeSlots();
