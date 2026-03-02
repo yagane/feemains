@@ -149,6 +149,8 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
         }
     });
 
+    console.log(conges);
+
     conges.forEach(conge => {
         const congeDebut = new Date(conge.date_debut);
         const congeFin = new Date(conge.date_fin);
@@ -187,6 +189,8 @@ async function displayTimeSlots() {
     });
 
     const data_conge = await response_conge.json();
+
+    console.log(data_conge);
 
     const conges = data_conge.conges;
 
