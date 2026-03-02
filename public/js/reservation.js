@@ -168,7 +168,7 @@ async function displayTimeSlots() {
     const date = toLocalISOString(selectedDate).split('T')[0];
 
     // Récupérer les rendez-vous existants pour cette date
-    const response = await fetch("/api/resaTimeDurationByDate", {
+    const response_resa = await fetch("/api/resaTimeDurationByDate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -177,18 +177,18 @@ async function displayTimeSlots() {
         body: JSON.stringify({ date })
     });
 
-    const data = await response.json();
+    const data_resa = await response_resa.json();
 
-    const reservations = data.reservations;
+    const reservations = data_resa.reservations;
 
-    const response = await fetch("/api/congeAll", {
+    const response_conge = await fetch("/api/congeAll", {
         method: "GET",
         credentials: "include"
     });
 
-    const data = await response.json();
+    const data_conge = await response_conge.json();
 
-    const conges = data.conges;
+    const conges = data_conge.conges;
 
     if (!data.success) {
         console.error(data.message);
