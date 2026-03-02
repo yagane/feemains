@@ -144,6 +144,7 @@ button{
     border: 1px solid var(--brown);
     border-radius: 8px;
     text-align: center;
+    padding: calc(var(--spacing) * 2);
     font-family: 'Poppins', sans-serif;
     font-size: medium;
 }
@@ -219,6 +220,10 @@ button{
     color: var(--brown);
 }
 
+.picker-confirm {
+    color: var(--brown);
+}
+
 .picker-dialog {
     background-color: var(--beige);
     border: none;
@@ -272,6 +277,11 @@ button{
     color: var(--brown);
     font-size: 1.125em;
     line-height: 1.5rem;
+}
+
+.picker-cancel:focus, .picker-cancel:hover, .picker-confirm:focus, .picker-confirm:hover {
+    background-color: var(--light-beige);
+    outline: none;
 }
 
 /*-----------   NAVBAR    -----------*/
