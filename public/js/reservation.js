@@ -190,11 +190,6 @@ async function displayTimeSlots() {
 
     const conges = data_conge.conges;
 
-    if (!data.success) {
-        console.error(data.message);
-        return false;
-    }
-
     // Générer les tranches horaires
     const allSlots = generateTimeSlots();
 
