@@ -140,12 +140,14 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
         return false;
     }
 
+    let flag = true;
+
     reservations.forEach(reservation => {
         const reservationStart = new Date(reservation.date_reservation);
         const reservationEnd = ajouterDureeADate(reservationStart, reservation.duree_reservation);
 
         if (!(prestationEndTime <= reservationStart || reservationEnd <= slotDateTime)) {
-            return false;
+            flag = false;
         }
     });
 
@@ -153,12 +155,10 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
         const congeDebut = new Date(conge.date_debut);
         const congeFin = new Date(conge.date_fin);
 
-        console.log((congeDebut <= slotDateTime && slotDateTime <= congeFin));
-        console.log((congeDebut <= prestationEndTime && prestationEndTime <= congeFin));
         console.log((congeDebut <= prestationEndTime && prestationEndTime <= congeFin) || (congeDebut <= slotDateTime && slotDateTime <= congeFin));
 
         if((congeDebut <= prestationEndTime && prestationEndTime <= congeFin) || (congeDebut <= slotDateTime && slotDateTime <= congeFin)) {
-            return false;
+            flag = false;
         }
     });
 
