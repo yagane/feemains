@@ -522,9 +522,20 @@ addBtn.addEventListener('click', (event) => {
     const pickerDebut = new Picker(inputDebut, {
         format: 'DD MMMM YYYY HH:mm',
         months: months,
-        headers: false,
         increment: {
         minute: 15
+        },
+        text: {
+          title: "Choisisez la date et l'heure",
+          cancel: 'Cancel',
+          confirm: 'OK',
+          year: 'Year',
+          month: 'Month',
+          day: 'Day',
+          hour: 'Hour',
+          minute: 'Minute',
+          second: 'Second',
+          millisecond: 'Millisecond',
         }
     });
 
@@ -532,10 +543,39 @@ addBtn.addEventListener('click', (event) => {
     const pickerFin = new Picker(inputFin, {
         format: 'DD MMMM YYYY HH:mm',
         months: months,
-        headers: false,
         increment: {
         minute: 15
+        },
+        text: {
+          title: "Choisisez la date et l'heure",
+          cancel: 'Cancel',
+          confirm: 'OK',
+          year: 'Year',
+          month: 'Month',
+          day: 'Day',
+          hour: 'Hour',
+          minute: 'Minute',
+          second: 'Second',
+          millisecond: 'Millisecond',
         }
+    });
+
+    const cancelBtn = document.querySelectorAll('.picker-cancel');
+
+    cancelBtn.forEach(button => {
+        button.remove();
+    });
+
+    const picker = document.querySelectorAll('.picker');
+
+    picker.forEach(button => {
+        button.dataset.pickerAction = "pick";
+    });
+
+    const closePicker = document.querySelectorAll('.picker-close');
+
+    closePicker.forEach(button => {
+        button.dataset.pickerAction = "pick";
     });
 
     const confirmBtn = document.querySelector('.cancel-button');

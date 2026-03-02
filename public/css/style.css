@@ -215,6 +215,10 @@ button{
     width: 100%;
 }
 
+.picker-close {
+    color: var(--brown);
+}
+
 .picker-dialog {
     background-color: var(--beige);
     border: none;
