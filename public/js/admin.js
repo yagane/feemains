@@ -337,11 +337,6 @@ async function loadTimeSlots(date) {
         let dateDebut = new Date(conge.date_debut);
         let dateFin = new Date(conge.date_fin);
 
-        if () {
-
-        }
-
-
     });
 }
 
