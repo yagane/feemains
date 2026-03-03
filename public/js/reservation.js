@@ -125,17 +125,14 @@ function ajouterDureeADate(date, duree) {
     return new Date(date.getTime() + dureeMs);
 }
 
-// Fonction pour vérifier si une tranche horaire est disponible
+
 function checkTimeSlotAvailability(timeSlot, reservations, conges) {
-    // Convertir la tranche horaire en timestamp
     const [hours, minutes] = timeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
     slotDateTime.setHours(hours, minutes, 0, 0);
 
-    // Calculer la fin de la prestation
     const prestationEndTime = new Date(slotDateTime.getTime() + prestationDuration * 60000);
 
-    // Vérifier si la prestation dépasse 20h
     if (prestationEndTime.getHours() >= 20) {
         return false;
     }
@@ -155,8 +152,6 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
         const congeDebut = new Date(conge.date_debut);
         const congeFin = new Date(conge.date_fin);
 
-        console.log((congeDebut <= prestationEndTime && prestationEndTime <= congeFin) || (congeDebut <= slotDateTime && slotDateTime <= congeFin));
-
         if((congeDebut <= prestationEndTime && prestationEndTime <= congeFin) || (congeDebut <= slotDateTime && slotDateTime <= congeFin)) {
             flag = false;
         }
@@ -165,13 +160,11 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
     return flag;
 }
 
-// Fonction pour afficher les tranches horaires disponibles
 async function displayTimeSlots() {
     slotsContainer.innerHTML = '';
 
     const date = toLocalISOString(selectedDate).split('T')[0];
 
-    // Récupérer les rendez-vous existants pour cette date
     const response_resa = await fetch("/api/resaTimeDurationByDate", {
         method: "POST",
         headers: {

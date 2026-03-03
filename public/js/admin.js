@@ -7,7 +7,7 @@ const months = [
 ];
 
 let currentDate = new Date();
-let selectedDate = currentDate;
+let selectedDate = new Date();
 
 let connected = null;
 let role = null;
@@ -28,18 +28,13 @@ function toLocalISOString(date) {
 function renderCalendar() {
     calendarGrid.innerHTML = "";
 
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
+    const year = selectedDate.getFullYear();
+    const month = selectedDate.getMonth();
 
     monthYear.textContent = `${months[month]} ${year}`;
 
     const firstDay = new Date(year, month, 1).getDay() || 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const stopDay = new Date(new Date(today).setMonth(today.getMonth() + 3));
 
     // Cases vides
     for (let i = 1; i < firstDay; i++) {
@@ -329,6 +324,24 @@ async function loadTimeSlots(date) {
                 modal.remove();
             });
         });
+    });
+
+    const response_conge = await fetch("/api/congeAll", {
+        method: "GET",
+        credentials: "include"
+    });
+
+    const conges = await response_conge.json();
+
+    conges.forEach(conge => {
+        let dateDebut = new Date(conge.date_debut);
+        let dateFin = new Date(conge.date_fin);
+
+        if () {
+
+        }
+
+
     });
 }
 
