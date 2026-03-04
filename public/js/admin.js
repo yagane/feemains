@@ -346,7 +346,7 @@ async function loadTimeSlots(date) {
 
             if (dateDebut.getFullYear() == day.getFullYear() && dateDebut.getMonth() == day.getMonth() && dateDebut.getDate() == day.getDate()){
                 const startHour = dateDebut.getHours();
-                const startHour = dateDebut.getMinutes();
+                const startMinute = dateDebut.getMinutes();
             }else{
                 const startHour = 10;
                 const startMinute = 0;
