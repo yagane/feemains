@@ -6,7 +6,7 @@ class Conge {
     public static function all() {
         $db = Database::connect();
         $stmt = $db->query(
-            "SELECT date_debut, date_fin FROM conges"
+            "SELECT id, date_debut, date_fin FROM conges"
         );
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

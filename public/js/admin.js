@@ -336,7 +336,107 @@ async function loadTimeSlots(date) {
     conges.forEach(conge => {
         let dateDebut = new Date(conge.date_debut);
         let dateFin = new Date(conge.date_fin);
+        const day = new Date(selectedDate);
 
+        day.setHours(10);
+        day.setMinutes(0);
+        day.setSeconds(0);
+
+        if (dateDebut <= day && day <= dateFin) {
+
+            if (dateDebut.getFullYear() == day.getFullYear() && dateDebut.getMonth() == day.getMonth() && dateDebut.getDate() == day.getDate()){
+                const startHour = dateDebut.getHours();
+                const startHour = dateDebut.getMinutes();
+            }else{
+                const startHour = 10;
+                const startMinute = 0;
+            }
+
+            if (dateFin.getFullYear() == day.getFullYear() && dateFin.getMonth() == day.getMonth() && dateFin.getDate() == day.getDate()){
+                const endHour = dateFin.getHours();
+                const endMinute = dateFin.getMinutes();
+            }else{
+                const endHour = 20;
+                const endMinute = 0;
+            }
+
+            const startTotalMinutes = (startHour - 10) * 60 + startMinute;
+            const endTotalMinutes = (endHour - 10) * 60 + endMinute;
+
+            const topPosition = (startTotalMinutes / 600) * 100;
+            const height = ((endTotalMinutes - startTotalMinutes) / 600) * 99;
+
+            const congeElement = document.createElement('div');
+            congeElement.className = 'conge';
+            congeElement.style.top = `${topPosition}%`;
+            congeElement.style.height = `${height}%`;
+
+            const spanTime = document.createElement('span');
+            spanTime.style.position = 'absolute';
+            spanTime.style.left = '10px';
+            spanTime.textContent = `${dateDebut} - ${dateFin}`;
+
+            const spanName = document.createElement('span');
+            spanName.style.position = 'absolute';
+            spanName.style.right = '10px';
+            spanName.textContent = 'congé';
+
+            congeElement.appendChild(spanTime);
+            congeElement.appendChild(spanName);
+            appointmentsContainer.appendChild(congeElement);
+
+            const id = conge.id;
+
+            congeElement.addEventListener('click', async function(event) {
+                const mainFooter = document.querySelector('.main-footer');
+
+                const modal = document.createElement('div');
+                modal.className = 'modal-backdrop';
+
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-nav">
+                            <button class="close-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-main">
+                            <div class="modal-header">
+                                <h3>Congé</h3>
+                            </div>
+                            <div class="modal-info">
+                                <div>
+                                    <span>${dateDebut}</span>
+                                </div>
+                                <div>
+                                    <span>${dateFin}</span>
+                                </div>
+                            </div>
+                            <div class="modal-footer" id=${id}>
+                                <button class="cancel-button">Annuler</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                mainFooter.appendChild(modal);
+
+                const cancelButton = document.querySelectorAll('.cancel-button');
+
+                cancelButton.forEach(button => {
+                    button.addEventListener('click', async function(event) {
+                        const parent = button.parentElement;
+
+                        const reservationId = parent.id;
+
+
+                    });
+                });
+            });
+        }
     });
 }
 
