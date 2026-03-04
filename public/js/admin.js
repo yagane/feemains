@@ -342,6 +342,9 @@ async function loadTimeSlots(date) {
         day.setMinutes(0);
         day.setSeconds(0);
 
+        console.log(dateDebut);
+        console.log(dateFin);
+
         if (dateDebut <= day && day <= dateFin) {
 
             if (dateDebut.getFullYear() == day.getFullYear() && dateDebut.getMonth() == day.getMonth() && dateDebut.getDate() == day.getDate()){
@@ -352,6 +355,9 @@ async function loadTimeSlots(date) {
                 const startMinute = 0;
             }
 
+            console.log(startHour);
+            console.log(startMinute);
+
             if (dateFin.getFullYear() == day.getFullYear() && dateFin.getMonth() == day.getMonth() && dateFin.getDate() == day.getDate()){
                 const endHour = dateFin.getHours();
                 const endMinute = dateFin.getMinutes();
@@ -359,6 +365,9 @@ async function loadTimeSlots(date) {
                 const endHour = 20;
                 const endMinute = 0;
             }
+
+            console.log(endHour);
+            console.log(endMinute);
 
             const startTotalMinutes = (startHour - 10) * 60 + startMinute;
             const endTotalMinutes = (endHour - 10) * 60 + endMinute;
