@@ -370,7 +370,7 @@ async function loadTimeSlots(date) {
             const endTotalMinutes = (endHour - 10) * 60 + endMinute;
 
             const topPosition = (startTotalMinutes / 600) * 100;
-            const height = ((endTotalMinutes - startTotalMinutes) / 600) * 99;
+            const height = ((endTotalMinutes - startTotalMinutes) / 600) * 100;
 
             const congeElement = document.createElement('div');
             congeElement.className = 'conge';
@@ -415,10 +415,10 @@ async function loadTimeSlots(date) {
                             </div>
                             <div class="modal-info">
                                 <div>
-                                    <span>${dateDebut}</span>
+                                    <span>${dateDebut.toLocaleDateString()}</span>
                                 </div>
                                 <div>
-                                    <span>${dateFin}</span>
+                                    <span>${dateFin.toLocaleDateString()}</span>
                                 </div>
                             </div>
                             <div class="modal-footer" id=${id}>
@@ -440,6 +440,14 @@ async function loadTimeSlots(date) {
 
 
                     });
+                });
+
+                const closeBtn = document.querySelector('.close-button');
+
+                closeBtn.addEventListener('click', (event) => {
+                    const modal = document.querySelector('.modal-backdrop');
+
+                    modal.remove();
                 });
             });
         }
