@@ -339,7 +339,7 @@ async function loadTimeSlots(date) {
         const day = new Date(selectedDate);
 
         day.setHours(10);
-        day.setMinutes(0);
+        day.setMinutes(1);
         day.setSeconds(0);
 
         if (dateDebut <= day && day <= dateFin) {
