@@ -342,32 +342,29 @@ async function loadTimeSlots(date) {
         day.setMinutes(0);
         day.setSeconds(0);
 
-        console.log(dateDebut);
-        console.log(dateFin);
-
         if (dateDebut <= day && day <= dateFin) {
 
-            if (dateDebut.getFullYear() == day.getFullYear() && dateDebut.getMonth() == day.getMonth() && dateDebut.getDate() == day.getDate()){
-                const startHour = dateDebut.getHours();
-                const startMinute = dateDebut.getMinutes();
-            }else{
-                const startHour = 10;
-                const startMinute = 0;
-            }
+            let startHour = 0;
+            let startMinute = 0;
 
-            console.log(startHour);
-            console.log(startMinute);
+            let endHour = 0;
+            let endMinute = 0;
+
+            if (dateDebut.getFullYear() == day.getFullYear() && dateDebut.getMonth() == day.getMonth() && dateDebut.getDate() == day.getDate()){
+                startHour = dateDebut.getHours();
+                startMinute = dateDebut.getMinutes();
+            }else{
+                startHour = 10;
+                startMinute = 0;
+            }
 
             if (dateFin.getFullYear() == day.getFullYear() && dateFin.getMonth() == day.getMonth() && dateFin.getDate() == day.getDate()){
-                const endHour = dateFin.getHours();
-                const endMinute = dateFin.getMinutes();
+                endHour = dateFin.getHours();
+                endMinute = dateFin.getMinutes();
             }else{
-                const endHour = 20;
-                const endMinute = 0;
+                endHour = 20;
+                endMinute = 0;
             }
-
-            console.log(endHour);
-            console.log(endMinute);
 
             const startTotalMinutes = (startHour - 10) * 60 + startMinute;
             const endTotalMinutes = (endHour - 10) * 60 + endMinute;
