@@ -438,6 +438,14 @@ async function loadTimeSlots(date) {
                             credentials: "include",
                             body: JSON.stringify({ id })
                         });
+
+                        const data = await response.json();
+
+                        if(data.success){
+                            const modal = document.querySelector('.modal-backdrop');
+                            loadTimeSlots(selectedDate);
+                            modal.remove();
+                        }
                     });
                 });
 
