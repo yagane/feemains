@@ -323,7 +323,7 @@ async function loadTimeSlots(date) {
                 resizeInput.call(inputPrix);
             });
 
-            inputPrix.addEventListener('change', (event) => {
+            inputPrix.addEventListener('change', async function(e) {
                 const response = await fetch("/api/updatePrixResa", {
                     method: "POST",
                     headers: {
