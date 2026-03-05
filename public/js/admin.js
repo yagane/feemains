@@ -218,7 +218,7 @@ async function loadTimeSlots(date) {
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer" id=${id}>
+                        <div class="modal-footer">
                             <button class="cancel-button">Annuler</button>
                         </div>
                     </div>
@@ -231,17 +231,13 @@ async function loadTimeSlots(date) {
 
             cancelButton.forEach(button => {
                 button.addEventListener('click', async function(event) {
-                    const parent = button.parentElement;
-
-                    const reservationId = parent.id;
-
                     const response = await fetch("/api/deleteResa", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         credentials: "include",
-                        body: JSON.stringify({ reservationId })
+                        body: JSON.stringify({ id })
                     });
 
                     const data = await response.json();
@@ -380,7 +376,7 @@ async function loadTimeSlots(date) {
             const spanTime = document.createElement('span');
             spanTime.style.position = 'absolute';
             spanTime.style.left = '10px';
-            spanTime.textContent = `${dateDebut} - ${dateFin}`;
+            spanTime.textContent = `${dateDebut.toLocaleString()} - ${dateFin.toLocaleString()}`;
 
             const spanName = document.createElement('span');
             spanName.style.position = 'absolute';
@@ -415,13 +411,13 @@ async function loadTimeSlots(date) {
                             </div>
                             <div class="modal-info">
                                 <div>
-                                    <span>${dateDebut.toLocaleDateString()}</span>
+                                    <span>${dateDebut.toLocaleString()}</span>
                                 </div>
                                 <div>
-                                    <span>${dateFin.toLocaleDateString()}</span>
+                                    <span>${dateFin.toLocaleString()}</span>
                                 </div>
                             </div>
-                            <div class="modal-footer" id=${id}>
+                            <div class="modal-footer">
                                 <button class="cancel-button">Annuler</button>
                             </div>
                         </div>
@@ -434,11 +430,14 @@ async function loadTimeSlots(date) {
 
                 cancelButton.forEach(button => {
                     button.addEventListener('click', async function(event) {
-                        const parent = button.parentElement;
-
-                        const reservationId = parent.id;
-
-
+                        const response_resa = await fetch("/api/deleteConge", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({ id })
+                        });
                     });
                 });
 

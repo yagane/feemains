@@ -67,7 +67,7 @@ class ResaController {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        Reservation::delete($data['reservationId']);
+        Reservation::delete($data['id']);
 
         echo json_encode(['success' => true, 'message' => 'Réservation annulée avec succès.']);
     }
