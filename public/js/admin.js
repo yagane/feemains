@@ -430,7 +430,7 @@ async function loadTimeSlots(date) {
 
                 cancelButton.forEach(button => {
                     button.addEventListener('click', async function(event) {
-                        const response_resa = await fetch("/api/deleteConge", {
+                        const response_conge = await fetch("/api/deleteConge", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -439,7 +439,7 @@ async function loadTimeSlots(date) {
                             body: JSON.stringify({ id })
                         });
 
-                        const data = await response.json();
+                        const data = await response_conge.json();
 
                         if(data.success){
                             const modal = document.querySelector('.modal-backdrop');
