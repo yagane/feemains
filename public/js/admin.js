@@ -28,7 +28,7 @@ function toLocalISOString(date) {
 function resizeInput() {
     let width = 0;
 
-    for(let i = 0; i < this.value.lenght; i++){
+    for(let i = 0; i < this.value.length; i++){
         if(this.value[i] == '1'){
             width += 0.5;
         }else{
