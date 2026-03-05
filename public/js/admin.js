@@ -25,6 +25,10 @@ function toLocalISOString(date) {
   );
 }
 
+function resizeInput() {
+      this.style.width = this.value.length + "ch";
+}
+
 function renderCalendar() {
     calendarGrid.innerHTML = "";
 
@@ -289,10 +293,9 @@ async function loadTimeSlots(date) {
             }
 
             const spanPrix = document.createElement('span');
+            const spanPrix2 = document.createElement('span');
+            const inputPrix = document.createElement('input');
             const spanDuree = document.createElement('span');
-
-            console.log(appointment.duree_reservation);
-
 
             let prestationDurationStr = '';
 
@@ -302,11 +305,23 @@ async function loadTimeSlots(date) {
                 prestationDurationStr = `${appointment.duree_reservation.split(':')[0]} h ${appointment.duree_reservation.split(':')[1]} min`;
             }
 
-            spanPrix.textContent = `Prix : ${appointment.prix} €`;
+            inputPrix.value = `${appointment.prix}`;
+
+            inputPrix.addEventListener('input', function(e) {this.value = this.value.replace(/[^0-9]/g, ''); resizeInput.call(inputPrix); });
+            inputPrix.addEventListener('change', (event) => {console.log(inputPrix.value);});
+            resizeInput.call(inputPrix);
+
+            spanPrix.textContent = `Prix : `;
+            spanPrix2.textContent = `€`;
             spanDuree.textContent = `Durée : ${prestationDurationStr}`;
 
-            document.getElementById('total-prix').appendChild(spanPrix);
-            document.getElementById('total-duree').appendChild(spanDuree);
+            const totalDuree = document.getElementById('total-duree');
+            const totalPrix = document.getElementById('total-prix');
+
+            totalPrix.appendChild(spanPrix);
+            totalPrix.appendChild(inputPrix);
+            totalPrix.appendChild(spanPrix2);
+            totalDuree.appendChild(spanDuree);
 
             const closeBtn = document.querySelector('.close-button');
 
