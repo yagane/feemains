@@ -340,7 +340,8 @@ async function loadTimeSlots(date) {
         day.setMinutes(1);
         day.setSeconds(0);
 
-        if (dateDebut <= day && day <= dateFin) {
+        if (dateDebut.getFullYear() <= day.getFullYear() && dateDebut.getMonth() <= day.getMonth() && dateDebut.getDate() <= day.getDate() &&
+            dateFin.getFullYear() >= day.getFullYear() && dateFin.getMonth() >= day.getMonth() && dateFin.getDate() >= day.getDate()) {
 
             let startHour = 0;
             let startMinute = 0;
