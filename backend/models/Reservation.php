@@ -10,6 +10,7 @@ class Reservation {
                 r.id,
                 r.date_reservation,
                 r.duree_reservation,
+                r.prix,
                 u.nom,
                 u.prenom,
                 u.email,
@@ -92,6 +93,44 @@ class Reservation {
     }
 
     public static function insert($userID, $date, $duree, $prestationIds, $prix) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "INSERT INTO reservations (user_id, date_reservation, duree_reservation, prix)
+            VALUES (?, ?, ?, ?)"
+        );
+        $stmt->execute([$userID, $date, $duree, $prix]);
+        $reservationId = $db->lastInsertId();
+
+        $stmt = $db->prepare(
+            "INSERT INTO reservations_prestations (reservation_id, prestation_id)
+            VALUES (?, ?)"
+        );
+
+        foreach ($prestationIds as $prestationId) {
+            $stmt->execute([$reservationId, $prestationId]);
+        }
+    }
+
+    public static function updateDuree($duree) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "UPDATE reservations SET `duree_reservation`=
+            VALUES (?, ?, ?, ?)"
+        );
+        $stmt->execute([$userID, $date, $duree, $prix]);
+        $reservationId = $db->lastInsertId();
+
+        $stmt = $db->prepare(
+            "INSERT INTO reservations_prestations (reservation_id, prestation_id)
+            VALUES (?, ?)"
+        );
+
+        foreach ($prestationIds as $prestationId) {
+            $stmt->execute([$reservationId, $prestationId]);
+        }
+    }
+
+    public static function updatePrix($prix) {
         $db = Database::connect();
         $stmt = $db->prepare(
             "INSERT INTO reservations (user_id, date_reservation, duree_reservation, prix)

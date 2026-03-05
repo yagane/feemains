@@ -258,7 +258,6 @@ async function loadTimeSlots(date) {
 
             const resumePresta = document.querySelector('.resume-prestation');
 
-            let totalPrix = 0;
             let totalDuree = 0;
 
             const prestation_noms = appointment.prestation_noms.split(', ');
@@ -267,16 +266,16 @@ async function loadTimeSlots(date) {
 
             for (let i = 0; i < prestation_noms.length; i++){
 
-            const durationHours = Math.floor(parseInt(prestation_duree[i])/60);
-            const durationMinutes = parseInt(prestation_duree[i])%60;
-            let prestationDurationStr = '';
+                const durationHours = Math.floor(parseInt(prestation_duree[i])/60);
+                const durationMinutes = parseInt(prestation_duree[i])%60;
+                let prestationDurationStr = '';
 
-            // Mettre à jour le total
-            if(durationHours == 0){
-                prestationDurationStr = `${durationMinutes} min`;
-            }else{
-                prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
-            }
+                // Mettre à jour le total
+                if(durationHours == 0){
+                    prestationDurationStr = `${durationMinutes} min`;
+                }else{
+                    prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
+                }
 
                 const div = document.createElement('div');
 
@@ -288,7 +287,6 @@ async function loadTimeSlots(date) {
                     </div>
                 `;
 
-                totalPrix += parseInt(prestation_prix[i], 10);
                 totalDuree += parseInt(prestation_duree[i], 10);
 
                 resumePresta.appendChild(div);
@@ -296,6 +294,8 @@ async function loadTimeSlots(date) {
 
             const spanPrix = document.createElement('span');
             const spanDuree = document.createElement('span');
+
+            console.log(appointment.duree_reservation);
 
             const durationHours = Math.floor(totalDuree/60);
             const durationMinutes = totalDuree%60;
@@ -308,7 +308,7 @@ async function loadTimeSlots(date) {
                 prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
             }
 
-            spanPrix.textContent = `Prix : ${totalPrix} €`;
+            spanPrix.textContent = `Prix : ${appointment.prix} €`;
             spanDuree.textContent = `Durée : ${prestationDurationStr}`;
 
             document.getElementById('total-prix').appendChild(spanPrix);
