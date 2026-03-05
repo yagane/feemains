@@ -337,6 +337,10 @@ async function loadTimeSlots(date) {
                 });
 
                 const data = await response.json();
+
+                if(data.success){
+                    loadTimeSlots(selectedDate);
+                }
             });
 
             resizeInput.call(inputPrix);
@@ -357,7 +361,6 @@ async function loadTimeSlots(date) {
 
             closeBtn.addEventListener('click', (event) => {
                 const modal = document.querySelector('.modal-backdrop');
-
                 modal.remove();
             });
         });
