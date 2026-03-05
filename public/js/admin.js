@@ -243,7 +243,9 @@ async function loadTimeSlots(date) {
                     const data = await response.json();
 
                     if(data.success){
-                        window.location.href = "/admin";
+                        const modal = document.querySelector('.modal-backdrop');
+                        loadTimeSlots(selectedDate);
+                        modal.remove();
                     }
                 });
             });
@@ -373,10 +375,13 @@ async function loadTimeSlots(date) {
             congeElement.style.top = `${topPosition}%`;
             congeElement.style.height = `${height}%`;
 
+            const dateDebutStr = `${dateDebut.toLocaleString().split(':')[0]}:${dateDebut.toLocaleString().split(':')[1]}`
+            const dateFinStr = `${dateFin.toLocaleString().split(':')[0]}:${dateFin.toLocaleString().split(':')[1]}`
+
             const spanTime = document.createElement('span');
             spanTime.style.position = 'absolute';
             spanTime.style.left = '10px';
-            spanTime.textContent = `${dateDebut.toLocaleString()} - ${dateFin.toLocaleString()}`;
+            spanTime.textContent = `${dateDebutStr} - ${dateFinStr}`;
 
             const spanName = document.createElement('span');
             spanName.style.position = 'absolute';
@@ -411,10 +416,10 @@ async function loadTimeSlots(date) {
                             </div>
                             <div class="modal-info">
                                 <div>
-                                    <span>${dateDebut.toLocaleString()}</span>
+                                    <span>${dateDebutStr}</span>
                                 </div>
                                 <div>
-                                    <span>${dateFin.toLocaleString()}</span>
+                                    <span>${dateFinStr}</span>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -725,7 +730,9 @@ addBtn.addEventListener('click', (event) => {
         const data = await response.json();
 
         if(data.success){
-            alert("Congé ajouté avec succès !");
+            const modal = document.querySelector('.modal-backdrop');
+            loadTimeSlots(selectedDate);
+            modal.remove();
         }
     });
 

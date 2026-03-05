@@ -881,7 +881,7 @@ button{
     font-size: 12px;
     cursor: pointer;
     background-color: var(--brown);
-    color: var(--light-beige);
+    color: var(--beige);
     z-index: 2;
 }
 
@@ -893,7 +893,7 @@ button{
     font-size: 12px;
     cursor: pointer;
     background-color: var(--gray);
-    color: var(--light-beige);
+    color: var(--beige);
     z-index: 1;
 }
 
