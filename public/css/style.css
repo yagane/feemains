@@ -897,6 +897,13 @@ button{
     z-index: 1;
 }
 
+.input-prix {
+    background: var(--gray);
+    font-family: Poppins;
+    font-size: medium;
+    color: var(--brown);
+}
+
 .time-line {
     position: absolute;
     width: 100%;

@@ -26,7 +26,17 @@ function toLocalISOString(date) {
 }
 
 function resizeInput() {
-      this.style.width = this.value.length + "ch";
+    let width = 0;
+
+    for(let i = 0; i < this.value.lenght; i++){
+        if(this.value[i] == '1'){
+            width += 0.5;
+        }else{
+            width += 1;
+        }
+    }
+
+    this.style.width = width + "ch";
 }
 
 function renderCalendar() {
@@ -306,13 +316,14 @@ async function loadTimeSlots(date) {
             }
 
             inputPrix.value = `${appointment.prix}`;
+            inputPrix.className = 'input-prix';
 
             inputPrix.addEventListener('input', function(e) {this.value = this.value.replace(/[^0-9]/g, ''); resizeInput.call(inputPrix); });
             inputPrix.addEventListener('change', (event) => {console.log(inputPrix.value);});
             resizeInput.call(inputPrix);
 
-            spanPrix.textContent = `Prix : `;
-            spanPrix2.textContent = `€`;
+            spanPrix.textContent = 'Prix : ';
+            spanPrix2.textContent = '€';
             spanDuree.textContent = `Durée : ${prestationDurationStr}`;
 
             const totalDuree = document.getElementById('total-duree');
