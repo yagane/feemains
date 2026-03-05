@@ -111,42 +111,26 @@ class Reservation {
         }
     }
 
-    public static function updateDuree($duree) {
+    public static function updateDuree($id, $duree) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "UPDATE reservations SET `duree_reservation`=
-            VALUES (?, ?, ?, ?)"
+            "UPDATE reservations SET `duree_reservation`=:duree
+            WHERE id=:id"
         );
-        $stmt->execute([$userID, $date, $duree, $prix]);
-        $reservationId = $db->lastInsertId();
-
-        $stmt = $db->prepare(
-            "INSERT INTO reservations_prestations (reservation_id, prestation_id)
-            VALUES (?, ?)"
-        );
-
-        foreach ($prestationIds as $prestationId) {
-            $stmt->execute([$reservationId, $prestationId]);
-        }
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':duree', $duree, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
-    public static function updatePrix($prix) {
+    public static function updatePrix($id, $prix) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "INSERT INTO reservations (user_id, date_reservation, duree_reservation, prix)
-            VALUES (?, ?, ?, ?)"
+            "UPDATE reservations SET prix=:prix
+            WHERE id=:id"
         );
-        $stmt->execute([$userID, $date, $duree, $prix]);
-        $reservationId = $db->lastInsertId();
-
-        $stmt = $db->prepare(
-            "INSERT INTO reservations_prestations (reservation_id, prestation_id)
-            VALUES (?, ?)"
-        );
-
-        foreach ($prestationIds as $prestationId) {
-            $stmt->execute([$reservationId, $prestationId]);
-        }
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     public static function delete($id) {

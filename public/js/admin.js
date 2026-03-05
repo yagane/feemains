@@ -318,8 +318,27 @@ async function loadTimeSlots(date) {
             inputPrix.value = `${appointment.prix}`;
             inputPrix.className = 'input-prix';
 
-            inputPrix.addEventListener('input', function(e) {this.value = this.value.replace(/[^0-9]/g, ''); resizeInput.call(inputPrix); });
-            inputPrix.addEventListener('change', (event) => {console.log(inputPrix.value);});
+            inputPrix.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                resizeInput.call(inputPrix);
+            });
+
+            inputPrix.addEventListener('change', (event) => {
+                const response = await fetch("/api/updatePrixResa", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({
+                        id: id,
+                        prix: inputPrix.value
+                    })
+                });
+
+                const data = await response.json();
+            });
+
             resizeInput.call(inputPrix);
 
             spanPrix.textContent = 'Prix : ';
