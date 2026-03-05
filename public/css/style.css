@@ -893,7 +893,7 @@ button{
     font-size: 12px;
     cursor: pointer;
     background-color: var(--gray);
-    color: var(--beige);
+    color: var(--brown);
     z-index: 1;
 }
 

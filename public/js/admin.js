@@ -258,8 +258,6 @@ async function loadTimeSlots(date) {
 
             const resumePresta = document.querySelector('.resume-prestation');
 
-            let totalDuree = 0;
-
             const prestation_noms = appointment.prestation_noms.split(', ');
             const prestation_prix = appointment.prestation_prix.split(', ');
             const prestation_duree = appointment.prestation_duree.split(', ');
@@ -287,8 +285,6 @@ async function loadTimeSlots(date) {
                     </div>
                 `;
 
-                totalDuree += parseInt(prestation_duree[i], 10);
-
                 resumePresta.appendChild(div);
             }
 
@@ -297,15 +293,13 @@ async function loadTimeSlots(date) {
 
             console.log(appointment.duree_reservation);
 
-            const durationHours = Math.floor(totalDuree/60);
-            const durationMinutes = totalDuree%60;
+
             let prestationDurationStr = '';
 
-            // Mettre à jour le total
-            if(durationHours == 0){
-                prestationDurationStr = `${durationMinutes} min`;
+            if(appointment.duree_reservation.split(':')[0] == '00'){
+                prestationDurationStr = `${appointment.duree_reservation.split(':')[1]} min`;
             }else{
-                prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
+                prestationDurationStr = `${appointment.duree_reservation.split(':')[0]} h ${appointment.duree_reservation.split(':')[1]} min`;
             }
 
             spanPrix.textContent = `Prix : ${appointment.prix} €`;
