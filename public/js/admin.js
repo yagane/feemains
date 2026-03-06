@@ -394,9 +394,23 @@ async function loadTimeSlots(date) {
             inputPicker.addEventListener('change', async function(e) {
                 resizeInput.call(inputPicker);
 
-                const duree = `${inputPicker.value.split(' h ')[0]}:${inputPicker.value.split(' h ')[1].split(' min')[0]}`;
+                let dureeHour = null;
+                let dureeMinute = null;
 
-                console.log(duree);
+                if (parseInt(inputPicker.value.split(' h ')[0]) < 10 ) {
+                    dureeHour = `0${inputPicker.value.split(' h ')[0]}`;
+                }else{
+                    dureeHour = `${inputPicker.value.split(' h ')[0]}`;
+                }
+
+                if (parseInt(inputPicker.value.split(' h ')[1].split(' min')[0]) < 10 ) {
+                    dureeMinute = `0${inputPicker.value.split(' h ')[1].split(' min')[0]}`;
+                }else{
+                    dureeMinute = `${inputPicker.value.split(' h ')[1].split(' min')[0]}`;
+                }
+
+                const duree = `${dureeHour}${dureeMinute}00`;
+
 
                 const response = await fetch("/api/updateDureeResa", {
                     method: "POST",

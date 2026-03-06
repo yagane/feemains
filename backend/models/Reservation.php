@@ -114,10 +114,12 @@ class Reservation {
     public static function updateDuree($id, $duree) {
         $db = Database::connect();
         $stmt = $db->prepare(
-            "UPDATE reservations SET `duree_reservation`=?
-            WHERE id=?"
+            "UPDATE reservations SET `duree_reservation`=:duree
+            WHERE id=id"
         );
-        $stmt->execute([$duree, $id]);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':duree', $duree, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     public static function updatePrix($id, $prix) {
