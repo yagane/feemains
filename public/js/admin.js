@@ -411,6 +411,7 @@ async function loadTimeSlots(date) {
 
                 const duree = `${dureeHour}${dureeMinute}00`;
 
+                console.log(duree);
 
                 const response = await fetch("/api/updateDureeResa", {
                     method: "POST",
