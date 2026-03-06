@@ -371,7 +371,7 @@ async function loadTimeSlots(date) {
                 }
             });
 
-            inputDebut.addEventListener('change', function(e) {
+            inputDebut.addEventListener('change', async function(e) {
                 resizeInput.call(inputDebut);
 
                 const duree = `${inputDuree.value.split(' h ')[0]}:${inputDuree.value.split(' h ')[1]}`
