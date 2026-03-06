@@ -304,8 +304,8 @@ async function loadTimeSlots(date) {
 
             const spanPrix = document.createElement('span');
             const spanPrix2 = document.createElement('span');
-            const inputPrix = document.createElement('input');
 
+            const inputPrix = document.createElement('input');
             const inputDuree = document.createElement('input');
 
             inputDuree.value = `${appointment.duree_reservation.split(':')[0]} h ${appointment.duree_reservation.split(':')[1]} min`;
@@ -344,7 +344,6 @@ async function loadTimeSlots(date) {
 
             spanPrix.textContent = 'Prix : ';
             spanPrix2.textContent = ' €';
-            spanDuree.textContent = `Durée : ${prestationDurationStr}`;
 
             const totalDuree = document.getElementById('total-duree');
             const totalPrix = document.getElementById('total-prix');
@@ -371,10 +370,28 @@ async function loadTimeSlots(date) {
                 }
             });
 
-            inputDebut.addEventListener('change', async function(e) {
-                resizeInput.call(inputDebut);
+            const cancelBtn = document.querySelectorAll('.picker-cancel');
 
-                const duree = `${inputDuree.value.split(' h ')[0]}:${inputDuree.value.split(' h ')[1]}`
+            cancelBtn.forEach(button => {
+                button.remove();
+            });
+
+            const picker = document.querySelectorAll('.picker');
+
+            picker.forEach(button => {
+                button.dataset.pickerAction = "pick";
+            });
+
+            const closePicker = document.querySelectorAll('.picker-close');
+
+            closePicker.forEach(button => {
+                button.dataset.pickerAction = "pick";
+            });
+
+            inputPicker.addEventListener('change', async function(e) {
+                resizeInput.call(inputPicker);
+
+                const duree = `${inputPicker.value.split(' h ')[0]}:${inputPicker.value.split(' h ')[1]}`
 
                 const response = await fetch("/api/updateDureeResa", {
                     method: "POST",
