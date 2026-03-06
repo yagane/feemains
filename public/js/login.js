@@ -29,13 +29,9 @@ function showError(message) {
     const messageDiv = document.getElementById('message');
 
     if (message === 'email') {
-        messageDiv.textContent = "Email incorrect ou non trouvé.";
-        messageDiv.style.backgroundColor = "#f8d7da";
-        messageDiv.style.color = "#721c24";
+        messageDiv.textContent = "Email incorrect ou non trouvé";
     } else if (message === 'password') {
-        messageDiv.textContent = "Mot de passe incorrect.";
-        messageDiv.style.backgroundColor = "#f8d7da";
-        messageDiv.style.color = "#721c24";
+        messageDiv.textContent = "Mot de passe incorrect";
     }
 }
 

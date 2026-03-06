@@ -32,13 +32,9 @@ function showError(message) {
     const messageDiv = document.getElementById('message');
 
     if (message === 'register') {
-        messageDiv.textContent = "Erreur lors de l'inscription. Veuillez réessayer.";
-        messageDiv.style.backgroundColor = "#f8d7da";
-        messageDiv.style.color = "#721c24";
+        messageDiv.textContent = "Erreur lors de l'inscription. Veuillez réessayer";
     } else if (message === 'email_exist') {
-        messageDiv.textContent = "Cet email est déjà utilisé. Veuillez en choisir un autre.";
-        messageDiv.style.backgroundColor = "#f8d7da";
-        messageDiv.style.color = "#721c24";
+        messageDiv.textContent = "Cet email est déjà utilisé. Veuillez en choisir un autre";
     }
 }
 
