@@ -396,6 +396,8 @@ async function loadTimeSlots(date) {
 
                 const duree = `${inputPicker.value.split(' h ')[0]}:${inputPicker.value.split(' h ')[1].split(' min')[0]}`;
 
+                console.log(duree);
+
                 const response = await fetch("/api/updateDureeResa", {
                     method: "POST",
                     headers: {
