@@ -115,7 +115,7 @@ class Reservation {
         $db = Database::connect();
         $stmt = $db->prepare(
             "UPDATE reservations SET `duree_reservation`=:duree
-            WHERE id=id"
+            WHERE id=:id"
         );
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':duree', $duree, PDO::PARAM_INT);
