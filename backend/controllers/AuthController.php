@@ -56,6 +56,20 @@ class AuthController {
         echo json_encode($success);
     }
 
+    public static function registerInvite() {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $prenom = isset($data['prenom']) ? $data['prenom'] : null;
+        $nom = isset($data['nom']) ? $data['nom'] : null;
+        $phone = isset($data['phone']) ? $data['phone'] : null;
+        $email = isset($data['email']) ? $data['email'] : null;
+        $password = isset($data['password']) ? $data['password'] : null;
+
+        $success = User::insertInvite($prenom,$nom,$phone,$email,$password);
+
+        echo json_encode($success);
+    }
+
     public static function me() {
         session_start();
 

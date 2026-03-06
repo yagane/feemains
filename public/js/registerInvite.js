@@ -1,29 +1,28 @@
 let connected = null;
 let role = null;
 
-document.getElementById("login-form").addEventListener("submit", async function(e) {
+document.getElementById("register-form").addEventListener("submit", async function(e) {
     e.preventDefault();
 
+    const prenom = document.getElementById("prenom").value;
+    const nom = document.getElementById("nom").value;
+    const phone = document.getElementById("phone").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const response = await fetch("/api/login", {
+    const response = await fetch("/api/registerInvite", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         credentials: "include",
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ prenom, nom, phone, email, password })
     });
 
     const data = await response.json();
 
     if(data.success){
-        if (data.role == 'admin') {
-            window.location.href = "/admin";
-        }else{
-            window.location.href = "/reservation";
-        }
+
     } else {
         showError(data.message);
     }
@@ -32,10 +31,10 @@ document.getElementById("login-form").addEventListener("submit", async function(
 function showError(message) {
     const messageDiv = document.getElementById('message');
 
-    if (message === 'email') {
-        messageDiv.textContent = "Email incorrect ou non trouvé";
-    } else if (message === 'password') {
-        messageDiv.textContent = "Mot de passe incorrect";
+    if (message === 'register') {
+        messageDiv.textContent = "Erreur lors de l'ajout. Veuillez réessayer";
+    } else if (message === 'email_exist') {
+        messageDiv.textContent = "Cet email est déjà utilisé. Veuillez en choisir un autre";
     }
 }
 
@@ -59,17 +58,17 @@ async function updateAuthUI() {
         authLink.classList.add("hidden");
         userGreeting.classList.remove("hidden");
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
-        userId = data.id;
 
         if(data.role == 'admin'){
             userRole.href = '/admin';
         }
+
+        window.location.href = "/reservation";
     } else {
         authLink.classList.remove("hidden");
         userGreeting.classList.add("hidden");
     }
 }
-
 
 const navPhone = document.querySelector('.nav-phone');
 const menuContainer = document.querySelector('.nav-div');

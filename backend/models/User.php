@@ -38,4 +38,24 @@ class User {
             return ["success" => false, "message" => 'register'];
         }
     }
+
+    public static function insertInvite($prenom, $nom, $phone, $email, $password) {
+        $password = password_hash($password, PASSWORD_BCRYPT);
+
+        $db = Database::connect();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $emailExists = $stmt->fetchColumn();
+
+        if ($emailExists) {
+            return ["success" => false, "message" => 'email_exist'];
+        }
+
+        $stmt = $db->prepare("INSERT INTO users (prenom, nom, phone, email, password) VALUES (?, ?, ?, ?, ?)");
+        if ($stmt->execute([$prenom, $nom, $phone, $email, $password])) {
+            return ["success" => true];
+        } else {
+            return ["success" => false, "message" => 'register'];
+        }
+    }
 }

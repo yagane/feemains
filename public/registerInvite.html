@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mon compte</title>
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="icon" href="/images/logo_fond.png" type="image/png">
+    </head>
+    <body>
+        <div style="display: contents">
+            <div class="app-wrapper">
+                <div class="background-image"></div>
+                <div class="app-content">
+                    <nav class="navbar">
+                        <div class="nav-div">
+                            <div class="nav-item">
+                                <div class="nav-left">
+                                    <a class="logo" href="/">
+                                        <img src="/images/logo.png" alt="Logo du site" />
+                                    </a>
+                                    <div class="nav-left-a">
+                                        <a href="/#prestation">Prestations</a>
+                                        <a href="/reservation">Reservation</a>
+                                        <a href="/#contact">Contact</a>
+                                    </div>
+                                </div>
+                                <button class="nav-phone" aria-label="Basculer le menu">
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                    <span class="brown-bar"></span>
+                                </button>
+                                <div class="nav-right">
+                                    <a id="auth-link" href="/login" class="hidden">Connexion</a>
+                                    <div id="user-greeting" class="user-greeting hidden">
+                                        <span id="user-name"></span>
+                                        <div class="dropdown-menu">
+                                            <a id="role" href="/client">Mon compte</a>
+                                            <form action="/api/logout" method="GET">
+                                                <button type="submit" class="logout-button">
+                                                    Déconnexion
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="main-footer">
+                        <main class="main">
+                            <div class="login">
+                                <div class="login-container">
+                                    <h2>Inscription</h2>
+                                    <form id="register-form">
+                                        <input type="text" id="prenom" placeholder="Prénom" required>
+                                        <input type="text" id="nom" placeholder="Nom" required>
+                                        <input type="text" id="phone" placeholder="Télephone">
+                                        <input type="email" id="email" placeholder="Email">
+                                        <button type="submit">Ajouter</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </main>
+
+                        <footer class="site-footer">
+                            <a href="" target="_blank" rel="noopener noreferrer">By : Yanis MILLASSEAU</a>
+                            <a href="" >Mentions légales</a>
+                        </footer>
+                    </div>
+                    <a
+                    href="https://www.instagram.com/feemains__"
+                    target="_blank"
+                    class="instagram-fixed"
+                    aria-label="Instagram"
+                    >
+                        <img src="/images/insta.ico" alt="Instagram" />
+                    </a>
+                </div>
+            </div>
+            <script src="/js/registerInvite.js"></script>
+        </div>
+    </body>
+</html>
