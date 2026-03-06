@@ -534,8 +534,9 @@ function createDynamicMenu() {
                 <div id="menu-account" class="menu-account">
                     <a href="/stat">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
+                            <path d="M8 21 v-4 a4 4 0 0 0 -4 -2 H5 a4 4 2 0 0 -4 2 v4"></path>
+                            <path d="M15 21 v-12 a4 4 0 0 0 -4 -2 H12 a4 4 2 0 0 -4 2 v12"></path>
+                            <path d="M22 21 v-8 a4 4 0 0 0 -4 -2 H19 a4 4 2 0 0 -4 2 v8"></path>
                         </svg>
                         Mes statistiques
                     </a>
