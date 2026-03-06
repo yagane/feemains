@@ -394,10 +394,12 @@ async function loadTimeSlots(date) {
             inputPicker.addEventListener('change', async function(e) {
                 resizeInput.call(inputPicker);
 
-                const duree = `${inputPicker.value.split(' h ')[0]}:${inputPicker.value.split(' h ')[1].split(' min')[0]}`
+                const duree = `${inputPicker.value.split(' h ')[0]}:${inputPicker.value.split(' h ')[1].split(' min')[0]}`;
 
+                console.log(str(duree));
                 console.log(duree);
-                console.log(inputPicker.value.split(' h ')[0]);
+                console.log(role);
+
 
                 const response = await fetch("/api/updateDureeResa", {
                     method: "POST",
