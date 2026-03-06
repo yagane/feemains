@@ -21,29 +21,23 @@ document.getElementById("login-form").addEventListener("submit", async function(
     if(data.success){
         window.location.href = "/reservation";
     }else{
-        window.location.href = "/register?error=password";
+        showError(data.message);
     }
 });
 
-function getUrlParameter(name) {
-    const url = new URL(window.location.href);
-    return url.searchParams.get(name);
-}
-
-window.onload = function() {
-    const error = getUrlParameter('error');
+function showError(message) {
     const messageDiv = document.getElementById('message');
 
-    if (error === 'email') {
+    if (message === 'email') {
         messageDiv.textContent = "Email incorrect ou non trouvé.";
         messageDiv.style.backgroundColor = "#f8d7da";
         messageDiv.style.color = "#721c24";
-    } else if (error === 'password') {
+    } else if (message === 'password') {
         messageDiv.textContent = "Mot de passe incorrect.";
         messageDiv.style.backgroundColor = "#f8d7da";
         messageDiv.style.color = "#721c24";
     }
-};
+}
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');

@@ -28,14 +28,14 @@ class User {
         $emailExists = $stmt->fetchColumn();
 
         if ($emailExists) {
-            return false;
+            return ["success" => false, "message" => 'email_exist'];
         }
 
         $stmt = $db->prepare("INSERT INTO users (prenom, nom, phone, email, password) VALUES (?, ?, ?, ?, ?)");
         if ($stmt->execute([$prenom, $nom, $phone, $email, $password])) {
-            return true;
+            return ["success" => true, "message" => 'success'];
         } else {
-            return false;
+            return ["success" => false, "message" => 'register'];
         }
     }
 }

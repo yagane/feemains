@@ -10,15 +10,15 @@ class AuthController {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if (!isset($data['email'], $data['password'])) {
-            echo json_encode(["success" => false]);
+        $user = User::findByEmail($data['email']);
+
+        if (!$user) {
+            echo json_encode(["success" => false, 'message' => 'email']);
             return;
         }
 
-        $user = User::findByEmail($data['email']);
-
-        if (!$user || !password_verify($data['password'], $user['password'])) {
-            echo json_encode(["success" => false]);
+        if (!password_verify($data['password'], $user['password'])) {
+            echo json_encode(["success" => false, 'message' => 'password']);
             return;
         }
 
@@ -53,7 +53,7 @@ class AuthController {
 
         $success = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
 
-        echo json_encode(["success" => $success]);
+        echo json_encode($success);
     }
 
     public static function me() {

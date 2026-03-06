@@ -24,29 +24,23 @@ document.getElementById("register-form").addEventListener("submit", async functi
     if(data.success){
         window.location.href = "/login";
     } else {
-
+        showError(data.message);
     }
 });
 
-function getUrlParameter(name) {
-    const url = new URL(window.location.href);
-    return url.searchParams.get(name);
-}
-
-window.onload = function() {
-    const error = getUrlParameter('error');
+function showError(message) {
     const messageDiv = document.getElementById('message');
 
-	if (error === 'register') {
+    if (message === 'register') {
         messageDiv.textContent = "Erreur lors de l'inscription. Veuillez réessayer.";
         messageDiv.style.backgroundColor = "#f8d7da";
         messageDiv.style.color = "#721c24";
-    } else if (error === 'email_exists') {
+    } else if (message === 'email_exist') {
         messageDiv.textContent = "Cet email est déjà utilisé. Veuillez en choisir un autre.";
         messageDiv.style.backgroundColor = "#f8d7da";
         messageDiv.style.color = "#721c24";
     }
-};
+}
 
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
