@@ -28,17 +28,14 @@ class User {
         $emailExists = $stmt->fetchColumn();
 
         if ($emailExists) {
-            header('Location: https://fee-mains.com/register.html?error=email_exists');
-            exit;
+            return false;
         }
 
         $stmt = $db->prepare("INSERT INTO users (prenom, nom, phone, email, password) VALUES (?, ?, ?, ?, ?)");
         if ($stmt->execute([$prenom, $nom, $phone, $email, $password])) {
-            header('Location: https://fee-mains.com/login.html?success=1');
-            exit;
+            return true;
         } else {
-            header('Location: https://fee-mains.com/register.html?error=register');
-            exit;
+            return false;
         }
     }
 }

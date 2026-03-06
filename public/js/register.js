@@ -20,6 +20,12 @@ document.getElementById("register-form").addEventListener("submit", async functi
     });
 
     const data = await response.json();
+
+    if(data.success){
+        window.location.href = "/login";
+    } else {
+
+    }
 });
 
 function getUrlParameter(name) {

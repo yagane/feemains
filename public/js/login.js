@@ -20,6 +20,8 @@ document.getElementById("login-form").addEventListener("submit", async function(
 
     if(data.success){
         window.location.href = "/reservation";
+    }else{
+        window.location.href = "/register?error=password";
     }
 });
 
