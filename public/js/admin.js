@@ -409,7 +409,7 @@ async function loadTimeSlots(date) {
                     dureeMinute = `${inputPicker.value.split(' h ')[1].split(' min')[0]}`;
                 }
 
-                const duree = `${dureeHour}${dureeMinute}00`;
+                const duree = `${dureeHour}:${dureeMinute}`;
 
                 console.log(duree);
 
