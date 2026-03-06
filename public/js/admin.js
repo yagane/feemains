@@ -29,7 +29,7 @@ function resizeInput() {
     let width = 0;
 
     for(let i = 0; i < this.value.length; i++){
-        if(this.value[i] == '1' || this.value[i] == 'i'){
+        if(this.value[i] == '1' || this.value[i] == 'i' || this.value[i] == ' '){
             width += 0.5;
         }else{
             width += 1;
@@ -304,6 +304,7 @@ async function loadTimeSlots(date) {
 
             const spanPrix = document.createElement('span');
             const spanPrix2 = document.createElement('span');
+            const spanDuree = document.createElement('span');
 
             const inputPrix = document.createElement('input');
             const inputDuree = document.createElement('input');
@@ -344,6 +345,7 @@ async function loadTimeSlots(date) {
 
             spanPrix.textContent = 'Prix : ';
             spanPrix2.textContent = ' €';
+            spanDuree.textContent = 'Duree : ';
 
             const totalDuree = document.getElementById('total-duree');
             const totalPrix = document.getElementById('total-prix');
@@ -351,6 +353,7 @@ async function loadTimeSlots(date) {
             totalPrix.appendChild(spanPrix);
             totalPrix.appendChild(inputPrix);
             totalPrix.appendChild(spanPrix2);
+            totalDuree.appendChild(spanDuree);
             totalDuree.appendChild(inputDuree);
 
             const inputPicker = document.getElementById('inputDuree');
@@ -412,7 +415,7 @@ async function loadTimeSlots(date) {
                 }
             });
 
-            resizeInput.call(inputDebut);
+            resizeInput.call(inputPicker);
 
             const closeBtn = document.querySelector('.close-button');
 
