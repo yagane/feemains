@@ -29,7 +29,7 @@ function resizeInput() {
     let width = 0;
 
     for(let i = 0; i < this.value.length; i++){
-        if(this.value[i] == '1'){
+        if(this.value[i] == '1' || this.value[i] == 'i'){
             width += 0.5;
         }else{
             width += 1;
@@ -306,21 +306,11 @@ async function loadTimeSlots(date) {
             const spanPrix2 = document.createElement('span');
             const inputPrix = document.createElement('input');
 
-            const spanDuree = document.createElement('span');
-            const spanDuree2 = document.createElement('span');
-            const spanDuree3 = document.createElement('span');
-            const inputPrix = document.createElement('input');
-            const inputPrix2 = document.createElement('input');
+            const inputDuree = document.createElement('input');
 
-            spanDuree.textContent = 'Prix : ';
-            spanDuree2.textContent = 'Prix : ';
-            spanDuree3.textContent = 'Prix : ';
-
-            if(appointment.duree_reservation.split(':')[0] == '00'){
-                prestationDurationStr = `${appointment.duree_reservation.split(':')[1]} min`;
-            }else{
-                prestationDurationStr = `${appointment.duree_reservation.split(':')[0]} h ${appointment.duree_reservation.split(':')[1]} min`;
-            }
+            inputDuree.value = `${appointment.duree_reservation.split(':')[0]} h ${appointment.duree_reservation.split(':')[1]} min`;
+            inputDuree.className = 'input-duree';
+            inputDuree.id = "inputDuree";
 
             inputPrix.value = `${appointment.prix}`;
             inputPrix.className = 'input-prix';
@@ -362,7 +352,50 @@ async function loadTimeSlots(date) {
             totalPrix.appendChild(spanPrix);
             totalPrix.appendChild(inputPrix);
             totalPrix.appendChild(spanPrix2);
-            totalDuree.appendChild(spanDuree);
+            totalDuree.appendChild(inputDuree);
+
+            const inputPicker = document.getElementById('inputDuree');
+            const pickerDebut = new Picker(inputPicker, {
+                format: 'H h m min',
+                text: {
+                    title: "Choisisez l'heure",
+                    cancel: 'Cancel',
+                    confirm: 'OK',
+                    year: 'Year',
+                    month: 'Month',
+                    day: 'Day',
+                    hour: 'Hour',
+                    minute: 'Minute',
+                    second: 'Second',
+                    millisecond: 'Millisecond'
+                }
+            });
+
+            inputDebut.addEventListener('change', function(e) {
+                resizeInput.call(inputDebut);
+
+                const duree = `${inputDuree.value.split(' h ')[0]}:${inputDuree.value.split(' h ')[1]}`
+
+                const response = await fetch("/api/updateDureeResa", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({
+                        id: id,
+                        duree: duree
+                    })
+                });
+
+                const data = await response.json();
+
+                if(data.success){
+                    loadTimeSlots(selectedDate);
+                }
+            });
+
+            resizeInput.call(inputDebut);
 
             const closeBtn = document.querySelector('.close-button');
 

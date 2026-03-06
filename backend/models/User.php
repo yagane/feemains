@@ -33,7 +33,7 @@ class User {
 
         $stmt = $db->prepare("INSERT INTO users (prenom, nom, phone, email, password) VALUES (?, ?, ?, ?, ?)");
         if ($stmt->execute([$prenom, $nom, $phone, $email, $password])) {
-            return ["success" => true, "message" => 'success'];
+            return ["success" => true];
         } else {
             return ["success" => false, "message" => 'register'];
         }

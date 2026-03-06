@@ -19,8 +19,12 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const data = await response.json();
 
     if(data.success){
-        window.location.href = "/reservation";
-    }else{
+        if (data.role == 'admin') {
+            window.location.href = "/admin";
+        }else{
+            window.location.href = "/reservation";
+        }
+    } else {
         showError(data.message);
     }
 });
