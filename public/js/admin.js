@@ -305,9 +305,16 @@ async function loadTimeSlots(date) {
             const spanPrix = document.createElement('span');
             const spanPrix2 = document.createElement('span');
             const inputPrix = document.createElement('input');
-            const spanDuree = document.createElement('span');
 
-            let prestationDurationStr = '';
+            const spanDuree = document.createElement('span');
+            const spanDuree2 = document.createElement('span');
+            const spanDuree3 = document.createElement('span');
+            const inputPrix = document.createElement('input');
+            const inputPrix2 = document.createElement('input');
+
+            spanDuree.textContent = 'Prix : ';
+            spanDuree2.textContent = 'Prix : ';
+            spanDuree3.textContent = 'Prix : ';
 
             if(appointment.duree_reservation.split(':')[0] == '00'){
                 prestationDurationStr = `${appointment.duree_reservation.split(':')[1]} min`;
@@ -346,7 +353,7 @@ async function loadTimeSlots(date) {
             resizeInput.call(inputPrix);
 
             spanPrix.textContent = 'Prix : ';
-            spanPrix2.textContent = '€';
+            spanPrix2.textContent = ' €';
             spanDuree.textContent = `Durée : ${prestationDurationStr}`;
 
             const totalDuree = document.getElementById('total-duree');
