@@ -309,7 +309,7 @@ async function loadTimeSlots(date) {
             const inputPrix = document.createElement('input');
             const inputDuree = document.createElement('input');
 
-            inputDuree.value = `${appointment.duree_reservation.split(':')[0]} h ${appointment.duree_reservation.split(':')[1]} min`;
+            inputDuree.value = `${parseInt(appointment.duree_reservation.split(':')[0])} h ${parseInt(appointment.duree_reservation.split(':')[1])} min`;
             inputDuree.className = 'input-duree';
             inputDuree.id = "inputDuree";
 
@@ -359,6 +359,9 @@ async function loadTimeSlots(date) {
             const inputPicker = document.getElementById('inputDuree');
             const pickerDebut = new Picker(inputPicker, {
                 format: 'H h m min',
+                increment: {
+                    minute: 5
+                },
                 text: {
                     title: "Choisisez l'heure",
                     cancel: 'Cancel',
