@@ -63,9 +63,8 @@ class AuthController {
         $nom = isset($data['nom']) ? $data['nom'] : null;
         $phone = isset($data['phone']) ? $data['phone'] : null;
         $email = isset($data['email']) ? $data['email'] : null;
-        $password = isset($data['password']) ? $data['password'] : null;
 
-        $success = User::insertInvite($prenom,$nom,$phone,$email,$password);
+        $success = User::insertInvite($prenom,$nom,$phone,$email);
 
         echo json_encode($success);
     }

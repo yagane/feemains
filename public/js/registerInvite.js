@@ -8,7 +8,6 @@ document.getElementById("register-form").addEventListener("submit", async functi
     const nom = document.getElementById("nom").value;
     const phone = document.getElementById("phone").value;
     const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
 
     const response = await fetch("/api/registerInvite", {
         method: "POST",
@@ -16,7 +15,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
             "Content-Type": "application/json"
         },
         credentials: "include",
-        body: JSON.stringify({ prenom, nom, phone, email, password })
+        body: JSON.stringify({ prenom, nom, phone, email})
     });
 
     const data = await response.json();
