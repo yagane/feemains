@@ -75,6 +75,18 @@ class ResaController {
         echo json_encode(['success' => true, 'message' => 'Réservation enregistrée avec succès.']);
     }
 
+    public static function updateDureeResa() {
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $id = isset($data['id']) ? (int)$data['id'] : null;
+        $prix = isset($data['duree']) ? $data['duree'] : null;
+
+        Reservation::updateDuree($id, $duree);
+
+        echo json_encode(['success' => true, 'message' => 'Réservation enregistrée avec succès.']);
+    }
+
     public static function deleteResa() {
 
         $data = json_decode(file_get_contents("php://input"), true);
