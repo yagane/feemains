@@ -29,7 +29,7 @@ function resizeInput() {
     let width = 0;
 
     for(let i = 0; i < this.value.length; i++){
-        if(this.value[i] == '1' || this.value[i] == 'i' || this.value[i] == ' '){
+        if(this.value[i] == '1' || this.value[i] == 'i'){
             width += 0.5;
         }else{
             width += 1;
@@ -395,6 +395,9 @@ async function loadTimeSlots(date) {
                 resizeInput.call(inputPicker);
 
                 const duree = `${inputPicker.value.split(' h ')[0]}:${inputPicker.value.split(' h ')[1]}`
+
+                console.log(duree);
+                console.log(inputPicker.value.split(' h ')[0]);
 
                 const response = await fetch("/api/updateDureeResa", {
                     method: "POST",
