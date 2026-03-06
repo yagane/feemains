@@ -554,7 +554,7 @@ function createDynamicMenu() {
                             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
-                        Ajout utilisateur
+                        Ajout client
                     </a>
                     <form action="/api/logout" method="GET">
                         <button type="submit" class="logout-button">
