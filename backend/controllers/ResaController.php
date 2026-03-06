@@ -80,7 +80,7 @@ class ResaController {
         $data = json_decode(file_get_contents("php://input"), true);
 
         $id = isset($data['id']) ? (int)$data['id'] : null;
-        $prix = isset($data['duree']) ? $data['duree'] : null;
+        $duree = isset($data['duree']) ? $data['duree'] : null;
 
         Reservation::updateDuree($id, $duree);
 
