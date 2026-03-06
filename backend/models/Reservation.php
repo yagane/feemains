@@ -118,7 +118,7 @@ class Reservation {
             WHERE id=:id"
         );
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':duree', $duree, PDO::PARAM_INT);
+        $stmt->bindParam(':duree', $duree, PDO::PARAM_STR);
         $stmt->execute();
     }
 
