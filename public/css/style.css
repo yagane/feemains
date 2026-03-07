@@ -617,6 +617,7 @@ button{
 }
 
 .choices {
+    min-width: 300px;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
 }
 
