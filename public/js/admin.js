@@ -49,6 +49,20 @@ function renderCalendar() {
 
     monthYear.textContent = `${months[month]} ${year}`;
 
+    const response = await fetch('/api/resaDayByMY', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            mois: month + 1,
+            annee: year
+        })
+    });
+
+    const days = await response.json();
+
     const firstDay = new Date(year, month, 1).getDay() || 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
@@ -63,6 +77,11 @@ function renderCalendar() {
         div.textContent = day;
 
         const dateObj = new Date(year, month, day);
+
+        if (days.includes(day)){
+            console.log(day);
+            div.classList.add("resa-day");
+        }
 
         if (toLocalISOString(dateObj).split('T')[0] == toLocalISOString(currentDate).split('T')[0]){
             div.classList.add("selected");

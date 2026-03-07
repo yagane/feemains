@@ -26,6 +26,7 @@ $router->add("GET", "/api/me", ["AuthController", "me"]);
 
 $router->add("POST", "/api/resaAllByDate", ["ResaController", "resaAllByDate"]);
 $router->add("POST", "/api/resaAllByMY", ["ResaController", "resaAllByMY"]);
+$router->add("POST", "/api/resaDayByMY", ["ResaController", "resaDayByMY"]);
 $router->add("POST", "/api/resaTimeDurationByDate", ["ResaController", "resaTimeDurationByDate"]);
 $router->add("POST", "/api/resaByUser", ["ResaController", "resaByUser"]);
 $router->add("POST", "/api/resaByID", ["ResaController", "resaByID"]);

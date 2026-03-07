@@ -30,6 +30,22 @@ class Reservation {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public static function dayByMY($mois, $annee) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "SELECT DAY(date_reservation)
+            FROM `reservations`
+            WHERE MONTH(date_reservation) = :mois and YEAR(date_reservation) = :annee
+            GROUP BY DAY(date_reservation)"
+        );
+        $stmt->bindParam(':mois', $mois, PDO::PARAM_INT);
+        $stmt->bindParam(':annee', $annee, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function allByMY($mois, $annee) {
         $db = Database::connect();
         $stmt = $db->prepare(

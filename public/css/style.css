@@ -695,6 +695,10 @@ button{
     pointer-events: none;
 }
 
+.resa-day{
+    background: var(--light-beige);
+}
+
 /*-----------   Time slots    -----------*/
 
 .time-slots {
