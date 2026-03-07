@@ -52,6 +52,10 @@ class User {
         $stmt->execute([$email]);
         $emailExists = $stmt->fetchColumn();
 
+        if ($emailExists and $email != 'null') {
+            return ["success" => false, "message" => 'email_exist'];
+        }
+
         $stmt = $db->prepare("INSERT INTO users (prenom, nom, phone, email) VALUES (?, ?, ?, ?)");
         if ($stmt->execute([$prenom, $nom, $phone, $email])) {
             return ["success" => true];
