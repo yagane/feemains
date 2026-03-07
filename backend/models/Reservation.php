@@ -36,8 +36,7 @@ class Reservation {
         $stmt = $db->prepare(
             "SELECT DAY(date_reservation)
             FROM `reservations`
-            WHERE MONTH(date_reservation) = :mois and YEAR(date_reservation) = :annee
-            GROUP BY DAY(date_reservation)"
+            WHERE MONTH(date_reservation) = :mois and YEAR(date_reservation) = :annee"
         );
         $stmt->bindParam(':mois', $mois, PDO::PARAM_INT);
         $stmt->bindParam(':annee', $annee, PDO::PARAM_INT);
