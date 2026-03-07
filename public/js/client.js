@@ -220,7 +220,8 @@ async function updateAuthUI() {
     const userFullname = document.getElementById('user-fullname');
     const userEmail = document.getElementById('user-email');
     const userPhone = document.getElementById('user-phone');
-    const userRole = document.getElementById('role');
+    const drop1 = document.getElementById('drop1');
+    const drop2 = document.getElementById('drop2');
 
     const response = await fetch("/api/me", {
         method: "GET",
@@ -243,7 +244,10 @@ async function updateAuthUI() {
         userPhone.textContent = data.phone;
 
         if(data.role == 'admin'){
-            userRole.href = '/admin';
+            drop1.href = '/admin';
+            drop1.textContent = 'Agenda';
+            drop1.href = '/stat';
+            drop1.textContent = 'Statistique';
         }
     } else {
         authLink.classList.remove("hidden");

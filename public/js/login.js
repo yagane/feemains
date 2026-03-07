@@ -43,7 +43,8 @@ async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
     const userFirstname = document.getElementById('user-name');
-    const userRole = document.getElementById('role');
+    const drop1 = document.getElementById('drop1');
+    const drop2 = document.getElementById('drop2');
 
     const response = await fetch("/api/me", {
         method: "GET",
@@ -62,8 +63,13 @@ async function updateAuthUI() {
         userId = data.id;
 
         if(data.role == 'admin'){
-            userRole.href = '/admin';
+            drop1.href = '/admin';
+            drop1.textContent = 'Agenda';
+            drop1.href = '/stat';
+            drop1.textContent = 'Statistique';
         }
+
+        window.location.href = "/reservation";
     } else {
         authLink.classList.remove("hidden");
         userGreeting.classList.add("hidden");
