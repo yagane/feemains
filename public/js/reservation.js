@@ -250,6 +250,10 @@ async function loadPrestations() {
             priceSpan.className = 'prestation-price';
             priceSpan.textContent = `${prestation.prix} €`;
 
+            if (prestation.nom == 'Nail art'){
+                priceSpan.textContent = 'Sur devis';
+            }
+
             const divPrixDuree = document.createElement('div');
             divPrixDuree.className = 'prestation-prixduree'
 
