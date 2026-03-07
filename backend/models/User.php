@@ -48,6 +48,13 @@ class User {
 
     public static function insertInvite($prenom, $nom, $phone, $email) {
         $db = Database::connect();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $emailExists = $stmt->fetchColumn();
+
+        if ($emailExists) {
+            return ["success" => false, "message" => 'email_exist'];
+        }
 
         $stmt = $db->prepare("INSERT INTO users (prenom, nom, phone, email) VALUES (?, ?, ?, ?)");
         if ($stmt->execute([$prenom, $nom, $phone, $email])) {
