@@ -612,7 +612,12 @@ button{
 }
 
 .is-open .choices__inner {
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
     border-radius: 8px 8px 0 0;
+}
+
+.choices {
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
 }
 
 .choices__inner {
@@ -626,6 +631,7 @@ button{
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
 }
 
 /*-----------   Calendrier    -----------*/
