@@ -61,7 +61,7 @@ async function renderCalendar() {
         })
     });
 
-    const days = await response.json().DAY(date_reservation);
+    const days = await response.json();
 
     console.log(days);
 
