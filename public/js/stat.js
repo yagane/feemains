@@ -192,6 +192,7 @@ async function updateAuthUI() {
     } else {
         authLink.classList.remove("hidden");
         userGreeting.classList.add("hidden");
+        window.location.href = "/";
     }
 }
 
