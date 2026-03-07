@@ -31,6 +31,8 @@ function resizeInput() {
     for(let i = 0; i < this.value.length; i++){
         if(this.value[i] == '1' || this.value[i] == 'i'){
             width += 0.5;
+        }else if(this.value[i] == ' '){
+            width += 0.6;
         }else{
             width += 1;
         }
@@ -273,12 +275,12 @@ async function loadTimeSlots(date) {
             spanFullname.textContent = `${appointment.prenom} ${appointment.nom}`;
             userInfo.appendChild(spanFullname);
 
-            if (!appointment.email) {
+            if (appointment.email) {
                 spanEmail.textContent = `${appointment.email}`;
                 userInfo.appendChild(spanEmail);
             }
 
-            if (!appointment.phone) {
+            if (appointment.phone) {
                 spanPhone.textContent = `${appointment.phone}`;
                 userInfo.appendChild(spanPhone);
             }

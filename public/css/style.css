@@ -1094,3 +1094,9 @@ button{
     }
 }
 
+@media (max-width: 500px) {
+    .modal-info {
+        width: 95%;
+    }
+}
+

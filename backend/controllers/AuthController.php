@@ -96,6 +96,8 @@ class AuthController {
                 if ($row && strtotime($row['expires_at']) > time()) {
                     $_SESSION['user_id'] = $row['user_id'];
 
+                    $user_id = $_SESSION['user_id'];
+
                     $newToken = bin2hex(random_bytes(32));
                     $newHash = hash('sha256', $newToken);
                     $newExpires = time() + (60 * 60 * 24 * 30);
