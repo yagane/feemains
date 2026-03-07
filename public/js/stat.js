@@ -88,8 +88,6 @@ async function renderCalendar() {
         </div>
     `;
 
-    console.log(compteurNom);
-
     if (c != 0) {
         const tableauOccurrences = Object.entries(compteurNom);
 

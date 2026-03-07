@@ -69,7 +69,7 @@ function renderCalendar() {
 
         const isSunday = dateObj.getDay() === 0;
 
-        if (dateObj < today || isSunday || dateObj > stopDay) {
+        if ((dateObj < today || isSunday || dateObj > stopDay) && role != 'admin') {
             if (isSunday) div.classList.add("sunday");
             else div.classList.add("past");
         } else {
@@ -322,8 +322,6 @@ async function loadClients() {
 
         selectClient.addEventListener('change', function() {
             userId = selectClient.value;
-
-            console.log(selectClient.value)
         });
 
     }catch(error) {
