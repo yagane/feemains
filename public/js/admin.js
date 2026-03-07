@@ -61,9 +61,9 @@ async function renderCalendar() {
         })
     });
 
-    const days = await response.json();
+    const data = await response.json();
 
-    console.log(days);
+    const days = data.map(item => item["DAY(date_reservation)"]);
 
     const firstDay = new Date(year, month, 1).getDay() || 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -80,10 +80,7 @@ async function renderCalendar() {
 
         const dateObj = new Date(year, month, day);
 
-        console.log(days.includes(day));
-
         if (days.includes(day)){
-            console.log(day);
             div.classList.add("resa-day");
         }
 
