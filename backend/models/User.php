@@ -52,7 +52,7 @@ class User {
         $stmt->execute([$email]);
         $emailExists = $stmt->fetchColumn();
 
-        if ($emailExists and $email != 'null') {
+        if ($emailExists and $email != null) {
             return ["success" => false, "message" => 'email_exist'];
         }
 
