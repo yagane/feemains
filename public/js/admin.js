@@ -63,6 +63,8 @@ async function renderCalendar() {
 
     const days = await response.json();
 
+    console.log(days);
+
     const firstDay = new Date(year, month, 1).getDay() || 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
@@ -77,6 +79,8 @@ async function renderCalendar() {
         div.textContent = day;
 
         const dateObj = new Date(year, month, day);
+
+        console.log(days.includes(day));
 
         if (days.includes(day)){
             console.log(day);
