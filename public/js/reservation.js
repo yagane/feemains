@@ -477,22 +477,25 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
 
             const result = await response.json();
 
-            if (result.success && destinataire != '') {
-                const response = await fetch("/api/resaConfirmation", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                        destinataire: destinataire,
-                        nom: prenom,
-                        date: capitalizedDate,
-                        heure: selectedTimeSlot
-                    })
-                });
+            if (result.success) {
 
-                const result = await response.json();
+                if (destinataire != '') {
+                    const response = await fetch("/api/resaConfirmation", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            destinataire: destinataire,
+                            nom: prenom,
+                            date: capitalizedDate,
+                            heure: selectedTimeSlot
+                        })
+                    });
+
+                    const result = await response.json();
+                }
 
                 alert("Réservation effectuée avec succès !");
                 calendarSection.classList.add("hidden");
