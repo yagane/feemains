@@ -316,6 +316,12 @@ async function loadClients() {
             placeholderValue: 'Sélectionnez un client',
         });
 
+        selectClient.addEventListener('change', function() {
+            userId = selectClient.value;
+
+            console.log(selectClient.value)
+        });
+
     }catch(error) {
         console.error("Erreur lors du chargement des clients :", error);
     }
