@@ -298,8 +298,6 @@ async function loadClients() {
 
         const clients = await response.json();
 
-        console.log(clients);
-
         clients.forEach(client => {
             const option = document.createElement('option');
             option.value = `${client.id}`;

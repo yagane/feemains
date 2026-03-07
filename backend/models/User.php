@@ -23,7 +23,7 @@ class User {
         $db = Database::connect();
         $stmt = $db->query("SELECT * FROM users WHERE role = 'client'");
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function insert($prenom, $nom, $phone, $email, $password) {

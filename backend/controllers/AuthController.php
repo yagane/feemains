@@ -58,6 +58,8 @@ class AuthController {
 
     public static function getAllClients() {
 
+        $data = json_decode(file_get_contents("php://input"), true);
+
         $clients = User::findAllClient();
 
         echo json_encode($clients);
