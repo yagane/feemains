@@ -298,6 +298,8 @@ async function loadClients() {
 
         const clients = await response.json();
 
+        console.log(clients);
+
         clients.forEach(client => {
             const option = document.createElement('option');
             option.value = `${client.id}`;
@@ -541,11 +543,12 @@ async function updateAuthUI() {
         authLink.classList.add("hidden");
         userGreeting.classList.remove("hidden");
         userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
-        userId = data.id
 
         if(data.role == 'admin'){
             userRole.href = '/admin';
             loadClients();
+        }else{
+            userId = data.id
         }
     } else {
         authLink.classList.remove("hidden");
