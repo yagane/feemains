@@ -306,6 +306,7 @@ async function loadClients() {
             select.appendChild(option);
         });
 
+        section.appendChild(select);
         main.prepend(section);
 
         const selectClient = document.querySelector('.select-client');
