@@ -19,6 +19,13 @@ class User {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function findAllClient() {
+        $db = Database::connect();
+        $stmt = $db->query("SELECT * FROM users WHERE role = 'client'");
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function insert($prenom, $nom, $phone, $email, $password) {
         $password = password_hash($password, PASSWORD_BCRYPT);
 

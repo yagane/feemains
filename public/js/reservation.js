@@ -282,6 +282,44 @@ async function loadPrestations() {
     }
 }
 
+async function loadClients() {
+    const main = document.querySelector('.main');
+    const section = document.createElement('section');
+    const select = document.createElement('select');
+
+    section.className = "section-client";
+    select.className = "select-client";
+
+    try {
+        const response = await fetch("/api/getAllClients", {
+            method: "GET",
+            credentials: "include"
+        });
+
+        const clients = await response.json();
+
+        clients.forEach(client => {
+            const option = document.createElement('option');
+            option.value = `${client.id}`;
+            option.textContent = `${client.prenom} ${client.nom}`;
+
+            select.appendChild(option);
+        });
+
+        main.prepend(section);
+
+        const selectClient = document.querySelector('.select-client');
+
+        const choices = new Choices(selectClient, {
+            placeholder: true,
+            placeholderValue: 'Sélectionnez un client',
+        });
+
+    }catch(error) {
+        console.error("Erreur lors du chargement des clients :", error);
+    }
+}
+
 function updateChecked() {
     const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
 
@@ -506,6 +544,7 @@ async function updateAuthUI() {
 
         if(data.role == 'admin'){
             userRole.href = '/admin';
+            loadClients();
         }
     } else {
         authLink.classList.remove("hidden");

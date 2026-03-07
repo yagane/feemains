@@ -56,6 +56,13 @@ class AuthController {
         echo json_encode($success);
     }
 
+    public static function getAllClients() {
+
+        $clients = User::findAllClient();
+
+        echo json_encode($clients);
+    }
+
     public static function registerInvite() {
         $data = json_decode(file_get_contents("php://input"), true);
 

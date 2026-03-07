@@ -535,9 +535,9 @@ async function loadTimeSlots(date) {
                                 <div class="modal-conge">
                                     <span>${dateDebutStr}</span>
                                 </div>
-                                <div>
+                                <div class="modal-conge">
                                     <span>${dateFinStr}</span>
-                                </div class="modal-conge">
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button class="cancel-button">Annuler</button>
