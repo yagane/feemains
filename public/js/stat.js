@@ -40,17 +40,17 @@ async function renderCalendar() {
     let totalPrix = 0;
     let passe = 0;
     let attente = 0;
-    const compteur = {};
+    const compteurNom = {};
     let c = 0;
 
     reservations.forEach(reservation => {
         const prestation_noms = reservation.prestation_noms.split(', ');
 
         prestation_noms.forEach(nom =>{
-            if (compteur[nom]) {
-              compteur[nom]++;
+            if (compteurNom[nom]) {
+              compteurNom[nom]++;
             } else {
-              compteur[nom] = 1;
+              compteurNom[nom] = 1;
             }
             c++;
         });
@@ -88,8 +88,10 @@ async function renderCalendar() {
         </div>
     `;
 
+    console.log(compteurNom);
+
     if (c != 0) {
-        const tableauOccurrences = Object.entries(compteur);
+        const tableauOccurrences = Object.entries(compteurNom);
 
         tableauOccurrences.sort((a, b) => b[1] - a[1]);
 
@@ -122,21 +124,21 @@ async function renderCalendar() {
                 <div class="barre-rempli"></div>
                 <div class="barre-content">
                     <span></span>
-                    <span></span>
+                    <span>0%</span>
                 </div>
             </div>
             <div class="barre-pourcent">
                 <div class="barre-rempli"></div>
                 <div class="barre-content">
                     <span></span>
-                    <span></span>
+                    <span>0%</span>
                 </div>
             </div>
             <div class="barre-pourcent">
                 <div class="barre-rempli"></div>
                 <div class="barre-content">
                     <span></span>
-                    <span></span>
+                    <span>0%</span>
                 </div>
             </div>
         `;
