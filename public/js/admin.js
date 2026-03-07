@@ -41,7 +41,7 @@ function resizeInput() {
     this.style.width = width + "ch";
 }
 
-function renderCalendar() {
+async function renderCalendar() {
     calendarGrid.innerHTML = "";
 
     const year = selectedDate.getFullYear();
