@@ -88,7 +88,7 @@ async function renderCalendar() {
         </div>
     `;
 
-    if (compteur) {
+    if (compteur != {}) {
         const tableauOccurrences = Object.entries(compteur);
 
         tableauOccurrences.sort((a, b) => b[1] - a[1]);
