@@ -44,8 +44,8 @@ function resizeInput() {
 async function renderCalendar() {
     calendarGrid.innerHTML = "";
 
-    const year = selectedDate.getFullYear();
-    const month = selectedDate.getMonth();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
 
     monthYear.textContent = `${months[month]} ${year}`;
 
