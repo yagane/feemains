@@ -106,7 +106,7 @@ button{
     display: flex;
     flex-direction: column;
     gap: calc(var(--spacing) * 6);
-    padding: calc(var(--spacing) * 2);
+    padding-block: calc(var(--spacing) * 6);
     align-items: center;
 }
 
@@ -123,7 +123,6 @@ button{
     border: none;
     color: var(--brown);
     cursor: pointer;
-    padding: 4px;
     transition: color .2s ease;
 }
 
@@ -137,6 +136,12 @@ button{
     flex-direction: column;
     gap: calc(var(--spacing) * 6);
     width: 80%;
+}
+
+.modal-conge {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .input-picker{
@@ -706,12 +711,10 @@ button{
 .login-container {
     width: 100%;
     max-width: 350px;
-    margin-top: 10rem;
     padding: 2rem;
     border-radius: 5px;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
     background: var(--beige);
-
 }
 
 .login-container h2 {
@@ -860,7 +863,7 @@ button{
     left: 0;
     width: 50px;
     height: 100%;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid var(--light-beige);
 }
 
 .time-marker {
@@ -882,6 +885,9 @@ button{
 
 .appointment {
     position: absolute;
+    display: flex;
+    gap: calc(var(--spacing) * 8);
+    justify-content: space-between;
     width: 100%;
     padding: 5px 10px;
     border-radius: 8px;
@@ -894,6 +900,9 @@ button{
 
 .conge {
     position: absolute;
+    display: flex;
+    gap: calc(var(--spacing) * 8);
+    justify-content: space-between;
     width: 100%;
     padding: 5px 10px;
     border-radius: 8px;
@@ -920,9 +929,10 @@ button{
 
 .time-line {
     position: absolute;
-    width: 100%;
+    width: calc(100% + 10px);
+    transform: translateX(-10px);
     height: 1px;
-    background-color: #ddd;
+    background-color: var(--light-beige);
 }
 
 .ajout-agenda {
@@ -1086,7 +1096,6 @@ button{
 
     .main {
         padding: calc(var(--spacing) * 2);
-        margin-top: calc(var(--spacing) * 4);
     }
 
     .agenda-container {

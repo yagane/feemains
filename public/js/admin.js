@@ -500,13 +500,9 @@ async function loadTimeSlots(date) {
             const dateFinStr = `${dateFin.toLocaleString().split(':')[0]}:${dateFin.toLocaleString().split(':')[1]}`
 
             const spanTime = document.createElement('span');
-            spanTime.style.position = 'absolute';
-            spanTime.style.left = '10px';
             spanTime.textContent = `${dateDebutStr} - ${dateFinStr}`;
 
             const spanName = document.createElement('span');
-            spanName.style.position = 'absolute';
-            spanName.style.right = '10px';
             spanName.textContent = 'congé';
 
             congeElement.appendChild(spanTime);
@@ -536,12 +532,12 @@ async function loadTimeSlots(date) {
                                 <h3>Congé</h3>
                             </div>
                             <div class="modal-info">
-                                <div>
+                                <div class="modal-conge">
                                     <span>${dateDebutStr}</span>
                                 </div>
                                 <div>
                                     <span>${dateFinStr}</span>
-                                </div>
+                                </div class="modal-conge">
                             </div>
                             <div class="modal-footer">
                                 <button class="cancel-button">Annuler</button>
@@ -758,12 +754,12 @@ addBtn.addEventListener('click', (event) => {
                     <h2>Ajouter un congé</h2>
                 </div>
                 <div class="modal-info">
-                    <div>
-                        <span>Début de congé :</span>
+                    <div class="modal-conge">
+                        <span>Début du congé :</span>
                         <input type="text" class='input-picker' id="inputDebut" value="20 Janvier 2026 10:00">
                     </div>
-                    <div>
-                        <span>Fin de congé :</span>
+                    <div class="modal-conge">
+                        <span>Fin du congé :</span>
                         <input type="text" class='input-picker' id="inputFin" value="21 Janvier 2026 10:00">
                     </div>
                 </div>
