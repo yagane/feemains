@@ -21,7 +21,11 @@ document.getElementById("register-form").addEventListener("submit", async functi
     const data = await response.json();
 
     if(data.success){
-
+        document.getElementById("prenom").value = '';
+        document.getElementById("nom").value = '';
+        document.getElementById("phone").value = '';
+        document.getElementById("email").value = '';
+        alert("Client ajouté avec succès !");
     } else {
         showError(data.message);
     }
