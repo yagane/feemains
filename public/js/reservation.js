@@ -477,7 +477,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
 
             const result = await response.json();
 
-            if (result.success) {
+            if (result.success && destinataire != '') {
                 const response = await fetch("/api/resaConfirmation", {
                     method: 'POST',
                     headers: {
@@ -513,8 +513,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
             }
 
         } catch (error) {
-            console.error("Erreur lors de l'envoi de la réservation :", error);
-            alert("Une erreur est survenue. Veuillez réessayer.");
+
         }
     });
 
@@ -557,6 +556,7 @@ async function updateAuthUI() {
             drop1.href = '/stat';
             drop1.textContent = 'Statistique';
             loadClients();
+            destinataire = '';
         }else{
             userId = data.id
         }
