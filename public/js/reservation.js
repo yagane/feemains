@@ -92,8 +92,6 @@ function renderCalendar() {
     }
 }
 
-renderCalendar();
-
 document.getElementById("prev").onclick = () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar();
@@ -544,6 +542,8 @@ async function updateAuthUI() {
     role = data.role;
     prenom = data.prenom;
     destinataire = data.email;
+
+    renderCalendar();
 
     if (data.connected) {
         authLink.classList.add("hidden");
