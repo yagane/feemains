@@ -66,8 +66,8 @@ async function updateAuthUI() {
         if(data.role == 'admin'){
             drop1.href = '/admin';
             drop1.textContent = 'Agenda';
-            drop1.href = '/stat';
-            drop1.textContent = 'Statistique';
+            drop2.href = '/stat';
+            drop2.textContent = 'Statistique';
         }else{
             window.location.href = "/";
         }
