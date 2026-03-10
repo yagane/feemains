@@ -137,7 +137,6 @@ function ajouterDureeADate(date, duree) {
     return new Date(date.getTime() + dureeMs);
 }
 
-
 function checkTimeSlotAvailability(timeSlot, reservations, conges) {
     const [hours, minutes] = timeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
@@ -145,9 +144,16 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
 
     const prestationEndTime = new Date(slotDateTime.getTime() + prestationDuration * 60000);
 
-    if (prestationEndTime.getHours() >= 20) {
-        return false;
+    if(selectedDate.getDay() == 3){
+        if (prestationEndTime.getHours() > 18) {
+            return false;
+        }
+    }else{
+        if (prestationEndTime.getHours() > 20) {
+            return false;
+        }
     }
+
 
     let flag = true;
 
