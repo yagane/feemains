@@ -118,10 +118,8 @@ document.getElementById("next").onclick = () => {
     renderCalendar();
 };
 
-function generateTimeSlots() {
+function generateTimeSlots(startHour, endHour) {
     const slots = [];
-    const startHour = 10;
-    const endHour = 20;
 
     for (let hour = startHour; hour < endHour; hour++) {
         for (let minute = 0; minute < 60; minute += 15) {
@@ -144,6 +142,8 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
     const [hours, minutes] = timeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
     slotDateTime.setHours(hours, minutes, 0, 0);
+
+    slotDateTime.getDay()
 
     const prestationEndTime = new Date(slotDateTime.getTime() + prestationDuration * 60000);
 
@@ -199,8 +199,14 @@ async function displayTimeSlots() {
 
     const conges = await response_conge.json();
 
+    let allSlots = null;
+
     // Générer les tranches horaires
-    const allSlots = generateTimeSlots();
+    if(slotDateTime.getDay() == 3){
+        allSlots = generateTimeSlots(10, 18);
+    }else{
+        allSlots = generateTimeSlots(10, 20);
+    }
 
     // Vérifier la disponibilité de chaque tranche
     for (const slot of allSlots) {
