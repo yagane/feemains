@@ -143,8 +143,6 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
     const slotDateTime = new Date(selectedDate);
     slotDateTime.setHours(hours, minutes, 0, 0);
 
-    slotDateTime.getDay()
-
     const prestationEndTime = new Date(slotDateTime.getTime() + prestationDuration * 60000);
 
     if (prestationEndTime.getHours() >= 20) {
@@ -202,7 +200,7 @@ async function displayTimeSlots() {
     let allSlots = null;
 
     // Générer les tranches horaires
-    if(slotDateTime.getDay() == 3){
+    if(selectedDate.getDay() == 3){
         allSlots = generateTimeSlots(10, 18);
     }else{
         allSlots = generateTimeSlots(10, 20);
