@@ -331,6 +331,8 @@ async function loadTimeSlots(date) {
                     </div>
                 `;
 
+                mainFooter.appendChild(modal);
+
                 const closeBtn = document.querySelector('.close-button');
 
                 closeBtn.addEventListener('click', (event) => {
