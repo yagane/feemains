@@ -145,11 +145,11 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
     const prestationEndTime = new Date(slotDateTime.getTime() + prestationDuration * 60000);
 
     if(selectedDate.getDay() == 3){
-        if (prestationEndTime.getHours() == 18 && prestationEndTime.getMinutes() > 0) {
+        if ((prestationEndTime.getHours() == 18 && prestationEndTime.getMinutes() > 0) || prestationEndTime.getHours() > 18) {
             return false;
         }
     }else{
-        if (prestationEndTime.getHours() == 20 && prestationEndTime.getMinutes() > 0) {
+        if ((prestationEndTime.getHours() == 20 && prestationEndTime.getMinutes() > 0) || prestationEndTime.getHours() > 20) {
             return false;
         }
     }
