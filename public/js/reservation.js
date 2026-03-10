@@ -40,6 +40,22 @@ function toLocalISOString(date) {
   );
 }
 
+function resizeInput() {
+    let width = 0;
+
+    for(let i = 0; i < this.value.length; i++){
+        if(this.value[i] == '1' || this.value[i] == 'i'){
+            width += 0.5;
+        }else if(this.value[i] == ' '){
+            width += 0.6;
+        }else{
+            width += 1;
+        }
+    }
+
+    this.style.width = width + "ch";
+}
+
 function renderCalendar() {
     calendarGrid.innerHTML = "";
 
