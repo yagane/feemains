@@ -307,8 +307,7 @@ async function loadTimeSlots(date) {
                         </div>
                         <div class="modal-main">
                             <div class="modal-header">
-                                <h3>Reservation du ${localDate}</h3>
-                                <h3>${startTime} - ${endTime}</h3>
+                                <h3>Information client</h3>
                             </div>
                             <div class="modal-info">
                                 <div class='user-info'>
