@@ -287,56 +287,6 @@ async function loadTimeSlots(date) {
                 });
             });
 
-            const userInfo = document.querySelector('.user-info');
-
-            userInfo.addEventListener('click', async function(event) {
-                const mainFooter = document.querySelector('.main-footer');
-
-                const modal = document.createElement('div');
-                modal.className = 'modal-backdrop';
-
-                modal.innerHTML = `
-                    <div class="modal-content">
-                        <div class="modal-nav">
-                            <button class="close-button">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="modal-main">
-                            <div class="modal-header">
-                                <h3>Information client</h3>
-                            </div>
-                            <div class="modal-info">
-                                <div class='user-info'>
-                                    <div class="user-info-div">
-                                        <span>Nom :</span>
-                                    </div>
-                                    <div class="user-info-div">
-                                        <span>Email :</span>
-                                    </div>
-                                    <div class="user-info-div">
-                                        <span>Téléphone :</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="cancel-button">Annuler</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                const closeBtn = document.querySelector('.close-button');
-
-                closeBtn.addEventListener('click', (event) => {
-                    const modal = document.querySelector('.modal-backdrop');
-                    modal.remove();
-                });
-            });
-
             const resumePresta = document.querySelector('.resume-prestation');
 
             const prestation_noms = appointment.prestation_noms.split(', ');
@@ -493,6 +443,56 @@ async function loadTimeSlots(date) {
                 const modal = document.querySelector('.modal-backdrop');
                 modal.remove();
             });
+        });
+    });
+
+    const userInfo = document.querySelector('.user-info');
+
+    userInfo.addEventListener('click', async function(event) {
+        const mainFooter = document.querySelector('.main-footer');
+
+        const modal = document.createElement('div');
+        modal.className = 'modal-backdrop';
+
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-nav">
+                    <button class="close-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-main">
+                    <div class="modal-header">
+                        <h3>Information client</h3>
+                    </div>
+                    <div class="modal-info">
+                        <div class='user-info'>
+                            <div class="user-info-div">
+                                <span>Nom :</span>
+                            </div>
+                            <div class="user-info-div">
+                                <span>Email :</span>
+                            </div>
+                            <div class="user-info-div">
+                                <span>Téléphone :</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="cancel-button">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const closeBtn = document.querySelector('.close-button');
+
+        closeBtn.addEventListener('click', (event) => {
+            const modal = document.querySelector('.modal-backdrop');
+            modal.remove();
         });
     });
 
