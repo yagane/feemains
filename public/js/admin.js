@@ -338,7 +338,7 @@ async function loadTimeSlots(date) {
                 const closeBtn = elements[elements.length - 1];
 
                 closeBtn.addEventListener('click', (event) => {
-                    const modals = document.querySelector('.modal-backdrop');
+                    const modals = document.querySelectorAll('.modal-backdrop');
 
                     const modal = modals[modals.length - 1];
                     modal.remove();
