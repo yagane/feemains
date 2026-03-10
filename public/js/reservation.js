@@ -452,7 +452,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
         inputDuree.className = 'input-duree';
         inputDuree.id = "inputDuree";
 
-        inputPrix.value = `${appointment.prix}`;
+        inputPrix.value = `${total}`;
         inputPrix.className = 'input-prix';
 
         inputPrix.addEventListener('input', function(e) {
