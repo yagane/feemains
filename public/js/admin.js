@@ -311,14 +311,17 @@ async function loadTimeSlots(date) {
                             </div>
                             <div class="modal-info">
                                 <div class='user-info'>
-                                    <div class="user-info-div">
+                                    <div class="user-name">
                                         <span>Nom :</span>
+                                        <span>${appointment.prenom} ${appointment.nom}</span>
                                     </div>
-                                    <div class="user-info-div">
+                                    <div class="user-email">
                                         <span>Email :</span>
+                                        <span>${appointment.email}</span>
                                     </div>
-                                    <div class="user-info-div">
+                                    <div class="user-phone">
                                         <span>Téléphone :</span>
+                                        <span>${appointment.phone}</span>
                                     </div>
                                 </div>
                             </div>
