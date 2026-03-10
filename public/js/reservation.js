@@ -478,10 +478,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
 
         inputPrix.addEventListener('change', async function(e) {
             total = inputPrix.value;
-
-            if(data.success){
-                loadTimeSlots(selectedDate);
-            }
         });
 
         resizeInput.call(inputPrix);
