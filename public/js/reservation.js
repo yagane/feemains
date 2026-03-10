@@ -365,12 +365,7 @@ function updateChecked() {
     const durationHours = Math.floor(prestationDuration/60);
     const durationMinutes = prestationDuration%60;
 
-    // Mettre à jour le total
-    if(durationHours == 0){
-        prestationDurationStr = `${durationMinutes} min`;
-    }else{
-        prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
-    }
+    prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
 }
 
 document.getElementById('resume-reservation').addEventListener('click', (event) => {
@@ -439,6 +434,103 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
         resumePresta.appendChild(divClone)
     }
 
+    if (role == 'admin') {
+        const totalDuree = document.getElementById('total-duree');
+        const totalPrix = document.getElementById('total-prix');
+
+        totalDuree.innerHTML = '';
+        totalPrix.innerHTML = '';
+
+        const spanPrix = document.createElement('span');
+        const spanPrix2 = document.createElement('span');
+        const spanDuree = document.createElement('span');
+
+        const inputPrix = document.createElement('input');
+        const inputDuree = document.createElement('input');
+
+        inputDuree.value = `${prestationDurationStr}`;
+        inputDuree.className = 'input-duree';
+        inputDuree.id = "inputDuree";
+
+        inputPrix.value = `${appointment.prix}`;
+        inputPrix.className = 'input-prix';
+
+        inputPrix.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            resizeInput.call(inputPrix);
+        });
+
+        inputPrix.addEventListener('change', async function(e) {
+            total = inputPrix.value;
+
+            if(data.success){
+                loadTimeSlots(selectedDate);
+            }
+        });
+
+        resizeInput.call(inputPrix);
+
+        spanPrix.textContent = 'Prix : ';
+        spanPrix2.textContent = ' €';
+        spanDuree.textContent = 'Duree : ';
+
+        totalPrix.appendChild(spanPrix);
+        totalPrix.appendChild(inputPrix);
+        totalPrix.appendChild(spanPrix2);
+        totalDuree.appendChild(spanDuree);
+        totalDuree.appendChild(inputDuree);
+
+        const inputPicker = document.getElementById('inputDuree');
+        const pickerDebut = new Picker(inputPicker, {
+            format: 'H h m min',
+            increment: {
+                minute: 5
+            },
+            text: {
+                title: "Choisisez l'heure",
+                cancel: 'Cancel',
+                confirm: 'OK',
+                year: 'Year',
+                month: 'Month',
+                day: 'Day',
+                hour: 'Hour',
+                minute: 'Minute',
+                second: 'Second',
+                millisecond: 'Millisecond'
+            }
+        });
+
+        const cancelBtn = document.querySelectorAll('.picker-cancel');
+
+        cancelBtn.forEach(button => {
+            button.remove();
+        });
+
+        const picker = document.querySelectorAll('.picker');
+
+        picker.forEach(button => {
+            button.dataset.pickerAction = "pick";
+        });
+
+        const closePicker = document.querySelectorAll('.picker-close');
+
+        closePicker.forEach(button => {
+            button.dataset.pickerAction = "pick";
+        });
+
+        inputPicker.addEventListener('change', async function(e) {
+            resizeInput.call(inputPicker);
+
+            prestationDurationStr = inputPicker.value;
+
+            if(data.success){
+                loadTimeSlots(selectedDate);
+            }
+        });
+
+        resizeInput.call(inputPicker);
+    }
+
     document.getElementById('submit-reservation').addEventListener('click', async () => {
         // Vérifier que tous les champs sont remplis
         if (selectedPrestationId == [] || !selectedDate || !selectedTimeSlot) {
@@ -455,7 +547,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
         const durationHours = Math.floor(prestationDuration/60);
         const durationMinutes = prestationDuration%60;
 
-        const duration = `${durationHours}:${durationMinutes}`;
+        const duration = `${prestationDurationStr.split(' h ')[0]}:${prestationDurationStr.split(' h ')[1].split(' min')[0]}`;
 
         const date = `${toLocalISOString(slotDateTime).split('T')[0]} ${toLocalISOString(slotDateTime).split('T')[1].split('.')[0]}`;
 
