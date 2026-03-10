@@ -244,6 +244,7 @@ async function loadTimeSlots(date) {
                         </div>
                         <div class="modal-info">
                             <div class='user-info'>
+                                <span>${appointment.prenom} ${appointment.nom}</span>
                             </div>
                             <div class="resume-prestation">
                             </div>
@@ -288,22 +289,54 @@ async function loadTimeSlots(date) {
 
             const userInfo = document.querySelector('.user-info');
 
-            const spanFullname = document.createElement('span');
-            const spanEmail = document.createElement('span');
-            const spanPhone = document.createElement('span');
+            userInfo.addEventListener('click', async function(event) {
+                const mainFooter = document.querySelector('.main-footer');
 
-            spanFullname.textContent = `${appointment.prenom} ${appointment.nom}`;
-            userInfo.appendChild(spanFullname);
+                const modal = document.createElement('div');
+                modal.className = 'modal-backdrop';
 
-            if (appointment.email) {
-                spanEmail.textContent = `${appointment.email}`;
-                userInfo.appendChild(spanEmail);
-            }
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-nav">
+                            <button class="close-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-main">
+                            <div class="modal-header">
+                                <h3>Reservation du ${localDate}</h3>
+                                <h3>${startTime} - ${endTime}</h3>
+                            </div>
+                            <div class="modal-info">
+                                <div class='user-info'>
+                                    <div class="user-info-div">
+                                        <span>Nom :</span>
+                                    </div>
+                                    <div class="user-info-div">
+                                        <span>Email :</span>
+                                    </div>
+                                    <div class="user-info-div">
+                                        <span>Téléphone :</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="cancel-button">Annuler</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
 
-            if (appointment.phone) {
-                spanPhone.textContent = `${appointment.phone}`;
-                userInfo.appendChild(spanPhone);
-            }
+                const closeBtn = document.querySelector('.close-button');
+
+                closeBtn.addEventListener('click', (event) => {
+                    const modal = document.querySelector('.modal-backdrop');
+                    modal.remove();
+                });
+            });
 
             const resumePresta = document.querySelector('.resume-prestation');
 
@@ -327,7 +360,7 @@ async function loadTimeSlots(date) {
                 const div = document.createElement('div');
 
                 div.innerHTML = `
-                    <span class="prestation-name">Pose semi-permanent pieds</span>
+                    <span class="prestation-name">${prestation_noms[i]}</span>
                     <div class="prestation-prixduree">
                         <span>${prestationDurationStr}</span>
                         <span class="prestation-price">${prestation_prix[i]} €</span>
