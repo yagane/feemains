@@ -333,10 +333,14 @@ async function loadTimeSlots(date) {
 
                 mainFooter.appendChild(modal);
 
-                const closeBtn = document.querySelector('.close-button');
+                const elements = document.querySelectorAll('.close-button');
+
+                const closeBtn = elements[elements.length - 1];
 
                 closeBtn.addEventListener('click', (event) => {
-                    const modal = document.querySelector('.modal-backdrop');
+                    const modals = document.querySelector('.modal-backdrop');
+
+                    const modal = modals[modals.length - 1];
                     modal.remove();
                 });
             });
