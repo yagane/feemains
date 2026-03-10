@@ -290,8 +290,6 @@ async function loadTimeSlots(date) {
             const userInfo = document.querySelector('.user-info');
 
             userInfo.addEventListener('click', async function(event) {
-                console.log("userinfo");
-
                 const mainFooter = document.querySelector('.main-footer');
 
                 const modal = document.createElement('div');
