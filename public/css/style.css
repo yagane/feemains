@@ -976,8 +976,15 @@ button{
     z-index: 1;
 }
 
-.input-info {
+.input-resa {
     background: var(--gray);
+    font-family: Poppins;
+    font-size: medium;
+    color: var(--brown);
+}
+
+.input-client {
+    background: var(--beige);
     font-family: Poppins;
     font-size: medium;
     color: var(--brown);
