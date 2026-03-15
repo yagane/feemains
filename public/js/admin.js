@@ -26,43 +26,23 @@ function toLocalISOString(date) {
 }
 
 function resizeInput() {
-    let width = 0;
+    const tempSpan = document.createElement('span');
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.whiteSpace = 'pre';
+    tempSpan.style.position = 'absolute';
+    tempSpan.style.fontSize = window.getComputedStyle(this).fontSize;
+    tempSpan.style.fontFamily = window.getComputedStyle(this).fontFamily;
+    tempSpan.style.fontWeight = window.getComputedStyle(this).fontWeight;
+    tempSpan.style.padding = window.getComputedStyle(this).padding;
+    tempSpan.style.border = window.getComputedStyle(this).border;
+    tempSpan.textContent = this.value || this.placeholder || '';
 
-    if(this.value){
-        for(let i = 0; i < this.value.length; i++){
-            if(this.value[i] == '1'
-            || this.value[i] == 'i'
-            || this.value[i] == 'l'
-            || this.value[i] == 't'
-            || this.value[i] == 'j'
-            || this.value[i] == 'f'){
-                width += 0.5;
-            }else if(this.value[i] == ' '){
-                width += 0.6;
-            }else{
-                width += 1;
-            }
-        }
-    }else{
-        for(let i = 0; i < this.placeholder.length; i++){
-            if(this.value[i] == '1'
-            || this.value[i] == 'i'
-            || this.value[i] == 'l'
-            || this.value[i] == 't'
-            || this.value[i] == 'j'
-            || this.value[i] == 'f'){
-                width += 0.5;
-            }else if(this.value[i] == ' '){
-                width += 0.6;
-            }else{
-                width += 1;
-            }
-        }
-    }
+    document.body.appendChild(tempSpan);
 
+    const width = tempSpan.offsetWidth;
+    this.style.width = `${width}px`;
 
-
-    this.style.width = width + "ch";
+    document.body.removeChild(tempSpan);
 }
 
 async function renderCalendar() {
