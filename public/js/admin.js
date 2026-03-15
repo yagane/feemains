@@ -334,8 +334,8 @@ async function loadTimeSlots(date) {
 
                 mainFooter.appendChild(modal);
 
-                const inputEmail = document.querySelector('.email-input');
-                const inputPhone = document.querySelector('.phone-input');
+                const inputEmail = document.getElementById('email-input');
+                const inputPhone = document.getElementById('phone-input');
 
                 const user_id = appointment.user_id
 
