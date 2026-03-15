@@ -8,6 +8,7 @@ class Reservation {
         $stmt = $db->prepare(
             "SELECT
                 r.id,
+                r.user_id,
                 r.date_reservation,
                 r.duree_reservation,
                 r.prix,

@@ -317,11 +317,11 @@ async function loadTimeSlots(date) {
                                     </div>
                                     <div class="user-info-div">
                                         <span>Email :</span>
-                                        <span>${appointment.email}</span>
+                                        <input id="email-input" value=${appointment.email}>
                                     </div>
                                     <div class="user-info-div">
                                         <span>Téléphone :</span>
-                                        <span>${appointment.phone}</span>
+                                        <input id="phone-input" value=${appointment.phone}>
                                     </div>
                                 </div>
                             </div>
@@ -333,6 +333,56 @@ async function loadTimeSlots(date) {
                 `;
 
                 mainFooter.appendChild(modal);
+
+                const inputEmail = document.querySelector('.email-input');
+                const inputPhone = document.querySelector('.phone-input');
+
+                const user_id = appointment.user_id
+
+                inputEmail.addEventListener('input', function(e) {
+                    resizeInput.call(this);
+                });
+
+                inputEmail.addEventListener('change', async function(e) {
+                    const response = await fetch("/api/updateEmailClient", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            id: user_id,
+                            email: this.value
+                        })
+                    });
+
+                    const data = await response.json();
+                });
+
+                resizeInput.call(inputEmail);
+
+                inputPhone.addEventListener('input', function(e) {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    resizeInput.call(this);
+                });
+
+                inputPhone.addEventListener('change', async function(e) {
+                    const response = await fetch("/api/updatePhoneClient", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            id: user_id,
+                            phone: this.value
+                        })
+                    });
+
+                    const data = await response.json();
+                });
+
+                resizeInput.call(inputPhone);
 
                 const elements = document.querySelectorAll('.close-button');
 

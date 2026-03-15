@@ -26,6 +26,28 @@ class User {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function updateEmail($id, $email) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "UPDATE users SET email=:email
+            WHERE id=:id"
+        );
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public static function updatePhone($id, $phone) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "UPDATE users SET phone=:phone
+            WHERE id=:id"
+        );
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':phone', $phone, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
     public static function insert($prenom, $nom, $phone, $email, $password) {
         $password = password_hash($password, PASSWORD_BCRYPT);
 
