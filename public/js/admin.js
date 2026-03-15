@@ -38,6 +38,10 @@ function resizeInput() {
         }
     }
 
+    if(width == 0){
+        width = 4;
+    }
+
     this.style.width = width + "ch";
 }
 
