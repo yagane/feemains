@@ -28,19 +28,39 @@ function toLocalISOString(date) {
 function resizeInput() {
     let width = 0;
 
-    for(let i = 0; i < this.value.length; i++){
-        if(this.value[i] == '1' || this.value[i] == 'i'){
-            width += 0.5;
-        }else if(this.value[i] == ' '){
-            width += 0.6;
-        }else{
-            width += 1;
+    if(this.value){
+        for(let i = 0; i < this.value.length; i++){
+            if(this.value[i] == '1'
+            || this.value[i] == 'i'
+            || this.value[i] == 'l'
+            || this.value[i] == 't'
+            || this.value[i] == 'j'
+            || this.value[i] == 'f'){
+                width += 0.5;
+            }else if(this.value[i] == ' '){
+                width += 0.6;
+            }else{
+                width += 1;
+            }
+        }
+    }else{
+        for(let i = 0; i < this.placeholder.length; i++){
+            if(this.value[i] == '1'
+            || this.value[i] == 'i'
+            || this.value[i] == 'l'
+            || this.value[i] == 't'
+            || this.value[i] == 'j'
+            || this.value[i] == 'f'){
+                width += 0.5;
+            }else if(this.value[i] == ' '){
+                width += 0.6;
+            }else{
+                width += 1;
+            }
         }
     }
 
-    if(width == 0){
-        width = 4;
-    }
+
 
     this.style.width = width + "ch";
 }
@@ -344,9 +364,7 @@ async function loadTimeSlots(date) {
                 const user_id = appointment.user_id
 
                 inputEmail.addEventListener('input', function(e) {
-                    if(this.value){
-                        resizeInput.call(this);
-                    }
+                    resizeInput.call(this);
                 });
 
                 inputEmail.addEventListener('change', async function(e) {
@@ -365,15 +383,11 @@ async function loadTimeSlots(date) {
                     const data = await response.json();
                 });
 
-                if(inputEmail.value){
-                    resizeInput.call(inputEmail);
-                }
+                resizeInput.call(inputEmail);
 
                 inputPhone.addEventListener('input', function(e) {
                     this.value = this.value.replace(/[^0-9]/g, '');
-                    if(this.value){
-                        resizeInput.call(this);
-                    }
+                    resizeInput.call(this);
                 });
 
                 inputPhone.addEventListener('change', async function(e) {
@@ -392,9 +406,7 @@ async function loadTimeSlots(date) {
                     const data = await response.json();
                 });
 
-                if(inputPhone.value){
-                    resizeInput.call(inputPhone);
-                }
+                resizeInput.call(inputPhone);
 
                 const elements = document.querySelectorAll('.close-button');
 
