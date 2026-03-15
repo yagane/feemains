@@ -344,7 +344,9 @@ async function loadTimeSlots(date) {
                 const user_id = appointment.user_id
 
                 inputEmail.addEventListener('input', function(e) {
-                    resizeInput.call(this);
+                    if(this.value){
+                        resizeInput.call(this);
+                    }
                 });
 
                 inputEmail.addEventListener('change', async function(e) {
@@ -363,11 +365,15 @@ async function loadTimeSlots(date) {
                     const data = await response.json();
                 });
 
-                resizeInput.call(inputEmail);
+                if(inputEmail.value){
+                    resizeInput.call(inputEmail);
+                }
 
                 inputPhone.addEventListener('input', function(e) {
                     this.value = this.value.replace(/[^0-9]/g, '');
-                    resizeInput.call(this);
+                    if(this.value){
+                        resizeInput.call(this);
+                    }
                 });
 
                 inputPhone.addEventListener('change', async function(e) {
@@ -386,7 +392,9 @@ async function loadTimeSlots(date) {
                     const data = await response.json();
                 });
 
-                resizeInput.call(inputPhone);
+                if(inputPhone.value){
+                    resizeInput.call(inputPhone);
+                }
 
                 const elements = document.querySelectorAll('.close-button');
 
