@@ -321,11 +321,11 @@ async function loadTimeSlots(date) {
                                     </div>
                                     <div class="user-info-div">
                                         <span>Email :</span>
-                                        <input id="email-input" placeholder="Entrez un email" value=${appointment.email}>
+                                        <input id="email-input" class="input-info" placeholder="Entrez un email" value=${appointment.email}>
                                     </div>
                                     <div class="user-info-div">
                                         <span>Téléphone :</span>
-                                        <input id="phone-input" placeholder="Entrez un numéro" value=${appointment.phone}>
+                                        <input id="phone-input" class="input-info" placeholder="Entrez un numéro" value=${appointment.phone}>
                                     </div>
                                 </div>
                             </div>
@@ -448,11 +448,11 @@ async function loadTimeSlots(date) {
             const inputDuree = document.createElement('input');
 
             inputDuree.value = `${parseInt(appointment.duree_reservation.split(':')[0])} h ${parseInt(appointment.duree_reservation.split(':')[1])} min`;
-            inputDuree.className = 'input-duree';
+            inputDuree.className = 'input-info';
             inputDuree.id = "inputDuree";
 
             inputPrix.value = `${appointment.prix}`;
-            inputPrix.className = 'input-prix';
+            inputPrix.className = 'input-info';
 
             inputPrix.addEventListener('input', function(e) {
                 this.value = this.value.replace(/[^0-9]/g, '');
