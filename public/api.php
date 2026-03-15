@@ -21,6 +21,8 @@ $router->add("POST", "/api/login", ["AuthController", "login"]);
 $router->add("POST", "/api/register", ["AuthController", "register"]);
 $router->add("POST", "/api/registerInvite", ["AuthController", "registerInvite"]);
 $router->add("GET", "/api/getAllClients", ["AuthController", "getAllClients"]);
+$router->add("GET", "/api/updateEmailClient", ["AuthController", "updateEmailClient"]);
+$router->add("GET", "/api/updatePhoneClient", ["AuthController", "updatePhoneClient"]);
 $router->add("GET", "/api/logout", ["AuthController", "logout"]);
 $router->add("GET", "/api/me", ["AuthController", "me"]);
 
