@@ -321,11 +321,11 @@ async function loadTimeSlots(date) {
                                     </div>
                                     <div class="user-info-div">
                                         <span>Email :</span>
-                                        <input id="email-input" value=${appointment.email}>
+                                        <input id="email-input" value=${appointment.email} placeholder="Entrez un email">
                                     </div>
                                     <div class="user-info-div">
                                         <span>Téléphone :</span>
-                                        <input id="phone-input" value=${appointment.phone}>
+                                        <input id="phone-input" value=${appointment.phone} placeholder="Entrez un numéro">
                                     </div>
                                 </div>
                             </div>
