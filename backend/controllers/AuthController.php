@@ -59,11 +59,13 @@ class AuthController {
 
         $success = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
 
-        $user = User::findByEmail($data['email']);
+        if($success["success"]){
+            $user = User::findByEmail($data['email']);
 
-        foreach ($clients as $client) {
-            if (nomsSemblables($client['nom'], $user['nom']) && nomsSemblables($client['prenom'], $user['prenom'])) {
-                User::mergeUser($user["id"], $client['id']);
+            foreach ($clients as $client) {
+                if (nomsSemblables($client['nom'], $user['nom']) && nomsSemblables($client['prenom'], $user['prenom'])) {
+                    User::mergeUser($user["id"], $client['id']);
+                }
             }
         }
 
