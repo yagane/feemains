@@ -87,7 +87,7 @@ async function renderCalendar() {
 
     spanTotalPre.textContent = `${parseFloat(totalPrixPre).toFixed(2)} €`;
 
-    if (passe == 0) {
+    if ((passe + attente) == 0) {
         spanAveragePre.textContent = `0 €`;
     }else{
         spanAveragePre.textContent = `${parseFloat(totalPrixPre/(passe+attente)).toFixed(2)} €`;
