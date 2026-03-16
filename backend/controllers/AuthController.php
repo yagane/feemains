@@ -55,11 +55,11 @@ class AuthController {
     public static function register() {
         $data = json_decode(file_get_contents("php://input"), true);
 
+        $clients = User::findAllClient();
+
         $success = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
 
         $user = User::findByEmail($data['email']);
-
-        $clients = User::findAllClient();
 
         foreach ($clients as $client) {
             if (nomsSemblables($client['nom'], $user['nom']) && nomsSemblables($client['prenom'], $user['prenom'])) {
