@@ -166,6 +166,8 @@ document.getElementById("prev").onclick = () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     totalRevenu.innerHTML = '';
     averageRevenu.innerHTML = '';
+    totalRevenuPre.innerHTML = '';
+    averageRevenuPre.innerHTML = '';
     renderCalendar();
 };
 
@@ -173,6 +175,8 @@ document.getElementById("next").onclick = () => {
     currentDate.setMonth(currentDate.getMonth() + 1);
     totalRevenu.innerHTML = '';
     averageRevenu.innerHTML = '';
+    totalRevenuPre.innerHTML = '';
+    averageRevenuPre.innerHTML = '';
     renderCalendar();
 };
 
