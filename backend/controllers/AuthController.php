@@ -2,10 +2,14 @@
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Token.php';
 
+function nomsSemblables($nom1, $nom2, $seuil = 4) {
+    $distance = levenshtein(strtolower($nom1), strtolower($nom2));
+    return $distance <= $seuil;
+}
+
 class AuthController {
 
     public static function login() {
-
         session_start();
 
         $data = json_decode(file_get_contents("php://input"), true);
@@ -53,11 +57,20 @@ class AuthController {
 
         $success = User::insert($data['prenom'],$data['nom'],$data['phone'],$data['email'],$data['password']);
 
+        $user = User::findByEmail($data['email']);
+
+        $clients = User::findAllClient();
+
+        foreach ($clients as $client) {
+            if (nomsSemblables($client['nom'], $user['nom']) && nomsSemblables($client['prenom'], $user['prenom'])) {
+                User::mergeUser($user["id"], $client['id']);
+            }
+        }
+
         echo json_encode($success);
     }
 
     public static function getAllClients() {
-
         $data = json_decode(file_get_contents("php://input"), true);
 
         $clients = User::findAllClient();
@@ -66,14 +79,12 @@ class AuthController {
     }
 
     public static function mergeUser() {
-
         $data = json_decode(file_get_contents("php://input"), true);
 
         User::mergeUser($data["id_new"], $data['id_old']);
     }
 
     public static function updateEmailClient() {
-
         $data = json_decode(file_get_contents("php://input"), true);
 
         User::updateEmail($data["id"], $data['email']);
