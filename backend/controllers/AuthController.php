@@ -65,22 +65,25 @@ class AuthController {
         echo json_encode($clients);
     }
 
+    public static function mergeUser() {
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        User::mergeUser($data["id_new"], $data['id_old']);
+    }
+
     public static function updateEmailClient() {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $clients = User::updateEmail($data["id"], $data['email']);
-
-        echo json_encode($clients);
+        User::updateEmail($data["id"], $data['email']);
     }
 
     public static function updatePhoneClient() {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $clients = User::updatePhone($data["id"], $data["phone"]);
-
-        echo json_encode($clients);
+        User::updatePhone($data["id"], $data["phone"]);
     }
 
     public static function registerInvite() {

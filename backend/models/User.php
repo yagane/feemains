@@ -37,6 +37,21 @@ class User {
         $stmt->execute();
     }
 
+    public static function mergeUser($id_new, $id_old) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "UPDATE reservations
+            SET user_id = :id_new
+            WHERE user_id = :id_old;
+
+            DELETE FROM users
+            WHERE id = :id_old;"
+        );
+        $stmt->bindParam(':id_new', $id_new, PDO::PARAM_INT);
+        $stmt->bindParam(':id_old', $id_old, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
     public static function updatePhone($id, $phone) {
         $db = Database::connect();
         $stmt = $db->prepare(

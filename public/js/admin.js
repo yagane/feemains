@@ -291,6 +291,9 @@ async function loadTimeSlots(date) {
                 });
             });
 
+            let email = `${appointment.email}`;
+            let phone = `${appointment.phone}`
+
             const userInfo = document.querySelector('.user-info');
 
             userInfo.addEventListener('click', async function(event) {
@@ -321,11 +324,11 @@ async function loadTimeSlots(date) {
                                     </div>
                                     <div class="user-info-div">
                                         <span>Email :</span>
-                                        <input id="email-input" class="input-client" placeholder="Entrez un email" value=${appointment.email}>
+                                        <input id="email-input" class="input-client" placeholder="Entrez un email" value=${email}>
                                     </div>
                                     <div class="user-info-div">
                                         <span>Téléphone :</span>
-                                        <input id="phone-input" class="input-client" placeholder="Entrez un numéro" value=${appointment.phone}>
+                                        <input id="phone-input" class="input-client" placeholder="Entrez un numéro" value=${phone}>
                                     </div>
                                 </div>
                             </div>
@@ -361,6 +364,8 @@ async function loadTimeSlots(date) {
                     });
 
                     const data = await response.json();
+
+                    email = this.value;
                 });
 
                 resizeInput.call(inputEmail);
@@ -384,6 +389,8 @@ async function loadTimeSlots(date) {
                     });
 
                     const data = await response.json();
+
+                    phone = this.value;
                 });
 
                 resizeInput.call(inputPhone);
