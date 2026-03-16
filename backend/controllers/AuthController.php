@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Token.php';
 
-function nomsSemblables($nom1, $nom2, $seuil = 4) {
+function nomsSemblables($nom1, $nom2, $seuil = 3) {
     $distance = levenshtein(strtolower($nom1), strtolower($nom2));
     return $distance <= $seuil;
 }
