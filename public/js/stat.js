@@ -1,6 +1,8 @@
 const monthYear = document.getElementById("month-year");
 const totalRevenu = document.querySelector(".total-revenu");
 const averageRevenu = document.querySelector(".average-revenu");
+const totalRevenuPre = document.querySelector(".total-revenu-pre");
+const averageRevenuPre = document.querySelector(".average-revenu-pre");
 
 const months = [
     "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -38,6 +40,7 @@ async function renderCalendar() {
     const bestPresta = document.querySelector(".best-presta");
 
     let totalPrix = 0;
+    let totalPrixPre = 0;
     let passe = 0;
     let attente = 0;
     const compteurNom = {};
@@ -61,6 +64,8 @@ async function renderCalendar() {
         } else {
             attente += 1;
         }
+
+        totalPrixPre += parseInt(reservation.prix);
     });
 
     const spanTotal = document.createElement('span');
@@ -76,6 +81,20 @@ async function renderCalendar() {
 
     totalRevenu.appendChild(spanTotal);
     averageRevenu.appendChild(spanAverage);
+
+    const spanTotalPre = document.createElement('span');
+    const spanAveragePre = document.createElement('span');
+
+    spanTotalPre.textContent = `${parseFloat(totalPrixPre).toFixed(2)} €`;
+
+    if (passe == 0) {
+        spanAveragePre.textContent = `0 €`;
+    }else{
+        spanAveragePre.textContent = `${parseFloat(totalPrixPre/(passe+attente)).toFixed(2)} €`;
+    }
+
+    totalRevenuPre.appendChild(spanTotalPre);
+    averageRevenuPre.appendChild(spanAveragePre);
 
     rdvCompte.innerHTML = `
         <div>

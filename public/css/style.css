@@ -1102,11 +1102,13 @@ button{
     z-index: 1;
 }
 
-.total-revenu {
+.total-revenu,
+.total-revenu-pre {
     width: 55%;
 }
 
-.average-revenu {
+.average-revenu,
+.average-revenu-pre {
     width: 40%;
 }
 
