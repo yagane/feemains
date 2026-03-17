@@ -41,19 +41,23 @@ function toLocalISOString(date) {
 }
 
 function resizeInput() {
-    let width = 0;
+    const tempSpan = document.createElement('span');
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.whiteSpace = 'pre';
+    tempSpan.style.position = 'absolute';
+    tempSpan.style.fontSize = window.getComputedStyle(this).fontSize;
+    tempSpan.style.fontFamily = window.getComputedStyle(this).fontFamily;
+    tempSpan.style.fontWeight = window.getComputedStyle(this).fontWeight;
+    tempSpan.style.padding = window.getComputedStyle(this).padding;
+    tempSpan.style.border = window.getComputedStyle(this).border;
+    tempSpan.textContent = this.value || this.placeholder || '';
 
-    for(let i = 0; i < this.value.length; i++){
-        if(this.value[i] == '1' || this.value[i] == 'i'){
-            width += 0.5;
-        }else if(this.value[i] == ' '){
-            width += 0.6;
-        }else{
-            width += 1;
-        }
-    }
+    document.body.appendChild(tempSpan);
 
-    this.style.width = width + "ch";
+    const width = tempSpan.offsetWidth;
+    this.style.width = `${width}px`;
+
+    document.body.removeChild(tempSpan);
 }
 
 function renderCalendar() {
@@ -480,11 +484,11 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
         const inputDuree = document.createElement('input');
 
         inputDuree.value = `${prestationDurationStr}`;
-        inputDuree.className = 'input-duree';
+        inputDuree.className = 'input-resa';
         inputDuree.id = "inputDuree";
 
         inputPrix.value = `${total}`;
-        inputPrix.className = 'input-prix';
+        inputPrix.className = 'input-resa';
 
         inputPrix.addEventListener('input', function(e) {
             this.value = this.value.replace(/[^0-9]/g, '');
