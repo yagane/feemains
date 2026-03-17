@@ -1082,15 +1082,15 @@ addBtn.addEventListener('click', (event) => {
 
     mainFooter.appendChild(modal);
 
-    const months = [
-        'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-        'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    const monthsShort = [
+        'Janv', 'Févr', 'Mars', 'Avril', 'Mai', 'Juin',
+        'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'
     ];
 
     const inputDebut = document.getElementById('inputDebut');
     const pickerDebut = new Picker(inputDebut, {
-        format: 'DD MMMM YYYY HH:mm',
-        months: months,
+        format: 'DD MMM YYYY HH:mm',
+        monthsShort: monthsShort,
         increment: {
         minute: 15
         },
@@ -1112,8 +1112,8 @@ addBtn.addEventListener('click', (event) => {
 
     const inputFin = document.getElementById('inputFin');
     const pickerFin = new Picker(inputFin, {
-        format: 'DD MMMM YYYY HH:mm',
-        months: months,
+        format: 'DD MMM YYYY HH:mm',
+        monthsShort: monthsShort,
         increment: {
         minute: 15
         },
