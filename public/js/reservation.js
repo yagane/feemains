@@ -312,6 +312,10 @@ async function loadPrestations() {
             });
         });
 
+        prestationsOngle.addEventListener('change', updateChecked);
+        prestationsSupp.addEventListener('change', updateChecked);
+        prestationsSourcil.addEventListener('change', updateChecked);
+
         prestationsLoading.classList.add("hidden")
 
     }catch(error) {

@@ -549,7 +549,6 @@ button{
     padding-inline: calc(var(--spacing) * 2);
     background: var(--beige);
     color: var(--brown);
-    margin-bottom: 10px;
     border: 2px solid var(--brown);
     border-radius: 8px;
     cursor: pointer;
