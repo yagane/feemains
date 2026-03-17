@@ -557,10 +557,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
             resizeInput.call(inputPicker);
 
             prestationDurationStr = inputPicker.value;
-
-            if(data.success){
-                loadTimeSlots(selectedDate);
-            }
         });
 
         resizeInput.call(inputPicker);
@@ -651,7 +647,6 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
 
     closeBtn.addEventListener('click', (event) => {
         modal.remove();
-        pickerDebut.remove();
     });
 });
 

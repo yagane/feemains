@@ -122,6 +122,90 @@ document.getElementById("next").onclick = () => {
 
 renderCalendar();
 
+async function loadPrestations() {
+    const prestationsOngle = document.getElementById('prestations-ongle');
+    const prestationsSupp = document.getElementById('prestations-supp');
+    const prestationsSourcil = document.getElementById('prestations-sourcil');
+    const prestationsLoading = document.getElementById('prestations-loading');
+
+    try {
+        const response = await fetch("/api/getAllPresta", {
+            method: "GET",
+            credentials: "include"
+        });
+
+        const prestations = await response.json();
+
+        prestations.forEach(prestation => {
+            const prestationItem = document.createElement('div');
+            prestationItem.className = 'prestation-item';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = prestation.id;
+            checkbox.dataset.price = prestation.prix;
+            checkbox.dataset.duree = prestation.duree;
+
+            const durationHours = Math.floor(prestation.duree/60);
+            const durationMinutes = prestation.duree%60;
+
+            const divPrestation = document.createElement('div');
+            divPrestation.id = `prestation-${prestation.id}`;
+
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'prestation-name';
+            nameSpan.textContent = prestation.nom;
+
+            const dureeSpan = document.createElement('span');
+            if(durationHours == 0){
+                dureeSpan.textContent = `${durationMinutes} min`;
+            }else{
+                dureeSpan.textContent = `${durationHours} h ${durationMinutes} min`;
+            }
+
+            const priceSpan = document.createElement('span');
+            priceSpan.className = 'prestation-price';
+            priceSpan.textContent = `${prestation.prix} €`;
+
+            if (prestation.nom == 'Nail art'){
+                priceSpan.textContent = 'Sur devis';
+            }
+
+            const divPrixDuree = document.createElement('div');
+            divPrixDuree.className = 'prestation-prixduree'
+
+            divPrixDuree.appendChild(dureeSpan);
+            divPrixDuree.appendChild(priceSpan);
+
+            divPrestation.appendChild(nameSpan);
+            divPrestation.appendChild(divPrixDuree);
+
+            prestationItem.appendChild(checkbox);
+            prestationItem.appendChild(divPrestation);
+
+            if (prestation.details == 'ongle'){
+                prestationsOngle.appendChild(prestationItem);
+            }else if(prestation.details == 'supplement'){
+                prestationsSupp.appendChild(prestationItem);
+            }else{
+                prestationsSourcil.appendChild(prestationItem);
+            }
+
+            // Ajouter un écouteur d'événement pour cocher la checkbox en cliquant sur la div
+            prestationItem.addEventListener('click', function(e) {
+                if (e.target !== checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                }
+            });
+        });
+
+        prestationsLoading.classList.add("hidden")
+
+    }catch(error) {
+        console.error("Erreur lors du chargement des prestations :", error);
+    }
+}
+
 async function loadTimeSlots(date) {
     const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
         weekday: 'long',
@@ -431,6 +515,61 @@ async function loadTimeSlots(date) {
 
                 resumePresta.appendChild(div);
             }
+
+            resumePresta.addEventListener('click', async function(event) {
+                const mainFooter = document.querySelector('.main-footer');
+
+                const modal = document.createElement('div');
+                modal.className = 'modal-backdrop';
+
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-nav">
+                            <button class="close-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-main">
+                            <div class="modal-header">
+                                <h3>Choix prestations</h3>
+                            </div>
+                            <div class="modal-info">
+                                <section class="prestations-section">
+                                    <h2>Nos Prestations</h2>
+                                    <div id="prestations-loading">Chargement des prestations...</div>
+                                    <h3>Ongle</h3>
+                                    <div id="prestations-ongle" class="prestations-list"></div>
+                                    <h3>Supplément</h3>
+                                    <div id="prestations-supp" class="prestations-list"></div>
+                                    <h3>Sourcil et épilation</h3>
+                                    <div id="prestations-sourcil" class="prestations-list"></div>
+                                </section>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="cancel-button">Annuler</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                mainFooter.appendChild(modal);
+
+                loadPrestations();
+
+                const elements = document.querySelectorAll('.close-button');
+
+                const closeBtn = elements[elements.length - 1];
+
+                closeBtn.addEventListener('click', (event) => {
+                    const modals = document.querySelectorAll('.modal-backdrop');
+
+                    const modal = modals[modals.length - 1];
+                    modal.remove();
+                });
+            });
 
             const spanPrix = document.createElement('span');
             const spanPrix2 = document.createElement('span');
