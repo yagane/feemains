@@ -482,16 +482,21 @@ button{
 .site-footer {
     flex-shrink: 0;
     padding: 1rem 1.5rem;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    align-items: center;
+}
+
+.site-footer span{
+    text-align: center;
 }
 
 .site-footer div{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 10px;
 }
 
 .site-footer a{
