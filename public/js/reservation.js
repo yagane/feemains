@@ -613,7 +613,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
 
             if (result.success) {
 
-                if (destinataire != '') {
+                if (destinataire != '' || destinataire != 'yagane.m@gmail.com') {
                     const response = await fetch("/api/resaConfirmation", {
                         method: 'POST',
                         headers: {
