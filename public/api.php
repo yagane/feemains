@@ -35,6 +35,7 @@ $router->add("POST", "/api/resaByID", ["ResaController", "resaByID"]);
 $router->add("POST", "/api/insertResa", ["ResaController", "insertResa"]);
 $router->add("POST", "/api/updatePrixResa", ["ResaController", "updatePrixResa"]);
 $router->add("POST", "/api/updateDureeResa", ["ResaController", "updateDureeResa"]);
+$router->add("POST", "/api/updateResa", ["ResaController", "updateResa"]);
 $router->add("POST", "/api/deleteResa", ["ResaController", "deleteResa"]);
 
 $router->add("GET", "/api/congeAll", ["CongeController", "congeAll"]);
