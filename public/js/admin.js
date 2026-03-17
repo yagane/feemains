@@ -148,6 +148,7 @@ async function loadPrestations(prestation_noms) {
             checkbox.value = prestation.id;
             checkbox.dataset.price = prestation.prix;
             checkbox.dataset.duree = prestation.duree;
+            checkbox.dataset.nom = prestation.nom;
 
             const durationHours = Math.floor(prestation.duree/60);
             const durationMinutes = prestation.duree%60;
@@ -737,10 +738,53 @@ async function loadTimeSlots(date) {
                     inputDuree.value = `${durationHours} h ${durationMinutes} min`;
                     inputPrix.value = `${total}`;
 
+                    resumePresta.innerHTML = '';
+
+                    prestation_noms = [];
+                    prestation_prix = [];
+                    prestation_duree = [];
+
+                     const checkboxes = document.querySelectorAll('.prestations-list input[type="checkbox"]:checked');
+
+                    checkboxes.forEach(checkbox => {
+                        const prestationPrice = parseFloat(checkbox.dataset.price);
+                        const prestationDuree = parseFloat(checkbox.dataset.duree);
+                        const prestationNom = parseFloat(checkbox.dataset.nom);
+
+                        prestation_noms.push(prestationNom);
+                        prestation_prix.push(prestationPrice);
+                        prestation_duree.push(prestationDuree);
+                    });
+
+                    for (let i = 0; i < prestation_noms.length; i++){
+
+                        const durationHours = Math.floor(parseInt(prestation_duree[i])/60);
+                        const durationMinutes = parseInt(prestation_duree[i])%60;
+                        let prestationDurationStr = '';
+
+                        // Mettre à jour le total
+                        if(durationHours == 0){
+                            prestationDurationStr = `${durationMinutes} min`;
+                        }else{
+                            prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
+                        }
+
+                        const div = document.createElement('div');
+
+                        div.innerHTML = `
+                            <span class="prestation-name">${prestation_noms[i]}</span>
+                            <div class="prestation-prixduree">
+                                <span>${prestationDurationStr}</span>
+                                <span class="prestation-price">${prestation_prix[i]} €</span>
+                            </div>
+                        `;
+
+                        resumePresta.appendChild(div);
+                    }
+
                     if(data.success){
                         loadTimeSlots(selectedDate);
                     }
-
 
                     const modals = document.querySelectorAll('.modal-backdrop');
 
