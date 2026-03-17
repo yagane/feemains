@@ -707,7 +707,7 @@ async function loadTimeSlots(date) {
 
                 const cancelBtn = elements[elements.length - 1];
 
-                cancelBtn.addEventListener('click', (event) => {
+                cancelBtn.addEventListener('click', async (event) => {
 
                     const durationHours = Math.floor(prestationDuration/60);
                     const durationMinutes = prestationDuration%60;
