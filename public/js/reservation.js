@@ -446,6 +446,9 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                     <div class="resume-date">
                         <span>${capitalizedDate} à ${selectedTimeSlot}</span>
                     </div>
+                    <div class="resume-adresse">
+                        <span>Adresse: 48 chemin de la matte, 33360 Latresne</span>
+                    </div>
                     <div class="resume-prestation">
                     </div>
                     <div class="resume-total">
@@ -456,6 +459,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
                             <span>Prix : ${total} €</span>
                         </div>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="cancel-button" id="submit-reservation">Confirmer</button>
