@@ -515,9 +515,9 @@ async function loadTimeSlots(date) {
 
             const resumePresta = document.querySelector('.resume-prestation');
 
-            const prestation_noms = appointment.prestation_noms.split(', ');
-            const prestation_prix = appointment.prestation_prix.split(', ');
-            const prestation_duree = appointment.prestation_duree.split(', ');
+            let prestation_noms = appointment.prestation_noms.split(', ');
+            let prestation_prix = appointment.prestation_prix.split(', ');
+            let prestation_duree = appointment.prestation_duree.split(', ');
 
             for (let i = 0; i < prestation_noms.length; i++){
 
