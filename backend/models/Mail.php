@@ -31,11 +31,11 @@ class Mail {
                     <head>
                         <meta charset='UTF-8'>
                         <style>
-                            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-                            .header { background-color: #f8f9fa; padding: 20px; text-align: center; }
-                            .content { padding: 20px; }
-                            .footer { background-color: #343a40; color: white; padding: 20px; text-align: center; margin-top: 20px; }
-                            .footer a { color: #17a2b8; text-decoration: none; }
+                            body { font-family: Arial, sans-serif; line-height: 1.6; color: #351c19; }
+                            .header { background-color: #e0d0c1; padding: 20px; text-align: center;}
+                            .content { background-color: #eddfd5; padding: 20px; }
+                            .footer { background-color: #e0d0c1; padding: 20px; text-align: center; margin-top: 20px; }
+                            .footer a { color: #343a40; text-decoration: none; }
                             .footer a:hover { text-decoration: underline; }
                         </style>
                     </head>
@@ -47,8 +47,8 @@ class Mail {
                             <h2>Confirmation de votre rendez-vous</h2>
                             <p>Bonjour ". htmlspecialchars($nom, ENT_QUOTES, 'UTF-8') .",</p>
                             <p>Nous confirmons votre rendez-vous prévu le ". htmlspecialchars($date, ENT_QUOTES, 'UTF-8') ." à ". htmlspecialchars($heure, ENT_QUOTES, 'UTF-8') .".</p>
-                            <p>Nous vous attendons à l'adresse suivante: 48 chemin de la matte, 33360 Latresne</p>
-                            <p>En cas d'empechement Vous pouvez annulez votre rendez-vous via notre site</p>
+                            <p>Nous vous attendons à l'adresse suivante: 48 chemin de la matte, 33360 Latresne.</p>
+                            <p>En cas d'empechement Vous pouvez annulez votre rendez-vous via notre site.</p>
                             <p>Cordialement,<br>Fée Mains</p>
                         </div>
                         <div class='footer'>

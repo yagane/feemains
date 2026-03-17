@@ -524,6 +524,8 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
             increment: {
                 minute: 5
             },
+            controls: true,
+            rows: 1,
             text: {
                 title: "Choisisez l'heure",
                 cancel: 'Cancel',

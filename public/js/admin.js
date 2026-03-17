@@ -199,6 +199,7 @@ async function loadPrestations(prestation_noms) {
             prestationItem.addEventListener('click', function(e) {
                 if (e.target !== checkbox) {
                     checkbox.checked = !checkbox.checked;
+                    updateChecked();
                 }
             });
         });
@@ -209,6 +210,48 @@ async function loadPrestations(prestation_noms) {
         console.error("Erreur lors du chargement des prestations :", error);
     }
 }
+
+function updateChecked() {
+    const checkboxes = document.querySelectorAll('.prestations-list input[type="checkbox"]:checked');
+
+    selectedPrestationId = [];
+    prestationDuration = 0;
+    total = 0;
+
+    if (checkboxes.length > 0) {
+        calendarSection.classList.remove("hidden");
+        timeSlotsSection.classList.remove("hidden");
+    } else {
+        calendarSection.classList.add("hidden");
+        timeSlotsSection.classList.add("hidden");
+        buttonSection.classList.add("hidden");
+        slotsTitle.textContent = `Choisissez une date`;
+        slotsContainer.innerHTML = '';
+        selectedDate = null;
+        selectedTimeSlot = null;
+        document.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
+    }
+
+    if(selectedDate){
+        displayTimeSlots();
+    }
+
+    checkboxes.forEach(checkbox => {
+        const prestationPrice = parseFloat(checkbox.dataset.price);
+        const prestationDuree = parseFloat(checkbox.dataset.duree);
+
+        selectedPrestationId.push(checkbox.value);
+
+        prestationDuration +=  prestationDuree;
+        total += prestationPrice;
+    });
+
+    const durationHours = Math.floor(prestationDuration/60);
+    const durationMinutes = prestationDuration%60;
+
+    prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
+}
+
 
 async function loadTimeSlots(date) {
     const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
@@ -635,6 +678,8 @@ async function loadTimeSlots(date) {
                 increment: {
                     minute: 5
                 },
+                controls: true,
+                rows: 1,
                 text: {
                     title: "Choisisez l'heure",
                     cancel: 'Cancel',
@@ -1049,6 +1094,8 @@ addBtn.addEventListener('click', (event) => {
         increment: {
         minute: 15
         },
+        controls: true,
+        rows: 1,
         text: {
           title: "Choisisez la date et l'heure",
           cancel: 'Cancel',
@@ -1070,6 +1117,8 @@ addBtn.addEventListener('click', (event) => {
         increment: {
         minute: 15
         },
+        controls: true,
+        rows: 1,
         text: {
           title: "Choisisez la date et l'heure",
           cancel: 'Cancel',
