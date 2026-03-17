@@ -737,6 +737,7 @@ async function loadTimeSlots(date) {
                         loadTimeSlots(selectedDate);
                     }
 
+
                     const modals = document.querySelectorAll('.modal-backdrop');
 
                     const modal = modals[modals.length - 1];
