@@ -342,6 +342,7 @@ async function loadClients() {
         clients.forEach(client => {
             const option = document.createElement('option');
             option.value = `${client.id}`;
+            option.dataset.email = `${client.email}`;
             option.textContent = `${client.prenom} ${client.nom}`;
 
             select.appendChild(option);
@@ -359,6 +360,7 @@ async function loadClients() {
 
         selectClient.addEventListener('change', function() {
             userId = selectClient.value;
+            destinataire = selectClient.dataset.email;
         });
 
     }catch(error) {
