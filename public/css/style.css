@@ -483,6 +483,7 @@ button{
     flex-shrink: 0;
     padding: 1rem 1.5rem;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
     background: var(--beige);
     display: flex;
     justify-content: space-between;
