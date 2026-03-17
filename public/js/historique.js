@@ -69,7 +69,7 @@ async function loadHistoric() {
                 const data = await response.json();
 
                 if(data.success){
-                    window.location.href = "/client";
+                    window.location.href = "/historique";
                 }
             });
         });
@@ -163,7 +163,7 @@ async function loadHistoric() {
                         const data = await response.json();
 
                         if(data.success){
-                            window.location.href = "/client";
+                            window.location.href = "/historique";
                         }
                     });
                 });
