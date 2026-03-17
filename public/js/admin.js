@@ -8,6 +8,9 @@ const months = [
 
 let currentDate = new Date();
 let selectedDate = new Date();
+let selectedPrestationId = [];
+let prestationDuration = 0;
+let total = 0;
 
 let connected = null;
 let role = null;
@@ -218,24 +221,6 @@ function updateChecked() {
     prestationDuration = 0;
     total = 0;
 
-    if (checkboxes.length > 0) {
-        calendarSection.classList.remove("hidden");
-        timeSlotsSection.classList.remove("hidden");
-    } else {
-        calendarSection.classList.add("hidden");
-        timeSlotsSection.classList.add("hidden");
-        buttonSection.classList.add("hidden");
-        slotsTitle.textContent = `Choisissez une date`;
-        slotsContainer.innerHTML = '';
-        selectedDate = null;
-        selectedTimeSlot = null;
-        document.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
-    }
-
-    if(selectedDate){
-        displayTimeSlots();
-    }
-
     checkboxes.forEach(checkbox => {
         const prestationPrice = parseFloat(checkbox.dataset.price);
         const prestationDuree = parseFloat(checkbox.dataset.duree);
@@ -245,11 +230,6 @@ function updateChecked() {
         prestationDuration +=  prestationDuree;
         total += prestationPrice;
     });
-
-    const durationHours = Math.floor(prestationDuration/60);
-    const durationMinutes = prestationDuration%60;
-
-    prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
 }
 
 
@@ -460,9 +440,6 @@ async function loadTimeSlots(date) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button class="cancel-button">Annuler</button>
-                            </div>
                         </div>
                     </div>
                 `;
@@ -562,61 +539,6 @@ async function loadTimeSlots(date) {
 
                 resumePresta.appendChild(div);
             }
-
-            resumePresta.addEventListener('click', async function(event) {
-                const mainFooter = document.querySelector('.main-footer');
-
-                const modal = document.createElement('div');
-                modal.className = 'modal-backdrop';
-
-                modal.innerHTML = `
-                    <div class="modal-content">
-                        <div class="modal-nav">
-                            <button class="close-button">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="modal-main">
-                            <div class="modal-header">
-                                <h3>Choix prestations</h3>
-                            </div>
-                            <div class="modal-info">
-                                <section class="prestations-section">
-                                    <h2>Nos Prestations</h2>
-                                    <div id="prestations-loading">Chargement des prestations...</div>
-                                    <h3>Ongle</h3>
-                                    <div id="prestations-ongle" class="prestations-list"></div>
-                                    <h3>Supplément</h3>
-                                    <div id="prestations-supp" class="prestations-list"></div>
-                                    <h3>Sourcil et épilation</h3>
-                                    <div id="prestations-sourcil" class="prestations-list"></div>
-                                </section>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="cancel-button">Confirmer</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                mainFooter.appendChild(modal);
-
-                loadPrestations(prestation_noms);
-
-                const elements = document.querySelectorAll('.close-button');
-
-                const closeBtn = elements[elements.length - 1];
-
-                closeBtn.addEventListener('click', (event) => {
-                    const modals = document.querySelectorAll('.modal-backdrop');
-
-                    const modal = modals[modals.length - 1];
-                    modal.remove();
-                });
-            });
 
             const spanPrix = document.createElement('span');
             const spanPrix2 = document.createElement('span');
@@ -737,6 +659,101 @@ async function loadTimeSlots(date) {
             });
 
             resizeInput.call(inputPicker);
+
+            resumePresta.addEventListener('click', async function(event) {
+                const mainFooter = document.querySelector('.main-footer');
+
+                const modal = document.createElement('div');
+                modal.className = 'modal-backdrop';
+
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-nav">
+                            <button class="close-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-main">
+                            <div class="modal-header">
+                                <h3>Choix prestations</h3>
+                            </div>
+                            <div class="modal-info">
+                                <section class="prestations-section">
+                                    <h2>Nos Prestations</h2>
+                                    <div id="prestations-loading">Chargement des prestations...</div>
+                                    <h3>Ongle</h3>
+                                    <div id="prestations-ongle" class="prestations-list"></div>
+                                    <h3>Supplément</h3>
+                                    <div id="prestations-supp" class="prestations-list"></div>
+                                    <h3>Sourcil et épilation</h3>
+                                    <div id="prestations-sourcil" class="prestations-list"></div>
+                                </section>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="cancel-button">Confirmer</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                mainFooter.appendChild(modal);
+
+                loadPrestations(prestation_noms);
+
+                const elements = document.querySelectorAll('.cancel-button');
+
+                const cancelBtn = elements[elements.length - 1];
+
+                cancelBtn.addEventListener('click', (event) => {
+
+                    const durationHours = Math.floor(prestationDuration/60);
+                    const durationMinutes = prestationDuration%60;
+
+                    const duree = `${durationHours}:${durationMinutes}`;
+
+                    const response = await fetch("/api/updateResa", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            id: id,
+                            duree: duree,
+                            prix: total,
+                            prestId: selectedPrestationId
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    inputDuree.value = `${durationHours} h ${durationMinutes} min`;
+                    inputPrix.value = `${total}`;
+
+                    if(data.success){
+                        loadTimeSlots(selectedDate);
+                    }
+
+                    const modals = document.querySelectorAll('.modal-backdrop');
+
+                    const modal = modals[modals.length - 1];
+                    modal.remove();
+                });
+
+                const elements = document.querySelectorAll('.close-button');
+
+                const closeBtn = elements[elements.length - 1];
+
+                closeBtn.addEventListener('click', (event) => {
+                    const modals = document.querySelectorAll('.modal-backdrop');
+
+                    const modal = modals[modals.length - 1];
+                    modal.remove();
+                });
+            });
 
             const closeBtn = document.querySelector('.close-button');
 
@@ -1066,11 +1083,11 @@ addBtn.addEventListener('click', (event) => {
                 <div class="modal-info">
                     <div class="modal-conge">
                         <span>Début du congé :</span>
-                        <input type="text" class='input-picker' id="inputDebut" value="20 Janvier 2026 10:00">
+                        <input type="text" class='input-picker' id="inputDebut" value="20 Janv 2026 10:00">
                     </div>
                     <div class="modal-conge">
                         <span>Fin du congé :</span>
-                        <input type="text" class='input-picker' id="inputFin" value="21 Janvier 2026 10:00">
+                        <input type="text" class='input-picker' id="inputFin" value="21 Janv 2026 10:00">
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -127,6 +127,32 @@ class Reservation {
         }
     }
 
+    public static function update($id, $duree, $prix, $prestationIds) {
+        $db = Database::connect();
+        $stmt = $db->prepare(
+            "UPDATE reservations SET duree_reservation=:duree, prix=:prix
+            WHERE id=:id"
+        );
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':duree', $duree, PDO::PARAM_STR);
+        $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $stmt = $db->prepare(
+            "DELETE FROM reservations_prestations WHERE reservation_id = ?"
+        );
+        $stmt->execute([$id]);
+
+        $stmt = $db->prepare(
+            "INSERT INTO reservations_prestations (reservation_id, prestation_id)
+            VALUES (?, ?)"
+        );
+
+        foreach ($prestationIds as $prestationId) {
+            $stmt->execute([$id, $prestationId]);
+        }
+    }
+
     public static function updateDuree($id, $duree) {
         $db = Database::connect();
         $stmt = $db->prepare(

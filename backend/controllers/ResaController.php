@@ -81,7 +81,7 @@ class ResaController {
 
         Reservation::updatePrix($id, $prix);
 
-        echo json_encode(['success' => true, 'message' => 'Réservation enregistrée avec succès.']);
+        echo json_encode(['success' => true, 'message' => 'Réservation modifiée avec succès.']);
     }
 
     public static function updateDureeResa() {
@@ -93,7 +93,21 @@ class ResaController {
 
         Reservation::updateDuree($id, $duree);
 
-        echo json_encode(['success' => true, 'message' => 'Réservation enregistrée avec succès.']);
+        echo json_encode(['success' => true, 'message' => 'Réservation modifiée avec succès.']);
+    }
+
+    public static function updateResa() {
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $id = isset($data['id']) ? (int)$data['id'] : null;
+        $duree = isset($data['duree']) ? $data['duree'] : null;
+        $prix = isset($data['prix']) ? $data['prix'] : null;
+        $prestationIds = isset($data['prestId']) ? $data['prestId'] : [];
+
+        Reservation::update($id, $duree, $prix, $prestationIds);
+
+        echo json_encode(['success' => true, 'message' => 'Réservation modifiée avec succès.']);
     }
 
     public static function deleteResa() {
