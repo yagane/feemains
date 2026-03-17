@@ -529,7 +529,7 @@ button{
     color: var(--brown);
 }
 
-#prestations-list {
+.prestations-list {
     max-height: 340px;
     padding: 0.2rem;
     overflow-y: auto;
@@ -1143,7 +1143,7 @@ button{
         cursor: pointer;
     }
 
-    #prestations-list {
+    .prestations-list {
         max-height: 280px;
     }
 

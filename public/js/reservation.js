@@ -231,7 +231,9 @@ async function displayTimeSlots() {
 }
 
 async function loadPrestations() {
-    const prestationsList = document.getElementById('prestations-list');
+    const prestationsOngle = document.getElementById('prestations-ongle');
+    const prestationsSupp = document.getElementById('prestations-supp');
+    const prestationsSourcil = document.getElementById('prestations-sourcil');
     const prestationsLoading = document.getElementById('prestations-loading');
 
     try {
@@ -288,8 +290,14 @@ async function loadPrestations() {
 
             prestationItem.appendChild(checkbox);
             prestationItem.appendChild(divPrestation);
-            prestationsList.appendChild(prestationItem);
 
+            if (prestation.details == 'ongle'){
+                prestationsOngle.appendChild(prestationItem);
+            }else if(prestation.details == 'supp'){
+                prestationsSupp.appendChild(prestationItem);
+            }else{
+                prestationsSourcil.appendChild(prestationItem);
+            }
 
             // Ajouter un écouteur d'événement pour cocher la checkbox en cliquant sur la div
             prestationItem.addEventListener('click', function(e) {
@@ -353,7 +361,7 @@ async function loadClients() {
 }
 
 function updateChecked() {
-    const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
+    const checkboxes = document.querySelectorAll('.prestations-list input[type="checkbox"]:checked');
 
     selectedPrestationId = [];
     prestationDuration = 0;
@@ -559,7 +567,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
             return;
         }
 
-        const checkboxes = document.querySelectorAll('#prestations-list input[type="checkbox"]:checked');
+        const checkboxes = document.querySelectorAll('.prestations-list input[type="checkbox"]:checked');
 
         const [hours, minutes] = selectedTimeSlot.split(':').map(Number);
         const slotDateTime = new Date(selectedDate);
