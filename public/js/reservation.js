@@ -651,6 +651,7 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
 
     closeBtn.addEventListener('click', (event) => {
         modal.remove();
+        pickerDebut.remove();
     });
 });
 
