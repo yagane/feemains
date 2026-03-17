@@ -293,7 +293,7 @@ async function loadPrestations() {
 
             if (prestation.details == 'ongle'){
                 prestationsOngle.appendChild(prestationItem);
-            }else if(prestation.details == 'supp'){
+            }else if(prestation.details == 'supplement'){
                 prestationsSupp.appendChild(prestationItem);
             }else{
                 prestationsSourcil.appendChild(prestationItem);
@@ -307,8 +307,6 @@ async function loadPrestations() {
                 }
             });
         });
-
-        prestationsList.addEventListener('change', updateChecked);
 
         prestationsLoading.classList.add("hidden")
 
