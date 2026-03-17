@@ -530,9 +530,15 @@ button{
 }
 
 .prestations-list {
-    max-height: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 2);
     padding: 0.2rem;
     overflow-y: auto;
+}
+
+#prestations-supp {
+    padding-right: 10px;
 }
 
 .prestation-item {
@@ -1144,7 +1150,7 @@ button{
     }
 
     .prestations-list {
-        max-height: 280px;
+        max-height: 140px;
     }
 
     .presta{
