@@ -360,7 +360,8 @@ async function loadClients() {
 
         selectClient.addEventListener('change', function() {
             userId = selectClient.value;
-            destinataire = selectClient.dataset.email;
+            const selected = document.querySelector('option:selected')
+            destinataire = selected.dataset.email;
         });
 
     }catch(error) {
