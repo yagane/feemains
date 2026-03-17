@@ -122,7 +122,7 @@ document.getElementById("next").onclick = () => {
 
 renderCalendar();
 
-async function loadPrestations() {
+async function loadPrestations(prestation_noms) {
     const prestationsOngle = document.getElementById('prestations-ongle');
     const prestationsSupp = document.getElementById('prestations-supp');
     const prestationsSourcil = document.getElementById('prestations-sourcil');
@@ -189,6 +189,10 @@ async function loadPrestations() {
                 prestationsSupp.appendChild(prestationItem);
             }else{
                 prestationsSourcil.appendChild(prestationItem);
+            }
+
+            if (prestation_noms.includes(prestation.nom)){
+                checkbox.checked = !checkbox.checked;
             }
 
             // Ajouter un écouteur d'événement pour cocher la checkbox en cliquant sur la div
@@ -549,7 +553,7 @@ async function loadTimeSlots(date) {
                                 </section>
                             </div>
                             <div class="modal-footer">
-                                <button class="cancel-button">Annuler</button>
+                                <button class="cancel-button">Confirmer</button>
                             </div>
                         </div>
                     </div>
@@ -557,7 +561,7 @@ async function loadTimeSlots(date) {
 
                 mainFooter.appendChild(modal);
 
-                loadPrestations();
+                loadPrestations(prestation_noms);
 
                 const elements = document.querySelectorAll('.close-button');
 
