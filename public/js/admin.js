@@ -738,6 +738,9 @@ async function loadTimeSlots(date) {
                     inputDuree.value = `${durationHours} h ${durationMinutes} min`;
                     inputPrix.value = `${total}`;
 
+                    resizeInput.call(inputDuree);
+                    resizeInput.call(inputPrix);
+
                     resumePresta.innerHTML = '';
 
                     prestation_noms = [];
@@ -747,9 +750,9 @@ async function loadTimeSlots(date) {
                      const checkboxes = document.querySelectorAll('.prestations-list input[type="checkbox"]:checked');
 
                     checkboxes.forEach(checkbox => {
-                        const prestationPrice = parseFloat(checkbox.dataset.price);
+                        const prestationPrice = parseFloat(checkbox.dataset.price).toFixed(2);
                         const prestationDuree = parseFloat(checkbox.dataset.duree);
-                        const prestationNom = parseFloat(checkbox.dataset.nom);
+                        const prestationNom = checkbox.dataset.nom;
 
                         prestation_noms.push(prestationNom);
                         prestation_prix.push(prestationPrice);
