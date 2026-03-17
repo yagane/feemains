@@ -703,9 +703,9 @@ async function loadTimeSlots(date) {
 
                 loadPrestations(prestation_noms);
 
-                const elements = document.querySelectorAll('.cancel-button');
+                const cancelElements = document.querySelectorAll('.cancel-button');
 
-                const cancelBtn = elements[elements.length - 1];
+                const cancelBtn = cancelElements[cancelElements.length - 1];
 
                 cancelBtn.addEventListener('click', async (event) => {
 
