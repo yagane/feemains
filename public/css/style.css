@@ -510,6 +510,12 @@ button{
     color: var(--beige);
 }
 
+.mention {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 8);
+}
+
 /*-----------   Insta logo    -----------*/
 
 .instagram-fixed {
