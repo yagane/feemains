@@ -40,6 +40,11 @@ html {
     display: none !important;
 }
 
+.no-click {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
 }

@@ -32,9 +32,9 @@ class Mail {
                         <meta charset='UTF-8'>
                         <style>
                             body { font-family: Arial, sans-serif; line-height: 1.6; color: #351c19; }
-                            .header { background-color: #e0d0c1; padding: 20px; text-align: center;}
-                            .content { background-color: #eddfd5; padding: 20px; }
-                            .footer { background-color: #e0d0c1; padding: 20px; text-align: center; margin-top: 20px; }
+                            .header { background-color: #e0d0c1; padding: 20px; text-align: center; color: #351c19;}
+                            .content { background-color: #eddfd5; padding: 20px; color: #351c19;}
+                            .footer { background-color: #e0d0c1; padding: 20px; text-align: center; color: #351c19;}
                             .footer a { color: #343a40; text-decoration: none; }
                             .footer a:hover { text-decoration: underline; }
                         </style>
@@ -73,11 +73,11 @@ class Mail {
                     <head>
                         <meta charset='UTF-8'>
                         <style>
-                            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-                            .header { background-color: #f8f9fa; padding: 20px; text-align: center; }
-                            .content { padding: 20px; }
-                            .footer { background-color: #343a40; color: white; padding: 20px; text-align: center; margin-top: 20px; }
-                            .footer a { color: #17a2b8; text-decoration: none; }
+                            body { font-family: Arial, sans-serif; line-height: 1.6; color: #351c19; }
+                            .header { background-color: #e0d0c1; padding: 20px; text-align: center; color: #351c19;}
+                            .content { background-color: #eddfd5; padding: 20px; color: #351c19;}
+                            .footer { background-color: #e0d0c1; padding: 20px; text-align: center; color: #351c19; }
+                            .footer a { color: #343a40; text-decoration: none; }
                             .footer a:hover { text-decoration: underline; }
                         </style>
                     </head>

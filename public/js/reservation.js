@@ -568,6 +568,8 @@ document.getElementById('resume-reservation').addEventListener('click', (event) 
     }
 
     document.getElementById('submit-reservation').addEventListener('click', async () => {
+        document.getElementById('submit-reservation').classList.add("no-click");
+
         // Vérifier que tous les champs sont remplis
         if (selectedPrestationId == [] || !selectedDate || !selectedTimeSlot) {
             alert("Veuillez sélectionner une prestation, une date et une plage horaire.");
