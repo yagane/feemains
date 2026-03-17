@@ -63,7 +63,7 @@ async function loadHistoric() {
                         "Content-Type": "application/json"
                     },
                     credentials: "include",
-                    body: JSON.stringify({ reservationId })
+                    body: JSON.stringify({ id : reservationId })
                 });
 
                 const data = await response.json();
@@ -157,7 +157,7 @@ async function loadHistoric() {
                                 "Content-Type": "application/json"
                             },
                             credentials: "include",
-                            body: JSON.stringify({ reservationId })
+                            body: JSON.stringify({ id : reservationId })
                         });
 
                         const data = await response.json();
