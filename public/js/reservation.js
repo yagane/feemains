@@ -89,7 +89,7 @@ function renderCalendar() {
 
         const isSunday = dateObj.getDay() === 0;
 
-        if ((dateObj < today || isSunday || dateObj > stopDay) && role != 'admin') {
+        if ((dateObj <= today || isSunday || dateObj > stopDay) && role != 'admin') {
             if (isSunday) div.classList.add("sunday");
             else div.classList.add("past");
         } else {
@@ -145,8 +145,15 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
     const [hours, minutes] = timeSlot.split(':').map(Number);
     const slotDateTime = new Date(selectedDate);
     slotDateTime.setHours(hours, minutes, 0, 0);
+    const date24 = new Date();
+    date24.setDate(date24.getDate() + 1);
+
+    console.log(new Date())
+    console.log(date24)
 
     const prestationEndTime = new Date(slotDateTime.getTime() + prestationDuration * 60000);
+
+    if (slotDateTime )
 
     if(selectedDate.getDay() == 3){
         if ((prestationEndTime.getHours() == 18 && prestationEndTime.getMinutes() > 0) || prestationEndTime.getHours() > 18) {
