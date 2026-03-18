@@ -148,12 +148,11 @@ function checkTimeSlotAvailability(timeSlot, reservations, conges) {
     const date24 = new Date();
     date24.setDate(date24.getDate() + 1);
 
-    console.log(new Date())
-    console.log(date24)
-
     const prestationEndTime = new Date(slotDateTime.getTime() + prestationDuration * 60000);
 
-    if (slotDateTime )
+    if (slotDateTime <= date24 && role != 'admin'){
+        return false;
+    }
 
     if(selectedDate.getDay() == 3){
         if ((prestationEndTime.getHours() == 18 && prestationEndTime.getMinutes() > 0) || prestationEndTime.getHours() > 18) {
