@@ -25,22 +25,504 @@ async function loadHistoric() {
 
         reservations.reverse();
 
-        reservations.forEach(reservation => {
+        reservations.forEach(appointment => {
             const row = document.createElement('tr');
 
-            const date = new Date(reservation.date_reservation);
+            const date = new Date(appointment.date_reservation);
             const formattedDate = date.toLocaleString('fr-FR', options);
 
             // Créer les cellules du tableau
             row.innerHTML = `
             <td>${formattedDate}</td>
-            <td>${reservation.prenom} ${reservation.nom}</td>
-            <td class="actions" id=${reservation.id}>
+            <td>${appointment.prenom} ${appointment.nom}</td>
+            <td class="actions" id=${appointment.id}>
                 <button class="resume-button">Resumé</button>
                 <button class="cancel-button">Annuler</button>
             </td>`;
 
             reservationsList.appendChild(row);
+
+            const id = appointment.id;
+            const date_reservation = new Date(appointment.date_reservation);
+            const localDate = date_reservation.toLocaleDateString().split(' ')[0];
+
+            const resumeButton = document.querySelectorAll('.resume-button');
+
+            const button = resumeButton[resumeButton.length - 1];
+
+            button.addEventListener('click', async function(event) {
+                const mainFooter = document.querySelector('.main-footer');
+
+                const modal = document.createElement('div');
+                modal.className = 'modal-backdrop';
+
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-nav">
+                            <button class="close-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-main">
+                            <div class="modal-header">
+                                <h3>Reservation du ${localDate}</h3>
+                                <h3>${startTime} - ${endTime}</h3>
+                            </div>
+                            <div class="modal-info">
+                                <div class='user-info'>
+                                    <span>${appointment.prenom} ${appointment.nom}</span>
+                                </div>
+                                <div class="resume-prestation">
+                                </div>
+                                <div class="resume-total">
+                                    <div id="total-duree">
+                                    </div>
+                                    <div id="total-prix">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="cancel-button">Annuler</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                mainFooter.appendChild(modal);
+
+                const cancelButton = document.querySelectorAll('.cancel-button');
+
+                cancelButton.forEach(button => {
+                    button.addEventListener('click', async function(event) {
+                        const response = await fetch("/api/deleteResa", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({ id })
+                        });
+
+                        const data = await response.json();
+
+                        if(data.success){
+                            const modal = document.querySelector('.modal-backdrop');
+                            loadHistoric()
+                            modal.remove();
+                        }
+                    });
+                });
+
+                const userInfo = document.querySelector('.user-info');
+
+                userInfo.addEventListener('click', async function(event) {
+                    const mainFooter = document.querySelector('.main-footer');
+
+                    const modal = document.createElement('div');
+                    modal.className = 'modal-backdrop';
+
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <div class="modal-nav">
+                                <button class="close-button">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="modal-main">
+                                <div class="modal-header">
+                                    <h3>Information client</h3>
+                                </div>
+                                <div class="modal-info">
+                                    <div class='user-info'>
+                                        <div class="user-info-div">
+                                            <span>Nom :</span>
+                                            <span>${appointment.prenom} ${appointment.nom}</span>
+                                        </div>
+                                        <div class="user-info-div">
+                                            <span>Email :</span>
+                                            <input id="email-input" class="input-client" placeholder="Entrez un email" value=${appointment.email}>
+                                        </div>
+                                        <div class="user-info-div">
+                                            <span>Téléphone :</span>
+                                            <input id="phone-input" class="input-client" placeholder="Entrez un numéro" value=${appointment.phone}>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    mainFooter.appendChild(modal);
+
+                    const inputEmail = document.getElementById('email-input');
+                    const inputPhone = document.getElementById('phone-input');
+
+                    const user_id = appointment.user_id
+
+                    inputEmail.addEventListener('input', function(e) {
+                        resizeInput.call(this);
+                    });
+
+                    inputEmail.addEventListener('change', async function(e) {
+                        const response = await fetch("/api/updateEmailClient", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({
+                                id: user_id,
+                                email: this.value
+                            })
+                        });
+
+                        appointment.email = this.value;
+                    });
+
+                    resizeInput.call(inputEmail);
+
+                    inputPhone.addEventListener('input', function(e) {
+                        this.value = this.value.replace(/[^0-9]/g, '');
+                        resizeInput.call(this);
+                    });
+
+                    inputPhone.addEventListener('change', async function(e) {
+                        const response = await fetch("/api/updatePhoneClient", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({
+                                id: user_id,
+                                phone: this.value
+                            })
+                        });
+
+                        appointment.phone = this.value;
+                    });
+
+                    resizeInput.call(inputPhone);
+
+                    const elements = document.querySelectorAll('.close-button');
+
+                    const closeBtn = elements[elements.length - 1];
+
+                    closeBtn.addEventListener('click', (event) => {
+                        const modals = document.querySelectorAll('.modal-backdrop');
+
+                        const modal = modals[modals.length - 1];
+                        modal.remove();
+                    });
+                });
+
+                const resumePresta = document.querySelector('.resume-prestation');
+
+                let prestation_noms = appointment.prestation_noms.split(', ');
+                let prestation_prix = appointment.prestation_prix.split(', ');
+                let prestation_duree = appointment.prestation_duree.split(', ');
+
+                for (let i = 0; i < prestation_noms.length; i++){
+
+                    const durationHours = Math.floor(parseInt(prestation_duree[i])/60);
+                    const durationMinutes = parseInt(prestation_duree[i])%60;
+                    let prestationDurationStr = '';
+
+                    // Mettre à jour le total
+                    if(durationHours == 0){
+                        prestationDurationStr = `${durationMinutes} min`;
+                    }else{
+                        prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
+                    }
+
+                    const div = document.createElement('div');
+
+                    div.innerHTML = `
+                        <span class="prestation-name">${prestation_noms[i]}</span>
+                        <div class="prestation-prixduree">
+                            <span>${prestationDurationStr}</span>
+                            <span class="prestation-price">${prestation_prix[i]} €</span>
+                        </div>
+                    `;
+
+                    resumePresta.appendChild(div);
+                }
+
+                const spanPrix = document.createElement('span');
+                const spanPrix2 = document.createElement('span');
+                const spanDuree = document.createElement('span');
+
+                const inputPrix = document.createElement('input');
+                const inputDuree = document.createElement('input');
+
+                inputDuree.value = `${parseInt(appointment.duree_reservation.split(':')[0])} h ${parseInt(appointment.duree_reservation.split(':')[1])} min`;
+                inputDuree.className = 'input-resa';
+                inputDuree.id = "inputDuree";
+
+                inputPrix.value = `${appointment.prix}`;
+                inputPrix.className = 'input-resa';
+
+                inputPrix.addEventListener('input', function(e) {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    resizeInput.call(inputPrix);
+                });
+
+                inputPrix.addEventListener('change', async function(e) {
+                    const response = await fetch("/api/updatePrixResa", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            id: id,
+                            prix: inputPrix.value
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if(data.success){
+                        loadHistoric()
+                    }
+                });
+
+                resizeInput.call(inputPrix);
+
+                spanPrix.textContent = 'Prix : ';
+                spanPrix2.textContent = ' €';
+                spanDuree.textContent = 'Duree : ';
+
+                const totalDuree = document.getElementById('total-duree');
+                const totalPrix = document.getElementById('total-prix');
+
+                totalPrix.appendChild(spanPrix);
+                totalPrix.appendChild(inputPrix);
+                totalPrix.appendChild(spanPrix2);
+                totalDuree.appendChild(spanDuree);
+                totalDuree.appendChild(inputDuree);
+
+                const inputPicker = document.getElementById('inputDuree');
+                const pickerDebut = new Picker(inputPicker, {
+                    format: 'H h m min',
+                    increment: {
+                        minute: 5
+                    },
+                    controls: true,
+                    rows: 1,
+                    text: {
+                        title: "Choisisez l'heure",
+                        cancel: 'Cancel',
+                        confirm: 'OK',
+                        year: 'Year',
+                        month: 'Month',
+                        day: 'Day',
+                        hour: 'Hour',
+                        minute: 'Minute',
+                        second: 'Second',
+                        millisecond: 'Millisecond'
+                    }
+                });
+
+                const cancelBtn = document.querySelectorAll('.picker-cancel');
+
+                cancelBtn.forEach(button => {
+                    button.remove();
+                });
+
+                const picker = document.querySelectorAll('.picker');
+
+                picker.forEach(button => {
+                    button.dataset.pickerAction = "pick";
+                });
+
+                const closePicker = document.querySelectorAll('.picker-close');
+
+                closePicker.forEach(button => {
+                    button.dataset.pickerAction = "pick";
+                });
+
+                inputPicker.addEventListener('change', async function(e) {
+                    resizeInput.call(inputPicker);
+
+                    const duree = `${inputPicker.value.split(' h ')[0]}:${inputPicker.value.split(' h ')[1].split(' min')[0]}`;
+
+                    const response = await fetch("/api/updateDureeResa", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            id: id,
+                            duree: duree
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if(data.success){
+                        loadHistoric()
+                    }
+                });
+
+                resizeInput.call(inputPicker);
+
+                resumePresta.addEventListener('click', async function(event) {
+                    const mainFooter = document.querySelector('.main-footer');
+
+                    const modal = document.createElement('div');
+                    modal.className = 'modal-backdrop';
+
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <div class="modal-nav">
+                                <button class="close-button">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="modal-main">
+                                <div class="modal-header">
+                                    <h3>Choix prestations</h3>
+                                </div>
+                                <div class="modal-info">
+                                    <section class="prestations-section">
+                                        <h2>Nos Prestations</h2>
+                                        <div id="prestations-loading">Chargement des prestations...</div>
+                                        <h3>Ongle</h3>
+                                        <div id="prestations-ongle" class="prestations-list"></div>
+                                        <h3>Supplément</h3>
+                                        <div id="prestations-supp" class="prestations-list"></div>
+                                        <h3>Sourcil et épilation</h3>
+                                        <div id="prestations-sourcil" class="prestations-list"></div>
+                                    </section>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="cancel-button">Confirmer</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    mainFooter.appendChild(modal);
+
+                    loadPrestations(prestation_noms);
+
+                    const cancelElements = document.querySelectorAll('.cancel-button');
+
+                    const cancelBtn = cancelElements[cancelElements.length - 1];
+
+                    cancelBtn.addEventListener('click', async (event) => {
+
+                        const durationHours = Math.floor(prestationDuration/60);
+                        const durationMinutes = prestationDuration%60;
+
+                        const duree = `${durationHours}:${durationMinutes}`;
+
+                        const response = await fetch("/api/updateResa", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({
+                                id: id,
+                                duree: duree,
+                                prix: total,
+                                prestId: selectedPrestationId
+                            })
+                        });
+
+                        const data = await response.json();
+
+                        inputDuree.value = `${durationHours} h ${durationMinutes} min`;
+                        inputPrix.value = `${total}`;
+
+                        resizeInput.call(inputDuree);
+                        resizeInput.call(inputPrix);
+
+                        resumePresta.innerHTML = '';
+
+                        prestation_noms = [];
+                        prestation_prix = [];
+                        prestation_duree = [];
+
+                         const checkboxes = document.querySelectorAll('.prestations-list input[type="checkbox"]:checked');
+
+                        checkboxes.forEach(checkbox => {
+                            const prestationPrice = parseFloat(checkbox.dataset.price).toFixed(2);
+                            const prestationDuree = parseFloat(checkbox.dataset.duree);
+                            const prestationNom = checkbox.dataset.nom;
+
+                            prestation_noms.push(prestationNom);
+                            prestation_prix.push(prestationPrice);
+                            prestation_duree.push(prestationDuree);
+                        });
+
+                        for (let i = 0; i < prestation_noms.length; i++){
+
+                            const durationHours = Math.floor(parseInt(prestation_duree[i])/60);
+                            const durationMinutes = parseInt(prestation_duree[i])%60;
+                            let prestationDurationStr = '';
+
+                            // Mettre à jour le total
+                            if(durationHours == 0){
+                                prestationDurationStr = `${durationMinutes} min`;
+                            }else{
+                                prestationDurationStr = `${durationHours} h ${durationMinutes} min`;
+                            }
+
+                            const div = document.createElement('div');
+
+                            div.innerHTML = `
+                                <span class="prestation-name">${prestation_noms[i]}</span>
+                                <div class="prestation-prixduree">
+                                    <span>${prestationDurationStr}</span>
+                                    <span class="prestation-price">${prestation_prix[i]} €</span>
+                                </div>
+                            `;
+
+                            resumePresta.appendChild(div);
+                        }
+
+                        if(data.success){
+                            loadHistoric()
+                        }
+
+                        const modals = document.querySelectorAll('.modal-backdrop');
+
+                        const modal = modals[modals.length - 1];
+                        modal.remove();
+                    });
+
+                    const elements = document.querySelectorAll('.close-button');
+
+                    const closeBtn = elements[elements.length - 1];
+
+                    closeBtn.addEventListener('click', (event) => {
+                        const modals = document.querySelectorAll('.modal-backdrop');
+
+                        const modal = modals[modals.length - 1];
+                        modal.remove();
+                    });
+                });
+
+                const closeBtn = document.querySelector('.close-button');
+
+                closeBtn.addEventListener('click', (event) => {
+                    const modal = document.querySelector('.modal-backdrop');
+                    modal.remove();
+                });
+            });
         });
 
         const cancelButton = document.querySelectorAll('.cancel-button');
@@ -63,145 +545,13 @@ async function loadHistoric() {
                 const data = await response.json();
 
                 if(data.success){
-                    window.location.href = "/historique";
+                    window.location.href = "/suiviResa";
                 }
             });
         });
 
-        const resumeButton = document.querySelectorAll('.resume-button');
-
-        resumeButton.forEach(button => {
-            button.addEventListener('click', async function(event) {
-                const parent = button.parentElement;
-
-                const id = parent.id;
-
-                const response = await fetch("/api/resaByID", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({ id })
-                });
-
-                const data = await response.json();
-
-                const date = new Date(data.date_reservation);
-                const formattedDate = date.toLocaleString('fr-FR', options);
-
-                const prestation_noms = data.prestation_noms.split(', ');
-                const prestation_prix = data.prestation_prix.split(', ');
-                const prestation_duree = data.prestation_duree.split(', ');
 
 
-                const mainFooter = document.querySelector('.main-footer');
-
-                const modal = document.createElement('div');
-                modal.className = 'modal-backdrop';
-
-                modal.innerHTML = `
-
-                    <div class="modal-content">
-                        <div class="modal-nav">
-                            <button class="close-button">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="modal-main">
-                            <div class="modal-header">
-                                <h3>Reservation du ${formattedDate.split(' ')[0]}</h3>
-                            </div>
-                            <div class="modal-table">
-                                <table id="reservation-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Prestation</th>
-                                            <th class="duree">Duree</th>
-                                            <th class="prix">Prix</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="reservation-list">
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer" id=${id}>
-                                <button class="cancel-button">Annuler</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                mainFooter.appendChild(modal);
-
-                const cancelButton = document.querySelectorAll('.cancel-button');
-
-                cancelButton.forEach(button => {
-                    button.addEventListener('click', async function(event) {
-                        const parent = button.parentElement;
-
-                        const reservationId = parent.id;
-
-                        const response = await fetch("/api/deleteResa", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            credentials: "include",
-                            body: JSON.stringify({ id : reservationId })
-                        });
-
-                        const data = await response.json();
-
-                        if(data.success){
-                            window.location.href = "/historique";
-                        }
-                    });
-                });
-
-                const reservationList = document.getElementById('reservation-list');
-
-                let totalPrix = 0;
-                let totalDuree = 0;
-
-                for (let i = 0; i < prestation_noms.length; i++){
-
-                    const row = document.createElement('tr');
-
-                    row.innerHTML = `
-                        <td>${prestation_noms[i]}</td>
-                        <td class="td-center">${parseInt(prestation_duree[i], 10)} min</td>
-                        <td class="td-center">${parseInt(prestation_prix[i], 10)} €</td>
-                    `;
-
-                    totalPrix += parseInt(prestation_prix[i], 10);
-                    totalDuree += parseInt(prestation_duree[i], 10);
-
-                    reservationList.appendChild(row);
-                }
-
-                const row = document.createElement('tr');
-
-                row.innerHTML = `
-                    <td>Total :</td>
-                    <td class="td-center">${totalDuree} min</td>
-                    <td class="td-center">${totalPrix} €</td>
-                `;
-
-                reservationList.appendChild(row);
-
-                const closeBtn = document.querySelector('.close-button');
-
-                closeBtn.addEventListener('click', (event) => {
-                    const modal = document.querySelector('.modal-backdrop');
-
-                    modal.remove();
-                });
-            });
-        });
     } catch (error) {
 
     }
