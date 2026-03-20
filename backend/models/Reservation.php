@@ -3,7 +3,7 @@ require_once __DIR__ . '/../core/Database.php';
 
 class Reservation {
 
-    public static function all() {
+    public static function allResa() {
         $db = Database::connect();
         $stmt = $db->query("
             SELECT
@@ -95,8 +95,8 @@ class Reservation {
         $stmt = $db->prepare("
             SELECT date_reservation, duree_reservation
             FROM reservations
-            WHERE DATE(date_reservation) = ?"
-        );
+            WHERE DATE(date_reservation) = ?
+        ");
         $stmt->execute([$date]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -108,8 +108,8 @@ class Reservation {
             SELECT *
             FROM reservations
             WHERE user_id = ?
-            ORDER BY date_reservation DESC"
-        );
+            ORDER BY date_reservation DESC
+        ");
         $stmt->execute([$userID]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -127,9 +127,8 @@ class Reservation {
             INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
             INNER JOIN prestations as p ON rp.prestation_id = p.id
             WHERE r.id = ?
-            GROUP BY r.id;"
-
-        );
+            GROUP BY r.id;
+        ");
         $stmt->execute([$id]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
