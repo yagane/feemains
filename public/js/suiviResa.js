@@ -43,6 +43,118 @@ function resizeInput() {
     document.body.removeChild(tempSpan);
 }
 
+async function loadPrestations(prestation_noms) {
+    const prestationsOngle = document.getElementById('prestations-ongle');
+    const prestationsSupp = document.getElementById('prestations-supp');
+    const prestationsSourcil = document.getElementById('prestations-sourcil');
+    const prestationsLoading = document.getElementById('prestations-loading');
+
+    try {
+        const response = await fetch("/api/getAllPresta", {
+            method: "GET",
+            credentials: "include"
+        });
+
+        const prestations = await response.json();
+
+        prestations.forEach(prestation => {
+            const prestationItem = document.createElement('div');
+            prestationItem.className = 'prestation-item';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = prestation.id;
+            checkbox.dataset.price = prestation.prix;
+            checkbox.dataset.duree = prestation.duree;
+            checkbox.dataset.nom = prestation.nom;
+
+            const durationHours = Math.floor(prestation.duree/60);
+            const durationMinutes = prestation.duree%60;
+
+            const divPrestation = document.createElement('div');
+            divPrestation.id = `prestation-${prestation.id}`;
+
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'prestation-name';
+            nameSpan.textContent = prestation.nom;
+
+            const dureeSpan = document.createElement('span');
+            if(durationHours == 0){
+                dureeSpan.textContent = `${durationMinutes} min`;
+            }else{
+                dureeSpan.textContent = `${durationHours} h ${durationMinutes} min`;
+            }
+
+            const priceSpan = document.createElement('span');
+            priceSpan.className = 'prestation-price';
+            priceSpan.textContent = `${prestation.prix} €`;
+
+            if (prestation.nom == 'Nail art'){
+                priceSpan.textContent = 'Sur devis';
+            }
+
+            const divPrixDuree = document.createElement('div');
+            divPrixDuree.className = 'prestation-prixduree'
+
+            divPrixDuree.appendChild(dureeSpan);
+            divPrixDuree.appendChild(priceSpan);
+
+            divPrestation.appendChild(nameSpan);
+            divPrestation.appendChild(divPrixDuree);
+
+            prestationItem.appendChild(checkbox);
+            prestationItem.appendChild(divPrestation);
+
+            if (prestation.details == 'ongle'){
+                prestationsOngle.appendChild(prestationItem);
+            }else if(prestation.details == 'supplement'){
+                prestationsSupp.appendChild(prestationItem);
+            }else{
+                prestationsSourcil.appendChild(prestationItem);
+            }
+
+            if (prestation_noms.includes(prestation.nom)){
+                checkbox.checked = !checkbox.checked;
+            }
+
+            // Ajouter un écouteur d'événement pour cocher la checkbox en cliquant sur la div
+            prestationItem.addEventListener('click', function(e) {
+                if (e.target !== checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    updateChecked();
+                }
+            });
+        });
+
+        prestationsOngle.addEventListener('change', updateChecked);
+        prestationsSupp.addEventListener('change', updateChecked);
+        prestationsSourcil.addEventListener('change', updateChecked);
+
+        prestationsLoading.classList.add("hidden")
+
+    }catch(error) {
+        console.error("Erreur lors du chargement des prestations :", error);
+    }
+}
+
+function updateChecked() {
+    const checkboxes = document.querySelectorAll('.prestations-list input[type="checkbox"]:checked');
+
+    selectedPrestationId = [];
+    prestationDuration = 0;
+    total = 0;
+
+    checkboxes.forEach(checkbox => {
+        const prestationPrice = parseFloat(checkbox.dataset.price);
+        const prestationDuree = parseFloat(checkbox.dataset.duree);
+
+        selectedPrestationId.push(checkbox.value);
+
+        prestationDuration +=  prestationDuree;
+        total += prestationPrice;
+    });
+}
+
 async function loadHistoric() {
     const historicDiv = document.querySelector(".historique-rdv");
     const reservationsList = document.getElementById('reservations-list');
@@ -480,6 +592,8 @@ async function loadHistoric() {
                     `;
 
                     mainFooter.appendChild(modal);
+
+                    loadPrestations(prestation_noms);
 
                     const cancelElements = document.querySelectorAll('.cancel-button');
 
