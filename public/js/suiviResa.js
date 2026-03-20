@@ -25,6 +25,8 @@ async function loadHistoric() {
 
         const reservations = await response.json();
 
+        console.log(reservations);
+
         reservations.forEach(reservation => {
             if(reservation.user_id == userID){
                 const row = document.createElement('tr');

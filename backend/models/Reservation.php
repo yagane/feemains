@@ -26,7 +26,6 @@ class Reservation {
             GROUP BY r.id"
         );
 
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
