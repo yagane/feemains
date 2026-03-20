@@ -57,8 +57,6 @@ class Reservation {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
     public static function dayByMY($mois, $annee) {
         $db = Database::connect();
         $stmt = $db->prepare("
