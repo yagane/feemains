@@ -3,10 +3,10 @@ require_once __DIR__ . '/../core/Database.php';
 
 class Reservation {
 
-    public static function allResa() {
+    public static function all() {
         $db = Database::connect();
-        $stmt = $db->query(
-            "SELECT
+        $stmt = $db->query("
+            SELECT
                 r.id,
                 r.user_id,
                 r.date_reservation,
@@ -23,16 +23,16 @@ class Reservation {
             INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
             INNER JOIN prestations as p ON rp.prestation_id = p.id
             INNER JOIN users as u ON u.id = r.user_id
-            GROUP BY r.id"
-        );
+            GROUP BY r.id
+        ");
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function allByDateOrder($date) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "SELECT
+        $stmt = $db->prepare("
+            SELECT
                 r.id,
                 r.user_id,
                 r.date_reservation,
@@ -49,22 +49,23 @@ class Reservation {
             INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
             INNER JOIN prestations as p ON rp.prestation_id = p.id
             INNER JOIN users as u ON u.id = r.user_id
-            WHERE DATE(date_reservation) = ?
-            GROUP BY r.id"
-        );
+            WHERE DATE(r.date_reservation) = ?
+            GROUP BY r.id
+        ");
         $stmt->execute([$date]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
+
     public static function dayByMY($mois, $annee) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "SELECT DAY(date_reservation)
+        $stmt = $db->prepare("
+            SELECT DAY(date_reservation)
             FROM `reservations`
-            WHERE MONTH(date_reservation) = :mois and YEAR(date_reservation) = :annee"
-        );
+            WHERE MONTH(date_reservation) = :mois and YEAR(date_reservation) = :annee
+        ");
         $stmt->bindParam(':mois', $mois, PDO::PARAM_INT);
         $stmt->bindParam(':annee', $annee, PDO::PARAM_INT);
         $stmt->execute();
@@ -74,14 +75,14 @@ class Reservation {
 
     public static function allByMY($mois, $annee) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "SELECT r.statut, r.prix, GROUP_CONCAT(p.nom SEPARATOR ', ') AS prestation_noms
+        $stmt = $db->prepare("
+            SELECT r.statut, r.prix, GROUP_CONCAT(p.nom SEPARATOR ', ') AS prestation_noms
             FROM reservations as r
             INNER JOIN reservations_prestations as rp ON r.id = rp.reservation_id
             INNER JOIN prestations as p ON rp.prestation_id = p.id
             WHERE MONTH(r.date_reservation) = :mois AND YEAR(r.date_reservation) = :annee
-            GROUP BY r.id"
-        );
+            GROUP BY r.id
+        ");
         $stmt->bindParam(':mois', $mois, PDO::PARAM_INT);
         $stmt->bindParam(':annee', $annee, PDO::PARAM_INT);
         $stmt->execute();
@@ -91,8 +92,8 @@ class Reservation {
 
     public static function timeDurationByDate($date) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "SELECT date_reservation, duree_reservation
+        $stmt = $db->prepare("
+            SELECT date_reservation, duree_reservation
             FROM reservations
             WHERE DATE(date_reservation) = ?"
         );
@@ -103,8 +104,8 @@ class Reservation {
 
     public static function findByUserID($userID) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "SELECT *
+        $stmt = $db->prepare("
+            SELECT *
             FROM reservations
             WHERE user_id = ?
             ORDER BY date_reservation DESC"
@@ -116,8 +117,8 @@ class Reservation {
 
     public static function findByID($id) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "SELECT
+        $stmt = $db->prepare("
+            SELECT
                 r.*,
                 GROUP_CONCAT(p.nom SEPARATOR ', ') AS prestation_noms,
                 GROUP_CONCAT(p.duree SEPARATOR ', ') AS prestation_duree,
@@ -136,15 +137,15 @@ class Reservation {
 
     public static function insert($userID, $date, $duree, $prestationIds, $prix) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "INSERT INTO reservations (user_id, date_reservation, duree_reservation, prix)
+        $stmt = $db->prepare("
+            INSERT INTO reservations (user_id, date_reservation, duree_reservation, prix)
             VALUES (?, ?, ?, ?)"
         );
         $stmt->execute([$userID, $date, $duree, $prix]);
         $reservationId = $db->lastInsertId();
 
-        $stmt = $db->prepare(
-            "INSERT INTO reservations_prestations (reservation_id, prestation_id)
+        $stmt = $db->prepare("
+            INSERT INTO reservations_prestations (reservation_id, prestation_id)
             VALUES (?, ?)"
         );
 
@@ -155,8 +156,8 @@ class Reservation {
 
     public static function update($id, $duree, $prix, $prestationIds) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "UPDATE reservations SET duree_reservation=:duree, prix=:prix
+        $stmt = $db->prepare("
+            UPDATE reservations SET duree_reservation=:duree, prix=:prix
             WHERE id=:id"
         );
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -164,13 +165,13 @@ class Reservation {
         $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
         $stmt->execute();
 
-        $stmt = $db->prepare(
-            "DELETE FROM reservations_prestations WHERE reservation_id = ?"
+        $stmt = $db->prepare("
+            DELETE FROM reservations_prestations WHERE reservation_id = ?"
         );
         $stmt->execute([$id]);
 
-        $stmt = $db->prepare(
-            "INSERT INTO reservations_prestations (reservation_id, prestation_id)
+        $stmt = $db->prepare("
+            INSERT INTO reservations_prestations (reservation_id, prestation_id)
             VALUES (?, ?)"
         );
 
@@ -181,8 +182,8 @@ class Reservation {
 
     public static function updateDuree($id, $duree) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "UPDATE reservations SET duree_reservation=:duree
+        $stmt = $db->prepare("
+            UPDATE reservations SET duree_reservation=:duree
             WHERE id=:id"
         );
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -192,8 +193,8 @@ class Reservation {
 
     public static function updatePrix($id, $prix) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "UPDATE reservations SET prix=:prix
+        $stmt = $db->prepare("
+            UPDATE reservations SET prix=:prix
             WHERE id=:id"
         );
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -203,8 +204,8 @@ class Reservation {
 
     public static function delete($id) {
         $db = Database::connect();
-        $stmt = $db->prepare(
-            "DELETE FROM reservations WHERE id = ?"
+        $stmt = $db->prepare("
+            DELETE FROM reservations WHERE id = ?"
         );
         $stmt->execute([$id]);
     }
