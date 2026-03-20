@@ -481,8 +481,6 @@ async function loadHistoric() {
 
                     mainFooter.appendChild(modal);
 
-                    loadPrestations(prestation_noms);
-
                     const cancelElements = document.querySelectorAll('.cancel-button');
 
                     const cancelBtn = cancelElements[cancelElements.length - 1];
