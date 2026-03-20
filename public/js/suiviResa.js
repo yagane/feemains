@@ -10,6 +10,39 @@ const options = {
 let connected = null;
 let role = null;
 
+function toLocalISOString(date) {
+  const pad = (n) => n.toString().padStart(2, '0');
+
+  return (
+    date.getFullYear() + '-' +
+    pad(date.getMonth() + 1) + '-' +
+    pad(date.getDate()) + 'T' +
+    pad(date.getHours()) + ':' +
+    pad(date.getMinutes()) + ':' +
+    pad(date.getSeconds())
+  );
+}
+
+function resizeInput() {
+    const tempSpan = document.createElement('span');
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.whiteSpace = 'pre';
+    tempSpan.style.position = 'absolute';
+    tempSpan.style.fontSize = window.getComputedStyle(this).fontSize;
+    tempSpan.style.fontFamily = window.getComputedStyle(this).fontFamily;
+    tempSpan.style.fontWeight = window.getComputedStyle(this).fontWeight;
+    tempSpan.style.padding = window.getComputedStyle(this).padding;
+    tempSpan.style.border = window.getComputedStyle(this).border;
+    tempSpan.textContent = this.value || this.placeholder || '';
+
+    document.body.appendChild(tempSpan);
+
+    const width = tempSpan.offsetWidth;
+    this.style.width = `${width}px`;
+
+    document.body.removeChild(tempSpan);
+}
+
 async function loadHistoric() {
     const historicDiv = document.querySelector(".historique-rdv");
     const reservationsList = document.getElementById('reservations-list');
