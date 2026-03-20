@@ -3,11 +3,9 @@ require_once __DIR__ . '/../models/Reservation.php';
 
 class ResaController {
 
-    public static function resaAllByDate() {
+    public static function resaAll() {
 
-        $data = json_decode(file_get_contents("php://input"), true);
-
-        $reservations = Reservation::allByDateOrder($data['dateSplit']);
+        $reservations = Reservation::allResa();
 
         echo json_encode($reservations);
     }

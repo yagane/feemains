@@ -18,13 +18,9 @@ async function loadHistoric() {
 
     try {
         // Envoyer les données au serveur
-        const response = await fetch("/api/resaByUser", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify({ userID })
+        const response = await fetch("/api/resaAll", {
+            method: "GET",
+            credentials: "include"
         });
 
         const reservations = await response.json();
@@ -63,13 +59,13 @@ async function loadHistoric() {
                         "Content-Type": "application/json"
                     },
                     credentials: "include",
-                    body: JSON.stringify({ reservationId })
+                    body: JSON.stringify({ id : reservationId })
                 });
 
                 const data = await response.json();
 
                 if(data.success){
-                    window.location.href = "/client";
+                    window.location.href = "/historique";
                 }
             });
         });
@@ -157,13 +153,13 @@ async function loadHistoric() {
                                 "Content-Type": "application/json"
                             },
                             credentials: "include",
-                            body: JSON.stringify({ reservationId })
+                            body: JSON.stringify({ id : reservationId })
                         });
 
                         const data = await response.json();
 
                         if(data.success){
-                            window.location.href = "/client";
+                            window.location.href = "/historique";
                         }
                     });
                 });
@@ -216,10 +212,6 @@ async function loadHistoric() {
 async function updateAuthUI() {
     const authLink = document.getElementById('auth-link');
     const userGreeting = document.getElementById('user-greeting');
-    const userFirstname = document.getElementById('user-name');
-    const userFullname = document.getElementById('user-fullname');
-    const userEmail = document.getElementById('user-email');
-    const userPhone = document.getElementById('user-phone');
     const drop1 = document.getElementById('drop1');
     const drop2 = document.getElementById('drop2');
 
@@ -238,10 +230,6 @@ async function updateAuthUI() {
     if (data.connected) {
         authLink.classList.add("hidden");
         userGreeting.classList.remove("hidden");
-        userFirstname.textContent = `Bonjour, ${data.prenom} ▼`;
-        userFullname.textContent = `${data.prenom} ${data.nom}` ;
-        userEmail.textContent = data.email;
-        userPhone.textContent = data.phone;
 
         if(data.role == 'admin'){
             drop1.href = '/admin';
