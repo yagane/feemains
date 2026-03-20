@@ -42,6 +42,39 @@ async function loadHistoric() {
 
             reservationsList.appendChild(row);
 
+            let startTime = appointment.date_reservation.split(' ')[1];
+            let dureeReservation = appointment.duree_reservation;
+
+            const startHour = parseInt(startTime.split(':')[0], 10);
+            const startMinute = parseInt(startTime.split(':')[1], 10);
+            const dureeHour = parseInt(dureeReservation.split(':')[0], 10);
+            const dureeMinute = parseInt(dureeReservation.split(':')[1], 10);
+
+            let endHour = 0;
+            let endMinute = 0;
+
+            if((startMinute + dureeMinute) >= 60){
+                endHour = startHour + dureeHour + 1;
+                endMinute = startMinute + dureeMinute - 60;
+            }else{
+                endHour = startHour + dureeHour;
+                endMinute = startMinute + dureeMinute;
+            }
+
+            let endTime = null;
+
+            if(endMinute < 10){
+                endTime = `${endHour}:0${endMinute}`;
+            }else{
+                endTime = `${endHour}:${endMinute}`;
+            }
+
+            if(startMinute < 10){
+                startTime = `${startHour}:0${startMinute}`;
+            }else{
+                startTime = `${startHour}:${startMinute}`;
+            }
+
             const id = appointment.id;
             const date_reservation = new Date(appointment.date_reservation);
             const localDate = date_reservation.toLocaleDateString().split(' ')[0];
