@@ -7,8 +7,6 @@ const options = {
   hour12: false // Pour afficher en format 24h
 };
 
-let userID = null;
-
 let connected = null;
 let role = null;
 
@@ -25,26 +23,22 @@ async function loadHistoric() {
 
         const reservations = await response.json();
 
-        console.log(reservations);
-
         reservations.forEach(reservation => {
-            if(reservation.user_id == userID){
-                const row = document.createElement('tr');
+            const row = document.createElement('tr');
 
-                const date = new Date(reservation.date_reservation);
-                const formattedDate = date.toLocaleString('fr-FR', options);
+            const date = new Date(reservation.date_reservation);
+            const formattedDate = date.toLocaleString('fr-FR', options);
 
-                // Créer les cellules du tableau
-                row.innerHTML = `
-                <td>${formattedDate}</td>
-                <td>${reservation.statut}</td>
-                <td class="actions" id=${reservation.id}>
-                    <button class="resume-button">Resumé</button>
-                    <button class="cancel-button">Annuler</button>
-                </td>`;
+            // Créer les cellules du tableau
+            row.innerHTML = `
+            <td>${formattedDate}</td>
+            <td>${reservation.statut}</td>
+            <td class="actions" id=${reservation.id}>
+                <button class="resume-button">Resumé</button>
+                <button class="cancel-button">Annuler</button>
+            </td>`;
 
-                reservationsList.appendChild(row);
-            }
+            reservationsList.appendChild(row);
         });
 
         const cancelButton = document.querySelectorAll('.cancel-button');
@@ -223,8 +217,6 @@ async function updateAuthUI() {
     });
 
     const data = await response.json();
-
-    userID = data.id
 
     connected = data.connected;
     role = data.role;
