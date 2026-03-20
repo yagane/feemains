@@ -139,15 +139,15 @@ class Reservation {
         $db = Database::connect();
         $stmt = $db->prepare("
             INSERT INTO reservations (user_id, date_reservation, duree_reservation, prix)
-            VALUES (?, ?, ?, ?)"
-        );
+            VALUES (?, ?, ?, ?)
+        ");
         $stmt->execute([$userID, $date, $duree, $prix]);
         $reservationId = $db->lastInsertId();
 
         $stmt = $db->prepare("
             INSERT INTO reservations_prestations (reservation_id, prestation_id)
-            VALUES (?, ?)"
-        );
+            VALUES (?, ?)
+        ");
 
         foreach ($prestationIds as $prestationId) {
             $stmt->execute([$reservationId, $prestationId]);
@@ -158,22 +158,22 @@ class Reservation {
         $db = Database::connect();
         $stmt = $db->prepare("
             UPDATE reservations SET duree_reservation=:duree, prix=:prix
-            WHERE id=:id"
-        );
+            WHERE id=:id
+        ");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':duree', $duree, PDO::PARAM_STR);
         $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
         $stmt->execute();
 
         $stmt = $db->prepare("
-            DELETE FROM reservations_prestations WHERE reservation_id = ?"
-        );
+            DELETE FROM reservations_prestations WHERE reservation_id = ?
+        ");
         $stmt->execute([$id]);
 
         $stmt = $db->prepare("
             INSERT INTO reservations_prestations (reservation_id, prestation_id)
-            VALUES (?, ?)"
-        );
+            VALUES (?, ?)
+        ");
 
         foreach ($prestationIds as $prestationId) {
             $stmt->execute([$id, $prestationId]);
@@ -184,8 +184,8 @@ class Reservation {
         $db = Database::connect();
         $stmt = $db->prepare("
             UPDATE reservations SET duree_reservation=:duree
-            WHERE id=:id"
-        );
+            WHERE id=:id
+        ");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':duree', $duree, PDO::PARAM_STR);
         $stmt->execute();
@@ -195,8 +195,8 @@ class Reservation {
         $db = Database::connect();
         $stmt = $db->prepare("
             UPDATE reservations SET prix=:prix
-            WHERE id=:id"
-        );
+            WHERE id=:id
+        ");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
         $stmt->execute();
@@ -205,8 +205,8 @@ class Reservation {
     public static function delete($id) {
         $db = Database::connect();
         $stmt = $db->prepare("
-            DELETE FROM reservations WHERE id = ?"
-        );
+            DELETE FROM reservations WHERE id = ?
+        ");
         $stmt->execute([$id]);
     }
 }
