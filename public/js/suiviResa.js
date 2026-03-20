@@ -23,6 +23,8 @@ async function loadHistoric() {
 
         const reservations = await response.json();
 
+        reservations.reverse();
+
         reservations.forEach(reservation => {
             const row = document.createElement('tr');
 
@@ -32,7 +34,7 @@ async function loadHistoric() {
             // Créer les cellules du tableau
             row.innerHTML = `
             <td>${formattedDate}</td>
-            <td>${reservation.statut}</td>
+            <td>${reservation.prenom} ${reservation.nom}</td>
             <td class="actions" id=${reservation.id}>
                 <button class="resume-button">Resumé</button>
                 <button class="cancel-button">Annuler</button>
